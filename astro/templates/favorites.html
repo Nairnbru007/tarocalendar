@@ -1,0 +1,185 @@
+{% extends  'index.html' %}
+{% load static %}
+{% block title %} Избранное {% endblock %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+<div class="center">
+		<div class="container">
+			<div class="row">
+				<div class="col align-self-start">
+					<p class="txt3"> <img src="{% static 'images/Vector.png' %}" class="" alt="">  Избранное</p>
+				</div>
+            </div>
+        </div>
+
+
+        <div class="container" style="margin-top: 30px;">
+            <div class="row">
+                <div class="col align-self-start">
+                    <div class="table-responsive custom-table-responsive">
+                        <table class="table custom-table">
+                          <thead>
+                            <tr>
+                              <th scope="col">
+                                <label class="control control--checkbox">
+                                  <input type="checkbox" class="js-check-all"/>
+                                  <div class="control__indicator"></div>
+                                </label>
+                              </th>
+                              <th scope="col">№</th>
+                              <th scope="col">Дата</th>
+                              <th scope="col">Левый ввод</th>
+                              <th scope="col">Центр</th>
+                              <th scope="col">Правый ввод</th>
+                              <th scope="col"><img src="{% static 'images/Vector1.png' %}" class=""  alt=""></th>
+                              <th scope="col">Примечание</th>
+                              <th scope="col"></th>
+                              <th scope="col"></th>
+                              <th scope="col"><button type="button" class="btn" data-toggle="modal" data-target="{{ object.id }}" disabled><img src="{% static 'images/alarm.png' %}" class=""  alt="" width="20" height="20"></button></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {% for object in object_list %}
+                            <tr scope="row" style="border-top: 3px solid #374151;">
+                              <th scope="row">
+                                <label class="control control--checkbox">
+                                  <input type="checkbox" value="{{ object.id }}" name="checked"/>
+                                  <div class="control__indicator"></div>
+                                </label>
+                              </th>
+                              <td style="border-top: 3px solid #374151;">
+                                {{ forloop.counter0|add:page_obj.start_index }}
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                  {{ object.date }}</td>
+                              <td style="border-top: 3px solid #374151;">
+                                {{ object.rakurs_left }}
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                {{ object.rakurs_center }}
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                {{ object.rakurs_right }}
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                {{ object.unknoun_field }}
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                {{ object.note }}
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                  <button type="button" class="btn" data-toggle="modal" data-target="#deleteString{{ object.id }}"><img src="{% static 'images/delete.png' %}" class=""  alt="" width="20" height="20"></button>
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                  <button type="button" class="btn" data-toggle="modal" data-target="#editNote{{ object.id }}"><img src="{% static 'images/edit.png' %}" class=""  alt="" width="20" height="20"></button>
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                  <button type="button" class="btn" data-toggle="modal" data-target="{{ object.id }}"><img src="{% static 'images/alarm.png' %}" class=""  alt="" width="20" height="20"></button>
+                              </td>
+                            </tr>
+                            <tr class="spacer"><td colspan="100"></td></tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteString{{ object.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content rounded">
+                                  <div class="modal-header text-center">
+                                    <h5 class="modal-title w-100" id="exampleModalLongTitle">Удаление выбранного объекта</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true"><img src="{% static 'images/close2.png' %}" class=""  alt=""></span>
+                                    </button>
+                                  </div>
+                                    <form method="POST" name="id">
+                                      <div class="modal-body text-center">
+                                            {% csrf_token %}
+                                            <p class="modal-body">Вы действительно хотите удалить {{ forloop.counter0|add:page_obj.start_index }} строку?</p>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid #FFCE8E;">Закрыть</button>
+                                        <button type="submit" class="btn btn-red" name="id" value="{{ object.id }}" >Удалить</button>
+                                      </div>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal fade" id="editNote{{ object.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content rounded">
+                                  <div class="modal-header text-center">
+                                    <h5 class="modal-title w-100" id="exampleModalLongTitle">Редактирование строки №{{ forloop.counter0|add:page_obj.start_index }}</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true"><img src="{% static 'images/close2.png' %}" class=""  alt=""></span>
+                                    </button>
+                                  </div>
+                                    <form method="POST" name="edit">
+                                      <div class="modal-body text-center">
+                                            {% csrf_token %}
+                                              <div class="form-group">
+                                                <label for="edit" class="edit-note">Введите текст для редактирования примечания</label>
+                                                <textarea class="form-control" id="edit" rows="3" style="border: 1px solid #FFCE8E;" name="edit"></textarea>
+                                              </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid #FFCE8E;">Закрыть</button>
+                                        <button type="submit" class="btn btn-edit" name="edit_id" value="{{ object.id }}" >Редактировать</button>
+                                      </div>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                            {% endfor %}
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top: 1px;">
+                <div class="row g-3" style="margin-top: 1px; margin-bottom: 30px;">
+                            <div class="col-auto box align-self-center" hidden>
+                                <select class="form-select select" name="group_actions">
+                                  <option value="Удалить выбранные результаты">Удалить выбранные результаты</option>
+                                </select>
+                            </div>
+                          <div class="col-auto align-self-center">
+                            <input type="submit" style="width:280px;" class="btn execute_button fa fa-check" aria-hidden="true" id="execute" name="execute" value="Удалить выбранные записи">
+                          </div>
+                        </div>
+                <div class="row">
+                    <div class="col align-self-center pagination">
+                        <span class="align-self-center page" style="padding-left: 1%;">Строк на странице: </span>
+                        <div class="col-auto box align-self-center">
+                            {% csrf_token %}
+                            <form action="" method="get" class="row g-1">
+                                <select name="paginate_by" class="form-select select2">
+                                    <option selected disabled>{{ page_obj.end_index }}</option>
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>25</option>
+                                    <option>100</option>
+                                </select>
+                                <button type="submit" class="btn execute_button fa" id="paginate_by">&#10004 Применить</button>
+                            </form>
+                        </div>
+                      <span class="align-self-center page">
+                          {% if page_obj.has_previous %}
+                              <a href="{% url 'favorites' %}?page=1"><img src="{% static 'images/previous.png' %}" class="align-self-center prev" alt=""><img src="{% static 'images/previous.png' %}" class="align-self-center prev_2" alt=""></a>
+                              <a href="{% url 'favorites' %}?page={{ page_obj.previous_page_number }}"><img src="{% static 'images/previous.png' %}" class="align-self-center next"  alt=""></a>
+
+                          {% endif %}
+                          <span class="align-self-center page span_pagination">
+                              Записи {{ page_obj.start_index }}-{{ page_obj.end_index }}
+                          </span>
+                          {% if page_obj.has_next %}
+                              <a href="{% url 'favorites' %}?page={{ page_obj.next_page_number }}"><img src="{% static 'images/next.png' %}" class="align-self-center next" alt=""></a>
+                              <a href="{% url 'favorites' %}?page={{ page_obj.paginator.num_pages }}"><img src="{% static 'images/next.png' %}" class="align-self-center last" alt=""><img src="{% static 'images/next.png' %}" class="align-self-center last_2" alt=""></a>
+                          {% endif %}
+                      </span>
+                    </div>
+                </div>
+        </div>
+</div>
+</form>
+
+<script src="{% static 'js/table.js' %}"></script>
+{% endblock content %}

@@ -1,0 +1,8 @@
+{% extends  'menu_footer.html' %}
+{% load static %}
+{% block title %} Пользовательское Соглашение {% endblock %}
+{% block content %}
+    <center>
+		<iframe src="{% static 'docs/Пользовательское_Соглашение.pdf' %}" class="pdf" style="width: 60%; height: 600px;"></iframe>
+	</center>
+{% endblock content %}

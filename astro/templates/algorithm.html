@@ -1,0 +1,349 @@
+{% extends  'menu_footer.html' %}
+{% load static %}
+{% block title %} Тарифы {% endblock %}
+{% block content %}
+
+
+	
+
+
+<style>
+
+
+</style>
+
+
+<div class="center">
+        <div class="container">
+			<div class="row justify-content-md-center ">
+                        <div class="col-sm-1 mx-auto circle__filter2 flex favorites">
+                        <button type="submit" name="favorites">
+                            <img src="{% static 'images/star_border.png' %}" class=" star_border circle__filter2"  alt="">
+                        </button>
+					</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col-sm-auto favorites">
+					<img src="{% static 'images/2223.png' %}" class="" alt="">
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col align-self-start">
+					<img src="{% static 'images/cat1.png' %}" class="cat1" alt="">
+				</div>
+				<div class="col align-self-center cat3 circle__filter2 flex">
+                    <img src="{% static 'images/image_d18_3.png' %}" class="crosses" alt="">          
+						<input id="current_date" class="center_date"  disabled style="width: 100px;"></p>	
+                    <img src="{% static 'images/image_d18_3.png' %}" class="crosses_1" alt="">
+				</div>
+
+				<div class="col align-self-end">
+                    <div class="calendar__top cat1 flex">
+					<img src="{% static 'images/cat2.png' %}" class="" alt="">
+                        </div>
+				</div>
+			</div>
+		</div>
+        <div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col align-self-center cat5 circle__filter2 flex">
+					
+                                <input type="image" name="image" src="{% static 'images/Component4_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component16_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component22_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component23_gold.png' %}"  class="center_input_empty" disabled>
+
+                            	<input type="image" name="image" src="{% static 'images/Component17_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component26_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component18_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component19_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component20_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component21_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component27_gold.png' %}"  class="center_input_empty" disabled>
+
+                                <input type="image" name="image" src="{% static 'images/Component28_gold.png' %}"  class="center_input_empty" disabled>
+
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col align-self-start">
+
+				<div class="calendar__top  inp_date">
+				<p style="color:#FFCE8E;">ВВЕДИТЕ ДАТЫ:<p>
+				<input type="date" class="calendar__top_input input-number" style="width: 125px; color:#FFCE8E;">
+				</div>
+				</div>
+				<div class="col align-self-center ">
+				</div>
+				<div class="col align-self-end">
+					<div class="calendar__top inp_date flex">
+					<input type="date" class="calendar__top_input input-number" style="width: 125px; color:#FFCE8E;">
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col align-self-start">
+                    <div class="inp_date_3 flex">
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="1"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="2"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="3"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="4"  disabled>
+                    <input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="5"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="6"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="7"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="8"  disabled>
+			        </div>
+			    </div> 
+			    <div class="col align-self-center "></div>
+                <div class="col align-self-end ">
+				    <div class="calendar__top inp_date_3 flex">
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="1"  disabled>
+                    <input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="2"  disabled>
+                    <input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="3"  disabled>
+                    <input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="4"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="5"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="6"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="7"  disabled>
+					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="8"  disabled>
+                    </div>
+                </div>
+	        </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col align-self-center">
+                <div class="flex rakurs_center circle__filter2">
+                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="1" disabled>
+                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="2" disabled>
+                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="3" disabled>
+                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="4" disabled>
+                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="5" disabled>
+                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="6" disabled>
+                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="7" disabled>
+                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="8" disabled>
+                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="9" disabled>
+                </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col align-self-start">
+                    <div class="flex inp_date_2">
+					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_1" value="1" disabled>
+					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_2" value="2" disabled>
+					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_3" value="3" disabled>
+					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_4" value="4" disabled>
+					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_5" value="5" disabled>
+					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_6" value="6" disabled>
+					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_7" value="7" disabled>
+					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_8" value="8" disabled>
+                    </div>
+                </div>
+                <div class="col align-self-center ">
+                    <div class="flex rakurs_center circle__filter2">
+					<input type="text" name="xxx" class="center_input" id="rakurs_right_1" value="1" disabled>
+					<input type="text" name="xxx" class="center_input" id="rakurs_right_2" value="1" disabled>
+					<input type="text" name="xxx" class="center_input" id="rakurs_right_3" value="1" disabled>
+					<input type="text" name="xxx" class="center_input" id="rakurs_right_4" value="1" disabled>
+					<input type="text" name="xxx" class="center_input" id="rakurs_right_5" value="1" disabled>
+					<input type="text" name="xxx" class="center_input" id="rakurs_right_6" value="1" disabled>
+					<input type="text" name="xxx" class="center_input" id="rakurs_right_7" value="1" disabled>
+					<input type="text" name="xxx" class="center_input" id="rakurs_right_8" value="1" disabled>
+				</div>
+                </div>
+                <div class="col align-self-end ">
+                    <div class="calendar__top inp_date_2 flex">
+                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_1_1" value="1" disabled>
+                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_2_1" value="2" disabled>
+                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_3_1" value="3" disabled>
+                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_4_1" value="4" disabled>
+                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_5_1" value="5" disabled>
+                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_6_1" value="6" disabled>
+                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_7_1" value="7" disabled>
+                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_8_1" value="8" disabled>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+          <div class="row">
+                <div class="col align-self-start">
+                    <div class="calendar__top flex Group_506 circle__filter2">
+					<img src="{% static 'images/Group_506.png' %}" class="" alt="">
+                    </div>
+                </div>
+                <div class="col align-self-center flex" style='height:180px;'>
+                    <style>
+#calendar3 select {
+  background:#0f6660;
+  color:#fff;
+  width:117px;
+  height:24px; 
+}
+#calendar3 input {
+  background-color:#0f6660;
+  color:#fff;
+  width:117px;
+  border-style:solid;
+  border-radius:4px;
+  height:24px;
+  border-width:thin;
+  
+}
+#calendar3 {
+  width: 100%;
+  font: monospace;
+  line-height: 1em;
+  font-size: 18px;
+  text-align: center;
+}
+#calendar3 thead tr:last-child {
+  font-size: small;
+  color: #fff;
+  background:#0f6660;
+}
+#calendar3 tbody td {
+  color: #FFCE8E;
+}
+#calendar3 tbody td:nth-child(n+6), #calendar3 .holiday {
+  color: rgb(231, 140, 92);
+}
+#calendar3 tbody td.today {
+  outline: 3px solid red;
+}
+</style>
+
+					<table id="calendar3">
+  						<thead>
+    					<tr><td colspan="4">
+    					<select>
+						<option value="0">Январь</option>
+						<option value="1">Февраль</option>
+						<option value="2">Март</option>
+						<option value="3">Апрель</option>
+						<option value="4">Май</option>
+						<option value="5">Июнь</option>
+						<option value="6">Июль</option>
+						<option value="7">Август</option>
+						<option value="8">Сентябрь</option>
+						<option value="9">Октябрь</option>
+						<option value="10">Ноябрь</option>
+						<option value="11">Декабрь</option>
+						</select>
+						<td colspan="4"><input type="number" value="" min="2022" max="2022" size="4">
+    					<tr><td>Пн<td>Вт<td>Ср<td>Чт<td>Пт<td>Сб<td>Вс
+  						<tbody>
+					</table>
+
+					<script>
+function Calendar3(id, year, month) {
+var Dlast = new Date(year,month+1,0).getDate(),
+    D = new Date(year,month,Dlast),
+    DNlast = D.getDay(),
+    DNfirst = new Date(D.getFullYear(),D.getMonth(),1).getDay(),
+    calendar = '<tr>',
+    m = document.querySelector('#'+id+' option[value="' + D.getMonth() + '"]'),
+    g = document.querySelector('#'+id+' input');
+if (DNfirst != 0) {
+  for(var  i = 1; i < DNfirst; i++) calendar += '<td>';
+}else{
+  for(var  i = 0; i < 6; i++) calendar += '<td>';
+}
+for(var  i = 1; i <= Dlast; i++) {
+  if (i == new Date().getDate() && D.getFullYear() == new Date().getFullYear() && D.getMonth() == new Date().getMonth()) {
+    calendar += '<td class="today">' + i;
+  }else{
+    if (  // список официальных праздников
+        (i == 1 && D.getMonth() == 0 && ((D.getFullYear() > 1897 && D.getFullYear() < 1930) || D.getFullYear() > 1947)) || // Новый год
+        (i == 2 && D.getMonth() == 0 && D.getFullYear() > 1992) || // Новый год
+        ((i == 3 || i == 4 || i == 5 || i == 6 || i == 8) && D.getMonth() == 0 && D.getFullYear() > 2004) || // Новый год
+        (i == 7 && D.getMonth() == 0 && D.getFullYear() > 1990) || // Рождество Христово
+        (i == 23 && D.getMonth() == 1 && D.getFullYear() > 2001) || // День защитника Отечества
+        (i == 8 && D.getMonth() == 2 && D.getFullYear() > 1965) || // Международный женский день
+        (i == 1 && D.getMonth() == 4 && D.getFullYear() > 1917) || // Праздник Весны и Труда
+        (i == 9 && D.getMonth() == 4 && D.getFullYear() > 1964) || // День Победы
+        (i == 12 && D.getMonth() == 5 && D.getFullYear() > 1990) || // День России (декларации о государственном суверенитете Российской Федерации ознаменовала окончательный Распад СССР)
+        (i == 7 && D.getMonth() == 10 && (D.getFullYear() > 1926 && D.getFullYear() < 2005)) || // Октябрьская революция 1917 года
+        (i == 8 && D.getMonth() == 10 && (D.getFullYear() > 1926 && D.getFullYear() < 1992)) || // Октябрьская революция 1917 года
+        (i == 4 && D.getMonth() == 10 && D.getFullYear() > 2004) // День народного единства, который заменил Октябрьскую революцию 1917 года
+       ) {
+      calendar += '<td class="holiday">' + i;
+    }else{
+      calendar += '<td>' + i;
+    }
+  }
+  if (new Date(D.getFullYear(),D.getMonth(),i).getDay() == 0) {
+    calendar += '<tr>';
+  }
+}
+for(var  i = DNlast; i < 7; i++) calendar += '<td>&nbsp;';
+document.querySelector('#'+id+' tbody').innerHTML = calendar;
+g.value = D.getFullYear();
+m.selected = true;
+if (document.querySelectorAll('#'+id+' tbody tr').length < 6) {
+    document.querySelector('#'+id+' tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
+}
+document.querySelector('#'+id+' option[value="' + new Date().getMonth() + '"]').style.color = 'rgb(220, 0, 0)'; // в выпадающем списке выделен текущий месяц
+}
+Calendar3("calendar3",new Date().getFullYear(),new Date().getMonth());
+document.querySelector('#calendar3').onchange = function Kalendar3() {
+  Calendar3("calendar3",document.querySelector('#calendar3 input').value,parseFloat(document.querySelector('#calendar3 select').options[document.querySelector('#calendar3 select').selectedIndex].value));
+}
+</script>
+                </div>
+                <div class="col align-self-end">
+                    <div class="flex Group_506_1 circle__filter2 calendar__top">
+					    <img src="{% static 'images/Group_506.png' %}" class="" alt="">
+                    </div>
+                </div>
+          </div>
+        </div>
+        
+        
+        <div class="container">
+            <div class="row">
+                <div class="circle__filter2 flex">
+					<input type="submit" class="circle__filter_block clear_center" name="clear" value="Очистить">
+					<input type="submit" class="circle__filter_block done_center" id="Result" name="Result" value="Результат">
+				</div>
+                <div class="circle__filter2 flex">
+                        <img src="{% static 'images/asdasd1.png' %}" class="" alt="">
+                </div>
+            </div>
+            
+        </div>
+
+
+</div>
+
+<script>
+n =  new Date();
+y = n.getFullYear();
+m = n.getMonth()+1;
+if (m < 10) {
+  m = ''.concat('0', m.toString());
+}
+d = n.getDate();
+value = d + "." + m + "." + y;
+document.getElementById("current_date").setAttribute('value', value);
+</script>
+{% endblock content %}
