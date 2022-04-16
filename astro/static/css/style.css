@@ -1481,7 +1481,7 @@ month_p {
   }
   .navbar-nav {
     padding: 0 20px;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: none;
   }
   .navbar.fixed-top .navbar-nav {
     background: transparent;

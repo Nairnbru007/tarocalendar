@@ -38,7 +38,9 @@
 
 	
 	<style>
-
+.container{
+max-width: 98vw;
+}
    .scale {
     animation: pulse 2.5s;
    }
@@ -55,6 +57,19 @@
     opacity: 1;
   }
 }
+.footer {
+margin-right: 10px;
+margin-left: 10px;
+}
+
+
+.screen{
+    .navbar-nav {
+        padding: 0 20px;
+        background-color: none;
+    }
+}
+}
 
 	</style>
 </head>
@@ -64,20 +79,20 @@
 <header class="header-area overlay">
     <div class="navbar navbar-expand-md navbar-dark">
 		<div class="container">
-			<a href="{% url 'main' %}" class="navbar-brand navbar-brand-fullscreen">ТАРОКАЛЕНДАРЬ</a>
+			<a href="{% url 'main' %}" class="navbar-brand navbar-brand-fullscreen" style="margin-right: 5rem;">ТАРОКАЛЕНДАРЬ</a>
 			<button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#main-nav">
 				<span class="menu-icon-bar"></span>
 				<span class="menu-icon-bar"></span>
 				<span class="menu-icon-bar"></span>
 			</button>
 			<div id="main-nav" class="collapse navbar-collapse">
-                <h1 class="navbar-nav ml-auto center_CONGRUIT">
-                    <a href="{% url 'algorithm' %}" class="nav-item nav-link">CONGRUIT UNIVERSA</a>
-                </h1>
+                <ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen" style="margin-top: 10px;">
+                    <a href="/algorithm/" class="nav-item nav-link">CONGRUIT UNIVERSA</a>
+                </ul>
 					{% if not request.user.is_authenticated %}
-					<ul class="navbar-nav ml-auto col-lg-5 text-center navbar-nav-fullscreen">
-					<button type="button" class="btn btn-login align-self-center" data-bs-toggle="modal" data-bs-target="#login-register-form" style="border: 1px solid #FFCE8E;">ВОЙТИ</button>
-					<button type="button" class="btn btn-register align-self-center" data-bs-toggle="modal" data-bs-target="#register-login-form" style="border: 1px solid #FFCE8E;">ЗАРЕГИСТРИРОВАТЬСЯ</button>
+					<ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen">
+					<button type="button" class="btn btn-login align-self-center" data-bs-toggle="modal" data-bs-target="#login-register-form" style="border: 1px solid #FFCE8E; margin-top: 5px;">ВОЙТИ</button>
+					<button type="button" class="btn btn-register align-self-center" data-bs-toggle="modal" data-bs-target="#register-login-form" style="border: 1px solid #FFCE8E; margin-top: 5px;">ЗАРЕГИСТРИРОВАТЬСЯ</button>
 					</ul>
 					{% else %}
 					<ul class="navbar-nav ml-auto col-lg-3 text-center navbar-nav-fullscreen">
@@ -362,11 +377,11 @@
 	</div>
 	{% endif %}
     {% block content %}
-    <div class="center" style="background-color:transparent;">
+    <div class="center" style="background-color:transparent;min-height: calc(100vh - 420px);">
 		<div class="container" align="center">
 		<div class="scale" align="center">
 
-					<img src="{% static 'images/center_logo.png' %}" align="center">
+					<img src="{% static 'images/center_logo.png' %}" align="center" style="max-height: 100px;">
 
 		</div>
 			<p style="color:white;font-size: 24px;" align="center">Добро пожаловать на сайт посвященный .....</p>
@@ -374,7 +389,7 @@
 		</div>	
 	</div>
     {% endblock content %}
-		<footer class="center">
+		<footer class="center" style="margin:0 0;">
 			<div class="container">
 				<div class="row justify-content-center">
 					<div class="col-md-14 text-center" style="margin-top: -2%;">
