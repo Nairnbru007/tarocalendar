@@ -31,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     
+    path('', views.Menu.as_view(), name='main'),
     path('offer/', views.Offer.as_view(), name='offer'),
     path('favorites/', views.Favorites_View.as_view(), name='favorites'),
     path('agreement/', views.Agreement.as_view(), name='agreement'),
@@ -39,12 +40,10 @@ urlpatterns = [
     path('algorithm/', views.Algorithm.as_view(), name='algorithm'),
     path('logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     #path('login_reg/', views.Login_RegView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='login_'),
-    #
-    path('', views.Menu.as_view(), name='main'),
+
     path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',
          views.activate, name='activate'),
-    #
-    #path('page/', views.index, name='page')
+
 ]
 
 if settings.DEBUG:

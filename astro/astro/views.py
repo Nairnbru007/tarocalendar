@@ -29,6 +29,8 @@ from django.core.mail import EmailMessage
 from os import walk
 import os  
 
+# def index(request):
+#     return render(request, 'index.html')
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -38,7 +40,6 @@ class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-
 class GroupViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows groups to be viewed or edited.
@@ -46,12 +47,6 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
-    
-
-
-
-# def index(request):
-#     return render(request, 'index.html')
 
 class Offer(View):
 
@@ -185,9 +180,7 @@ class Offer(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
-        
-        
-        
+
 class Agreement(View):
 
 #     def get(self, request, *args, **kwargs):
@@ -320,9 +313,7 @@ class Agreement(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
-        
 
-        
 class Menu(View):
 
     login_form = LoginForm
@@ -449,7 +440,6 @@ class Menu(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
-        
 
 class Algorithm(View):
 
@@ -592,7 +582,6 @@ class Algorithm(View):
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 
-        
 @method_decorator(login_required(login_url='/'), name='dispatch')
 class Tarif(View):
 
@@ -637,7 +626,6 @@ class Favorites_View(ListView):
                 for check_id in checked_id:
                     Favorites.objects.get(pk=check_id).delete()
             return HttpResponseRedirect('/favorites/')
-
 
 def activate(request, uidb64, token):
     User = get_user_model()
