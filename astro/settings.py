@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-%w%*a!7+pmarn)jxsrd7^x5!nm#6y3k*o&(d7cqy&ku20*)ab9
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -167,20 +167,20 @@ XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
 # #EMAIL_HOST_PASSWORD = 'Temp2022!'
 
 
-# EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'rakurstk@gmail.com'
-# EMAIL_HOST_PASSWORD = 'AndreyTK156*'
-# EMAIL_USE_SSL = False
-
-
-
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'irnbru00795@gmail.com'
-EMAIL_HOST_PASSWORD = 'lfjsykciuczyivuh'
+EMAIL_HOST_USER = 'rakurstk@gmail.com'
+EMAIL_HOST_PASSWORD = 'AndreyTK156*'
 EMAIL_USE_SSL = False
+
+
+
+# EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_USE_TLS = True
+# EMAIL_PORT = 587
+# EMAIL_HOST_USER = 'irnbru00795@gmail.com'
+# EMAIL_HOST_PASSWORD = 'lfjsykciuczyivuh'
+# EMAIL_USE_SSL = False
