@@ -26,6 +26,8 @@ from django.utils.encoding import force_bytes, force_str
 from .tokens import account_activation_token, password_reset_token
 from django.core.mail import EmailMessage
 
+from datetime import datetime
+
 from os import walk
 import os  
 
@@ -581,6 +583,32 @@ class Algorithm(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
+        if request.POST.get('Result'):
+            data = request.POST
+            left_result=""
+            right_result=""
+            center_result=""
+            for i in range(1,8):
+               left_result=left_result+str(data['x1'+str(i)])
+               right_result=right_result+str(data['x2'+str(i)])
+               center_result=center_result+str(data['x3'+str(i)])
+           
+            favorites = Favorites.objects.create(
+                user=request.user.username,
+                date=datetime.today().strftime('%d.%m.%Y'),
+
+                rakurs_left=left_result,
+                rakurs_center=right_result,
+                rakurs_right=center_result,
+                
+                unknoun_field=1,
+                note='Информация о записи',
+                alarm=False
+            )
+            favorites.save()
+            #aaa = request.POST.get('x11')
+            #print(data['x12'])
+            return HttpResponseRedirect(request.path)
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
 class Tarif(View):

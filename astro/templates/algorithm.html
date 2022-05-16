@@ -1,17 +1,67 @@
 {% extends  'menu_footer.html' %}
 {% load static %}
-{% block title %} Тарифы {% endblock %}
+{% block title %} Алгоритм {% endblock %}
+
+{% block style %}
+<style>
+
+	
+    .rotation_active {
+    	display: none;
+    }
+    .please{
+        color: white;
+  		font-size: 1em;
+  		margin-top: 40px;
+  		font-size: 14px;
+  		/* display: none; */	
+    }
+    .phone {
+  height: 50px;
+  width: 100px;
+  border: 3px solid white;
+  border-radius: 10px;
+  animation: rotate 1.5s ease-in-out infinite alternate;
+  /* display: none; */
+}
+
+@keyframes rotate {
+  0% {
+		transform: rotate(0deg)
+	}
+	50% {
+		transform: rotate(-90deg)
+	}
+	100% {
+		transform: rotate(-90deg)
+	}
+}
+
+    
+    @media only screen and (max-device-width: 812px) and (orientation: portrait){
+    	.rotation_active {
+    		display: block;
+    	}
+    	.rotation_disactive {
+    		display: none;
+    	}
+    }
+    
+</style>
+
+{% endblock style%}
+
+
+
+
+
 {% block content %}
 
 
-	
+<div class="rotation_disactive">
 
-
-<style>
-
-
-</style>
-
+<form action="" method="POST">
+{% csrf_token %}
 
 <div class="center">
         <div class="container">
@@ -85,14 +135,14 @@
 
 				<div class="calendar__top  inp_date">
 				<p style="color:#FFCE8E;">ВВЕДИТЕ ДАТЫ:<p>
-				<input type="date" class="calendar__top_input input-number" style="width: 125px; color:#FFCE8E;">
+				<input type="date" class="calendar__top_input input-number" name="date1" style="width: 125px; color:#FFCE8E;">
 				</div>
 				</div>
 				<div class="col align-self-center ">
 				</div>
 				<div class="col align-self-end">
 					<div class="calendar__top inp_date flex">
-					<input type="date" class="calendar__top_input input-number" style="width: 125px; color:#FFCE8E;">
+					<input type="date" class="calendar__top_input input-number" name="date2" style="width: 125px; color:#FFCE8E;">
 					</div>
 				</div>
 			</div>
@@ -101,27 +151,27 @@
 			<div class="row">
 				<div class="col align-self-start">
                     <div class="inp_date_3 flex">
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="1"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="2"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="3"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="4"  disabled>
-                    <input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="5"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="6"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="7"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1" value="8"  disabled>
+					<input type="text" name="x11" class="center_input_empty" id="digits_start_day_sum_1" value="1"  >
+					<input type="text" name="x12" class="center_input_empty" id="digits_start_day_sum_1" value="2"  >
+					<input type="text" name="x13" class="center_input_empty" id="digits_start_day_sum_1" value="3"  >
+					<input type="text" name="x14" class="center_input_empty" id="digits_start_day_sum_1" value="4"  >
+                    <input type="text" name="x15" class="center_input_empty" id="digits_start_day_sum_1" value="5"  >
+					<input type="text" name="x16" class="center_input_empty" id="digits_start_day_sum_1" value="6"  >
+					<input type="text" name="x17" class="center_input_empty" id="digits_start_day_sum_1" value="7"  >
+					<input type="text" name="x18" class="center_input_empty" id="digits_start_day_sum_1" value="8"  >
 			        </div>
 			    </div> 
 			    <div class="col align-self-center "></div>
                 <div class="col align-self-end ">
 				    <div class="calendar__top inp_date_3 flex">
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="1"  disabled>
-                    <input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="2"  disabled>
-                    <input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="3"  disabled>
-                    <input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="4"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="5"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="6"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="7"  disabled>
-					<input type="text" name="xxx" class="center_input_empty" id="digits_start_day_sum_1_1" value="8"  disabled>
+					<input type="text" name="x21" class="center_input_empty" id="digits_start_day_sum_1_1" value="1"  >
+                    <input type="text" name="x22" class="center_input_empty" id="digits_start_day_sum_1_1" value="2"  >
+                    <input type="text" name="x23" class="center_input_empty" id="digits_start_day_sum_1_1" value="3"  >
+                    <input type="text" name="x24" class="center_input_empty" id="digits_start_day_sum_1_1" value="4"  >
+					<input type="text" name="x25" class="center_input_empty" id="digits_start_day_sum_1_1" value="5"  >
+					<input type="text" name="x26" class="center_input_empty" id="digits_start_day_sum_1_1" value="6"  >
+					<input type="text" name="x27" class="center_input_empty" id="digits_start_day_sum_1_1" value="7"  >
+					<input type="text" name="x28" class="center_input_empty" id="digits_start_day_sum_1_1" value="8"  >
                     </div>
                 </div>
 	        </div>
@@ -159,14 +209,14 @@
                 </div>
                 <div class="col align-self-center ">
                     <div class="flex rakurs_center circle__filter2">
-					<input type="text" name="xxx" class="center_input" id="rakurs_right_1" value="1" disabled>
-					<input type="text" name="xxx" class="center_input" id="rakurs_right_2" value="1" disabled>
-					<input type="text" name="xxx" class="center_input" id="rakurs_right_3" value="1" disabled>
-					<input type="text" name="xxx" class="center_input" id="rakurs_right_4" value="1" disabled>
-					<input type="text" name="xxx" class="center_input" id="rakurs_right_5" value="1" disabled>
-					<input type="text" name="xxx" class="center_input" id="rakurs_right_6" value="1" disabled>
-					<input type="text" name="xxx" class="center_input" id="rakurs_right_7" value="1" disabled>
-					<input type="text" name="xxx" class="center_input" id="rakurs_right_8" value="1" disabled>
+					<input type="text" name="x31" class="center_input" id="rakurs_right_1" value="1" >
+					<input type="text" name="x32" class="center_input" id="rakurs_right_2" value="1" >
+					<input type="text" name="x33" class="center_input" id="rakurs_right_3" value="1" >
+					<input type="text" name="x34" class="center_input" id="rakurs_right_4" value="1" >
+					<input type="text" name="x35" class="center_input" id="rakurs_right_5" value="1" >
+					<input type="text" name="x36" class="center_input" id="rakurs_right_6" value="1" >
+					<input type="text" name="x37" class="center_input" id="rakurs_right_7" value="1" >
+					<input type="text" name="x38" class="center_input" id="rakurs_right_8" value="1" >
 				</div>
                 </div>
                 <div class="col align-self-end ">
@@ -197,7 +247,9 @@
   background:#0f6660;
   color:#fff;
   width:117px;
-  height:24px; 
+  height:30px;
+  border-radius: 4px;
+  font-size: 14px;
 }
 #calendar3 input {
   background-color:#0f6660;
@@ -210,7 +262,7 @@
   
 }
 #calendar3 {
-  width: 100%;
+  
   font: monospace;
   line-height: 1em;
   font-size: 18px;
@@ -232,7 +284,7 @@
 }
 </style>
 
-					<table id="calendar3">
+					<table id="calendar3" style="margin-left: auto; margin-right: auto;">
   						<thead>
     					<tr><td colspan="4">
     					<select>
@@ -249,7 +301,10 @@
 						<option value="10">Ноябрь</option>
 						<option value="11">Декабрь</option>
 						</select>
-						<td colspan="4"><input type="number" value="" min="2022" max="2022" size="4">
+						<td colspan="4">
+						<select>
+						<option value="0">2022</option>
+						</select>
     					<tr><td>Пн<td>Вт<td>Ср<td>Чт<td>Пт<td>Сб<td>Вс
   						<tbody>
 					</table>
@@ -262,7 +317,7 @@ var Dlast = new Date(year,month+1,0).getDate(),
     DNfirst = new Date(D.getFullYear(),D.getMonth(),1).getDay(),
     calendar = '<tr>',
     m = document.querySelector('#'+id+' option[value="' + D.getMonth() + '"]'),
-    g = document.querySelector('#'+id+' input');
+    g = document.querySelector('#'+id+' option[value="' + D.getFullYear() + '"]');
 if (DNfirst != 0) {
   for(var  i = 1; i < DNfirst; i++) calendar += '<td>';
 }else{
@@ -297,7 +352,7 @@ for(var  i = 1; i <= Dlast; i++) {
 }
 for(var  i = DNlast; i < 7; i++) calendar += '<td>&nbsp;';
 document.querySelector('#'+id+' tbody').innerHTML = calendar;
-g.value = D.getFullYear();
+
 m.selected = true;
 if (document.querySelectorAll('#'+id+' tbody tr').length < 6) {
     document.querySelector('#'+id+' tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
@@ -306,7 +361,7 @@ document.querySelector('#'+id+' option[value="' + new Date().getMonth() + '"]').
 }
 Calendar3("calendar3",new Date().getFullYear(),new Date().getMonth());
 document.querySelector('#calendar3').onchange = function Kalendar3() {
-  Calendar3("calendar3",document.querySelector('#calendar3 input').value,parseFloat(document.querySelector('#calendar3 select').options[document.querySelector('#calendar3 select').selectedIndex].value));
+  Calendar3("calendar3",document.querySelector('#calendar3 select').value,parseFloat(document.querySelector('#calendar3 select').options[document.querySelector('#calendar3 select').selectedIndex].value));
 }
 </script>
                 </div>
@@ -335,6 +390,8 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 
 </div>
 
+</form>
+</div>
 <script>
 n =  new Date();
 y = n.getFullYear();
@@ -346,4 +403,20 @@ d = n.getDate();
 value = d + "." + m + "." + y;
 document.getElementById("current_date").setAttribute('value', value);
 </script>
+
+
+
+<div class="rotation_active">
+	<div class="center" align="center" style="background-color:#111;min-height: calc(100vh - 320px);margin:auto auto;">
+  		<div class="phone" style="margin-top:200px;">
+  		</div>
+  		
+  		<p class='please'>
+  		Для отображения алгоритма поверните ваше устройство!
+  		</p>
+  		
+  		<p style="font-size: 12px;">*при необходимости отключите блокировку ориентации</p>
+  	</div>
+</div>
+
 {% endblock content %}

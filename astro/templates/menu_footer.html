@@ -38,7 +38,15 @@
 
 	
 	<style>
+hr{
+background-color: #FFCE8E;
+margin: 0;
+}
+body{
+background:#102431;
+}
 .container{
+
 max-width: 98vw;
 }
    .scale {
@@ -58,8 +66,8 @@ max-width: 98vw;
   }
 }
 .footer {
-margin-right: 10px;
-margin-left: 10px;
+width: 100%;
+background: #102431;
 }
 
 
@@ -380,8 +388,10 @@ margin-left: 10px;
 		</div>
 	</div>
 	{% endif %}
+	<hr class="hr_">
+ 
     {% block content %}
-    <div class="center" style="background-color:transparent;min-height: calc(100vh - 420px);">
+    <div class="center" style="background-color:#111;min-height: calc(100vh - 420px);margin: 0;   max-width: none;">
 		<div class="container" align="center">
 		<div class="scale" align="center">
 
@@ -393,11 +403,15 @@ margin-left: 10px;
 		</div>	
 	</div>
     {% endblock content %}
-		<footer class="center" style="margin:0 0;">
+    
+
+    <hr class="hr_r">
+    
+		<footer class="footer">
 			<div class="container">
 				<div class="row justify-content-center">
-					<div class="col-md-14 text-center" style="margin-top: -2%;">
-						<p class="menu">
+					<div class="col-md-14 text-center">
+						<p class="menu" style="margin-top:2px">
 							<a href="#" class="footer">РЕКЛАМА</a>
 							<a href="#" class="footer">ОПИСАНИЕ</a>
 							<a href="{% url 'contacts' %}" class="footer">КОНТАКТЫ</a>		
@@ -409,7 +423,7 @@ margin-left: 10px;
 							<!--<a href="#" class="footer">СОТРУДНИЧЕСТВО</a>-->
 						{% endif %}
 						</p>
-                        <ul class="nav justify-content-center" style="margin-top: -1%;">
+                        <ul class="nav justify-content-center" style="margin-top: -1%;background:none;">
                           <li class="nav-item ">
                             <a class="active " href="{% url 'main' %}"><h1 class="rakurs">Rakurs</h1><pre>PROJECT</pre></a>
                           </li>
@@ -424,7 +438,7 @@ margin-left: 10px;
 					</div>
 				</div>
 				<div class="row mt-5">
-					<div class="col-md-12 text-center" style="margin-top: -4%;">
+					<div class="col-md-12 text-center" style="margin-top: -3%;">
 						<p class="copyright footer_copyright">
 					  COPYRIGHT &copy;<span class="footer_2"><script>document.write(new Date().getFullYear());</script></span> RAKURS. ALL RIGHTS RESERVED.</p>
 					</div>

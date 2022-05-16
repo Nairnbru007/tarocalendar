@@ -34,7 +34,7 @@
 	box-shadow: 0px 2px 15px 0px rgba(0,0,0,0.5);
 	border-radius: 4px;
 	flex: 1;
-	padding: 0 30px 30px;
+	padding: 0 0 30px 0;
 	margin: 2%;
 	min-width: 250px;
 	max-width: 350px;
@@ -89,30 +89,32 @@
 	transform: translateY(-3px);
 }
 
-
-
+strike{
+color:red;
+}
+em{
+color:green;
+}
 
 
 
 
 </style>
-<div class="center">
-<div class="container" align="center">
+<div class="center" style="text-align:center; margin:auto; padding: 0 0 40px 0;">
+	<div class="container" align="center">
 		<h2 class="heading-secondary" style="color:#FFCE8E; font-size: 3rem; margin: 24px;">
           ТАРИФНЫЕ ПЛАНЫ
         </h2>
 		  <h5 class="heading-third" style="color:#FFCE8E; font-size: 1.5rem; margin: 24px;">
 			  Тарифные планы позволяют использовать дополнительные возможности
 		  </h5>
-</div>
-<div class="container" align="center">
+	</div>
 
 
-
-<div class="pricing-box-container">
+  <div class="pricing-box-container">
 	<div class="pricing-box text-center">
 		<h5>Начальный</h5>
-		<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽</sup"><text style="color: #173d50; font-size: 5rem;">300</text><sub style="color: #1bbc9d; font-size: 2rem;">/месяц</sub></p>
+		<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽</sup><text style="color: #173d50; font-size: 5rem;">300</text><sub style="color: #1bbc9d; font-size: 2rem;">/месяц</sub></p>
 		<ul class="features-list">
 								<li>Работа с двумя датами</li>
 								<li>Расчет ракурса на текущий месяц</li>
@@ -126,7 +128,7 @@
 
 	<div class="pricing-box pricing-box text-center">
 		<h5>Продвинутый</h5>
-		<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽</sup"><text style="color: #173d50; font-size: 5rem;">600</text><sub style="color: #1bbc9d; font-size: 2rem;">/месяц</sub></p>
+		<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽</sup><text style="color: #173d50; font-size: 5rem;">600</text><sub style="color: #1bbc9d; font-size: 2rem;">/месяц</sub></p>
 		<ul class="features-list">
 								<li>Работа с двумя датами</li>
 								<li>Расчет ракурса на текущий месяц</li>
@@ -140,7 +142,7 @@
 
 	<div class="pricing-box text-center">
 		<h5>Полный доступ</h5>
-		<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽</sup"><text style="color: #173d50; font-size: 5rem;">900</text><sub style="color: #1bbc9d; font-size: 2rem;">/месяц</sub></p>
+		<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽</sup><text style="color: #173d50; font-size: 5rem;">900</text><sub style="color: #1bbc9d; font-size: 2rem;">/месяц</sub></p>
 		<ul class="features-list">
 								<li>Работа с двумя датами</li>
 								<li>Расчет ракурса на текущий месяц</li>
@@ -151,11 +153,11 @@
 		</ul>
 		<button class="btn-primary">Оплатить</button>
 	</div>
-</div>
+  </div>
 
 
 		  <h5 class="heading-third" style="color:#FFCE8E; font-size: 1rem; margin: 10px;">
-			  Перед оплатой ознакомьтесь с <a href="{% url 'offer' %}">Договором Оферты</a> и <a href="{% url 'agreement' %}">Пользовательским Соглашением</a>
+			  Перед оплатой ознакомьтесь с <a href="{% url 'offer' %}"><u>Договором Оферты</u></a> и <a href="{% url 'agreement' %}"><u>Пользовательским Соглашением</u></a>
 		  </h5>
 		  <h5 class="heading-third" style="color:#FFCE8E; font-size: 1rem;">
 			  Оплачивая, вы выражаете свое согласие
