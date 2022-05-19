@@ -18,19 +18,32 @@ from .models import *
 from astro.astro.forms import *
 from django.contrib.auth import authenticate, login
 from django.contrib import messages
-from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest
+from django.http import HttpResponseRedirect, HttpResponse, HttpResponseBadRequest, JsonResponse
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.utils.encoding import force_bytes, force_str
 from .tokens import account_activation_token, password_reset_token
 from django.core.mail import EmailMessage
-
+import json
 from datetime import datetime
 
 from os import walk
 import os  
+import random
 
+def algorithm_run(left_arr,center_arr,right_arr):
+    for i in range(1,9):
+        left_arr['x1'+str(i)]=str(random.randint(1, 8))
+        right_arr['x2'+str(i)]=str(random.randint(1, 8))
+        center_arr['x3'+str(i)]=str(random.randint(1, 8))
+        #print(left_arr)
+        #print(right_arr)
+        #print(center_arr)
+#     left_arr=[random.randint(1, 8) for i in range (1,8)]
+#     center_arr=[random.randint(1, 8) for i in range (1,8)]
+#     right_arr=[random.randint(1, 8) for i in range (1,8)]
+    return {**left_arr,**center_arr,**right_arr}
 # def index(request):
 #     return render(request, 'index.html')
 
@@ -444,20 +457,6 @@ class Menu(View):
                 return HttpResponseRedirect(request.path)
 
 class Algorithm(View):
-
-#     def get(self, request, *args, **kwargs):
-#         return render(
-#             request,
-#             'agreement.html',
-#         )
-        
-
-    
-#     def get(self, request, *args, **kwargs):
-#         return render(
-#             request,
-#             'agreement.html',
-#         )
         
     login_form = LoginForm
     register_form = Sign_Up_Form()
@@ -583,12 +582,12 @@ class Algorithm(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
-        if request.POST.get('Result'):
+        if request.POST.get('Save'):
             data = request.POST
             left_result=""
             right_result=""
             center_result=""
-            for i in range(1,8):
+            for i in range(1,9):
                left_result=left_result+str(data['x1'+str(i)])
                right_result=right_result+str(data['x2'+str(i)])
                center_result=center_result+str(data['x3'+str(i)])
@@ -609,6 +608,42 @@ class Algorithm(View):
             #aaa = request.POST.get('x11')
             #print(data['x12'])
             return HttpResponseRedirect(request.path)
+        if request.POST.get('Result'):
+            data = request.POST
+            left_result_={}
+            right_result_={}
+            center_result_={}
+            context={'date1':data['date1'],'date2':data['date2']}
+            for i in range(1,9):
+               left_result_['x1'+str(i)]=str(data['x1'+str(i)])
+               right_result_['x2'+str(i)]=str(data['x2'+str(i)])
+               center_result_['x3'+str(i)]=str(data['x3'+str(i)])
+               
+            result_values=algorithm_run(left_result_,center_result_,right_result_)
+            #print(result_values)
+            context={**context,**result_values}
+            # for i in range(1,9):
+#                context['x1'+str(i)]=result_values['x1'+str(i)]
+#                context['x2'+str(i)]=result_values['x2'+str(i)]
+#                context['x3'+str(i)]=result_values['x3'+str(i)]
+            
+           
+#             favorites = Favorites.objects.create(
+#                 user=request.user.username,
+#                 date=datetime.today().strftime('%d.%m.%Y'),
+# 
+#                 rakurs_left=left_result,
+#                 rakurs_center=right_result,
+#                 rakurs_right=center_result,
+#                 
+#                 unknoun_field=1,
+#                 note='Информация о записи',
+#                 alarm=False
+#             )
+            #favorites.save()
+            #aaa = request.POST.get('x11')
+            #print(data['x12'])
+            return render(request, 'algorithm.html', context=context)
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
 class Tarif(View):

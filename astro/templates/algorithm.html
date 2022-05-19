@@ -76,7 +76,7 @@
 		<div class="container">
 			<div class="row justify-content-md-center">
 				<div class="col-sm-auto favorites">
-					<img src="{% static 'images/2223.png' %}" class="" alt="">
+					<img src="{% static 'images/lights.png' %}" class="" style="max-height: 100px;" alt="">
 				</div>
 			</div>
 		</div>
@@ -84,17 +84,18 @@
 			<div class="row">
 				<div class="col align-self-start">
 					<img src="{% static 'images/cat1.png' %}" class="cat1" alt="">
-				</div>
+					<img src="{% static 'images/fire.png' %}" class="cat1" alt="">
+				</div>			
 				<div class="col align-self-center cat3 circle__filter2 flex">
                     <img src="{% static 'images/image_d18_3.png' %}" class="crosses" alt="">          
 						<input id="current_date" class="center_date"  disabled style="width: 100px;"></p>	
                     <img src="{% static 'images/image_d18_3.png' %}" class="crosses_1" alt="">
 				</div>
-
 				<div class="col align-self-end">
                     <div class="calendar__top cat1 flex">
-					<img src="{% static 'images/cat2.png' %}" class="" alt="">
-                        </div>
+                    <img src="{% static 'images/earth.png' %}" style="width: 50px; height:78px;position:initial;margin:60px 0 0 0;" class="cat2" alt="">
+					<img src="{% static 'images/cat2.png' %}" style="width: 100px; height:135px;position:initial;" class="cat2" alt="">
+                    </div>
 				</div>
 			</div>
 		</div>
@@ -135,43 +136,46 @@
 
 				<div class="calendar__top  inp_date">
 				<p style="color:#FFCE8E;">ВВЕДИТЕ ДАТЫ:<p>
-				<input type="date" class="calendar__top_input input-number" name="date1" style="width: 125px; color:#FFCE8E;">
+				<input type="date" class="calendar__top_input input-number" name="date1" style="width: 125px; color:#FFCE8E;" value={{ date1 }}>
 				</div>
+				
 				</div>
 				<div class="col align-self-center ">
 				</div>
+				
 				<div class="col align-self-end">
 					<div class="calendar__top inp_date flex">
-					<input type="date" class="calendar__top_input input-number" name="date2" style="width: 125px; color:#FFCE8E;">
+					<input type="date" class="calendar__top_input input-number" name="date2" style="width: 125px; color:#FFCE8E;" value={{ date2 }}>
 					</div>
 				</div>
+				
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
 				<div class="col align-self-start">
                     <div class="inp_date_3 flex">
-					<input type="text" name="x11" class="center_input_empty" id="digits_start_day_sum_1" value="1"  >
-					<input type="text" name="x12" class="center_input_empty" id="digits_start_day_sum_1" value="2"  >
-					<input type="text" name="x13" class="center_input_empty" id="digits_start_day_sum_1" value="3"  >
-					<input type="text" name="x14" class="center_input_empty" id="digits_start_day_sum_1" value="4"  >
-                    <input type="text" name="x15" class="center_input_empty" id="digits_start_day_sum_1" value="5"  >
-					<input type="text" name="x16" class="center_input_empty" id="digits_start_day_sum_1" value="6"  >
-					<input type="text" name="x17" class="center_input_empty" id="digits_start_day_sum_1" value="7"  >
-					<input type="text" name="x18" class="center_input_empty" id="digits_start_day_sum_1" value="8"  >
+					<input type="text" name="x11" class="center_input_empty" id="digits_start_day_sum_1" value={{ x11 }}  >
+					<input type="text" name="x12" class="center_input_empty" id="digits_start_day_sum_1" value={{ x12 }}  >
+					<input type="text" name="x13" class="center_input_empty" id="digits_start_day_sum_1" value={{ x13 }}  >
+					<input type="text" name="x14" class="center_input_empty" id="digits_start_day_sum_1" value={{ x14 }}  >
+                    <input type="text" name="x15" class="center_input_empty" id="digits_start_day_sum_1" value={{ x15 }}  >
+					<input type="text" name="x16" class="center_input_empty" id="digits_start_day_sum_1" value={{ x16 }}  >
+					<input type="text" name="x17" class="center_input_empty" id="digits_start_day_sum_1" value={{ x17 }}  >
+					<input type="text" name="x18" class="center_input_empty" id="digits_start_day_sum_1" value={{ x18 }}  >
 			        </div>
 			    </div> 
 			    <div class="col align-self-center "></div>
                 <div class="col align-self-end ">
 				    <div class="calendar__top inp_date_3 flex">
-					<input type="text" name="x21" class="center_input_empty" id="digits_start_day_sum_1_1" value="1"  >
-                    <input type="text" name="x22" class="center_input_empty" id="digits_start_day_sum_1_1" value="2"  >
-                    <input type="text" name="x23" class="center_input_empty" id="digits_start_day_sum_1_1" value="3"  >
-                    <input type="text" name="x24" class="center_input_empty" id="digits_start_day_sum_1_1" value="4"  >
-					<input type="text" name="x25" class="center_input_empty" id="digits_start_day_sum_1_1" value="5"  >
-					<input type="text" name="x26" class="center_input_empty" id="digits_start_day_sum_1_1" value="6"  >
-					<input type="text" name="x27" class="center_input_empty" id="digits_start_day_sum_1_1" value="7"  >
-					<input type="text" name="x28" class="center_input_empty" id="digits_start_day_sum_1_1" value="8"  >
+					<input type="text" name="x21" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x21 }}  >
+                    <input type="text" name="x22" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x22 }}  >
+                    <input type="text" name="x23" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x23 }}  >
+                    <input type="text" name="x24" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x24 }}  >
+					<input type="text" name="x25" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x25 }}  >
+					<input type="text" name="x26" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x26 }}  >
+					<input type="text" name="x27" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x28 }}  >
+					<input type="text" name="x28" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x28 }}  >
                     </div>
                 </div>
 	        </div>
@@ -208,15 +212,15 @@
                     </div>
                 </div>
                 <div class="col align-self-center ">
-                    <div class="flex rakurs_center circle__filter2">
-					<input type="text" name="x31" class="center_input" id="rakurs_right_1" value="1" >
-					<input type="text" name="x32" class="center_input" id="rakurs_right_2" value="1" >
-					<input type="text" name="x33" class="center_input" id="rakurs_right_3" value="1" >
-					<input type="text" name="x34" class="center_input" id="rakurs_right_4" value="1" >
-					<input type="text" name="x35" class="center_input" id="rakurs_right_5" value="1" >
-					<input type="text" name="x36" class="center_input" id="rakurs_right_6" value="1" >
-					<input type="text" name="x37" class="center_input" id="rakurs_right_7" value="1" >
-					<input type="text" name="x38" class="center_input" id="rakurs_right_8" value="1" >
+                    <div class="flex rakurs_center circle__filter2" style="margin:-24px 0 0 0;">
+					<input type="text" name="x31" class="center_input" id="rakurs_right_1" value={{ x31 }} >
+					<input type="text" name="x32" class="center_input" id="rakurs_right_2" value={{ x32 }} >
+					<input type="text" name="x33" class="center_input" id="rakurs_right_3" value={{ x33 }} >
+					<input type="text" name="x34" class="center_input" id="rakurs_right_4" value={{ x34 }} >
+					<input type="text" name="x35" class="center_input" id="rakurs_right_5" value={{ x35 }} >
+					<input type="text" name="x36" class="center_input" id="rakurs_right_6" value={{ x36 }} >
+					<input type="text" name="x37" class="center_input" id="rakurs_right_7" value={{ x37 }} >
+					<input type="text" name="x38" class="center_input" id="rakurs_right_8" value={{ x38 }} >
 				</div>
                 </div>
                 <div class="col align-self-end ">
@@ -238,7 +242,7 @@
           <div class="row">
                 <div class="col align-self-start">
                     <div class="calendar__top flex Group_506 circle__filter2">
-					<img src="{% static 'images/Group_506.png' %}" class="" alt="">
+					<img src="{% static 'images/2.png' %}" class="" alt="">
                     </div>
                 </div>
                 <div class="col align-self-center flex" style='height:180px;'>
@@ -367,7 +371,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 </div>
                 <div class="col align-self-end">
                     <div class="flex Group_506_1 circle__filter2 calendar__top">
-					    <img src="{% static 'images/Group_506.png' %}" class="" alt="">
+					    <img src="{% static 'images/1.png' %}" class="" alt="">
                     </div>
                 </div>
           </div>
@@ -380,7 +384,10 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 					<input type="submit" class="circle__filter_block clear_center" name="clear" value="Очистить">
 					<input type="submit" class="circle__filter_block done_center" id="Result" name="Result" value="Результат">
 				</div>
-                <div class="circle__filter2 flex">
+				<div class="circle__filter2 flex" style="margin: -25px 0 0 5px;">
+				<input type="submit" class="circle__filter_block" id="Save" name="Save" value="Сохранить">
+				</div>
+                <div class="circle__filter2 flex" style="margin: -5px 0 0 5px;">
                         <img src="{% static 'images/asdasd1.png' %}" class="" alt="">
                 </div>
             </div>
