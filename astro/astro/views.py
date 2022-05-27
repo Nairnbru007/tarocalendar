@@ -32,10 +32,16 @@ from os import walk
 import os  
 import random
 
-def algorithm_run(left_arr,center_arr,right_arr):
+def algorithm_run(left_arr,center_arr,right_arr,left,right):
     for i in range(1,9):
-        left_arr['x1'+str(i)]=str(random.randint(1, 8))
-        right_arr['x2'+str(i)]=str(random.randint(1, 8))
+        image1={'image1':"images/Empty.png"}
+        image2={'image2':"images/Empty.png"}
+        if left==True:
+           left_arr['x1'+str(i)]=str(random.randint(1, 8))
+           image1={'image1':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
+        if right==True:
+           right_arr['x2'+str(i)]=str(random.randint(1, 8))
+           image2={'image2':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
         center_arr['x3'+str(i)]=str(random.randint(1, 8))
         #print(left_arr)
         #print(right_arr)
@@ -43,7 +49,7 @@ def algorithm_run(left_arr,center_arr,right_arr):
 #     left_arr=[random.randint(1, 8) for i in range (1,8)]
 #     center_arr=[random.randint(1, 8) for i in range (1,8)]
 #     right_arr=[random.randint(1, 8) for i in range (1,8)]
-    return {**left_arr,**center_arr,**right_arr}
+    return {**left_arr,**center_arr,**right_arr,**image1,**image2}
 # def index(request):
 #     return render(request, 'index.html')
 
@@ -474,8 +480,7 @@ class Algorithm(View):
             'login_form': login_form,
             'register_form': register_form,
             'forgot_password_form': forgot_password_form,
-            'reset_password_form': reset_password_form,
-        }
+            'reset_password_form': reset_password_form,'image1':"images/Empty.png",'image2':"images/Empty.png",}
         return render(
             request,
             'algorithm.html',context=context,
@@ -613,13 +618,31 @@ class Algorithm(View):
             left_result_={}
             right_result_={}
             center_result_={}
+            left=False
+            right=False
             context={'date1':data['date1'],'date2':data['date2']}
+            
             for i in range(1,9):
                left_result_['x1'+str(i)]=str(data['x1'+str(i)])
                right_result_['x2'+str(i)]=str(data['x2'+str(i)])
                center_result_['x3'+str(i)]=str(data['x3'+str(i)])
+            
+            try:
+               if data['scales1']=='on':
+                  context={**context,'scales11':'checked'}
+                  left=True
+            except:
+               pass
                
-            result_values=algorithm_run(left_result_,center_result_,right_result_)
+            try:
+               if data['scales2']=='on':
+                  context={**context,'scales22':'checked'}
+                  right=True
+            except:
+               pass
+               
+               
+            result_values=algorithm_run(left_result_,center_result_,right_result_,left,right)
             #print(result_values)
             context={**context,**result_values}
             # for i in range(1,9):

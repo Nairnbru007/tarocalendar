@@ -84,7 +84,7 @@
 			<div class="row">
 				<div class="col align-self-start">
 					<img src="{% static 'images/cat1.png' %}" class="cat1" alt="">
-					<img src="{% static 'images/fire.png' %}" class="cat1" alt="">
+					<img src="{% static image1 %}" style="width: 50px; height:78px;" class="cat1" alt="">
 				</div>			
 				<div class="col align-self-center cat3 circle__filter2 flex">
                     <img src="{% static 'images/image_d18_3.png' %}" class="crosses" alt="">          
@@ -93,7 +93,7 @@
 				</div>
 				<div class="col align-self-end">
                     <div class="calendar__top cat1 flex">
-                    <img src="{% static 'images/earth.png' %}" style="width: 50px; height:78px;position:initial;margin:60px 0 0 0;" class="cat2" alt="">
+                    <img src="{% static image2 %}" style="width: 50px; height:78px;position:initial;margin:60px 0 0 0;" class="cat2" alt="">
 					<img src="{% static 'images/cat2.png' %}" style="width: 100px; height:135px;position:initial;" class="cat2" alt="">
                     </div>
 				</div>
@@ -136,7 +136,8 @@
 
 				<div class="calendar__top  inp_date">
 				<p style="color:#FFCE8E;">ВВЕДИТЕ ДАТЫ:<p>
-				<input type="date" class="calendar__top_input input-number" name="date1" style="width: 125px; color:#FFCE8E;" value={{ date1 }}>
+				<input type="date" class="calendar__top_input input-number empty" name="date1" placeholder="dd-mm-yyyy" style="width: 125px; color:#FFCE8E;" value={{ date1 }}>
+				<input type="checkbox" id="scales1" name="scales1" {{ scales11|default:"" }}>
 				</div>
 				
 				</div>
@@ -145,7 +146,8 @@
 				
 				<div class="col align-self-end">
 					<div class="calendar__top inp_date flex">
-					<input type="date" class="calendar__top_input input-number" name="date2" style="width: 125px; color:#FFCE8E;" value={{ date2 }}>
+					<input type="checkbox" id="scales2" name="scales2" style="margin: 8px 3px 0 0;" {{ scales22|default:"" }}>
+					<input type="date" class="calendar__top_input input-number empty" name="date2" placeholder="dd-mm-yyyy" style="width: 125px; color:#FFCE8E;" value={{ date2 }}>
 					</div>
 				</div>
 				
@@ -283,9 +285,20 @@
 #calendar3 tbody td:nth-child(n+6), #calendar3 .holiday {
   color: rgb(231, 140, 92);
 }
+
+#calendar3 .mydays {
+  color: white;
+  background: #0f6660;
+}
+
 #calendar3 tbody td.today {
   outline: 3px solid red;
 }
+
+.empty {
+    opacity: .3;
+}
+
 </style>
 
 					<table id="calendar3" style="margin-left: auto; margin-right: auto;">
@@ -314,6 +327,73 @@
 					</table>
 
 					<script>
+				
+					
+function formatDate() {
+    var d = new Date(),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+    if (month.length < 2) 
+        month = '0' + month;
+    if (day.length < 2) 
+        day = '0' + day;
+
+    return [year, month, day].join('-');
+}
+
+var el1 = document.getElementsByName('date1')[0];
+el1.onchange = function() {
+        el1.classList.remove("empty");
+        document.getElementById("scales1").checked = true;
+}
+
+var el11 = document.getElementById("scales1");
+el11.onclick = function() {
+        if (el11.checked){
+        el1.classList.remove("empty");
+        el1.setAttribute('value', formatDate());
+        }else{
+        el1.classList.add("empty");
+        el1.setAttribute('value', formatDate());
+        for(var  i = 1; i < 9; i++) document.getElementsByName('x1'+i)[0].setAttribute('value', "");
+        for(var  i = 1; i < 9; i++) document.getElementsByName('x2'+i)[0].setAttribute('value', "");
+        for(var  i = 1; i < 9; i++) document.getElementsByName('x3'+i)[0].setAttribute('value', "");
+        
+        }
+}
+
+var el2 = document.getElementsByName('date2')[0];
+el2.onchange = function() {
+        el2.classList.remove("empty");
+        document.getElementById("scales2").checked = true;
+}
+	
+var el22 = document.getElementById("scales2");
+el22.onclick = function() {
+        if (el22.checked){
+        el2.classList.remove("empty");
+        el2.setAttribute('value', formatDate());
+        }else{
+        el2.classList.add("empty");
+        el2.setAttribute('value', formatDate());
+        for(var  i = 1; i < 9; i++) document.getElementsByName('x1'+i)[0].setAttribute('value', "");
+        for(var  i = 1; i < 9; i++) document.getElementsByName('x2'+i)[0].setAttribute('value', "");
+        for(var  i = 1; i < 9; i++) document.getElementsByName('x3'+i)[0].setAttribute('value', "");
+        }
+}	
+
+if (document.getElementById("scales1").checked == true)
+{
+el1.classList.remove("empty");
+}
+if (document.getElementById("scales2").checked == true)
+{
+el2.classList.remove("empty");
+}	
+
+
 function Calendar3(id, year, month) {
 var Dlast = new Date(year,month+1,0).getDate(),
     D = new Date(year,month,Dlast),
@@ -332,24 +412,15 @@ for(var  i = 1; i <= Dlast; i++) {
     calendar += '<td class="today">' + i;
   }else{
     if (  // список официальных праздников
-        (i == 1 && D.getMonth() == 0 && ((D.getFullYear() > 1897 && D.getFullYear() < 1930) || D.getFullYear() > 1947)) || // Новый год
-        (i == 2 && D.getMonth() == 0 && D.getFullYear() > 1992) || // Новый год
-        ((i == 3 || i == 4 || i == 5 || i == 6 || i == 8) && D.getMonth() == 0 && D.getFullYear() > 2004) || // Новый год
-        (i == 7 && D.getMonth() == 0 && D.getFullYear() > 1990) || // Рождество Христово
-        (i == 23 && D.getMonth() == 1 && D.getFullYear() > 2001) || // День защитника Отечества
-        (i == 8 && D.getMonth() == 2 && D.getFullYear() > 1965) || // Международный женский день
-        (i == 1 && D.getMonth() == 4 && D.getFullYear() > 1917) || // Праздник Весны и Труда
-        (i == 9 && D.getMonth() == 4 && D.getFullYear() > 1964) || // День Победы
-        (i == 12 && D.getMonth() == 5 && D.getFullYear() > 1990) || // День России (декларации о государственном суверенитете Российской Федерации ознаменовала окончательный Распад СССР)
-        (i == 7 && D.getMonth() == 10 && (D.getFullYear() > 1926 && D.getFullYear() < 2005)) || // Октябрьская революция 1917 года
-        (i == 8 && D.getMonth() == 10 && (D.getFullYear() > 1926 && D.getFullYear() < 1992)) || // Октябрьская революция 1917 года
-        (i == 4 && D.getMonth() == 10 && D.getFullYear() > 2004) // День народного единства, который заменил Октябрьскую революцию 1917 года
+        (i == 9 && D.getMonth() == 4 && D.getFullYear() == 2022) || 
+        (i == 10 && D.getMonth() == 4 && D.getFullYear() == 2022)
        ) {
-      calendar += '<td class="holiday">' + i;
+      calendar += '<td class="mydays">' + i;
     }else{
       calendar += '<td>' + i;
     }
   }
+            
   if (new Date(D.getFullYear(),D.getMonth(),i).getDay() == 0) {
     calendar += '<tr>';
   }
