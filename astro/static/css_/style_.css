@@ -117,7 +117,7 @@ html,body {
 	font-size:12px;
 	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
-	background: #111827;
+
 }
 input, textarea ,button{outline:none;font-family: 'sf_pro_textregular';font-size:15px;color: #FFCE8E;}
 input:active, textarea:active,button:active {outline:none;}
@@ -155,7 +155,7 @@ a:focus, a:hover {
     background: #102431;
 }
 .all{
-	background: #111827;
+	background: #102431;
 	color: #FFCE8E;
 	display: flex;
     flex-direction: column;
@@ -284,6 +284,7 @@ a:focus, a:hover {
 	justify-content: center;
 	padding: 40px;
 	background: #102431;
+	max-width: 1000px;
 }
 .calendar{
 	flex-direction:column;
@@ -321,7 +322,7 @@ a:focus, a:hover {
 	width:286px;
 	height: 32px;
 	background: #102431;
-	padding:0 16px;
+	padding: 0 0 0 6px;
 	color: #FFCE8E;
 	border: 0.5px solid #FFCE8E;
 
@@ -358,8 +359,8 @@ a:focus, a:hover {
 	padding-left:64px;
 }
 .center_input{
-	width:32px;
-	height:32px;
+	width: 24px;
+	height: 21px;
 	border: #111827;
 	text-align:center;
 	background: #102431;
@@ -414,10 +415,12 @@ a:focus, a:hover {
 .inp_date_2{
     position: relative;
     bottom: 226px;
+    padding: 20px 0 0 0;
 }
 .inp_date_3{
     position: relative;
     bottom: 115px;
+    padding: 0px 0 0 0;
 }
 
 .cat3{
@@ -534,8 +537,8 @@ month_p {
 }
 
 .no_filter{
-	width:32px;
-	height:32px;
+	width:21px;
+	height:21px;
 	border: 1px solid #111827;
 	text-align:center;
 	background: #0f6660;
@@ -596,8 +599,8 @@ month_p {
 }
 
 .center_input_empty{
-	width:32px;
-	height:32px;
+	width:21px;
+	height:21px;
 	border: 1px solid #102431;
 	text-align:center;
 	background: #102431;
@@ -973,6 +976,7 @@ month_p {
 }
 .circle__filter2{
 	justify-content:center;
+	padding: 10px 0 0 0;
 }
 .circle__filter_side{
 	width:150px;
@@ -1481,7 +1485,7 @@ month_p {
   }
   .navbar-nav {
     padding: 0 20px;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: none;
   }
   .navbar.fixed-top .navbar-nav {
     background: transparent;
