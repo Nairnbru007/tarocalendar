@@ -37,6 +37,7 @@ urlpatterns = [
     path('agreement/', views.Agreement.as_view(), name='agreement'),
     path('tarif/', views.Tarif.as_view(), name='tarif'),
     path('contacts/', views.Contacts.as_view(), name='contacts'),
+    path('video/', views.Video.as_view(), name='video'),
     path('algorithm/', views.Algorithm.as_view(), name='algorithm'),
     path('logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     #path('login_reg/', views.Login_RegView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='login_'),

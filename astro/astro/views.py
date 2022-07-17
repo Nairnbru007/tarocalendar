@@ -27,6 +27,8 @@ from .tokens import account_activation_token, password_reset_token
 from django.core.mail import EmailMessage
 import json
 from datetime import datetime
+from datetime import date
+import calendar
 
 from os import walk
 import os  
@@ -52,6 +54,24 @@ def algorithm_run(left_arr,center_arr,right_arr,left,right):
     return {**left_arr,**center_arr,**right_arr,**image1,**image2}
 # def index(request):
 #     return render(request, 'index.html')
+
+def calend(month,year):
+    arr={}
+    curr_month_dates = calendar.monthcalendar(year, month)
+    for i in range(0, len(curr_month_dates) ):
+       for j in range(0, len(curr_month_dates[i]) ):
+          if curr_month_dates[i][j]==0:
+              curr_month_dates[i][j]=""
+          arr["d"+str(i+1)+str(j+1)]=curr_month_dates[i][j]
+              
+    return arr
+def save_render(data):
+    arr={}
+    for i in data:
+      if i!="csrfmiddlewaretoken":
+          arr[i]=data[i]
+    return arr
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -461,9 +481,9 @@ class Menu(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
+                
+class Video(View):
 
-class Algorithm(View):
-        
     login_form = LoginForm
     register_form = Sign_Up_Form()
     forgot_password_form = UserForgotPasswordForm()
@@ -480,7 +500,141 @@ class Algorithm(View):
             'login_form': login_form,
             'register_form': register_form,
             'forgot_password_form': forgot_password_form,
+            'reset_password_form': reset_password_form,
+        }
+        return render(
+            request,
+            'video.html',context=context,
+        )
+
+    def post(self, request, *args, **kwargs):
+    
+        login_form = self.login_form
+        register_form = self.register_form
+        forgot_password_form = self.forgot_password_form
+        reset_password_form = self.reset_password_form
+        
+        if request.POST.get('login'):
+            login_form = LoginForm(data=request.POST)
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username=username, password=password)
+            if login_form.is_valid():
+                if user is not None:
+                    if not user.is_active:
+                        current_site = get_current_site(request)
+                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        message = render_to_string('confirmation_acc.html', {
+                            'user': user,
+                            'domain': current_site.domain,
+                            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                            'token': account_activation_token.make_token(user),
+                        })
+                        to_email = user.email
+                        email = EmailMessage(
+                            mail_subject, message, to=[to_email]
+                        )
+                        email.send()
+                        messages.success(request,
+                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                             to_email))
+                        return HttpResponseRedirect(request.path)
+                    else:
+                        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        return HttpResponseRedirect(request.path)
+                        
+                else:
+                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    return HttpResponseRedirect(request.path)
+            else:
+                for error in list(login_form.errors.values()):
+                    messages.error(request, error)
+                return HttpResponseRedirect(request.path)
+        if request.POST.get('register'):
+            register = Sign_Up_Form(request.POST)
+            if register.is_valid():
+                user = register.save()
+                user.is_active = False
+                user.save()
+                current_site = get_current_site(request)
+                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                message = render_to_string('acc_active_email.html', {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+                to_email = request.POST.get('email')
+                email = EmailMessage(
+                    mail_subject, message, to=[to_email]
+                )
+                email.send()
+                messages.success(request,
+                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                     request.POST.get('email')))
+                return HttpResponseRedirect(request.path)
+            else:
+                for error in list(register.errors.values())[0]:
+                   messages.error(request, error)
+                   return HttpResponseRedirect(request.path)
+        if request.POST.get('forgot_pass'):
+            form = UserForgotPasswordForm(request.POST)
+            if form.is_valid():
+                email = request.POST.get('email')
+                qs = User.objects.filter(email=email)
+                password = User.objects.make_random_password()
+                site = get_current_site(request)
+                if len(qs) > 0:
+                    user = qs[0]
+                    user.is_active = False
+                    user.reset_password = True
+                    user.set_password(password)
+                    user.save()
+                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    message = render_to_string('password_reset_mail.html', {
+                        'user': user,
+                        'domain': site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'token': account_activation_token.make_token(user),
+                        'password': password,
+                    })
+                    to_email = request.POST.get('email')
+                    email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+                    )
+                    email.send()
+                messages.success(request,
+                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                     request.POST.get('email')))
+                return HttpResponseRedirect(request.path)
+
+class Algorithm(View):
+        
+    login_form = LoginForm
+    register_form = Sign_Up_Form()
+    forgot_password_form = UserForgotPasswordForm()
+    reset_password_form = UserPasswordResetForm
+    
+    def get(self, request, *args, **kwargs):
+        
+        login_form = self.login_form(None)
+        register_form = self.register_form
+        forgot_password_form = self.forgot_password_form
+        reset_password_form = self.reset_password_form
+        
+        
+        
+        context = {
+            'login_form': login_form,
+            'register_form': register_form,
+            'forgot_password_form': forgot_password_form,
             'reset_password_form': reset_password_form,'image1':"images/Empty.png",'image2':"images/Empty.png",}
+        
+        curr_culend=calend(date.today().month, date.today().year)
+        context={**context,**curr_culend}
+            
+            
         return render(
             request,
             'algorithm.html',context=context,
@@ -620,7 +774,13 @@ class Algorithm(View):
             center_result_={}
             left=False
             right=False
-            context={'date1':data['date1'],'date2':data['date2']}
+            
+            context={}
+            context={**context,**save_render(data)}
+            curr_culend=calend(date.today().month, date.today().year)
+            context={**context,**curr_culend}
+            #context={'date1':data['date1'],'date2':data['date2']}
+            
             
             for i in range(1,9):
                left_result_['x1'+str(i)]=str(data['x1'+str(i)])
@@ -628,15 +788,15 @@ class Algorithm(View):
                center_result_['x3'+str(i)]=str(data['x3'+str(i)])
             
             try:
-               if data['scales1']=='on':
-                  context={**context,'scales11':'checked'}
+               if data['date1']!='':
+                  #context={**context,'scales11':'checked'}
                   left=True
             except:
                pass
                
             try:
-               if data['scales2']=='on':
-                  context={**context,'scales22':'checked'}
+               if data['date2']!='':
+                  #context={**context,'scales22':'checked'}
                   right=True
             except:
                pass
@@ -667,6 +827,7 @@ class Algorithm(View):
             #aaa = request.POST.get('x11')
             #print(data['x12'])
             return render(request, 'algorithm.html', context=context)
+            #return HttpResponseRedirect(request.path)
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
 class Tarif(View):
