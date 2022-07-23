@@ -866,6 +866,34 @@ document.getElementById("current_d").setAttribute('value', d);
 document.getElementById("current_m").setAttribute('value', m);
 document.getElementById("current_y").setAttribute('value', y);
 </script>
+<script>
+for (let i = 1; i < 9; i++) {
+if(document.getElementsByName("x3"+i)[0].value > 0){
+  
+  if(document.getElementsByName("x1"+i)[0].value == document.getElementsByName("x2"+i)[0].value)
+   {
+    if(document.getElementsByName("x1"+i)[0].value == document.getElementsByName("x3"+i)[0].value)
+     {
+      document.getElementsByName("x1"+i)[0].classList.add("gold");
+      document.getElementsByName("x2"+i)[0].classList.add("gold");
+      document.getElementsByName("x3"+i)[0].classList.add("gold");
+     }
+   } else {
+    if(document.getElementsByName("x1"+i)[0].value == document.getElementsByName("x3"+i)[0].value)
+     {
+      document.getElementsByName("x1"+i)[0].classList.add("red");
+      document.getElementsByName("x3"+i)[0].classList.add("red");
+     }
+    if(document.getElementsByName("x2"+i)[0].value == document.getElementsByName("x3"+i)[0].value)
+     {
+      document.getElementsByName("x2"+i)[0].classList.add("red");
+      document.getElementsByName("x3"+i)[0].classList.add("red");
+     } 
+    } 
+   
+   
+}}
+</script>
 
 
 

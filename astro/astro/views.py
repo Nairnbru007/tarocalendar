@@ -828,6 +828,11 @@ class Algorithm(View):
             #print(data['x12'])
             return render(request, 'algorithm.html', context=context)
             #return HttpResponseRedirect(request.path)
+            
+        if request.POST.get('clear'):
+            #return render(request, 'algorithm.html', context={})
+            return HttpResponseRedirect(request.paths)
+
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
 class Tarif(View):
