@@ -30,6 +30,7 @@ from datetime import datetime
 from datetime import date
 import calendar
 
+#import requests
 from os import walk
 import os  
 import random
@@ -155,23 +156,8 @@ num_dict = (
     (11, "12"),
 )
 
-context_zods = {
-            'zod_1': "images/Component4.png",
-            'zod_2': "images/Component16.png",
-            'zod_3': "images/Component22.png",
-            'zod_4': "images/Component23.png",
-            'zod_5': "images/Component17.png",
-            'zod_6': "images/Component26.png",
-            'zod_7': "images/Component18.png",
-            'zod_8': "images/Component19.png",
-            'zod_9': "images/Component20.png",
-            'zod_10': "images/Component21.png",
-            'zod_11': "images/Component27.png",
-            'zod_12': "images/Component28.png",
-            'image1':'images/Empty.png',
-            'image2':'images/Empty.png',
-            }
 
+            
 images = {
             'fire':'images/fire.png',
             'earth':'images/earth.png',
@@ -764,25 +750,37 @@ class Algorithm(View):
     
     def get(self, request, *args, **kwargs):
         
+        #requests.session().cookies.clear()
+        
         login_form = self.login_form(None)
         register_form = self.register_form
         forgot_password_form = self.forgot_password_form
         reset_password_form = self.reset_password_form
         
+        context={}
         context = {
             'login_form': login_form,
             'register_form': register_form,
             'forgot_password_form': forgot_password_form,
             'reset_password_form': reset_password_form,
-            'image1':images['empty'],
-            'image2':images['empty'],
-            **context_zods
+            'zod_1': "images/Component4.png",
+            'zod_2': "images/Component16.png",
+            'zod_3': "images/Component22.png",
+            'zod_4': "images/Component23.png",
+            'zod_5': "images/Component17.png",
+            'zod_6': "images/Component26.png",
+            'zod_7': "images/Component18.png",
+            'zod_8': "images/Component19.png",
+            'zod_9': "images/Component20.png",
+            'zod_10': "images/Component21.png",
+            'zod_11': "images/Component27.png",
+            'zod_12': "images/Component28.png",
+            'image1':'images/Empty.png',
+            'image2':'images/Empty.png',
             }
         
         curr_culend=calend(date.today().month, date.today().year)
         context={**context,**curr_culend}
-            
-            
         return render(
             request,
             'algorithm.html',context=context,
@@ -917,6 +915,22 @@ class Algorithm(View):
             #print(data['x12'])
             return HttpResponseRedirect(request.path)
         if request.POST.get('Result'):
+            context_zods = {
+            'zod_1': "images/Component4.png",
+            'zod_2': "images/Component16.png",
+            'zod_3': "images/Component22.png",
+            'zod_4': "images/Component23.png",
+            'zod_5': "images/Component17.png",
+            'zod_6': "images/Component26.png",
+            'zod_7': "images/Component18.png",
+            'zod_8': "images/Component19.png",
+            'zod_9': "images/Component20.png",
+            'zod_10': "images/Component21.png",
+            'zod_11': "images/Component27.png",
+            'zod_12': "images/Component28.png",
+            'image1':'images/Empty.png',
+            'image2':'images/Empty.png',
+            }
             data = request.POST
             left_result_={}
             right_result_={}
@@ -993,12 +1007,13 @@ class Algorithm(View):
             #favorites.save()
             #aaa = request.POST.get('x11')
             #print(data['x12'])
+            print(context)
             return render(request, 'algorithm.html', context=context)
             #return HttpResponseRedirect(request.path)
             
         if request.POST.get('clear'):
             #return render(request, 'algorithm.html', context={})
-            return HttpResponseRedirect(request.paths)
+            return HttpResponseRedirect(request.path)
 
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
