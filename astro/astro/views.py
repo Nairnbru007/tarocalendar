@@ -34,16 +34,18 @@ from os import walk
 import os  
 import random
 
+import locale
+
 def algorithm_run(left_arr,center_arr,right_arr,left,right):
     for i in range(1,9):
-        image1={'image1':"images/Empty.png"}
-        image2={'image2':"images/Empty.png"}
+        #image1={'image1':"images/Empty.png"}
+        #image2={'image2':"images/Empty.png"}
         if left==True:
            left_arr['x1'+str(i)]=str(random.randint(1, 8))
-           image1={'image1':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
+           #image1={'image1':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
         if right==True:
            right_arr['x2'+str(i)]=str(random.randint(1, 8))
-           image2={'image2':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
+           #image2={'image2':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
         center_arr['x3'+str(i)]=str(random.randint(1, 8))
         #print(left_arr)
         #print(right_arr)
@@ -51,9 +53,24 @@ def algorithm_run(left_arr,center_arr,right_arr,left,right):
 #     left_arr=[random.randint(1, 8) for i in range (1,8)]
 #     center_arr=[random.randint(1, 8) for i in range (1,8)]
 #     right_arr=[random.randint(1, 8) for i in range (1,8)]
-    return {**left_arr,**center_arr,**right_arr,**image1,**image2}
+    return {**left_arr,**center_arr,**right_arr}
 # def index(request):
 #     return render(request, 'index.html')
+
+months_num={
+1:"Январь",
+2:"Февраль",
+3:"Март",
+4:"Апрель",
+5:"Май",
+6:"Июнь",
+7:"Июль",
+8:"Август",
+9:"Сентябрь",
+10:"Октябрь",
+11:"Ноябрь",
+12:"Декабрь",
+}
 
 def calend(month,year):
     arr={}
@@ -64,6 +81,7 @@ def calend(month,year):
               curr_month_dates[i][j]=""
           arr["d"+str(i+1)+str(j+1)]=curr_month_dates[i][j]
               
+    arr['cal_month']=months_num[month]
     return arr
 def save_render(data):
     arr={}
@@ -72,6 +90,134 @@ def save_render(data):
           arr[i]=data[i]
     return arr
 
+
+# (start(day, month), end(day, month))
+sign_dates = (
+    ((20, 3), (19, 4)),  # Aries
+    ((20, 4), (20, 5)),
+    ((21, 5), (20, 6)),
+    ((21, 6), (22, 7)),
+    ((23, 7), (22, 8)),
+    ((23, 8), (22, 9)),
+    ((23, 9), (22, 10)),
+    ((23, 10), (21, 11)),
+    ((22, 11), (21, 12)),
+    ((22, 12), (19, 1)),
+    ((20, 1), (17, 2)),
+    ((18, 2), (19, 3)),  # Pisces
+)
+
+# English
+en_dict = (
+    (0, "Aries"),
+    (1, "Taurus"),
+    (2, "Gemini"),
+    (3, "Cancer"),
+    (4, "Leo"),
+    (5, "Virgo"),
+    (6, "Libra"),
+    (7, "Scorpio"),
+    (8, "Sagittarius"),
+    (9, "Capricorn"),
+    (10, "Aquarius"),
+    (11, "Pisces"),
+)
+
+# Russian
+ru_dict = (
+    (0, "Овен"),
+    (1, "Телец"),
+    (2, "Близнецы"),
+    (3, "Рак"),
+    (4, "Лев"),
+    (5, "Дева"),
+    (6, "Весы"),
+    (7, "Скорпион"),
+    (8, "Стрелец"),
+    (9, "Козерог"),
+    (10, "Водолей"),
+    (11, "Рыбы"),
+)
+
+# Num
+num_dict = (
+    (0, "1"),
+    (1, "2"),
+    (2, "3"),
+    (3, "4"),
+    (4, "5"),
+    (5, "6"),
+    (6, "7"),
+    (7, "8"),
+    (8, "9"),
+    (9, "10"),
+    (10, "11"),
+    (11, "12"),
+)
+
+context_zods = {
+            'zod_1': "images/Component4.png",
+            'zod_2': "images/Component16.png",
+            'zod_3': "images/Component22.png",
+            'zod_4': "images/Component23.png",
+            'zod_5': "images/Component17.png",
+            'zod_6': "images/Component26.png",
+            'zod_7': "images/Component18.png",
+            'zod_8': "images/Component19.png",
+            'zod_9': "images/Component20.png",
+            'zod_10': "images/Component21.png",
+            'zod_11': "images/Component27.png",
+            'zod_12': "images/Component28.png",
+            'image1':'images/Empty.png',
+            'image2':'images/Empty.png',
+            }
+
+images = {
+            'fire':'images/fire.png',
+            'earth':'images/earth.png',
+            'water':'images/water.png',
+            'air':'images/air.png',
+            'empty':'images/Empty.png',
+            }
+
+language_dict = {
+    'en_US': en_dict,
+    'ru_RU': ru_dict,
+    None: num_dict
+}
+
+# @todo use gettext and etc
+def _(word_index, language=None):
+    if language is not None:
+        return language_dict.get(language)[word_index][1]
+    language = locale.getlocale()
+    return language_dict.get(language[0], language_dict.get('en_US'))[word_index][1]
+
+def get_zodiac_sign(d, month=None, language=None):
+    # params
+    if month is None:
+        month = int(d.month)
+        day = int(d.day)
+    else:
+        day = int(d)
+        month = int(month)
+    # calculate
+    for index, sign in enumerate(sign_dates):
+        if (month == sign[0][1] and day >= sign[0][0]) or (month == sign[1][1] and day <= sign[1][0]):
+            return _(index, language)
+    return ''
+
+def get_images_by_zod(zod_num_get):
+    temp=""
+    if zod_num_get in ["1","5","9"]:
+      temp="fire"
+    if zod_num_get in ["2","6","10"]:
+      temp="earth"
+    if zod_num_get in ["3","7","11"]:
+      temp="air"
+    if zod_num_get in ["4","8","12"]:
+      temp="water"
+    return images[temp]
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -623,13 +769,15 @@ class Algorithm(View):
         forgot_password_form = self.forgot_password_form
         reset_password_form = self.reset_password_form
         
-        
-        
         context = {
             'login_form': login_form,
             'register_form': register_form,
             'forgot_password_form': forgot_password_form,
-            'reset_password_form': reset_password_form,'image1':"images/Empty.png",'image2':"images/Empty.png",}
+            'reset_password_form': reset_password_form,
+            'image1':images['empty'],
+            'image2':images['empty'],
+            **context_zods
+            }
         
         curr_culend=calend(date.today().month, date.today().year)
         context={**context,**curr_culend}
@@ -646,6 +794,7 @@ class Algorithm(View):
         register_form = self.register_form
         forgot_password_form = self.forgot_password_form
         reset_password_form = self.reset_password_form
+        
         
         if request.POST.get('login'):
             login_form = LoginForm(data=request.POST)
@@ -781,16 +930,24 @@ class Algorithm(View):
             context={**context,**curr_culend}
             #context={'date1':data['date1'],'date2':data['date2']}
             
-            
             for i in range(1,9):
                left_result_['x1'+str(i)]=str(data['x1'+str(i)])
                right_result_['x2'+str(i)]=str(data['x2'+str(i)])
                center_result_['x3'+str(i)]=str(data['x3'+str(i)])
             
+            zod_left=""
+            zod_right=""
+            
             try:
                if data['date1']!='':
                   #context={**context,'scales11':'checked'}
                   left=True
+                  temp=data['date1'].split('.')
+                  zod_left=get_zodiac_sign(temp[0],temp[1])
+                  context_zods['zod_'+zod_left]=context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_green.png'
+                  #print(get_images_by_zod(zod_left))
+                  context_zods['image1']=get_images_by_zod(zod_left)
+                  #print(context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_green.png')
             except:
                pass
                
@@ -798,9 +955,19 @@ class Algorithm(View):
                if data['date2']!='':
                   #context={**context,'scales22':'checked'}
                   right=True
+                  temp=data['date2'].split('.')
+                  zod_right=get_zodiac_sign(int(temp[0]),int(temp[1]))
+                  context_zods['zod_'+zod_right]=context_zods['zod_'+zod_right].replace('_red','').replace('_green','').split('.png')[0]+'_green.png'
+                  #print(get_images_by_zod(zod_right))
+                  context_zods['image2']=get_images_by_zod(zod_right)
             except:
                pass
                
+            if zod_left==zod_right and zod_left!="":
+               context_zods['zod_'+zod_left]=context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_red.png'
+            
+            #print(context_zods)
+            context={**context,**context_zods}
                
             result_values=algorithm_run(left_result_,center_result_,right_result_,left,right)
             #print(result_values)

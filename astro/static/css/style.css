@@ -117,7 +117,7 @@ html,body {
 	font-size:12px;
 	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
-	background: #111827;
+	background: #102431;
 }
 input, textarea ,button{outline:none;font-family: 'sf_pro_textregular';font-size:15px;color: #FFCE8E;}
 input:active, textarea:active,button:active {outline:none;}
@@ -1481,7 +1481,7 @@ month_p {
   }
   .navbar-nav {
     padding: 0 20px;
-    background-color: rgba(0, 0, 0, .9);
+    background-color: none;
   }
   .navbar.fixed-top .navbar-nav {
     background: transparent;
