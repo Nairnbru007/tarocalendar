@@ -169,6 +169,7 @@ images = {
 language_dict = {
     'en_US': en_dict,
     'ru_RU': ru_dict,
+    'num': num_dict,
     None: num_dict
 }
 
@@ -957,7 +958,7 @@ class Algorithm(View):
                   #context={**context,'scales11':'checked'}
                   left=True
                   temp=data['date1'].split('.')
-                  zod_left=get_zodiac_sign(temp[0],temp[1])
+                  zod_left=get_zodiac_sign(temp[0],temp[1],"num")
                   context_zods['zod_'+zod_left]=context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_green.png'
                   #print(get_images_by_zod(zod_left))
                   context_zods['image1']=get_images_by_zod(zod_left)
@@ -970,7 +971,7 @@ class Algorithm(View):
                   #context={**context,'scales22':'checked'}
                   right=True
                   temp=data['date2'].split('.')
-                  zod_right=get_zodiac_sign(int(temp[0]),int(temp[1]))
+                  zod_right=get_zodiac_sign(int(temp[0]),int(temp[1]),"num")
                   context_zods['zod_'+zod_right]=context_zods['zod_'+zod_right].replace('_red','').replace('_green','').split('.png')[0]+'_green.png'
                   #print(get_images_by_zod(zod_right))
                   context_zods['image2']=get_images_by_zod(zod_right)
