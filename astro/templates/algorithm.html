@@ -468,7 +468,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
         <div class="container">
 			<div class="row justify-content-md-center">
                         <div class="col-sm-1 mx-auto circle__filter2 flex favorites">
-							<button type="submit" id="Save" name="Save" disabled>
+							<button name="Save" value="123">
 								<img src="{% static 'images/favorites_star.png' %}" class="star_border circle__filter2"  alt="">
 							</button>
 						</div>
@@ -490,14 +490,14 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 					<img src="{% static image1 %}" class="elements-left" alt="" width="50" height="78">
 				</div>
 				
-				<div class="col align-self-center cat3 circle__filter2 flex">
-                    <img src="{% static 'images/image_d18_2.png' %}" class="crosses" alt="">
+				<div class="col align-self-center cat3 circle__filter2 flex" style="right: 0px;">
+                    <input type="image" src="{% static 'images/image_d18_2.png' %}" class="crosses center_date" style="bottom:0px;width:auto;" alt="">
 					<input type="text" name="xxx" class="center_date" id="current_d" value="" disabled>
 					<input type="text" name="xxx" class="center_date" value="|" disabled>
 					<input type="text" name="xxx" class="center_date" id="current_m" value="" disabled>
 					<input type="text" name="xxx" class="center_date" value="|" disabled>
                     <input type="text" name="xxx" class="center_date" id="current_y" value="" disabled>
-                    <img src="{% static 'images/image_d18_2.png' %}" class="crosses_1" alt="">
+                    <input type="image" src="{% static 'images/image_d18_2.png' %}" class="crosses_1 center_date" style="bottom:0px;width:auto;left: 0px;" alt="">
 				</div>
 
 				<div class="col align-self-end">
@@ -600,14 +600,14 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 			<div class="row">
 				<div class="col align-self-start">
 					<div class="inp_date_3 flex">
-					<input type="text" name="x11" class="center_input" id="digits_start_day_sum_1" value={{ x11 }} >					
-					<input type="text" name="x12" class="center_input" id="digits_start_month_sum_1" value={{ x12 }} >
-					<input type="text" name="x13" class="center_input" id="digits_start_year_sum_1" value={{ x13 }}  >
-					<input type="text" name="x14" class="center_input" id="digits_start_day_sum_and_month_sum_1" value={{ x13 }} >
-					<input type="text" name="x15" class="center_input" id="digits_start_day_sum_1" value={{ x14 }}  >
-					<input type="text" name="x16" class="center_input" id="sum_digits_start_day_and_month_and_year_if_krit_1" value={{ x15 }} >
-					<input type="text" name="x17" class="center_input" id="digits_start_day_sum_1" value={{ x16 }} >	
-					<input type="text" name="x18" class="center_input" id="digits_start_day_sum_1" value={{ x17 }} >	
+					<input type="text" name="x11" class="center_input" id="digits_start_day_sum_1" value="{{ x11 }}" >					
+					<input type="text" name="x12" class="center_input" id="digits_start_month_sum_1" value="{{ x12 }}" >
+					<input type="text" name="x13" class="center_input" id="digits_start_year_sum_1" value="{{ x13 }}"  >
+					<input type="text" name="x14" class="center_input" id="digits_start_day_sum_and_month_sum_1" value="{{ x13 }}" >
+					<input type="text" name="x15" class="center_input" id="digits_start_day_sum_1" value="{{ x14 }}"  >
+					<input type="text" name="x16" class="center_input" id="sum_digits_start_day_and_month_and_year_if_krit_1" value="{{ x15 }}" >
+					<input type="text" name="x17" class="center_input" id="digits_start_day_sum_1" value="{{ x16 }}" >	
+					<input type="text" name="x18" class="center_input" id="digits_start_day_sum_1" value="{{ x17 }}" >	
 			        </div>
 		        </div>
                 <div class="col align-self-center ">
@@ -617,14 +617,14 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 </div>
                 <div class="col align-self-end ">
 				    <div class="calendar__top inp_date_3 flex">                 
-					<input type="text" name="x21" class="center_input" id="digits_start_day_sum_1_1" value={{ x21 }} >
-					<input type="text" name="x22" class="center_input" id="digits_start_day_sum_1_1" value={{ x22 }} >
-					<input type="text" name="x23" class="center_input" id="digits_start_day_sum_1_1" value={{ x23 }} >
-					<input type="text" name="x24" class="center_input" id="digits_start_day_sum_1_1" value={{ x24 }} >
-					<input type="text" name="x25" class="center_input" id="digits_start_day_sum_1_1" value={{ x25 }} >
-					<input type="text" name="x26" class="center_input" id="digits_start_day_sum_1_1" value={{ x26 }} >
-					<input type="text" name="x27" class="center_input" id="digits_start_day_sum_1_1" value={{ x27 }} >
-					<input type="text" name="x28" class="center_input" id="digits_start_day_sum_1_1" value={{ x28 }} >
+					<input type="text" name="x21" class="center_input" id="digits_start_day_sum_1_1" value="{{ x21 }}" >
+					<input type="text" name="x22" class="center_input" id="digits_start_day_sum_1_1" value="{{ x22 }}" >
+					<input type="text" name="x23" class="center_input" id="digits_start_day_sum_1_1" value="{{ x23 }}" >
+					<input type="text" name="x24" class="center_input" id="digits_start_day_sum_1_1" value="{{ x24 }}" >
+					<input type="text" name="x25" class="center_input" id="digits_start_day_sum_1_1" value="{{ x25 }}" >
+					<input type="text" name="x26" class="center_input" id="digits_start_day_sum_1_1" value="{{ x26 }}" >
+					<input type="text" name="x27" class="center_input" id="digits_start_day_sum_1_1" value="{{ x27 }}" >
+					<input type="text" name="x28" class="center_input" id="digits_start_day_sum_1_1" value="{{ x28 }}" >
                     </div>
                 </div>
 	        </div>
@@ -663,14 +663,14 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 </div>
                 <div class="col align-self-center ">
                     <div class="flex rakurs_center circle__filter2">
-					<input type="text" name="x31" class="center_input" id="rakurs_right_1" value={{ x31 }} >
-					<input type="text" name="x32" class="center_input" id="rakurs_right_1" value={{ x32 }} >
-					<input type="text" name="x33" class="center_input" id="rakurs_right_1" value={{ x33 }} >
-					<input type="text" name="x34" class="center_input" id="rakurs_right_1" value={{ x34 }} >
-					<input type="text" name="x35" class="center_input" id="rakurs_right_1" value={{ x35 }} >
-					<input type="text" name="x36" class="center_input" id="rakurs_right_1" value={{ x36 }} >
-					<input type="text" name="x37" class="center_input" id="rakurs_right_1" value={{ x37 }} >
-					<input type="text" name="x38" class="center_input" id="rakurs_right_1" value={{ x38 }} >
+					<input type="text" name="x31" class="center_input" id="rakurs_right_1" value="{{ x31 }}" >
+					<input type="text" name="x32" class="center_input" id="rakurs_right_1" value="{{ x32 }}" >
+					<input type="text" name="x33" class="center_input" id="rakurs_right_1" value="{{ x33 }}" >
+					<input type="text" name="x34" class="center_input" id="rakurs_right_1" value="{{ x34 }}" >
+					<input type="text" name="x35" class="center_input" id="rakurs_right_1" value="{{ x35 }}" >
+					<input type="text" name="x36" class="center_input" id="rakurs_right_1" value="{{ x36 }}" >
+					<input type="text" name="x37" class="center_input" id="rakurs_right_1" value="{{ x37 }}" >
+					<input type="text" name="x38" class="center_input" id="rakurs_right_1" value="{{ x38 }}" >
 
 	
 				</div>
@@ -689,64 +689,45 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 </div>
             </div>
         </div>
-		<!-- Календарь и слово Ракурс (Месяц)-->
+		<!-- Календарь и слово Ракурс (Месяц) и исторические личности-->
         <div class="container">
             <div class="row">
                 <div class="col align-self-start">
-                    <div class="flex cat2" style="justify-content:start; margin-left: -3%;">
+                    <div class="flex cat2" style="justify-content:start; margin-left: -10%;">
                      <nav class="navbar navbar-expand-md navbar-dark">
                          <ul class="navbar-nav ml-auto">
 
 							 <li class="dropdown">
-								<a href="#" class="nav-item drop " data-toggle="dropdown">СОБЫТИЯ <img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
+								<a href="#" class="nav-item drop " data-toggle="dropdown">Исторические личности<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
 								<div class="dropdown-menu">
-									<a href="#" class="dropdown-item">1</a>
-									<a href="#" class="dropdown-item">2</a>
-									<a href="#" class="dropdown-item">3</a>
-									<a href="#" class="dropdown-item">4</a>
+									<a href="#" class="dropdown-item">Дата Текст</a>
+									<a href="#" class="dropdown-item">Дата Текст</a>
+									<a href="#" class="dropdown-item">Дата Текст</a>
+									<a href="#" class="dropdown-item">Дата Текст</a>
 								</div>
                         	</li>
-                             <li class="dropdown">
-								<a href="#" class="nav-item drop" data-toggle="dropdown">ПЕРСОНЫ <img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
-								<div class="dropdown-menu">
-									<a href="#" class="dropdown-item">1</a>
-									<a href="#" class="dropdown-item">2</a>
-									<a href="#" class="dropdown-item">3</a>
-									<a href="#" class="dropdown-item">4</a>
-								</div>
-							</li>
-							
                          </ul>
                      </nav>
                     </div>
                 </div>
                 <div class="col align-self-center ">
                     <div class="flex rakurs_center_1 circle__filter2 circle__filter_block_2">
-					    {{ cal_month }} 
+					    {{ cal_month }} {{ cal_year }}
 				    </div>
                 </div>
                 <div class="col align-self-end">
-                    <div class="flex cat2" style="justify-content:end; margin-right: 15%;">
+                    <div class="flex cat2" style="justify-content:end; margin-right: 18%;">
                      <nav class="navbar navbar-expand-md navbar-dark">
                          <ul class="navbar-nav ml-auto">
 							 <li class="dropdown">
-								<a href="#" class="nav-item drop" data-toggle="dropdown">СОБЫТИЯ <img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
+								<a href="#" class="nav-item drop" data-toggle="dropdown">Исторические личности<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
 								<div class="dropdown-menu">
-									<a href="#" class="dropdown-item">1</a>
-									<a href="#" class="dropdown-item">2</a>
-									<a href="#" class="dropdown-item">3</a>
-									<a href="#" class="dropdown-item">4</a>
+									<a href="#" class="dropdown-item">Дата Текст</a>
+									<a href="#" class="dropdown-item">Дата Текст</a>
+									<a href="#" class="dropdown-item">Дата Текст</a>
+									<a href="#" class="dropdown-item">Дата Текст</a>
 								</div>
 							</li>
-                             <li class="dropdown">
-								<a href="#" class="nav-item drop" data-toggle="dropdown">ПЕРСОНЫ <img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
-								<div class="dropdown-menu">
-									<a href="#" class="dropdown-item">1</a>
-									<a href="#" class="dropdown-item">2</a>
-									<a href="#" class="dropdown-item">3</a>
-									<a href="#" class="dropdown-item">4</a>
-								</div>
-                        	 </li>
 							 
                          </ul>
                      </nav>
@@ -825,7 +806,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 <div class="col align-self-center cat7">
                     <div class="circle__filter2 flex">
 						<div class="flex month_p_m">
-                    		<input type="text" class="circle__filter_block_month_m" value="МЕСЯЦ-" name="month_down">
+                    		<input type="submit" style="width: 95px; right: 5px;" class="circle__filter_block_month_m" value="{{ last_month }} <<" name="last_month">
 								<div class="">
 									<div class="jq-selectbox jqselect circle__filter__select-main focused opened">
 										<div class="jq-selectbox__select jq-selectbox__select3">
@@ -833,7 +814,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 										</div>
 									</div>
 								</div>
-                    <input type="text" class="circle__filter_block_month_p" value="МЕСЯЦ+" name="month_up">
+                    <input type="submit" style="width: 95px; left: 0px;" class="circle__filter_block_month_p" value=">> {{ next_month }}" name="next_month">
 				</div>
                     </div>
                     <div class="circle__filter2 flex">
@@ -867,6 +848,31 @@ document.getElementById("current_m").setAttribute('value', m);
 document.getElementById("current_y").setAttribute('value', y);
 </script>
 <script>
+
+if(document.getElementsByName("x31")[0].value > 0)
+{
+
+for (let i = 1; i < 9; i++) 
+{
+  for (let j = 1; j < 9; j++)
+  {
+    if(document.getElementsByName("x1"+i)[0].value == document.getElementsByName("x3"+j)[0].value)
+    {
+    document.getElementsByName("x1"+i)[0].classList.add("green");
+    document.getElementsByName("x3"+j)[0].classList.add("green");
+    }
+    
+    if(document.getElementsByName("x2"+i)[0].value == document.getElementsByName("x3"+j)[0].value)
+    {
+    document.getElementsByName("x2"+i)[0].classList.add("green");
+    document.getElementsByName("x3"+j)[0].classList.add("green");
+    }
+  } 
+}
+
+}
+
+
 for (let i = 1; i < 9; i++) {
 if(document.getElementsByName("x3"+i)[0].value > 0){
   

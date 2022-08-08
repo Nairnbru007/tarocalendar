@@ -22,10 +22,7 @@
                           <thead>
                             <tr>
                               <th scope="col">
-                                <label class="control control--checkbox">
-                                  <input type="checkbox" class="js-check-all"/>
-                                  <div class="control__indicator"></div>
-                                </label>
+                                
                               </th>
                               <th scope="col">№</th>
                               <th scope="col">Дата</th>
@@ -54,13 +51,19 @@
                               <td style="border-top: 3px solid #374151;">
                                   {{ object.date }}</td>
                               <td style="border-top: 3px solid #374151;">
-                                {{ object.rakurs_left }}
+                                {% for i in object.rakurs_left_as_list %}
+                               <input type="text" name="{{forloop.parentloop.counter}}_x1{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 20px;height: 20px;" disabled>
+                                {% endfor %}
                               </td>
                               <td style="border-top: 3px solid #374151;">
-                                {{ object.rakurs_center }}
+                                {% for i in object.rakurs_center_as_list %}
+                               <input type="text" name="{{forloop.parentloop.counter}}_x3{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 20px;height: 20px;" disabled>
+                                {% endfor %}
                               </td>
                               <td style="border-top: 3px solid #374151;">
-                                {{ object.rakurs_right }}
+                                {% for i in object.rakurs_right_as_list %}
+                               <input type="text" name="{{forloop.parentloop.counter}}_x2{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 20px;height: 20px;" disabled>
+                                {% endfor %}
                               </td>
                               <td style="border-top: 3px solid #374151;">
                                 {{ object.unknoun_field }}
@@ -128,6 +131,64 @@
                               </div>
                             </div>
                             {% endfor %}
+                            
+<script>
+for (let j = 1; j <= {{ object_list|length }}; j++) 
+{
+  
+
+for (let i = 1; i < 9; i++) 
+{
+  for (let k = 1; k < 9; k++)
+  {
+    if(document.getElementsByName(j+"_x1"+i)[0].value == document.getElementsByName(j+"_x3"+k)[0].value)
+    {
+    document.getElementsByName(j+"_x1"+i)[0].classList.add("green");
+    document.getElementsByName(j+"_x3"+k)[0].classList.add("green");
+    }
+    
+    if(document.getElementsByName(j+"_x2"+i)[0].value == document.getElementsByName(j+"_x3"+k)[0].value)
+    {
+    document.getElementsByName(j+"_x2"+i)[0].classList.add("green");
+    document.getElementsByName(j+"_x3"+k)[0].classList.add("green");
+    }
+  } 
+}
+
+                          
+for (let i = 1; i < 9; i++) 
+{
+if(document.getElementsByName(j+"_x3"+i)[0].value > 0)
+{
+  if(document.getElementsByName(j+"_x1"+i)[0].value == document.getElementsByName(j+"_x2"+i)[0].value)
+   {
+    if(document.getElementsByName(j+"_x1"+i)[0].value == document.getElementsByName(j+"_x3"+i)[0].value)
+     {
+      document.getElementsByName(j+"_x1"+i)[0].classList.add("green");
+      document.getElementsByName(j+"_x2"+i)[0].classList.add("green");
+      document.getElementsByName(j+"_x3"+i)[0].classList.add("green");
+     }
+   } else {
+    if(document.getElementsByName(j+"_x1"+i)[0].value == document.getElementsByName(j+"_x3"+i)[0].value)
+     {
+      document.getElementsByName(j+"_x1"+i)[0].classList.add("red");
+      document.getElementsByName(j+"_x3"+i)[0].classList.add("red");
+     }
+    if(document.getElementsByName(j+"_x2"+i)[0].value == document.getElementsByName(j+"_x3"+i)[0].value)
+     {
+      document.getElementsByName(j+"_x2"+i)[0].classList.add("red");
+      document.getElementsByName(j+"_x3"+i)[0].classList.add("red");
+     } 
+    } 
+   
+   
+}}
+
+}
+
+</script>
+                            
+                            
                           </tbody>
                         </table>
                     </div>
@@ -179,6 +240,12 @@
                 </div>
         </div>
 </div>
+<script>
+if ({{ page_obj|length }} < 1) {
+document.getElementById("paginate_by").remove();
+document.getElementById("execute").remove();
+}
+</script>
 </form>
 
 <script src="{% static 'js/table.js' %}"></script>

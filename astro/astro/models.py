@@ -39,3 +39,12 @@ class Favorites(models.Model):
     unknoun_field = models.CharField(max_length=50, null=True)
     note = models.CharField(max_length=50, null=True)
     alarm = models.BooleanField(null=True, default=False)
+    
+    def rakurs_left_as_list(self):
+        return self.rakurs_left.split('_')
+        
+    def rakurs_right_as_list(self):
+        return self.rakurs_right.split('_')
+        
+    def rakurs_center_as_list(self):
+        return self.rakurs_center.split('_')

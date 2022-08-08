@@ -42,12 +42,13 @@ def algorithm_run(left_arr,center_arr,right_arr,left,right):
         #image1={'image1':"images/Empty.png"}
         #image2={'image2':"images/Empty.png"}
         if left==True:
-           left_arr['x1'+str(i)]=str(random.randint(1, 8))
+           left_arr['x1'+str(i)]=str(random.randint(1, 15))
            #image1={'image1':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
         if right==True:
-           right_arr['x2'+str(i)]=str(random.randint(1, 8))
+           right_arr['x2'+str(i)]=str(random.randint(1, 15))
            #image2={'image2':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
-        center_arr['x3'+str(i)]=str(random.randint(1, 8))
+        if left==True or right==True:
+           center_arr['x3'+str(i)]=str(random.randint(1, 15))
         #print(left_arr)
         #print(right_arr)
         #print(center_arr)
@@ -71,6 +72,18 @@ months_num={
 10:"Октябрь",
 11:"Ноябрь",
 12:"Декабрь",
+"Январь":1,
+"Февраль":2,
+"Март":3,
+"Апрель":4,
+"Май":5,
+"Июнь":6,
+"Июль":7,
+"Август":8,
+"Сентябрь":9,
+"Октябрь":10,
+"Ноябрь":11,
+"Декабрь":12,
 }
 
 def calend(month,year):
@@ -83,6 +96,18 @@ def calend(month,year):
           arr["d"+str(i+1)+str(j+1)]=curr_month_dates[i][j]
               
     arr['cal_month']=months_num[month]
+    arr['cal_year']=year
+    
+    if month==1:
+       arr['last_month']=months_num[12]
+       arr['next_month']=months_num[month+1]
+    elif month==12:
+       arr['next_month']=months_num[1]
+       arr['last_month']=months_num[month-1]
+    else:
+       arr['next_month']=months_num[month+1]
+       arr['last_month']=months_num[month-1]
+       
     return arr
 def save_render(data):
     arr={}
@@ -742,6 +767,7 @@ class Video(View):
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 
+global glob_context
 class Algorithm(View):
         
     login_form = LoginForm
@@ -782,6 +808,10 @@ class Algorithm(View):
         
         curr_culend=calend(date.today().month, date.today().year)
         context={**context,**curr_culend}
+        
+        global glob_context
+        glob_context=context
+        
         return render(
             request,
             'algorithm.html',context=context,
@@ -793,6 +823,7 @@ class Algorithm(View):
         register_form = self.register_form
         forgot_password_form = self.forgot_password_form
         reset_password_form = self.reset_password_form
+        
         
         
         if request.POST.get('login'):
@@ -889,32 +920,7 @@ class Algorithm(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
-        if request.POST.get('Save'):
-            data = request.POST
-            left_result=""
-            right_result=""
-            center_result=""
-            for i in range(1,9):
-               left_result=left_result+str(data['x1'+str(i)])
-               right_result=right_result+str(data['x2'+str(i)])
-               center_result=center_result+str(data['x3'+str(i)])
-           
-            favorites = Favorites.objects.create(
-                user=request.user.username,
-                date=datetime.today().strftime('%d.%m.%Y'),
 
-                rakurs_left=left_result,
-                rakurs_center=right_result,
-                rakurs_right=center_result,
-                
-                unknoun_field=1,
-                note='Информация о записи',
-                alarm=False
-            )
-            favorites.save()
-            #aaa = request.POST.get('x11')
-            #print(data['x12'])
-            return HttpResponseRedirect(request.path)
         if request.POST.get('Result'):
             context_zods = {
             'zod_1': "images/Component4.png",
@@ -1008,13 +1014,67 @@ class Algorithm(View):
             #favorites.save()
             #aaa = request.POST.get('x11')
             #print(data['x12'])
-            print(context)
+            
+            global glob_context
+            glob_context=context
+            
+            #print(context)
             return render(request, 'algorithm.html', context=context)
             #return HttpResponseRedirect(request.path)
+            
+        if request.POST.get('Save'):
+            context=glob_context
+            data = request.POST
+            left_result=[]
+            right_result=[]
+            center_result=[]
+            for i in range(1,9):
+               left_result.append( str(data['x1'+str(i)]) )
+               right_result.append( str(data['x2'+str(i)]) )
+               center_result.append( str(data['x3'+str(i)]) )
+               
+            left_result="_".join(left_result)
+            right_result="_".join(right_result)
+            center_result="_".join(center_result)
+            
+            if center_result!="_______":
+           
+             favorites = Favorites.objects.create(
+                user=request.user.username,
+                date=datetime.today().strftime('%d.%m.%Y'),
+
+                rakurs_left=left_result,
+                rakurs_center=center_result,
+                rakurs_right=right_result,
+                unknoun_field=1,
+                note='Информация о записи',
+                alarm=False
+             )
+             favorites.save()
+            #print(left_result)
+            #aaa = request.POST.get('x11')
+            #print(data['x12'])
+            #return HttpResponseRedirect(request.path)
+            glob_context=context
+            return render(request, 'algorithm.html', context=context)
             
         if request.POST.get('clear'):
             #return render(request, 'algorithm.html', context={})
             return HttpResponseRedirect(request.path)
+            
+        if request.POST.get('next_month'):
+            context=glob_context
+            #print(months_num[context['cal_month']])
+            #print(context['cal_month'])
+            if months_num[context['cal_month']]==12:
+                curr_culend=calend(1, context['cal_year']+1)
+            else:
+                curr_culend=calend(months_num[context['cal_month']]+1, context['cal_year'])
+            context={**context,**curr_culend}
+            glob_context=context
+               
+            #print(context)
+            return render(request, 'algorithm.html', context=context)
 
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
