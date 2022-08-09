@@ -63,7 +63,7 @@
 <form action="" method="POST">
 {% csrf_token %}
 
-<div class="center" style="margin: 54px auto auto auto; max-width:1230px;">
+<div class="center" style="margin: 20px auto auto auto; max-width:1230px;">
        <!-- <div class="container">
 			<div class="row justify-content-md-center ">
                         <div class="col-sm-1 mx-auto circle__filter2 flex favorites">
@@ -478,7 +478,9 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 		<div class="container">
 			<div class="row justify-content-md-center">
 				<div class="col-sm-auto favorites">
-					<img src="{% static 'images/center_logo.png' %}" class="" alt="">
+				   <button name="Result" value="123">
+					<img src="{% static 'images/center_logo.png' %}" class="top_main_img" alt="">
+					</button>
 				</div>
 			</div>
 		</div>
@@ -512,31 +514,31 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 		<div class="container">
 			<div class="row justify-content-md-center">
 				<div class="col align-self-center cat5 circle__filter2 flex">
-			
-                                <input type="image" name="image" src="{% static zod_1 %}"  class="center_input_empty" disabled>
+			       <div style="border: 1px solid #FFCE8E;">
+                                <input type="image" name="image" src="{% static zod_1 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                            
-                                <input type="image" name="image" src="{% static zod_2 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_2 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_3 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_3 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_4 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_4 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                            
-                                <input type="image" name="image" src="{% static zod_5 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_5 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                            
-                                <input type="image" name="image" src="{% static zod_6 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_6 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                          
-                                <input type="image" name="image" src="{% static zod_7 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_7 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_8 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_8 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                         
-                                <input type="image" name="image" src="{% static zod_9 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_9 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_10 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_10 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                            
-                                <input type="image" name="image" src="{% static zod_11 %}"  class="center_input_empty" disabled>
+                                <input type="image" name="image" src="{% static zod_11 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_12 %}"  class="center_input_empty" disabled>
-				            
+                                <input type="image" name="image" src="{% static zod_12 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+			       </div>	            
 				</div>
 			</div>
 		</div>
@@ -662,7 +664,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                     </div>
                 </div>
                 <div class="col align-self-center ">
-                    <div class="flex rakurs_center circle__filter2">
+                    <div class="flex rakurs_center circle__filter2 center_indexes">
 					<input type="text" name="x31" class="center_input" id="rakurs_right_1" value="{{ x31 }}" >
 					<input type="text" name="x32" class="center_input" id="rakurs_right_1" value="{{ x32 }}" >
 					<input type="text" name="x33" class="center_input" id="rakurs_right_1" value="{{ x33 }}" >
@@ -739,7 +741,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
           <div class="row">
                 <div class="col align-self-start">
                     <div class="calendar__top flex Group_506 Group_506_full" style="justify-content:start; margin-left: 19%;">
-					<img src="{% static 'images/Group_506.png' %}" class="" alt="">
+					<img src="{% static 'images/Group_506.png' %}" class="img_left_gold" alt="">
                         </div>
                 </div>
                 <div class="col align-self-center flex">
@@ -795,15 +797,15 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 </div>
                 <div class="col align-self-end">
                     <div class="flex Group_506_1 calendar__top Group_506_1_full" style="justify-content:end; margin-right: 18%;">
-					    <img src="{% static 'images/2223.png' %}" class="" alt="">
+					    <img src="{% static 'images/2223.png' %}" class="img_right_gold" alt="">
                     </div>
                 </div>
           </div>
         </div>
         <!-- Месяц и тд-->
-        <div class="container down_container" style="margin-bottom: -5%;">
+        <div class="container down_container" style="margin-bottom: 0px;">
             <div class="row">
-                <div class="col align-self-center cat7">
+                <div class="col align-self-center cat7" style="height: 10px;">
                     <div class="circle__filter2 flex">
 						<div class="flex month_p_m">
                     		<input type="submit" style="width: 95px; right: 5px;" class="circle__filter_block_month_m" value="{{ last_month }} <<" name="last_month">
@@ -817,12 +819,14 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                     <input type="submit" style="width: 95px; left: 0px;" class="circle__filter_block_month_p" value=">> {{ next_month }}" name="next_month">
 				</div>
                     </div>
-                    <div class="circle__filter2 flex">
+                    <!-- <div class="circle__filter2 flex">
 					  <input type="submit" class="circle__filter_block clear_center" name="clear" value="ОЧИСТИТЬ" style="left: 5px;">
 					  <input type="submit" class="circle__filter_block done_center" id="Result" name="Result" value="РЕЗУЛЬТАТ" style="right: 5px;">
-				    </div>
+				    </div> -->
                     <div class="circle__filter2 flex">
+                    <button name="clear" value="123">
                         <img src="{% static 'images/asdasd1.png' %}" class="" alt="">
+                    </button>
                     </div>
                 </div>
             </div>
@@ -899,6 +903,88 @@ if(document.getElementsByName("x3"+i)[0].value > 0){
    
    
 }}
+
+
+
+if (screen.width < 1030) {
+
+ if (screen.width > 750) {
+    $(".no_filter").css({"width": "20px", "height": "20px","font-size": "10px"});
+    $(".center_input").css({"width": "20px", "height": "20px","font-size":"12px"});
+    $(".calendar__top_input").css({"width": "150px"});
+    $(".center_input_empty").css({"width": "20px", "height": "20px"});
+    $(".days_of_the_week").css({"width": "20px", "height": "20px"});
+    $(".img_left_gold").css({"width": "100px"});
+    $(".img_right_gold").css({"width": "100px","margin-bottom": "30px"});
+    $(".drop").css({"font-size": "10px"});
+    $(".calendar__top").css({"margin-bottom:": "20px"});
+    $(".elements-left").css({"width": "35px", "height": "55px","top":"-125px"});
+    $(".elements-right").css({"width": "35px", "height": "55px"});
+    
+    
+    $(".cat1").css({"width": "70px"});
+    $(".calendar__bee").css({"width": "100%"});
+    $(".circle__filter__select-main").css({"width": "30px"});
+    
+    
+    $(".top_main_img").css({"width": "210px"});
+    $(".container").css({"padding-right": "0px","padding-left": "0px", "max-width":"100%"});
+    $(".row").css({"padding-right": "0px","padding-left": "0px" });
+     
+    $(".center_input_empty").css({"font-size": "10px"});
+    $(".month_2").css({"font-size": "12px"});
+    
+    $(".inp_date_2").css({"padding": "30px 0 0 0"});
+    $(".cat2").css({"margin-right": "0px","left":"30px", "margin-left": "-20%","height":"40px"});
+    $(".center_date").css({"font-size": "15px","width":"30px", "height": "30px"});
+    $(".crosses").css({"width":"20px"});
+    $(".crosses_1").css({"width":"20px"});
+    $(".justify-content-md-center").css({"justify-content":"center"});
+    $(".favorites").css({"padding-bottom":"20px"});
+    $(".center_indexes").css({"margin-top":"-9%"});
+    
+    
+    
+    $(".center").css({"max-width":"90%"});
+}
+else
+{
+    $(".no_filter").css({"width": "20px", "height": "20px","font-size": "10px"});
+    $(".center_input").css({"width": "20px", "height": "20px","font-size":"12px"});
+    $(".calendar__top_input").css({"width": "150px"});
+    $(".center_input_empty").css({"width": "20px", "height": "20px"});
+    $(".days_of_the_week").css({"width": "20px", "height": "20px"});
+    $(".img_left_gold").css({"width": "100px"});
+    $(".img_right_gold").css({"width": "100px","margin-bottom": "30px"});
+    $(".drop").css({"font-size": "10px"});
+    $(".calendar__top").css({"margin-bottom:": "20px"});
+    $(".elements-left").css({"width": "35px", "height": "55px","top":"-125px"});
+    $(".elements-right").css({"width": "35px", "height": "55px"});
+    
+    
+    $(".cat1").css({"width": "70px"});
+    $(".calendar__bee").css({"width": "100%"});
+    $(".circle__filter__select-main").css({"width": "30px"});
+    
+    
+    $(".top_main_img").css({"width": "210px"});
+    $(".container").css({"padding-right": "0px","padding-left": "0px", "max-width":"100%"});
+    $(".row").css({"padding-right": "0px","padding-left": "0px" });
+     
+    $(".center_input_empty").css({"font-size": "10px"});
+    $(".month_2").css({"font-size": "12px"});
+    
+    $(".inp_date_2").css({"padding": "30px 0 0 0"});
+    $(".cat2").css({"margin-right": "0px","left":"30px", "margin-left": "-20%","height":"40px"});
+    $(".center_date").css({"font-size": "15px","width":"30px", "height": "30px"});
+    $(".crosses").css({"width":"20px"});
+    $(".crosses_1").css({"width":"20px"});
+    $(".justify-content-md-center").css({"justify-content":"center"});
+    $(".favorites").css({"padding-bottom":"20px"});
+    $(".center_indexes").css({"margin-top":"-9%"});
+}
+
+}
 </script>
 
 
