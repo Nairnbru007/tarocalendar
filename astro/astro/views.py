@@ -804,6 +804,7 @@ class Algorithm(View):
             'zod_12': "images/Component28.png",
             'image1':'images/Empty.png',
             'image2':'images/Empty.png',
+            'star': 'images/star_border.png',
             }
         
         curr_culend=calend(date.today().month, date.today().year)
@@ -937,6 +938,7 @@ class Algorithm(View):
             'zod_12': "images/Component28.png",
             'image1':'images/Empty.png',
             'image2':'images/Empty.png',
+            'star': 'images/star_border.png',
             }
             data = request.POST
             left_result_={}
@@ -1055,6 +1057,7 @@ class Algorithm(View):
             #aaa = request.POST.get('x11')
             #print(data['x12'])
             #return HttpResponseRedirect(request.path)
+            context={**context,**{'star':'images/favorites_star.png'}}
             glob_context=context
             return render(request, 'algorithm.html', context=context)
             
