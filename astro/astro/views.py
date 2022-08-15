@@ -989,40 +989,15 @@ class Algorithm(View):
             if zod_left==zod_right and zod_left!="":
                context_zods['zod_'+zod_left]=context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_red.png'
             
-            #print(context_zods)
             context={**context,**context_zods}
                
             result_values=algorithm_run(left_result_,center_result_,right_result_,left,right)
-            #print(result_values)
             context={**context,**result_values}
-            # for i in range(1,9):
-#                context['x1'+str(i)]=result_values['x1'+str(i)]
-#                context['x2'+str(i)]=result_values['x2'+str(i)]
-#                context['x3'+str(i)]=result_values['x3'+str(i)]
-            
-           
-#             favorites = Favorites.objects.create(
-#                 user=request.user.username,
-#                 date=datetime.today().strftime('%d.%m.%Y'),
-# 
-#                 rakurs_left=left_result,
-#                 rakurs_center=right_result,
-#                 rakurs_right=center_result,
-#                 
-#                 unknoun_field=1,
-#                 note='Информация о записи',
-#                 alarm=False
-#             )
-            #favorites.save()
-            #aaa = request.POST.get('x11')
-            #print(data['x12'])
             
             global glob_context
             glob_context=context
             
-            #print(context)
             return render(request, 'algorithm.html', context=context)
-            #return HttpResponseRedirect(request.path)
             
         if request.POST.get('Save'):
             context=glob_context
@@ -1067,8 +1042,6 @@ class Algorithm(View):
             
         if request.POST.get('next_month'):
             context=glob_context
-            #print(months_num[context['cal_month']])
-            #print(context['cal_month'])
             if months_num[context['cal_month']]==12:
                 curr_culend=calend(1, context['cal_year']+1)
             else:
@@ -1078,6 +1051,29 @@ class Algorithm(View):
                
             #print(context)
             return render(request, 'algorithm.html', context=context)
+            
+        if request.POST.get('last_month'):
+            context=glob_context
+            if months_num[context['cal_month']]==1:
+                curr_culend=calend(12, context['cal_year']-1)
+            else:
+                curr_culend=calend(months_num[context['cal_month']]-1, context['cal_year'])
+            context={**context,**curr_culend}
+            glob_context=context
+               
+            #print(context)
+            return render(request, 'algorithm.html', context=context)
+            
+        if request.POST.get('years'):
+            context=glob_context
+            year=int(request.POST['years'])
+            curr_culend=calend(months_num[context['cal_month']], year)
+            context={**context,**curr_culend,**{'cal_year':year}}
+            glob_context=context
+               
+            #print(context)
+            return render(request, 'algorithm.html', context=context)
+        
 
 
 @method_decorator(login_required(login_url='/'), name='dispatch')

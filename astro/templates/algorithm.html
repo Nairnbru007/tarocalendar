@@ -695,9 +695,9 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
         </div>
 		<!-- Календарь и слово Ракурс (Месяц) и исторические личности-->
         <div class="container">
-            <div class="row">
+            <div class="row" style="margin-top: -10px;">
                 <div class="col align-self-start">
-                    <div class="flex cat2" style="justify-content:start; margin-left: -10%;">
+                    <div class="flex cat2" style="justify-content:start; margin-left: -10%; margin-top: 0%;">
                      <nav class="navbar navbar-expand-md navbar-dark">
                          <ul class="navbar-nav ml-auto">
 
@@ -720,7 +720,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 				    </div>
                 </div>
                 <div class="col align-self-end">
-                    <div class="flex cat2" style="justify-content:end; margin-right: 18%;">
+                    <div class="flex cat2" style="justify-content:end; margin-right: 18%; ">
                      <nav class="navbar navbar-expand-md navbar-dark">
                          <ul class="navbar-nav ml-auto">
 							 <li class="dropdown">
@@ -814,11 +814,22 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 								<div class="">
 									<div class="jq-selectbox jqselect circle__filter__select-main focused opened">
 										<div class="jq-selectbox__select jq-selectbox__select3">
-											<input type="text" class="yearpicker  circle__filter_block_date" value="" name="yearpicker">
+										<select name="years" id="years_id" class="navbar navbar-expand-md navbar-dark" style="border: 0px;" onchange="this.form.submit();">
+<option value="2016">2016</option>
+<option value="2017">2017</option>
+<option value="2018">2018</option>
+<option value="2019">2019</option>
+<option value="2020">2020</option>
+<option value="2021">2021</option>
+<option value="2022">2022</option>
+<option value="2023">2023</option>
+<option value="2024">2024</option>
+</select>
+											<!-- <input type="text" class="yearpicker  circle__filter_block_date" value="2022" name="yearpicker"> -->
 										</div>
 									</div>
 								</div>
-                    <input type="submit" style="width: 95px; left: 0px;" class="circle__filter_block_month_p" value=">> {{ next_month }}" name="next_month">
+                            <input type="submit" style="width: 95px; left: 10px;" class="circle__filter_block_month_p" value=">> {{ next_month }}" name="next_month">
 				</div>
                     </div>
                     <!-- <div class="circle__filter2 flex">
@@ -906,6 +917,8 @@ if(document.getElementsByName("x3"+i)[0].value > 0){
    
 }}
 
+const $select = document.querySelector('#years_id');
+$select.value = '{{ cal_year }}'
 
 
 if (screen.width < 1030) {
