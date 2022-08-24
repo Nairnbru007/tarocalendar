@@ -59,7 +59,7 @@ def algorithm_run(left_arr,center_arr,right_arr,left,right):
 # def index(request):
 #     return render(request, 'index.html')
 
-months_num={
+months_num_={
 1:"Январь",
 2:"Февраль",
 3:"Март",
@@ -84,6 +84,32 @@ months_num={
 "Октябрь":10,
 "Ноябрь":11,
 "Декабрь":12,
+}
+months_num={
+1:"January",
+2:"Februare",
+3:"March",
+4:"April",
+5:"May",
+6:"June",
+7:"July",
+8:"August",
+9:"September",
+10:"October",
+11:"November",
+12:"December",
+"January":1,
+"Februare":2,
+"March":3,
+"April":4,
+"May":5,
+"June":6,
+"July":7,
+"August":8,
+"September":9,
+"October":10,
+"November":11,
+"December":12,
 }
 
 def calend(month,year):
@@ -1024,7 +1050,7 @@ class Algorithm(View):
                 rakurs_center=center_result,
                 rakurs_right=right_result,
                 unknoun_field=1,
-                note='Информация о записи',
+                note='Information',
                 alarm=False
              )
              favorites.save()
@@ -1236,7 +1262,7 @@ class Favorites_View(ListView):
             Favorites.objects.filter(id=edit_id).update(note=str(edit_text))
             return HttpResponseRedirect('/favorites/')
         elif request.POST.get('execute'):
-            if request.POST.get('group_actions') == "Удалить выбранные результаты":
+            if request.POST.get('group_actions') == "Delete selected":
                 for check_id in checked_id:
                     Favorites.objects.get(pk=check_id).delete()
             return HttpResponseRedirect('/favorites/')
