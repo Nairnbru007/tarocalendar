@@ -10,6 +10,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.views.generic import View
 from django.views.generic import View, CreateView, ListView
+from django.contrib.auth import get_user_model
 
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -27,8 +28,9 @@ from .tokens import account_activation_token, password_reset_token
 from django.core.mail import EmailMessage
 import json
 from datetime import datetime
-from datetime import date
+from datetime import date,timedelta
 import calendar
+from django.db.models import Q
 
 #import requests
 from os import walk
@@ -36,6 +38,13 @@ import os
 import random
 
 import locale
+from yookassa import Configuration
+import var_dump as var_dump
+from yookassa import Payment
+import uuid
+
+Configuration.account_id = '951224'
+Configuration.secret_key = 'test_POrgWM4SZZ2RUTtMIKD1ByjrXaZ_etZ1KXgG7HPChck'
 
 def algorithm_run(left_arr,center_arr,right_arr,left,right):
     for i in range(1,9):
@@ -803,6 +812,37 @@ class Algorithm(View):
     
     def get(self, request, *args, **kwargs):
         
+        ###
+        try:
+            temp_user=User.objects.get(pk=request.user.id)
+            if temp_user.date_end < date.today():
+                temp_user.role=0
+                temp_user.save()
+        except:
+           pass
+        try:
+           Payments.objects.filter(user=request.user, date__lte=date.today() - timedelta(days=3)).delete()
+           for i in Payments.objects.filter(user=request.user,status='pending'):
+              payment_ = Payment.find_one(i.id_pay)
+              payment_= payment_.json()
+              payment_=json.loads(payment_)
+              #print(payment_)
+              #print(tarif_dict[payment_['description'].split(' ')[0]])
+              if payment_['status']=='succeeded':
+                  if tarif_dict[payment_['description'].split(' ')[0]]>=request.user.role:
+                      temp_user=User.objects.get(pk=request.user.id)
+                      temp_user.role=tarif_dict[payment_['description'].split(' ')[0]]
+                      temp_user.date_end=date.today() + timedelta(days=31)
+                      temp_user.save()
+                      
+                  temp_paym=Payments.objects.get(id_pay=i.id_pay)
+                  temp_paym.status='succeeded'
+                  temp_paym.save()
+                  
+        except:
+           pass
+        ###
+        
         #requests.session().cookies.clear()
         
         login_form = self.login_form(None)
@@ -1041,9 +1081,9 @@ class Algorithm(View):
             center_result="_".join(center_result)
             
             if center_result!="_______":
-           
+             print(User.objects.get(pk=request.user.id))
              favorites = Favorites.objects.create(
-                user=request.user.username,
+                user=User.objects.get(pk=request.user.id),
                 date=datetime.today().strftime('%d.%m.%Y'),
 
                 rakurs_left=left_result,
@@ -1101,16 +1141,148 @@ class Algorithm(View):
             return render(request, 'algorithm.html', context=context)
         
 
+tarif_dict={
+'Start':1,
+'Standart':2,
+'Full':3
+}
+
+
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
 class Tarif(View):
 
     def get(self, request, *args, **kwargs):
+        ###
+        try:
+            temp_user=User.objects.get(pk=request.user.id)
+            if temp_user.date_end < date.today():
+                temp_user.role=0
+                temp_user.save()
+        except:
+           pass
+        try:
+           Payments.objects.filter(user=request.user, date__lte=date.today() - timedelta(days=3)).delete()
+           for i in Payments.objects.filter(user=request.user,status='pending'):
+              payment_ = Payment.find_one(i.id_pay)
+              payment_= payment_.json()
+              payment_=json.loads(payment_)
+              #print(payment_)
+              #print(tarif_dict[payment_['description'].split(' ')[0]])
+              if payment_['status']=='succeeded':
+                  if tarif_dict[payment_['description'].split(' ')[0]]>=request.user.role:
+                      temp_user=User.objects.get(pk=request.user.id)
+                      temp_user.role=tarif_dict[payment_['description'].split(' ')[0]]
+                      temp_user.date_end=date.today() + timedelta(days=31)
+                      temp_user.save()
+                      
+                  temp_paym=Payments.objects.get(id_pay=i.id_pay)
+                  temp_paym.status='succeeded'
+                  temp_paym.save()
+                  
+        except:
+           pass
+        ###
         return render(
             request,
             'tarif.html',
         )
-
+    def post(self, request, *args, **kwargs):
+        if request.POST.get('pay_start'):
+            payment = Payment.create({
+            "amount": {
+            "value": "300.00",
+            "currency": "RUB"
+            },
+            "confirmation": {
+            "type": "redirect",
+            "return_url": request.path
+            },
+            "capture": True,
+            "description": str("Start "+request.user.username+' '+request.user.email)
+            }, uuid.uuid4())
+            
+            var_dump.var_dump(payment)
+            
+            payment_ans=payment.json() 
+            date_ans=json.loads(payment_ans)
+            conf_url=date_ans["confirmation"]['confirmation_url']
+            
+            pay_create = Payments.objects.create(
+                user = User.objects.get(pk=request.user.id),
+                id_pay = date_ans["id"],
+                status = date_ans["status"],
+                tarif = str("Start "+request.user.username+' '+request.user.email)
+            )
+            pay_create.save()
+            
+            return HttpResponseRedirect(conf_url)
+            
+        if request.POST.get('pay_standart'):
+            payment = Payment.create({
+            "amount": {
+            "value": "600.00",
+            "currency": "RUB"
+            },
+            "confirmation": {
+            "type": "redirect",
+            "return_url": request.path
+            },
+            "capture": True,
+            "description": str("Standart "+request.user.username+' '+request.user.email)
+            }, uuid.uuid4())
+            
+            var_dump.var_dump(payment)
+            
+            payment_ans=payment.json() 
+            date_ans=json.loads(payment_ans)
+            conf_url=date_ans["confirmation"]['confirmation_url']
+            
+            pay_create = Payments.objects.create(
+                user = User.objects.get(pk=request.user.id),
+                id_pay = date_ans["id"],
+                status = date_ans["status"],
+                tarif = str("Standart "+request.user.username+' '+request.user.email)
+            )
+            pay_create.save()
+            
+            return HttpResponseRedirect(conf_url)
+            
+        if request.POST.get('pay_full'):
+            payment = Payment.create({
+            "amount": {
+            "value": "900.00",
+            "currency": "RUB"
+            },
+            "confirmation": {
+            "type": "redirect",
+            "return_url": request.path
+            },
+            "capture": True,
+            "description": str("Full "+request.user.username+' '+request.user.email)
+            }, uuid.uuid4())
+            
+            var_dump.var_dump(payment)
+            
+            payment_ans=payment.json() 
+            date_ans=json.loads(payment_ans)
+            conf_url=date_ans["confirmation"]['confirmation_url']
+            
+            pay_create = Payments.objects.create(
+                user = User.objects.get(pk=request.user.id),
+                id_pay = date_ans["id"],
+                status = date_ans["status"],
+                tarif = str("Full "+request.user.username+' '+request.user.email)
+            )
+            pay_create.save()
+            
+            return HttpResponseRedirect(conf_url)
+            
+        else:
+            print('error')
+            print(request.POST)
+            return render(request, 'tarif.html')
+        
 class Contacts(View):
     login_form = LoginForm
     register_form = Sign_Up_Form()

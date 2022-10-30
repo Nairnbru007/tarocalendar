@@ -95,11 +95,44 @@ color:red;
 em{
 color:green;
 }
-
-
-
-
 </style>
+
+<script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
+<script>
+function pay() {
+
+
+//Инициализация виджета. Все параметры обязательные, кроме объекта customization.
+const checkout = new window.YooMoneyCheckoutWidget({
+    confirmation_token: 'confirmation-token', //Токен, который перед проведением оплаты нужно получить от ЮKassa
+    return_url: 'https://example.com', //Ссылка на страницу завершения оплаты
+
+    //Настройка виджета
+    customization: {
+        //Настройка способа отображения
+        modal: true
+    },
+    error_callback: function(error) {
+        //Обработка ошибок инициализации
+    }
+});
+
+//Отображение платежной формы в модальном окне
+checkout.render()
+//Метод возвращает Promise, исполнение которого говорит о полной загрузке платежной формы (можно не использовать).
+  .then(() => {
+     //Код, который нужно выполнить после отображения платежной формы.
+});
+
+
+
+}
+</script>
+
+
+<form action="" method="POST">
+{% csrf_token %}
+
 <div class="center" style="text-align:center; margin:auto; padding: 0 0 40px 0;">
 	<div class="container" align="center">
 		<h2 class="heading-secondary" style="color:#FFCE8E; font-size: 3rem; margin: 24px;">
@@ -123,7 +156,13 @@ color:green;
 								<li><strike>Доступ к Персонам</strike></li>
 								<li><em>24/7</em> Поддержка</li>
 		</ul>
-		<button class="btn-primary">Оплатить</button>
+		{% if user.role == 1 %}
+        <p style="color:green">ТАРИФ АКТИВИРОВАН</p>
+        {% elif user.role > 1 %}
+        <p></p>
+        {% else %}
+		<input type="submit" class="btn-primary" name="pay_start" value="Оплатить">
+		{% endif %}
 	</div>
 
 	<div class="pricing-box pricing-box text-center">
@@ -137,7 +176,13 @@ color:green;
 								<li>Базовый доступ к Персонам</li>
 								<li><em>24/7</em> Поддержка</li>
 		</ul>
-		<button class="btn-primary">Оплатить</button>
+		{% if user.role == 2 %}
+        <p style="color:green">ТАРИФ АКТИВИРОВАН</p>
+        {% elif user.role > 2 %}
+        <p></p>
+        {% else %}
+		<input type="submit" class="btn-primary" name="pay_standart" value="Оплатить">
+		{% endif %}
 	</div>
 
 	<div class="pricing-box text-center">
@@ -151,7 +196,13 @@ color:green;
 								<li><em>Полный</em> доступ к Персонам</li>
 								<li><em>24/7</em> Поддержка</li>
 		</ul>
-		<button class="btn-primary">Оплатить</button>
+		{% if user.role == 3 %}
+        <p style="color:green">ТАРИФ АКТИВИРОВАН</p>
+        {% elif user.role > 3 %}
+        <p></p>
+        {% else %}
+		<input type="submit" class="btn-primary" name="pay_full" value="Оплатить">
+		{% endif %}
 	</div>
   </div>
 
@@ -166,5 +217,5 @@ color:green;
 
 </div>
 
-
+</form>
 {% endblock content %}

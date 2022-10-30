@@ -4,29 +4,39 @@ from .forms import *
 
 from .models import *
 
-#admin.site.register(User_day_left)
-#admin.site.register(User_day_right)
-#admin.site.register(month_right_in_bd)
-#admin.site.register(month_left_in_bd)
-admin.site.register(Favorites)
-#admin.site.register(User_day_center)
-#admin.site.register(Days)
+#admin.site.register(Favorites)
+@admin.register(Favorites)
+class Favorites(admin.ModelAdmin):
+	list_display = ['id','user','date','rakurs_left','rakurs_center', 'rakurs_right']
+	
+#admin.site.register(Payments)
+@admin.register(Payments)
+class Payments(admin.ModelAdmin):
+	list_display = ['id','user','date','tarif','status']
+	list_filter = ('user',)
+admin.site.register(Histpersons)
 
 
 class CustomUserAdmin(UserAdmin):
     add_form = Sign_Up_Form
     model = Users
-    list_display = ['username', 'email', ]
+    list_display = ['id','username', 'email', 'role', 'date_end']
     fieldsets = (
-        *UserAdmin.fieldsets,
+        #*UserAdmin.fieldsets,
+        (None, {"fields": ("username", "email", "password")}),
+        ('Роль пользователя',{'fields': ('role','date_end',)}),
         (
-            'Роль пользователя',
+            "Системная информация",
             {
-                'fields': (
-                    'role',
-                )
-            }
-        )
+                "fields": (
+                    "is_active",
+                    "is_staff",
+                    "is_superuser",
+                ),
+            },
+        ),
+        ("Даты", {"fields": ("last_login", "date_joined")}),
+        
     )
 
 

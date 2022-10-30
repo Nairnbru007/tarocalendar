@@ -4,7 +4,6 @@
 
 {% block style %}
 <style>
-
 	
     .rotation_active {
     	display: none;
@@ -64,7 +63,7 @@
 <form action="" method="POST">
 {% csrf_token %}
 
-<div class="center" style="margin: 20px auto calc(max(20px,100vh - 1200px)) auto; max-width:1230px; border: 0spx solid #FFCE8E;">
+<div class="center" style="margin: 40px auto calc(max(40px,100vh - 1200px)) auto; max-width:1230px; border: 0spx solid #FFCE8E;">
        <!-- <div class="container">
 			<div class="row justify-content-md-center ">
                         <div class="col-sm-1 mx-auto circle__filter2 flex favorites">
@@ -517,30 +516,30 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 		<div class="container">
 			<div class="row justify-content-md-center">
 				<div class="col align-self-center cat5 circle__filter2 flex">
-			       <div style="border: 1px solid #FFCE8E;">
-                                <input type="image" name="image" src="{% static zod_1 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+			       <div style="border: 0.5px solid #FFCE8E; height: 33px;">
+                                <input type="image" name="image" src="{% static zod_1 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                            
-                                <input type="image" name="image" src="{% static zod_2 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_2 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_3 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_3 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_4 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_4 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                            
-                                <input type="image" name="image" src="{% static zod_5 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_5 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                            
-                                <input type="image" name="image" src="{% static zod_6 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_6 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                          
-                                <input type="image" name="image" src="{% static zod_7 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_7 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_8 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_8 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                         
-                                <input type="image" name="image" src="{% static zod_9 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_9 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_10 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_10 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                            
-                                <input type="image" name="image" src="{% static zod_11 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_11 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
                             
-                                <input type="image" name="image" src="{% static zod_12 %}"  class="center_input_empty" style="margin-top: 5px; height:30px;" disabled>
+                                <input type="image" name="image" src="{% static zod_12 %}"  class="center_input_empty" style="margin-top: 1px; height:29px; width:29px;" disabled>
 			       </div>	            
 				</div>
 			</div>
@@ -698,7 +697,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
         <div class="container">
             <div class="row" style="margin-top: -10px;">
                 <div class="col align-self-start">
-                    <div class="flex cat2" style="justify-content:start; margin-left: -10%; margin-top: 0%;">
+                    <div class="flex cat2_l" style="justify-content:start; margin-left: 0%; margin-top: 0%;">
                      <nav class="navbar navbar-expand-md navbar-dark">
                          <ul class="navbar-nav ml-auto">
 
@@ -717,11 +716,11 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 </div>
                 <div class="col align-self-center ">
                     <div class="flex rakurs_center_1 circle__filter2 circle__filter_block_2">
-					    {{ cal_month }} {{ cal_year }}
+					    {{ cal_month }}<!--{{ cal_year }}-->
 				    </div>
                 </div>
                 <div class="col align-self-end">
-                    <div class="flex cat2" style="justify-content:end; margin-right: 18%; ">
+                    <div class="flex cat2_r" style="justify-content:end; margin-right: 26%; ">
                      <nav class="navbar navbar-expand-md navbar-dark">
                          <ul class="navbar-nav ml-auto">
 							 <li class="dropdown">
@@ -811,26 +810,24 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 <div class="col align-self-center cat7" style="height: 10px;">
                     <div class="circle__filter2 flex">
 						<div class="flex month_p_m">
-                    		<input type="submit" style="width: 95px; right: 5px;" class="circle__filter_block_month_m" value="{{ last_month }} <<" name="last_month">
+                    		<input type="submit" style="width: 95px; right: 5px;" class="circle__filter_block_month_m" value="<< MON" name="last_month">
 								<div class="">
 									<div class="jq-selectbox jqselect circle__filter__select-main focused opened">
 										<div class="jq-selectbox__select jq-selectbox__select3">
-										<select name="years" id="years_id" class="navbar navbar-expand-md navbar-dark" style="border: 0px;" onchange="this.form.submit();">
-<option value="2016">2016</option>
-<option value="2017">2017</option>
-<option value="2018">2018</option>
-<option value="2019">2019</option>
-<option value="2020">2020</option>
-<option value="2021">2021</option>
-<option value="2022">2022</option>
-<option value="2023">2023</option>
-<option value="2024">2024</option>
-</select>
+										<select name="years" id="years_id" class="navbar navbar-expand-md navbar-dark central_year" style="border: 0px;" onchange="this.form.submit();">
+                                        <script>
+                                        var myDate = new Date();
+                                        var year = myDate.getFullYear();
+                                        for(var i = 1800; i <= year+2; i++){
+	                                    document.write('<option value="'+i+'">'+i+'</option>');
+                                        }
+                                        </script>
+                                        </select>
 											<!-- <input type="text" class="yearpicker  circle__filter_block_date" value="2022" name="yearpicker"> -->
 										</div>
 									</div>
 								</div>
-                            <input type="submit" style="width: 95px; left: 10px;" class="circle__filter_block_month_p" value=">> {{ next_month }}" name="next_month">
+                            <input type="submit" style="width: 95px; left: 10px;" class="circle__filter_block_month_p" value="MON >>" name="next_month">
 				</div>
                     </div>
                     <!-- <div class="circle__filter2 flex">
@@ -850,6 +847,8 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 </form>
 </div>
 <script>
+
+
 n =  new Date();
 y = n.getFullYear();
 m = n.getMonth()+1;
@@ -923,13 +922,13 @@ const $select = document.querySelector('#years_id');
 $select.value = '{{ cal_year }}'
 
 
-if (screen.width < 1030) {
+if (screen.width < 1230) {
 
  if (screen.width > 750) {
     $(".no_filter").css({"width": "20px", "height": "20px","font-size": "10px"});
     $(".center_input").css({"width": "20px", "height": "20px","font-size":"12px"});
     $(".calendar__top_input").css({"width": "150px"});
-    $(".center_input_empty").css({"width": "20px", "height": "20px"});
+    $(".center_input_empty").css({"width": "18px", "height": "20px","margin-top": "5px"});
     $(".days_of_the_week").css({"width": "20px", "height": "20px"});
     $(".img_left_gold").css({"width": "100px"});
     $(".img_right_gold").css({"width": "100px","margin-bottom": "30px"});
@@ -946,22 +945,28 @@ if (screen.width < 1030) {
     
     $(".top_main_img").css({"width": "210px"});
     $(".container").css({"padding-right": "0px","padding-left": "0px", "max-width":"100%"});
+    $(".hea").css({"max-width":"90%"});
     $(".row").css({"padding-right": "0px","padding-left": "0px" });
      
     $(".center_input_empty").css({"font-size": "10px"});
     $(".month_2").css({"font-size": "12px"});
     
     $(".inp_date_2").css({"padding": "30px 0 0 0"});
+    
     $(".cat2").css({"margin-right": "0px","left":"30px", "margin-left": "-20%","height":"40px"});
+    $(".cat2_l").css({"margin-right": "0px", "margin-left": "-13%","height":"40px"});
+    $(".cat2_r").css({"margin-right": "0px","left":"0%", "height":"40px"});
+    
     $(".center_date").css({"font-size": "15px","width":"30px", "height": "30px"});
     $(".crosses").css({"width":"20px"});
     $(".crosses_1").css({"width":"20px"});
     $(".justify-content-md-center").css({"justify-content":"center"});
-    $(".favorites").css({"padding-bottom":"20px"});
+    
     $(".center_indexes").css({"margin-top":"-9%"});
     
-    
-    
+    $(".circle__filter_block_month_m").css({"font-size": "12px"});
+    $(".circle__filter_block_month_p").css({"font-size": "12px"});
+    $(".central_year").css({"font-size": "12px", "left":"-25%"});
     $(".center").css({"max-width":"90%"});
 }
 else
@@ -969,7 +974,7 @@ else
     $(".no_filter").css({"width": "20px", "height": "20px","font-size": "10px"});
     $(".center_input").css({"width": "20px", "height": "20px","font-size":"12px"});
     $(".calendar__top_input").css({"width": "150px"});
-    $(".center_input_empty").css({"width": "20px", "height": "20px"});
+    $(".center_input_empty").css({"width": "18px", "height": "20px"});
     $(".days_of_the_week").css({"width": "20px", "height": "20px"});
     $(".img_left_gold").css({"width": "100px"});
     $(".img_right_gold").css({"width": "100px","margin-bottom": "30px"});
@@ -986,19 +991,28 @@ else
     
     $(".top_main_img").css({"width": "210px"});
     $(".container").css({"padding-right": "0px","padding-left": "0px", "max-width":"100%"});
+    $(".hea").css({"max-width":"90%"});
     $(".row").css({"padding-right": "0px","padding-left": "0px" });
      
     $(".center_input_empty").css({"font-size": "10px"});
     $(".month_2").css({"font-size": "12px"});
     
     $(".inp_date_2").css({"padding": "30px 0 0 0"});
+    
     $(".cat2").css({"margin-right": "0px","left":"30px", "margin-left": "-20%","height":"40px"});
+    $(".cat2_l").css({"margin-right": "0px","left":"40px", "margin-left": "-20%","height":"40px"});
+    $(".cat2_r").css({"margin-right": "0px","left":"30px", "margin-left": "-20%","height":"40px"});
+    
     $(".center_date").css({"font-size": "15px","width":"30px", "height": "30px"});
     $(".crosses").css({"width":"20px"});
     $(".crosses_1").css({"width":"20px"});
     $(".justify-content-md-center").css({"justify-content":"center"});
-    $(".favorites").css({"padding-bottom":"20px"});
+    
     $(".center_indexes").css({"margin-top":"-9%"});
+    
+    $(".circle__filter_block_month_m").css({"font-size": "12px"});
+    $(".circle__filter_block_month_p").css({"font-size": "12px"});
+    $(".central_year").css({"font-size": "12px", "left":"-25%"});
 }
 
 }

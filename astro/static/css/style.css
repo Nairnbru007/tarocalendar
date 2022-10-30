@@ -467,6 +467,23 @@ month_p {
     background: rgba(16, 36, 49, 0);
     border: rgba(16, 36, 49, 0);
 }
+    
+.cat2_l{
+    position: relative;
+    bottom: 185px;
+    left: 50px;
+    background: rgba(16, 36, 49, 0);
+    border: rgba(16, 36, 49, 0);
+}
+
+.cat2_r{
+    position: relative;
+    bottom: 185px;
+    left: 50px;
+    background: rgba(16, 36, 49, 0);
+    border: rgba(16, 36, 49, 0);
+}
+
 .drop{
     font-family: SF Pro Display Regular;
     font-style: normal;
@@ -1852,11 +1869,11 @@ pre{
     }
     .navbar-brand-fullscreen{
         position: relative;
-        right: 15%;
+        right: 0%;
     }
     .navbar-nav-fullscreen{
         position: relative;
-        left: 20%;
+        left: 0%;
     }
     .modal{
     	z-index:99999999;

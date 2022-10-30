@@ -3,6 +3,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.validators import validate_slug
 from django.utils.translation import gettext_lazy as _
+import datetime
+from django.conf import settings
 
 # Create your models here.
 class Users(AbstractUser):
@@ -25,13 +27,19 @@ class Users(AbstractUser):
         (ROLE_Full, 'Полный')
     )
     role = models.PositiveSmallIntegerField(verbose_name='Роль', choices=ROLE_CHOICES, blank=True, null=True, default=0)
+    date_end = models.DateField(verbose_name='Дата окончания', default=datetime.date.today,null=True)
 
-    def __str__(self):
-        return '%s' % (self.get_full_name())
+
         
+class Payments(models.Model):
+    date = models.DateField(_("Date"), default=datetime.date.today)
+    id_pay = models.CharField(max_length=500, null=True)
+    status = models.CharField(max_length=50, null=True)
+    tarif = models.CharField(max_length=50, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='User',on_delete = models.DO_NOTHING)
         
 class Favorites(models.Model):
-    user = models.CharField(max_length=50, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='User',on_delete = models.DO_NOTHING)
     date = models.CharField(max_length=50, null=True)
     rakurs_left = models.CharField(max_length=50, null=True)
     rakurs_center = models.CharField(max_length=50, null=True)
@@ -48,3 +56,14 @@ class Favorites(models.Model):
         
     def rakurs_center_as_list(self):
         return self.rakurs_center.split('_')
+        
+class Histpersons(models.Model):
+    fio = models.CharField(max_length=1000, null=True)
+    date = models.CharField(max_length=1000, null=True)
+    result = models.CharField(max_length=1000, null=True)
+    types = models.CharField(max_length=1000, null=True)
+    
+class Calendata(models.Model):
+    date = models.CharField(max_length=1000, null=True)
+    result = models.CharField(max_length=1000, null=True)
+    note = models.CharField(max_length=1000, null=True)
