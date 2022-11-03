@@ -52,9 +52,13 @@ def algorithm_run(left_arr,center_arr,right_arr,left,right):
         #image2={'image2':"images/Empty.png"}
         if left==True:
            left_arr['x1'+str(i)]=str(random.randint(1, 15))
+        else:
+           left_arr['x1'+str(i)]=''
            #image1={'image1':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
         if right==True:
            right_arr['x2'+str(i)]=str(random.randint(1, 15))
+        else:
+           left_arr['x2'+str(i)]=''
            #image2={'image2':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
         if left==True or right==True:
            center_arr['x3'+str(i)]=str(random.randint(1, 15))
@@ -1027,6 +1031,8 @@ class Algorithm(View):
             zod_left=""
             zod_right=""
             
+            print(f'date1:{data["date1"]}')
+            
             try:
                if data['date1']!='':
                   #context={**context,'scales11':'checked'}
@@ -1037,7 +1043,10 @@ class Algorithm(View):
                   #print(get_images_by_zod(zod_left))
                   context_zods['image1']=get_images_by_zod(zod_left)
                   #print(context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_green.png')
+               else:
+                  left=False
             except:
+               left=False
                pass
                
             try:
@@ -1049,14 +1058,17 @@ class Algorithm(View):
                   context_zods['zod_'+zod_right]=context_zods['zod_'+zod_right].replace('_red','').replace('_green','').split('.png')[0]+'_green.png'
                   #print(get_images_by_zod(zod_right))
                   context_zods['image2']=get_images_by_zod(zod_right)
+               else:
+                  right=False
             except:
+               right=False
                pass
                
             if zod_left==zod_right and zod_left!="":
                context_zods['zod_'+zod_left]=context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_red.png'
             
             context={**context,**context_zods}
-               
+            print(f'left {left} \nright {right}')
             result_values=algorithm_run(left_result_,center_result_,right_result_,left,right)
             context={**context,**result_values}
             
@@ -1071,6 +1083,8 @@ class Algorithm(View):
             left_result=[]
             right_result=[]
             center_result=[]
+            date_left_=None
+            date_right_=None
             for i in range(1,9):
                left_result.append( str(data['x1'+str(i)]) )
                right_result.append( str(data['x2'+str(i)]) )
@@ -1081,19 +1095,30 @@ class Algorithm(View):
             center_result="_".join(center_result)
             
             if center_result!="_______":
-             print(User.objects.get(pk=request.user.id))
-             favorites = Favorites.objects.create(
-                user=User.objects.get(pk=request.user.id),
-                date=datetime.today().strftime('%d.%m.%Y'),
-
-                rakurs_left=left_result,
-                rakurs_center=center_result,
-                rakurs_right=right_result,
-                unknoun_field=1,
-                note='Information',
-                alarm=False
-             )
-             favorites.save()
+               try:
+                 date_left_=datetime.strptime(data['date1'],'%d.%m.%Y').date()
+               except:
+                 pass
+               try:
+                 date_right_=datetime.strptime(data['date2'],'%d.%m.%Y').date()
+               except:
+                 pass
+               if date_left_!=None or date_right_!=None:
+                favorites = Favorites.objects.create(
+                 user=User.objects.get(pk=request.user.id),
+                 date_left=date_left_,
+                 date_right=date_right_,
+                 #date = datetime.today().strftime('%d.%m.%Y'),
+                 
+                 rakurs_left=left_result,
+                 rakurs_center=center_result,
+                 rakurs_right=right_result,
+                 unknoun_field=1,
+                 note='Information',
+                 alarm=False
+                )
+                favorites.save()
+             
             #print(left_result)
             #aaa = request.POST.get('x11')
             #print(data['x12'])
@@ -1416,7 +1441,7 @@ class Favorites_View(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        self.queryset = Favorites.objects.filter(user=self.request.user.username)
+        self.queryset = Favorites.objects.filter(user=self.request.user.id)
         return super().get_queryset()
 
     def get_paginate_by(self, queryset):

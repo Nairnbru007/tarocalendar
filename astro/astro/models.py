@@ -40,7 +40,9 @@ class Payments(models.Model):
         
 class Favorites(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='User',on_delete = models.DO_NOTHING)
-    date = models.CharField(max_length=50, null=True)
+    date_left = models.DateField(null=True)
+    date_right = models.DateField(null=True)
+    date = models.DateField(null=True, default=datetime.date.today)
     rakurs_left = models.CharField(max_length=50, null=True)
     rakurs_center = models.CharField(max_length=50, null=True)
     rakurs_right = models.CharField(max_length=50, null=True)
@@ -59,11 +61,11 @@ class Favorites(models.Model):
         
 class Histpersons(models.Model):
     fio = models.CharField(max_length=1000, null=True)
-    date = models.CharField(max_length=1000, null=True)
+    date = models.DateField(null=True)
     result = models.CharField(max_length=1000, null=True)
     types = models.CharField(max_length=1000, null=True)
     
 class Calendata(models.Model):
-    date = models.CharField(max_length=1000, null=True)
+    date = models.DateField(null=True)
     result = models.CharField(max_length=1000, null=True)
     note = models.CharField(max_length=1000, null=True)

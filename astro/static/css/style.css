@@ -494,7 +494,7 @@ month_p {
     align-items: center;
     letter-spacing: 2px;
     font-variant: small-caps;
-    margin-right: 10px;
+    /*! margin-right: 10px; */
     background: rgba(16, 36, 49, 0);
     border: rgba(16, 36, 49, 0);
 }

@@ -808,7 +808,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
         <div class="container down_container" style="margin-bottom: 0px;">
             <div class="row">
                 <div class="col align-self-center cat7" style="height: 10px;">
-                    <div class="circle__filter2 flex">
+                    <div class="circle__filter2 flex" style="margin-bottom: -10px;">
 						<div class="flex month_p_m">
                     		<input type="submit" style="width: 95px; right: 5px;" class="circle__filter_block_month_m" value="<< MON" name="last_month">
 								<div class="">
@@ -834,7 +834,29 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 					  <input type="submit" class="circle__filter_block clear_center" name="clear" value="ОЧИСТИТЬ" style="left: 5px;">
 					  <input type="submit" class="circle__filter_block done_center" id="Result" name="Result" value="РЕЗУЛЬТАТ" style="right: 5px;">
 				    </div> -->
-                    <div class="circle__filter2 flex">
+
+				   
+                    <div class="mx-auto circle__filter2 flex">
+                    
+                    
+                     <nav class="navbar navbar-expand-md navbar-dark">
+                     <select name="paginate_by" class="nav-item drop" style="letter-spacing: 0px;">
+                                    <option selected disabled>CHOOSE GROUP</option>
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>25</option>
+                                    <option>100</option>
+                    </select>
+                    
+                         
+                     </nav>
+                    
+                
+                    </div>
+                    
+                    
+                    
+                     <div class="circle__filter2 flex">
                     <button name="clear" value="123">
                         <img src="{% static 'images/asdasd1.png' %}" class="" alt="">
                     </button>

@@ -7,7 +7,7 @@ from .models import *
 #admin.site.register(Favorites)
 @admin.register(Favorites)
 class Favorites(admin.ModelAdmin):
-	list_display = ['id','user','date','rakurs_left','rakurs_center', 'rakurs_right']
+	list_display = ['id','user','date_left','rakurs_left','rakurs_center','date_right', 'rakurs_right']
 	
 #admin.site.register(Payments)
 @admin.register(Payments)
