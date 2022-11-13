@@ -69,8 +69,6 @@ def algorithm_run(left_arr,center_arr,right_arr,left,right):
 #     center_arr=[random.randint(1, 8) for i in range (1,8)]
 #     right_arr=[random.randint(1, 8) for i in range (1,8)]
     return {**left_arr,**center_arr,**right_arr}
-# def index(request):
-#     return render(request, 'index.html')
 
 months_num_={
 1:"Январь",
@@ -237,6 +235,12 @@ language_dict = {
     None: num_dict
 }
 
+tarif_dict={
+'Start':1,
+'Standart':2,
+'Full':3
+}
+
 # @todo use gettext and etc
 def _(word_index, language=None):
     if language is not None:
@@ -269,6 +273,8 @@ def get_images_by_zod(zod_num_get):
     if zod_num_get in ["4","8","12"]:
       temp="water"
     return images[temp]
+    
+    
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -854,6 +860,8 @@ class Algorithm(View):
         forgot_password_form = self.forgot_password_form
         reset_password_form = self.reset_password_form
         
+        grlist=Groupfavorites.objects.filter(user=request.user)
+        
         context={}
         context = {
             'login_form': login_form,
@@ -875,6 +883,7 @@ class Algorithm(View):
             'image1':'images/Empty.png',
             'image2':'images/Empty.png',
             'star': 'images/star_border.png',
+            'grps':grlist,
             }
         
         curr_culend=calend(date.today().month, date.today().year)
@@ -1017,8 +1026,16 @@ class Algorithm(View):
             left=False
             right=False
             
+            
+            
+            
             context={}
-            context={**context,**save_render(data)}
+            try:
+              temp_gr=data['groups_name']
+            except:
+              temp_gr=""
+            grpps={"grps":Groupfavorites.objects.filter(user=request.user),'groups_name': temp_gr}
+            context={**context,**save_render(data),**grpps}
             curr_culend=calend(date.today().month, date.today().year)
             context={**context,**curr_culend}
             #context={'date1':data['date1'],'date2':data['date2']}
@@ -1031,7 +1048,7 @@ class Algorithm(View):
             zod_left=""
             zod_right=""
             
-            print(f'date1:{data["date1"]}')
+            #print(f'группа:{data["choose_group"]}')
             
             try:
                if data['date1']!='':
@@ -1071,6 +1088,7 @@ class Algorithm(View):
             print(f'left {left} \nright {right}')
             result_values=algorithm_run(left_result_,center_result_,right_result_,left,right)
             context={**context,**result_values}
+            print(context)
             
             global glob_context
             glob_context=context
@@ -1094,6 +1112,17 @@ class Algorithm(View):
             right_result="_".join(right_result)
             center_result="_".join(center_result)
             
+            try:
+              temp_gr=data['groups_name']
+              if temp_gr!='':
+                temp_gr=Groupfavorites.objects.filter(user=request.user,name=temp_gr)[0]
+              else:
+                temp_gr=None
+            except:
+              temp_gr=None
+            
+            print(data)
+            
             if center_result!="_______":
                try:
                  date_left_=datetime.strptime(data['date1'],'%d.%m.%Y').date()
@@ -1115,7 +1144,8 @@ class Algorithm(View):
                  rakurs_right=right_result,
                  unknoun_field=1,
                  note='Information',
-                 alarm=False
+                 alarm=False,
+                 group=temp_gr
                 )
                 favorites.save()
              
@@ -1164,15 +1194,6 @@ class Algorithm(View):
                
             #print(context)
             return render(request, 'algorithm.html', context=context)
-        
-
-tarif_dict={
-'Start':1,
-'Standart':2,
-'Full':3
-}
-
-
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
 class Tarif(View):
@@ -1434,15 +1455,39 @@ class Contacts(View):
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 
-
-
+@method_decorator(login_required(login_url='/'), name='dispatch')
 class Favorites_View(ListView):
     template_name = 'favorites.html'
     paginate_by = 5
+    model=Favorites
 
+    #def get_queryset(self):
+    #    self.queryset = Favorites.objects.filter(user=self.request.user.id)
+    #    return super().get_queryset()
+        
+
+
+        
+    #def get_context_data(self, **kwargs):
+       #data = super().get_context_data(**kwargs)
+       #data['grps'] = Groupfavorites.objects.filter(user=self.request.user.id)
+       #print(data)
+       #return data
+       
+       
     def get_queryset(self):
         self.queryset = Favorites.objects.filter(user=self.request.user.id)
         return super().get_queryset()
+
+    def get_context_data(self, **kwargs):
+        #context = super(Favorites_View, self).get_context_data(**kwargs)
+        #context['filter'] = self.request.GET.get('filter', 'give-default-value')
+        #context['orderby'] = self.request.GET.get('orderby', 'give-default-value')
+        #return context
+        data = super().get_context_data(**kwargs)
+        data['grps'] = Groupfavorites.objects.filter(user=self.request.user.id)
+        print(data)
+        return data
 
     def get_paginate_by(self, queryset):
         return self.request.GET.get('paginate_by', self.paginate_by)
@@ -1452,7 +1497,17 @@ class Favorites_View(ListView):
         edit_text = request.POST.get('edit')
         edit_id = request.POST.get('edit_id')
         checked_id = request.POST.getlist('checked')
-        if request.POST.get('id'):
+        if request.POST.get('creategroup'):
+            try:
+             name_favorites = Groupfavorites.objects.create(
+                 user=User.objects.get(pk=request.user.id),
+                 name=request.POST['newgroupname']
+                )
+             name_favorites.save()
+            except:
+             pass
+            return HttpResponseRedirect('/favorites/')
+        elif request.POST.get('id'):
             Favorites.objects.get(pk=id).delete()
             return HttpResponseRedirect('/favorites/')
         elif request.POST.get('edit_id'):
@@ -1463,6 +1518,14 @@ class Favorites_View(ListView):
                 for check_id in checked_id:
                     Favorites.objects.get(pk=check_id).delete()
             return HttpResponseRedirect('/favorites/')
+        elif request.POST.get('groups_name'):
+           print("aaaa")
+           return HttpResponseRedirect('/favorites/')
+           
+        return HttpResponseRedirect('/favorites/')
+            
+            
+            
 
 def activate(request, uidb64, token):
     User = get_user_model()

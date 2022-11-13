@@ -4,12 +4,67 @@
 {% block content %}
 <form action="" method="POST">
     {% csrf_token %}
-<div class="center">
-		<div class="container">
-			<div class="row">
+<div class="center" style="margin: 0 0 0 0">
+    <div class="container">
+			<div class="row" style="padding-top: 50px;">
 				<div class="col align-self-start">
 					<p class="txt3"> <img src="{% static 'images/Vector.png' %}" class="" alt="">  FAVORIRTES</p>
 				</div>
+			</div>
+	</div>
+
+
+		<div class="container">
+			<div class="row" style="height: 5px;margin-top:15px">
+				<div class="col align-self-start">
+					<p class="txt3">CREATE GROUP</p>
+				</div>
+				
+            </div>
+            
+            
+            
+            
+            <div class="col align-self-start">
+					 <div class="row" style="width: auto;">
+						<input
+							type="text"
+							name="newgroupname"
+							id="newgroupname"
+							class="calendar__top_input input-number"
+							placeholder="new group name"
+							style="width: 255px;"
+						>
+						<button type="submit" class="btn execute_button fa" name="creategroup" value='create'>Create</button>
+					 </div>
+					</div>
+					
+            
+        </div>
+        
+
+        
+        
+
+		<div class="container">
+			<div class="row" style="padding-top: 30px;">
+				
+				
+					<p class="txt1" style="padding-top: 2s0px;">FILTER BY GROUP :</p>
+				
+				
+				<nav class="navbar navbar-expand-md navbar-dark">
+                     <select type="text" name="groups_name" class="nav-item drop" style="letter-spacing: 0px;" onchange="this.form.submit()">
+                       <option selected disabled>all items</option>
+                     {% for gr in grps %}
+                       <option value="{{gr.name}}" {% if gr.name == groups_name %}selected="selected"{% endif %}>
+                       {{gr.name}}
+                       </option>
+                       {% endfor %}
+                    </select>
+				
+				
+				
             </div>
         </div>
 
@@ -18,55 +73,61 @@
             <div class="row">
                 <div class="col align-self-start">
                     <div class="table-responsive custom-table-responsive">
-                        <table class="table custom-table">
+                        <table class="table custom-table" style="width:1700px">
                           <thead>
                             <tr>
-                              <th scope="col">
+                              <th scope="col" style="width: 20px;">
                                 
                               </th>
-                              <th scope="col">№</th>
-                              <th scope="col">Date</th>
-                              <th scope="col">Left result
+                              <th scope="col" style="width: 50px;">№</th>
+                              <th scope="col" style="width:90px">Date</th>
+                              <th scope="col" style="width:90px">Date left</th>
+                              <th scope="col" style="width:90px">Date right</th>
+                              <th scope="col" style="width:320px">Left result
                               <p>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="1" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="2" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="3" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="4" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="5" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="6" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="7" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="8" style="width: 20px;height: 20px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="1" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="2" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="3" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="4" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="5" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="6" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="7" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="8" style="width: 32px;height: 32px;" disabled>
                               </p> 
                               </th>
-                              <th scope="col">Center result
+                              <th scope="col" style="width:320px">Center result
                               <p>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="1" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="2" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="3" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="4" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="5" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="6" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="7" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="8" style="width: 20px;height: 20px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="1" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="2" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="3" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="4" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="5" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="6" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="7" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="8" style="width: 32px;height: 32px;" disabled>
                               </p> 
                               </th>
-                              <th scope="col">Right result
+                              <th scope="col" style="width:320px">Right result
                               <p>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="1" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="2" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="3" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="4" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="5" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="6" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="7" style="width: 20px;height: 20px;" disabled>
-                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="8" style="width: 20px;height: 20px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="1" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="2" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="3" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="4" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="5" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="6" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="7" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="8" style="width: 32px;height: 32px;" disabled>
                               </p> 
                               </th>
+                              <!--
                               <th scope="col"><img src="{% static 'images/Vector1.png' %}" class=""  alt=""></th>
+                              -->
                               <th scope="col">Note</th>
-                              <th scope="col"></th>
-                              <th scope="col"></th>
+                              <th scope="col" style="width: 20px"></th>
+                              <!--
                               <th scope="col"><button type="button" class="btn" data-toggle="modal" data-target="{{ object.id }}" disabled><img src="{% static 'images/alarm.png' %}" class=""  alt="" width="20" height="20"></button></th>
+                              -->
+                              <th scope="col" style="width: 20px"></th>
                             </tr>
                           </thead>
                           <tbody>
@@ -82,36 +143,45 @@
                                 {{ forloop.counter0|add:page_obj.start_index }}
                               </td>
                               <td style="border-top: 3px solid #374151;">
-                                  {{ object.date }}</td>
+                                  {{ object.date|date:'d.m.Y' }}</td>
+                              <td style="border-top: 3px solid #374151;">
+                                  {{ object.date_left|date:'d.m.Y' }}</td>
+                              <td style="border-top: 3px solid #374151;">
+                                  {{ object.date_right|date:'d.m.Y' }}</td>
                               <td style="border-top: 3px solid #374151;">
                                 {% for i in object.rakurs_left_as_list %}
-                               <input type="text" name="{{forloop.parentloop.counter}}_x1{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 20px;height: 20px;" disabled>
+                               <input type="text" name="{{forloop.parentloop.counter}}_x1{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 32px;height: 32px;" disabled>
                                 {% endfor %}
                               </td>
                               <td style="border-top: 3px solid #374151;">
                                 {% for i in object.rakurs_center_as_list %}
-                               <input type="text" name="{{forloop.parentloop.counter}}_x3{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 20px;height: 20px;" disabled>
+                               <input type="text" name="{{forloop.parentloop.counter}}_x3{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 32px;height: 32px;" disabled>
                                 {% endfor %}
                               </td>
                               <td style="border-top: 3px solid #374151;">
                                 {% for i in object.rakurs_right_as_list %}
-                               <input type="text" name="{{forloop.parentloop.counter}}_x2{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 20px;height: 20px;" disabled>
+                               <input type="text" name="{{forloop.parentloop.counter}}_x2{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 32px;height: 32px;" disabled>
                                 {% endfor %}
                               </td>
+                              <!--
                               <td style="border-top: 3px solid #374151;">
                                 {{ object.unknoun_field }}
                               </td>
+                              -->
                               <td style="border-top: 3px solid #374151;">
                                 {{ object.note }}
                               </td>
-                              <td style="border-top: 3px solid #374151;">
-                                  <button type="button" class="btn" data-toggle="modal" data-target="#deleteString{{ object.id }}"><img src="{% static 'images/delete.png' %}" class=""  alt="" width="20" height="20"></button>
-                              </td>
+                              
                               <td style="border-top: 3px solid #374151;">
                                   <button type="button" class="btn" data-toggle="modal" data-target="#editNote{{ object.id }}"><img src="{% static 'images/edit.png' %}" class=""  alt="" width="20" height="20"></button>
                               </td>
+                              <!--
                               <td style="border-top: 3px solid #374151;">
                                   <button type="button" class="btn" data-toggle="modal" data-target="{{ object.id }}"><img src="{% static 'images/alarm.png' %}" class=""  alt="" width="20" height="20"></button>
+                              </td>
+                              -->
+                              <td style="border-top: 3px solid #374151;">
+                                  <button type="button" class="btn" data-toggle="modal" data-target="#deleteString{{ object.id }}"><img src="{% static 'images/delete.png' %}" class=""  alt="" width="20" height="20"></button>
                               </td>
                             </tr>
                             <tr class="spacer"><td colspan="100"></td></tr>
@@ -128,7 +198,7 @@
                                     <form method="POST" name="id">
                                       <div class="modal-body text-center">
                                             {% csrf_token %}
-                                            <p class="modal-body">Are you sure you want to delete {{ forloop.counter0|add:page_obj.start_index }} строку?</p>
+                                            <p class="modal-body">Are you sure you want to delete {{ forloop.counter0|add:page_obj.start_index }} line?</p>
                                       </div>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid #FFCE8E;">Close</button>
@@ -241,21 +311,21 @@ if(document.getElementsByName(j+"_x3"+i)[0].value > 0)
                         </div>
                 <div class="row">
                     <div class="col align-self-center pagination">
-                        <span class="align-self-center page" style="padding-left: 1%;">Count lines: </span>
-                        <div class="col-auto box align-self-center">
+                        <span class="align-self-center page" style="padding-left: 1%;">Max lines on page: </span>
+                        <div class="col-auto box align-self-center" style="width: 55px;">
                             {% csrf_token %}
                             <form action="" method="get" class="row g-1">
-                                <select name="paginate_by" class="form-select select2">
+                                <select name="paginate_by" class="form-select select2" onchange="this.form.submit()">
                                     <option selected disabled>{{ page_obj.end_index }}</option>
                                     <option>5</option>
                                     <option>10</option>
                                     <option>25</option>
                                     <option>100</option>
                                 </select>
-                                <button type="submit" class="btn execute_button fa" id="paginate_by">&#10004 Ok</button>
+                                <!--<button type="submit" class="btn execute_button fa" id="paginate_by">&#10004 Ok</button>-->
                             </form>
                         </div>
-                      <span class="align-self-center page">
+                      <span class="align-self-center page" style="padding-left:0px; position: initial;">
                           {% if page_obj.has_previous %}
                               <a href="{% url 'favorites' %}?page=1"><img src="{% static 'images/previous.png' %}" class="align-self-center prev" alt=""><img src="{% static 'images/previous.png' %}" class="align-self-center prev_2" alt=""></a>
                               <a href="{% url 'favorites' %}?page={{ page_obj.previous_page_number }}"><img src="{% static 'images/previous.png' %}" class="align-self-center next"  alt=""></a>

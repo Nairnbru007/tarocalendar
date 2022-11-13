@@ -30,6 +30,13 @@ class Users(AbstractUser):
     date_end = models.DateField(verbose_name='Дата окончания', default=datetime.date.today,null=True)
 
 
+class Groupfavorites(models.Model):
+    name = models.CharField(max_length=100, null=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='User',on_delete = models.DO_NOTHING)
+    
+    class Meta:
+        unique_together = ('name', 'user',)
+
         
 class Payments(models.Model):
     date = models.DateField(_("Date"), default=datetime.date.today)
@@ -37,7 +44,8 @@ class Payments(models.Model):
     status = models.CharField(max_length=50, null=True)
     tarif = models.CharField(max_length=50, null=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='User',on_delete = models.DO_NOTHING)
-        
+
+
 class Favorites(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='User',on_delete = models.DO_NOTHING)
     date_left = models.DateField(null=True)
@@ -49,6 +57,7 @@ class Favorites(models.Model):
     unknoun_field = models.CharField(max_length=50, null=True)
     note = models.CharField(max_length=50, null=True)
     alarm = models.BooleanField(null=True, default=False)
+    group = models.ForeignKey(Groupfavorites,on_delete = models.DO_NOTHING,null=True,blank=True)
     
     def rakurs_left_as_list(self):
         return self.rakurs_left.split('_')
@@ -58,6 +67,14 @@ class Favorites(models.Model):
         
     def rakurs_center_as_list(self):
         return self.rakurs_center.split('_')
+    
+
+    def group_name(self):
+        try:
+           return self.group.name
+        except:
+           return "-"
+
         
 class Histpersons(models.Model):
     fio = models.CharField(max_length=1000, null=True)

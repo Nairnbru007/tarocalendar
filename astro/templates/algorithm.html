@@ -840,13 +840,20 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                     
                     
                      <nav class="navbar navbar-expand-md navbar-dark">
-                     <select name="paginate_by" class="nav-item drop" style="letter-spacing: 0px;">
-                                    <option selected disabled>CHOOSE GROUP</option>
-                                    <option>5</option>
-                                    <option>10</option>
-                                    <option>25</option>
-                                    <option>100</option>
+                     <select type="text" name="groups_name" class="nav-item drop" style="letter-spacing: 0px;" >
+                       <option selected disabled>CHOOSE GROUP</option>
+                     {% for gr in grps %}
+                       <option value="{{gr.name}}" {% if gr.name == groups_name %}selected="selected"{% endif %}>
+                       {{gr.name}}
+                       </option>
+                       {% endfor %}
                     </select>
+                   
+                    
+                    
+            
+                   
+                    
                     
                          
                      </nav>
@@ -864,7 +871,40 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 </div>
             </div>
         </div>    
+
+<fieldset style="display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    padding-bottom: 0.625em;
+    border-width: 1px;
+    border-style: groove;
+    border-color: #FFCE8E;
+    width:200px;">
+    <legend style="color:#FFCE8E; font-size: 1rem;"><p style="color:#FFCE8E">Change active colors:</p></legend>
+    
+    <div class="row" style="margin-bottom: 5px;
+margin-top: 20px;">
+    <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
+                                  <input type="checkbox" value="1" name="checked" id='greenchecked' onclick="redandgreen()" checked=True>
+                                  <div class="control__indicator"></div>
+                                </label> <p style="width: 5px; color:#FFCE8E;">Green</p></div>
+                                
+    <div class="row">
+    <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
+                                  <input type="checkbox" value="1" name="checked" id='redchecked' onclick="redandgreen()" checked=True>
+                                  <div class="control__indicator"></div>
+                                </label> <p style="width: 5px; color:#FFCE8E;">Red</p></div>
+                                
+</fieldset>
+
+
 </div>
+
+
+
 
 </form>
 </div>
@@ -886,8 +926,29 @@ document.getElementById("current_d").setAttribute('value', d);
 document.getElementById("current_m").setAttribute('value', m);
 document.getElementById("current_y").setAttribute('value', y);
 </script>
+
+
 <script>
 document.getElementById("main_color").setAttribute('style',"background-color: rgba(0,0,0,.3);");
+
+function redandgreen() {
+
+for (let i = 1; i < 9; i++) 
+{
+document.getElementsByName("x1"+i)[0].classList.remove("green");
+document.getElementsByName("x3"+i)[0].classList.remove("green");
+document.getElementsByName("x2"+i)[0].classList.remove("green");
+document.getElementsByName("x1"+i)[0].classList.remove("red");
+document.getElementsByName("x3"+i)[0].classList.remove("red");
+document.getElementsByName("x2"+i)[0].classList.remove("red");
+}
+
+
+green="";
+red="";
+if (document.getElementById('greenchecked').checked) 
+{
+green="green";
 
 if(document.getElementsByName("x31")[0].value > 0)
 {
@@ -898,14 +959,14 @@ for (let i = 1; i < 9; i++)
   {
     if(document.getElementsByName("x1"+i)[0].value == document.getElementsByName("x3"+j)[0].value)
     {
-    document.getElementsByName("x1"+i)[0].classList.add("green");
-    document.getElementsByName("x3"+j)[0].classList.add("green");
+    document.getElementsByName("x1"+i)[0].classList.add(green);
+    document.getElementsByName("x3"+j)[0].classList.add(green);
     }
     
     if(document.getElementsByName("x2"+i)[0].value == document.getElementsByName("x3"+j)[0].value)
     {
-    document.getElementsByName("x2"+i)[0].classList.add("green");
-    document.getElementsByName("x3"+j)[0].classList.add("green");
+    document.getElementsByName("x2"+i)[0].classList.add(green);
+    document.getElementsByName("x3"+j)[0].classList.add(green);
     }
   } 
 }
@@ -913,32 +974,34 @@ for (let i = 1; i < 9; i++)
 }
 
 
-for (let i = 1; i < 9; i++) {
-if(document.getElementsByName("x3"+i)[0].value > 0){
-  
-  if(document.getElementsByName("x1"+i)[0].value == document.getElementsByName("x2"+i)[0].value)
-   {
+
+}
+if (document.getElementById('redchecked').checked) 
+{
+red="red";
+for (let i = 1; i < 9; i++) 
+{
+if(document.getElementsByName("x3"+i)[0].value > 0)
+{
     if(document.getElementsByName("x1"+i)[0].value == document.getElementsByName("x3"+i)[0].value)
      {
-      document.getElementsByName("x1"+i)[0].classList.add("green");
-      document.getElementsByName("x2"+i)[0].classList.add("green");
-      document.getElementsByName("x3"+i)[0].classList.add("green");
-     }
-   } else {
-    if(document.getElementsByName("x1"+i)[0].value == document.getElementsByName("x3"+i)[0].value)
-     {
-      document.getElementsByName("x1"+i)[0].classList.add("red");
-      document.getElementsByName("x3"+i)[0].classList.add("red");
+      document.getElementsByName("x1"+i)[0].classList.add(red);
+      document.getElementsByName("x3"+i)[0].classList.add(red);
      }
     if(document.getElementsByName("x2"+i)[0].value == document.getElementsByName("x3"+i)[0].value)
      {
-      document.getElementsByName("x2"+i)[0].classList.add("red");
-      document.getElementsByName("x3"+i)[0].classList.add("red");
+      document.getElementsByName("x2"+i)[0].classList.add(red);
+      document.getElementsByName("x3"+i)[0].classList.add(red);
      } 
-    } 
-   
-   
-}}
+}
+}
+}
+
+
+
+}
+
+redandgreen();
 
 const $select = document.querySelector('#years_id');
 $select.value = '{{ cal_year }}'
