@@ -14,7 +14,7 @@ class Favorites(admin.ModelAdmin):
 class Payments(admin.ModelAdmin):
 	list_display = ['id','user','date','tarif','status']
 	list_filter = ('user',)
-admin.site.register(Histpersons)
+#admin.site.register(Histpersons)
 
 
 class CustomUserAdmin(UserAdmin):
@@ -45,3 +45,7 @@ admin.site.register(Users, CustomUserAdmin)
 @admin.register(Groupfavorites)
 class Groupfavorites(admin.ModelAdmin):
 	list_display = ['id','user','name']
+
+@admin.register(Histpersons)
+class Histpersons(admin.ModelAdmin):
+	list_display = ['fio','date','result','types']

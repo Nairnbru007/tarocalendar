@@ -43,8 +43,22 @@ import var_dump as var_dump
 from yookassa import Payment
 import uuid
 
+from django.contrib.auth.decorators import user_passes_test
+
 Configuration.account_id = '951224'
 Configuration.secret_key = 'test_POrgWM4SZZ2RUTtMIKD1ByjrXaZ_etZ1KXgG7HPChck'
+
+def main_alg(str_date):
+    ma_arr=[]
+    for i in range(1,9):
+        ma_arr.append(str(random.randint(1, 15)))
+    return ma_arr
+
+def hist_pers_show(inp_arr):
+    hp_arr={}
+    for i in range(1,9):
+       hp_arr['c1'+str(i)]=inp_arr[i-1]
+    return hp_arr
 
 def algorithm_run(left_arr,center_arr,right_arr,left,right):
     for i in range(1,9):
@@ -1035,7 +1049,8 @@ class Algorithm(View):
             except:
               temp_gr=""
             grpps={"grps":Groupfavorites.objects.filter(user=request.user),'groups_name': temp_gr}
-            context={**context,**save_render(data),**grpps}
+            hist_pers={"hstprs1":Histpersons.objects.all()}
+            context={**context,**save_render(data),**grpps,**hist_pers}
             curr_culend=calend(date.today().month, date.today().year)
             context={**context,**curr_culend}
             #context={'date1':data['date1'],'date2':data['date2']}
@@ -1524,8 +1539,44 @@ class Favorites_View(ListView):
            
         return HttpResponseRedirect('/favorites/')
             
-            
-            
+@user_passes_test(lambda u: u.is_superuser)
+def upload_csv(request):
+    data = {}
+    if "GET" == request.method:
+        return render(request, "upload.html", data)
+    # if not GET, then proceed
+    csv_file = request.FILES["csv_file"]
+    if not csv_file.name.endswith('.csv'):
+        messages.error(request,'File is not CSV type')
+        return HttpResponseRedirect(request.path)
+        #if file is too large, return
+    if csv_file.multiple_chunks():
+        messages.error(request,"Uploaded file is too big (%.2f MB)." % (csv_file.size/(1000*1000),))
+        return HttpResponseRedirect(request.path)
+    file_data = csv_file.read().decode("utf-8")
+    lines = file_data.split("\n")
+    data_arr = []
+    for line in lines:
+        fields = line.split(";")
+        data_arr.append([fields[0],fields[1]])
+        #data_dict["notes"] = fields[2]
+    #print(data_arr)
+    
+    for line in data_arr:
+        #try:
+             result=main_alg(line[1])
+             name_comositors = Histpersons.objects.create(
+                 fio=line[0],
+                 date=datetime.strptime(line[1].replace('\r',''), "%d.%m.%Y").date(),
+                 types=str(csv_file.name).split('.')[0].upper(),
+                 result="_".join(result)
+                )
+             name_comositors.save()
+        #except:
+             #print(line)
+         #    pass
+    messages.error(request,'File Ok')
+    return HttpResponseRedirect(request.path)
 
 def activate(request, uidb64, token):
     User = get_user_model()

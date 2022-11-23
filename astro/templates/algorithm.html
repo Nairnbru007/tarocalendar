@@ -704,10 +704,21 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 							 <li class="dropdown">
 								<a href="#" class="nav-item drop " data-toggle="dropdown">Historical persons<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
 								<div class="dropdown-menu">
-									<a href="#" class="dropdown-item">date text</a>
-									<a href="#" class="dropdown-item">date text</a>
-									<a href="#" class="dropdown-item">date text</a>
-									<a href="#" class="dropdown-item">date text</a>
+									{% for hstp in hstprs1 %}
+								<a href="#" class="dropdown-item">{{hstp.fio}}<br>{{hstp.date}}<br>
+								
+					
+					<input type="text" name="c1{{ forloop.counter }}1" class="center_input"  value="1" >					
+					<input type="text" name="c1{{ forloop.counter }}2" class="center_input red"  value="1" >
+					<input type="text" name="c1{{ forloop.counter }}3" class="center_input green"  value="1" >
+					<input type="text" name="c1{{ forloop.counter }}4" class="center_input "  value="1" >
+					<input type="text" name="c1{{ forloop.counter }}5" class="center_input "  value="1" >
+					<input type="text" name="c1{{ forloop.counter }}6" class="center_input "  value="1" >
+					<input type="text" name="c1{{ forloop.counter }}7" class="center_input green"  value="1" >	
+					<input type="text" name="c1{{ forloop.counter }}8" class="center_input red"  value="1" >	
+			        
+		        </a>
+                                {% endfor %}
 								</div>
                         	</li>
                          </ul>
@@ -726,10 +737,9 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 							 <li class="dropdown">
 								<a href="#" class="nav-item drop" data-toggle="dropdown">Historical persons<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
 								<div class="dropdown-menu">
-									<a href="#" class="dropdown-item">date text</a>
-									<a href="#" class="dropdown-item">date text</a>
-									<a href="#" class="dropdown-item">date text</a>
-									<a href="#" class="dropdown-item">date text</a>
+								{% for hstp in hstprs1 %}
+								<a href="#" class="dropdown-item">{{hstp.fio}} </a>
+                                {% endfor %}
 								</div>
 							</li>
 							 
@@ -840,7 +850,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                     
                     
                      <nav class="navbar navbar-expand-md navbar-dark">
-                     <select type="text" name="groups_name" class="nav-item drop" style="letter-spacing: 0px;" >
+                     <select type="text" name="groups_name" class="nav-item drop" style="position: relative; letter-spacing: 0px;" >
                        <option selected disabled>CHOOSE GROUP</option>
                      {% for gr in grps %}
                        <option value="{{gr.name}}" {% if gr.name == groups_name %}selected="selected"{% endif %}>
