@@ -1,6 +1,6 @@
 {% extends  'menu_footer.html' %}
 {% load static %}
-{% block title %} Алгоритм {% endblock %}
+{% block title %} Algorithm {% endblock %}
 
 {% block style %}
 <style>
@@ -706,16 +706,13 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 								<div class="dropdown-menu">
 									{% for hstp in hstprs1 %}
 								<a href="#" class="dropdown-item">{{hstp.fio}}<br>{{hstp.date}}<br>
-								
-					
-					<input type="text" name="c1{{ forloop.counter }}1" class="center_input"  value="1" >					
-					<input type="text" name="c1{{ forloop.counter }}2" class="center_input red"  value="1" >
-					<input type="text" name="c1{{ forloop.counter }}3" class="center_input green"  value="1" >
-					<input type="text" name="c1{{ forloop.counter }}4" class="center_input "  value="1" >
-					<input type="text" name="c1{{ forloop.counter }}5" class="center_input "  value="1" >
-					<input type="text" name="c1{{ forloop.counter }}6" class="center_input "  value="1" >
-					<input type="text" name="c1{{ forloop.counter }}7" class="center_input green"  value="1" >	
-					<input type="text" name="c1{{ forloop.counter }}8" class="center_input red"  value="1" >	
+								{% load split %}
+								{% with hstp.result|split:"_" as rests %}
+    								{% for rest in rests %}
+        								<input type="text" name="c1{{forloop.parentloop.counter}}{{ forloop.counter }}" class="center_input"  value="{{ rest }}" >
+    								{% endfor %}
+								{% endwith %}
+
 			        
 		        </a>
                                 {% endfor %}

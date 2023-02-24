@@ -105,7 +105,7 @@ background: #102431;
 				<span class="menu-icon-bar"></span>
 			</button>
 			<div id="main-nav" class="collapse navbar-collapse">
-			        {% if not request.user.is_authenticated %}
+			        {% if not request.user.is_authenticated or user.is_anonymous%}
                 <ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen" style="margin-top: 10px;">
                     <a href="/algorithm/" id="center_text_" style=" transform: translateX(5%);position: relative;" class="nav-item nav-link">CONGRUIT UNIVERSA</a>
                 </ul>
@@ -451,8 +451,8 @@ background: #102431;
 				
 					<div class="col-md-14 text-center">
 						<p class="menu" style="margin-top:2px; padding-top: 10px;">
-							<a href="#" class="footer">COMMERCIAL</a>
-							<a href="#" class="footer">DESCRIOPTION</a>
+							<a href="/commercial/" class="footer">COMMERCIAL</a>
+							<a href="/description/" class="footer">DESCRIOPTION</a>
 							<a href="{% url 'contacts' %}" class="footer">CONTACTS</a>
 							<a href="{% url 'video' %}" class="footer">VIDEO</a>
 						{% if request.user.is_authenticated %}
