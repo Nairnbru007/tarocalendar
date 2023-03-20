@@ -112,7 +112,7 @@ background: #102431;
 					
 					<ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen">
 					<button type="button" class="btn btn-login align-self-center" data-bs-toggle="modal" data-bs-target="#login-register-form" style="border: 1px solid #FFCE8E; margin-top: 5px;">LOGIN</button>
-					<button type="button" class="btn btn-register align-self-center" data-bs-toggle="modal" data-bs-target="#register-login-form" style="border: 1px solid #FFCE8E; margin-top: 5px;">SIGN UP</button>
+					<button type="button" class="btn btn-register align-self-center" data-bs-toggle="modal" data-bs-target="#register-login-form" style="border: 1px solid #FFCE8E; margin-top: 5px;width:90px">SIGN UP</button>
 					</ul>
 					{% else %}
 					<ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen" style="margin-top: 10px;">
@@ -366,8 +366,7 @@ background: #102431;
 	    if (screen.width < 1824) {
 	     if (screen.width < 768) {
           document.getElementById("center_text_").setAttribute('style', "transform: translateX(-59%);position: relative;left: 59%;");
-          }
-         else{
+          }else{
           document.getElementById("center_text_").setAttribute('style', "transform: translateX(-79%);position: relative;left: 59%;");
 	      }
 	    }
