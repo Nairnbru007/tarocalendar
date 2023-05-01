@@ -49,3 +49,7 @@ class Groupfavorites(admin.ModelAdmin):
 @admin.register(Histpersons)
 class Histpersons(admin.ModelAdmin):
 	list_display = ['fio','date','result','types']
+	
+@admin.register(Calendata)
+class Calendata(admin.ModelAdmin):
+	list_display = ['date','result','note']

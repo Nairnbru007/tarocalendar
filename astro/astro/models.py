@@ -85,6 +85,9 @@ class Histpersons(models.Model):
     class Meta:
         unique_together = ('fio', 'date',)
     
+    def detail(self):
+        return [self.fio,self.result]
+    
 class Calendata(models.Model):
     date = models.DateField(null=True)
     result = models.CharField(max_length=1000, null=True)

@@ -48,11 +48,11 @@ from django.contrib.auth.decorators import user_passes_test
 Configuration.account_id = '951224'
 Configuration.secret_key = 'test_POrgWM4SZZ2RUTtMIKD1ByjrXaZ_etZ1KXgG7HPChck'
 
-def main_alg(str_date):
-    ma_arr=[]
-    for i in range(1,9):
-        ma_arr.append(str(random.randint(1, 15)))
-    return ma_arr
+# def main_alg(str_date):
+#     ma_arr=[]
+#     for i in range(1,9):
+#         ma_arr.append(str(random.randint(1, 15)))
+#     return ma_arr
 
 def hist_pers_show(inp_arr):
     hp_arr={}
@@ -60,29 +60,54 @@ def hist_pers_show(inp_arr):
        hp_arr['c1'+str(i)]=inp_arr[i-1]
     return hp_arr
 
-def algorithm_run(left_arr,center_arr,right_arr,left,right):
+# def algorithm_run(left_arr,center_arr,right_arr,left,right):
+#     for i in range(1,9):
+#         if left==True:
+#            left_arr['x1'+str(i)]=str(random.randint(1, 15))
+#         else:
+#            left_arr['x1'+str(i)]=''
+#         if right==True:
+#            right_arr['x2'+str(i)]=str(random.randint(1, 15))
+#         else:
+#            left_arr['x2'+str(i)]=''
+#         if left==True or right==True:
+#            center_arr['x3'+str(i)]=str(random.randint(1, 15))
+# 
+#     return {**left_arr,**center_arr,**right_arr}
+
+def algorithm_run_left(left_arr,the_date_str):
+    temp=algorithm_run_glob(the_date_str)
     for i in range(1,9):
-        #image1={'image1':"images/Empty.png"}
-        #image2={'image2':"images/Empty.png"}
-        if left==True:
-           left_arr['x1'+str(i)]=str(random.randint(1, 15))
-        else:
+        left_arr['x1'+str(i)]=str(temp[i-1])
+    return [{**left_arr},temp]
+    
+def algorithm_run_right(right_arr,the_date_str):
+    temp=algorithm_run_glob(the_date_str)
+    for i in range(1,9):
+        right_arr['x2'+str(i)]=str(temp[i-1])
+    return [{**right_arr},temp]
+    
+def algorithm_run_center(left_arr,center_arr,right_arr,left,right,the_date_str):
+    temp=algorithm_run_glob(the_date_str)
+    if left!=True:
+        for i in range(1,9):
            left_arr['x1'+str(i)]=''
-           #image1={'image1':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
-        if right==True:
-           right_arr['x2'+str(i)]=str(random.randint(1, 15))
-        else:
-           left_arr['x2'+str(i)]=''
-           #image2={'image2':random.choice(['images/fire.png', 'images/earth.png', 'images/water.png','images/air.png'])}
-        if left==True or right==True:
-           center_arr['x3'+str(i)]=str(random.randint(1, 15))
-        #print(left_arr)
-        #print(right_arr)
-        #print(center_arr)
-#     left_arr=[random.randint(1, 8) for i in range (1,8)]
-#     center_arr=[random.randint(1, 8) for i in range (1,8)]
-#     right_arr=[random.randint(1, 8) for i in range (1,8)]
+    if right!=True:
+        for i in range(1,9):
+           right_arr['x2'+str(i)]=''
+    if left==True or right==True:
+        for i in range(1,9):
+           center_arr['x3'+str(i)]=str(temp[i-1])
+    else:
+        for i in range(1,9):
+           center_arr['x3'+str(i)]=''
     return {**left_arr,**center_arr,**right_arr}
+    
+def algorithm_run_glob(the_date_str):
+   temp=[]
+   for i in range(1,9):
+       temp.append(random.randint(1, 99))
+   return temp
 
 months_num_={
 1:"Январь",
@@ -137,14 +162,55 @@ months_num={
 "December":12,
 }
 
-def calend(month,year):
+def calend(month,year,left_arr="",right_arr=""):
     arr={}
     curr_month_dates = calendar.monthcalendar(year, month)
+    #print(curr_month_dates)
+    for i in range(0,6):
+        for j in range(0,7):
+            arr["d"+str(i+1)+str(j+1)]=""
+            arr["class_d"+str(i+1)+str(j+1)]=""
+            arr["result_d"+str(i+1)+str(j+1)]=""
+    #print(arr)
+    
     for i in range(0, len(curr_month_dates) ):
        for j in range(0, len(curr_month_dates[i]) ):
           if curr_month_dates[i][j]==0:
               curr_month_dates[i][j]=""
           arr["d"+str(i+1)+str(j+1)]=curr_month_dates[i][j]
+          
+          curr_date_cal=''
+          if arr["d"+str(i+1)+str(j+1)]!='':
+              if arr["d"+str(i+1)+str(j+1)]<10:
+                 curr_date_cal+='0'
+              if month<10:
+                 curr_date_cal+=str(arr["d"+str(i+1)+str(j+1)])+'.'+'0'+str(month)+'.'+str(year)
+              else:
+                 curr_date_cal+=str(arr["d"+str(i+1)+str(j+1)])+'.'+str(month)+'.'+str(year)
+              #print(curr_date_cal)
+              
+              #filter
+              if left_arr!="" or right_arr!="":
+               obj_db=Calendata.objects.get(date=datetime.strptime(curr_date_cal, '%d.%m.%Y'))
+               tcd=list(map(int,obj_db.result.split('_')))
+               arr["result_d"+str(i+1)+str(j+1)]=str(obj_db.result)
+               #print(tcd)
+               for tcdi in range(0,8):
+                for l_a_i in range(0,len(left_arr)):
+                 #print([tcdi,l_a_i])
+                 if int(tcd[tcdi])==left_arr[l_a_i]:
+                  if tcdi==l_a_i:
+                     arr["class_d"+str(i+1)+str(j+1)]="red"
+                  else:
+                     #print('yes')
+                     arr["class_d"+str(i+1)+str(j+1)]="green"
+                for r_a_i in range(0,len(right_arr)):
+                 if int(tcd[tcdi])==right_arr[r_a_i]:
+                  if tcdi==r_a_i:
+                     arr["class_d"+str(i+1)+str(j+1)]="red"
+                  else:
+                     arr["class_d"+str(i+1)+str(j+1)]="green"
+                     #count_matches+=1   
               
     arr['cal_month']=months_num[month]
     arr['cal_year']=year
@@ -1040,22 +1106,7 @@ class Algorithm(View):
             center_result_={}
             left=False
             right=False
-            
-            
-            
-            
             context={}
-            try:
-              temp_gr=data['groups_name']
-            except:
-              temp_gr=""
-            grpps={"grps":Groupfavorites.objects.filter(user=request.user),'groups_name': temp_gr}
-            hist_pers={"hstprs1":Histpersons.objects.all()}
-            context={**context,**save_render(data),**grpps,**hist_pers}
-            curr_culend=calend(date.today().month, date.today().year)
-            context={**context,**curr_culend}
-            #context={'date1':data['date1'],'date2':data['date2']}
-            
             for i in range(1,9):
                left_result_['x1'+str(i)]=str(data['x1'+str(i)])
                right_result_['x2'+str(i)]=str(data['x2'+str(i)])
@@ -1063,20 +1114,43 @@ class Algorithm(View):
             
             zod_left=""
             zod_right=""
+            hist_pers_1={"hstprs1":[],"hstprs1_count":0}
+            hist_pers_2={"hstprs2":[],"hstprs2_count":0}
+            result_1_9_right=[]
+            result_1_9_left=[]
+             #hist_pers={"hstprs1":Histpersons.objects.all()}
             
-            #print(f'группа:{data["choose_group"]}')
             
             try:
-               if data['date1']!='':
-                  #context={**context,'scales11':'checked'}
+              temp_gr=data['groups_name']
+            except:
+              temp_gr=""
+            grpps={"grps":Groupfavorites.objects.filter(user=request.user),'groups_name': temp_gr}
+            context={**context,**save_render(data),**grpps}
+            
+            try:
+                if data['date1']!='':
                   left=True
                   temp=data['date1'].split('.')
                   zod_left=get_zodiac_sign(temp[0],temp[1],"num")
                   context_zods['zod_'+zod_left]=context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_green.png'
-                  #print(get_images_by_zod(zod_left))
                   context_zods['image1']=get_images_by_zod(zod_left)
-                  #print(context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_green.png')
-               else:
+                  
+                  left_return=algorithm_run_left(left_result_,data['date1'])
+                  left_result_=left_return[0]
+                  result_1_9_left=left_return[1]
+                  for hp1 in Histpersons.objects.all():
+                      count_matches=0
+                      thp1=hp1.detail()[1].split('_')
+                      for thp1i in thp1:
+                          if int(thp1i) in result_1_9_left:
+                              #print(thp1i)
+                              count_matches+=1
+                      if count_matches>0:
+                          hist_pers_1["hstprs1"].append({'fio':hp1.fio,'result':hp1.result,'count':str(count_matches),'date':hp1.date})
+                  hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)
+                  hist_pers_1["hstprs1_count"]=len(hist_pers_1["hstprs1"])
+                else:
                   left=False
             except:
                left=False
@@ -1091,6 +1165,20 @@ class Algorithm(View):
                   context_zods['zod_'+zod_right]=context_zods['zod_'+zod_right].replace('_red','').replace('_green','').split('.png')[0]+'_green.png'
                   #print(get_images_by_zod(zod_right))
                   context_zods['image2']=get_images_by_zod(zod_right)
+                  
+                  right_return=algorithm_run_right(right_result_,data['date1'])
+                  right_result_=right_return[0]
+                  result_1_9_right=right_return[1]
+                  for hp2 in Histpersons.objects.all():
+                      count_matches=0
+                      thp2=hp2.detail()[1].split('_')
+                      for thp2i in thp2:
+                          if int(thp2i) in result_1_9_right:
+                              count_matches+=1
+                      if count_matches>0:
+                          hist_pers_2["hstprs2"].append({'fio':hp2.fio,'result':hp2.result,'count':str(count_matches),'date':hp2.date})
+                  hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)
+                  hist_pers_2["hstprs2_count"]=len(hist_pers_2["hstprs2"])
                else:
                   right=False
             except:
@@ -1101,10 +1189,15 @@ class Algorithm(View):
                context_zods['zod_'+zod_left]=context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_red.png'
             
             context={**context,**context_zods}
-            print(f'left {left} \nright {right}')
-            result_values=algorithm_run(left_result_,center_result_,right_result_,left,right)
-            context={**context,**result_values}
-            print(context)
+            
+            #print(result_1_9_left)
+            curr_culend=calend(date.today().month, date.today().year,result_1_9_left,result_1_9_right)
+            context={**context,**curr_culend}
+            
+            #print(f'left {left} \nright {right}')
+            result_values=algorithm_run_center(left_result_,center_result_,right_result_,left,right,datetime.now().strftime("%d.%m.%Y"))
+            context={**context,**result_values,**hist_pers_1,**hist_pers_2}
+            #print(datetime.now().strftime("%d.%m.%Y"))
             
             global glob_context
             glob_context=context
@@ -1179,36 +1272,51 @@ class Algorithm(View):
             
         if request.POST.get('next_month'):
             context=glob_context
+            left_arr_next=[]
+            right_arr_next=[]
+            for i in range(0,8):
+                if context['x1'+str(i+1)]!='':
+                   left_arr_next.append(int(context['x1'+str(i+1)]))
+                if context['x2'+str(i+1)]!='':
+                   right_arr_next.append(int(context['x2'+str(i+1)]))
             if months_num[context['cal_month']]==12:
-                curr_culend=calend(1, context['cal_year']+1)
+                curr_culend=calend(1, context['cal_year']+1,left_arr_next,right_arr_next)
             else:
-                curr_culend=calend(months_num[context['cal_month']]+1, context['cal_year'])
+                curr_culend=calend(months_num[context['cal_month']]+1, context['cal_year'],left_arr_next,right_arr_next)
             context={**context,**curr_culend}
             glob_context=context
-               
-            #print(context)
             return render(request, 'algorithm.html', context=context)
             
         if request.POST.get('last_month'):
             context=glob_context
+            left_arr_next=[]
+            right_arr_next=[]
+            for i in range(0,8):
+                if context['x1'+str(i+1)]!='':
+                   left_arr_next.append(int(context['x1'+str(i+1)]))
+                if context['x2'+str(i+1)]!='':
+                   right_arr_next.append(int(context['x2'+str(i+1)]))
             if months_num[context['cal_month']]==1:
-                curr_culend=calend(12, context['cal_year']-1)
+                curr_culend=calend(12, context['cal_year']-1,left_arr_next,right_arr_next)
             else:
-                curr_culend=calend(months_num[context['cal_month']]-1, context['cal_year'])
+                curr_culend=calend(months_num[context['cal_month']]-1, context['cal_year'],left_arr_next,right_arr_next)
             context={**context,**curr_culend}
             glob_context=context
-               
-            #print(context)
             return render(request, 'algorithm.html', context=context)
             
         if request.POST.get('years'):
             context=glob_context
+            left_arr_next=[]
+            right_arr_next=[]
+            for i in range(0,8):
+                if context['x1'+str(i+1)]!='':
+                   left_arr_next.append(int(context['x1'+str(i+1)]))
+                if context['x2'+str(i+1)]!='':
+                   right_arr_next.append(int(context['x2'+str(i+1)]))
             year=int(request.POST['years'])
-            curr_culend=calend(months_num[context['cal_month']], year)
+            curr_culend=calend(months_num[context['cal_month']], year,left_arr_next,right_arr_next)
             context={**context,**curr_culend,**{'cal_year':year}}
             glob_context=context
-               
-            #print(context)
             return render(request, 'algorithm.html', context=context)
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
@@ -1817,7 +1925,7 @@ def upload_csv(request):
     
     for line in data_arr:
         #try:
-             result=main_alg(line[1])
+             result=map(str, algorithm_run_glob(line[1]))
              name_comositors = Histpersons.objects.create(
                  fio=line[0],
                  date=datetime.strptime(line[1].replace('\r',''), "%d.%m.%Y").date(),
@@ -1830,6 +1938,35 @@ def upload_csv(request):
          #    pass
     messages.error(request,'File Ok')
     return HttpResponseRedirect(request.path)
+
+@user_passes_test(lambda u: u.is_superuser)
+def upload_calend(request):
+    if "GET" == request.method:
+    
+        for i in range(2024,3024):
+            for j in range(1,13):
+                curr_culend=calend(j,i)
+                for k in curr_culend.items():
+                    if k[1]!="" and 'class' not in k[0] and k[0][0]=='d':
+                        curr_date_cal=''
+                        if k[1]<10:
+                          curr_date_cal+='0'
+                        if j<10:
+                          curr_date_cal+=str(k[1])+'.'+'0'+str(j)+'.'+str(i)
+                        else:
+                          curr_date_cal+=str(k[1])+'.'+str(j)+'.'+str(i)
+                        result=map(str, algorithm_run_glob(curr_date_cal))
+                        #print([curr_date_cal,list(result)])
+                        try:
+                         data_temp = Calendata.objects.create(
+                           date=datetime.strptime(curr_date_cal, "%d.%m.%Y").date(),
+                           note='',
+                           result="_".join(result)
+                           )
+                         data_temp.save()
+                        except:
+                         pass
+        return HttpResponseRedirect('/')
 
 def activate(request, uidb64, token):
     User = get_user_model()
