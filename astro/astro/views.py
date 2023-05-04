@@ -169,7 +169,7 @@ def calend(month,year,left_arr="",right_arr=""):
     for i in range(0,6):
         for j in range(0,7):
             arr["d"+str(i+1)+str(j+1)]=""
-            arr["class_d"+str(i+1)+str(j+1)]=""
+            #arr["class_d"+str(i+1)+str(j+1)]=""
             arr["result_d"+str(i+1)+str(j+1)]=""
     #print(arr)
     
@@ -195,22 +195,22 @@ def calend(month,year,left_arr="",right_arr=""):
                tcd=list(map(int,obj_db.result.split('_')))
                arr["result_d"+str(i+1)+str(j+1)]=str(obj_db.result)
                #print(tcd)
-               for tcdi in range(0,8):
-                for l_a_i in range(0,len(left_arr)):
-                 #print([tcdi,l_a_i])
-                 if int(tcd[tcdi])==left_arr[l_a_i]:
-                  if tcdi==l_a_i:
-                     arr["class_d"+str(i+1)+str(j+1)]="red"
-                  else:
-                     #print('yes')
-                     arr["class_d"+str(i+1)+str(j+1)]="green"
-                for r_a_i in range(0,len(right_arr)):
-                 if int(tcd[tcdi])==right_arr[r_a_i]:
-                  if tcdi==r_a_i:
-                     arr["class_d"+str(i+1)+str(j+1)]="red"
-                  else:
-                     arr["class_d"+str(i+1)+str(j+1)]="green"
-                     #count_matches+=1   
+               # for tcdi in range(0,8):
+#                 for l_a_i in range(0,len(left_arr)):
+#                  #print([tcdi,l_a_i])
+#                  if int(tcd[tcdi])==left_arr[l_a_i]:
+#                   if tcdi==l_a_i:
+#                      arr["class_d"+str(i+1)+str(j+1)]="red"
+#                   else:
+#                      #print('yes')
+#                      arr["class_d"+str(i+1)+str(j+1)]="green"
+#                 for r_a_i in range(0,len(right_arr)):
+#                  if int(tcd[tcdi])==right_arr[r_a_i]:
+#                   if tcdi==r_a_i:
+#                      arr["class_d"+str(i+1)+str(j+1)]="red"
+#                   else:
+#                      arr["class_d"+str(i+1)+str(j+1)]="green"
+#                      #count_matches+=1   
               
     arr['cal_month']=months_num[month]
     arr['cal_year']=year
@@ -1943,7 +1943,7 @@ def upload_csv(request):
 def upload_calend(request):
     if "GET" == request.method:
     
-        for i in range(2024,3024):
+        for i in range(1800,2225):
             for j in range(1,13):
                 curr_culend=calend(j,i)
                 for k in curr_culend.items():
