@@ -97,37 +97,7 @@ color:green;
 }
 </style>
 
-<script src="https://yookassa.ru/checkout-widget/v1/checkout-widget.js"></script>
-<script>
-function pay() {
 
-
-//Initializing the widget. All parameters are required, except for the customization object.
-const checkout = new window.YooMoneyCheckoutWidget({
-confirmation_token: 'confirmation-token', //A token that must be received from YUKASSA before making a payment
-return_url: 'https://example.com ', //Link to the payment completion page
-
-//Configuring
-the customization widget: {
-//Configuring the display method
-modal: true
-},
-error_callback: function(error) {
-//Handling initialization errors
-}
-});
-
-//Displaying the payment form in
-the checkout.render()modal window
-//The method returns a Promise, the execution of which indicates that the payment form is fully loaded (you can not use it).
-.then(() => {
-//The code to be executed after the payment form is displayed.
-});
-
-
-
-}
-</script>
 
 
 <form action="" method="POST">
@@ -145,19 +115,19 @@ Tariff plans allow you to use additional features
 
 
 <div class="pricing-box-container">
-<div class="pricing-box text-center">
-<h5>Initial</h5>
-<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽</sup><text style="color: #173d50; font-size: 5rem;">300</text><sub style="color: #1bbc9d; font-size: 2rem;">/month</sub></p>
+<div class="pricing-box text-center" style="background-color: #151719; color: white; opacity: .7; box-shadow: 0px 2px 15px 0px;">
+<h5 style="color: white;">Initial</h5>
+<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽ </sup><text style="color: white; font-size: 5rem;">500</text><sub style="color: #1bbc9d; font-size: 2rem;">/month</sub></p>
 <ul class="features-list">
 <li>Working with two dates</li>
-<li>Calculation of the angle for the current month</li>
+<li>Calculation for the current month</li>
 <li><strike>Favorites</strike></li>
-<li><strike>Access to Events</strike></li>
+<!--<li><strike>Access to Events</strike></li>-->
 <li><strike>Access to Personas</strike></li>
 <li><em>24/7</em> Support</li>
 </ul>
 {% if user.role == 1 %}
-<p style="color:green">TARIFF ACTIVATED</p>
+<p style="color:green;margin-top: 25px;">TARIFF ACTIVATED up to {{user.date_end|date:"d M Y"}}</p>
 {% elif user.role > 1 %}
 <p></p>
 {% else %}
@@ -165,39 +135,18 @@ Tariff plans allow you to use additional features
 {% endif %}
 </div>
 
-<div class="pricing-box pricing-box text-center">
-<h5>Advanced</h5>
-<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽</sup><text style="color: #173d50; font-size: 5rem;">600</text><sub style="color: #1bbc9d; font-size: 2rem;">/month</sub></p>
+<div class="pricing-box text-center" style="background-color: #151719; color: white; opacity: .7; box-shadow: 0px 2px 15px 0px;">
+<h5 style="color: white;">Full access</h5>
+<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽ </sup><text style="color: white; font-size: 5rem;">1000</text><sub style="color: #1bbc9d; font-size: 2rem;">/month</sub></p>
 <ul class="features-list">
 <li>Working with two dates</li>
-<li>Calculation of the angle for the current month</li>
+<li>Calculation for all available dates</li>
 <li>Favorites</li>
-<li>Basic access to Events</li>
-<li>Basic access to Persons</li>
-<li><em>24/7</em> Support</li>
-</ul>
-{% if user.role == 2 %}
-<p style="color:green">TARIFF ACTIVATED</p>
-{% elif user.role > 2 %}
-<p></p>
-{% else %}
-<input type="submit" class="btn-primary" name="pay_standart" value="Pay">
-{% endif %}
-</div>
-
-<div class="pricing-box text-center">
-<h5>Full access</h5>
-<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽</sup><text style="color: #173d50; font-size: 5rem;">900</text><sub style="color: #1bbc9d; font-size: 2rem;">/month</sub></p>
-<ul class="features-list">
-<li>Working with two dates</li>
-<li>Calculation of the angle for the current month</li>
-<li>Favorites</li>
-<li><em>Full</em> access to Events</li>
-<li><em>Full</em> access to Personas</li>
+<li><em>Full</em> access to Persons</li>
 <li><em>24/7</em> Support</li>
 </ul>
 {% if user.role == 3 %}
-<p style="color:green">TARIFF ACTIVATED</p>
+<p style="color:green;margin-top: 25px;">TARIFF ACTIVATED up to {{user.date_end|date:"d M Y"}}</p>
 {% elif user.role > 3 %}
 <p></p>
 {% else %}

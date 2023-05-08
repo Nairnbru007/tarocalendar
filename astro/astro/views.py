@@ -31,6 +31,8 @@ from datetime import datetime
 from datetime import date,timedelta
 import calendar
 from django.db.models import Q
+from django.shortcuts import redirect
+
 
 #import requests
 from os import walk
@@ -44,6 +46,7 @@ from yookassa import Payment
 import uuid
 
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 Configuration.account_id = '951224'
 Configuration.secret_key = 'test_POrgWM4SZZ2RUTtMIKD1ByjrXaZ_etZ1KXgG7HPChck'
@@ -354,7 +357,31 @@ def get_images_by_zod(zod_num_get):
       temp="water"
     return images[temp]
     
-    
+def user_is_actual(self):
+    print(u.role)
+
+class Up_date(UserPassesTestMixin):
+    def test_func(self):
+        if self.request.user.date_end >= date.today():
+            print([self.request.user.date_end,date.today()])
+            return True
+        else:
+            return False
+    def handle_no_permission(self):
+        return redirect('/tarif/')
+        
+class Up_role(UserPassesTestMixin):
+    def test_func(self):
+        print(self.request.user.role)
+        if self.request.user.role >= 3:
+            return True
+        else:
+            return False
+    def handle_no_permission(self):
+        return redirect('/tarif/')
+
+
+
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -893,6 +920,8 @@ class Video(View):
                 return HttpResponseRedirect(request.path)
 
 global glob_context
+        
+#@user_passes_test(lambda u: True if u.date_end >= date.today() else False,login_url='/')
 @method_decorator(login_required(login_url='/'), name='dispatch')
 class Algorithm(View):
         
@@ -1083,6 +1112,11 @@ class Algorithm(View):
                 return HttpResponseRedirect(request.path)
 
         if request.POST.get('Result'):
+            if self.request.user.date_end < date.today():
+                return redirect('/tarif/')
+            if self.request.user.role < 1:
+                return redirect('/tarif/')
+                
             context_zods = {
             'zod_1': "images/Component4.png",
             'zod_2': "images/Component16.png",
@@ -1139,7 +1173,9 @@ class Algorithm(View):
                   left_return=algorithm_run_left(left_result_,data['date1'])
                   left_result_=left_return[0]
                   result_1_9_left=left_return[1]
-                  for hp1 in Histpersons.objects.all():
+                  
+                  if self.request.user.role >= 3:
+                   for hp1 in Histpersons.objects.all():
                       count_matches=0
                       thp1=hp1.detail()[1].split('_')
                       for thp1i in thp1:
@@ -1148,8 +1184,11 @@ class Algorithm(View):
                               count_matches+=1
                       if count_matches>0:
                           hist_pers_1["hstprs1"].append({'fio':hp1.fio,'result':hp1.result,'count':str(count_matches),'date':hp1.date})
-                  hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)
-                  hist_pers_1["hstprs1_count"]=len(hist_pers_1["hstprs1"])
+                   hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)
+                   hist_pers_1["hstprs1_count"]=len(hist_pers_1["hstprs1"])
+                  
+                  
+                  
                 else:
                   left=False
             except:
@@ -1169,7 +1208,9 @@ class Algorithm(View):
                   right_return=algorithm_run_right(right_result_,data['date1'])
                   right_result_=right_return[0]
                   result_1_9_right=right_return[1]
-                  for hp2 in Histpersons.objects.all():
+                  
+                  if self.request.user.role >= 3:
+                   for hp2 in Histpersons.objects.all():
                       count_matches=0
                       thp2=hp2.detail()[1].split('_')
                       for thp2i in thp2:
@@ -1177,8 +1218,9 @@ class Algorithm(View):
                               count_matches+=1
                       if count_matches>0:
                           hist_pers_2["hstprs2"].append({'fio':hp2.fio,'result':hp2.result,'count':str(count_matches),'date':hp2.date})
-                  hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)
-                  hist_pers_2["hstprs2_count"]=len(hist_pers_2["hstprs2"])
+                   hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)
+                   hist_pers_2["hstprs2_count"]=len(hist_pers_2["hstprs2"])
+                   
                else:
                   right=False
             except:
@@ -1205,6 +1247,9 @@ class Algorithm(View):
             return render(request, 'algorithm.html', context=context)
             
         if request.POST.get('Save'):
+            if self.request.user.role < 3:
+                return redirect('/tarif/')
+
             context=glob_context
             data = request.POST
             left_result=[]
@@ -1271,6 +1316,8 @@ class Algorithm(View):
             return HttpResponseRedirect(request.path)
             
         if request.POST.get('next_month'):
+            if self.request.user.role < 3:
+                return redirect('/tarif/')
             context=glob_context
             left_arr_next=[]
             right_arr_next=[]
@@ -1288,6 +1335,8 @@ class Algorithm(View):
             return render(request, 'algorithm.html', context=context)
             
         if request.POST.get('last_month'):
+            if self.request.user.role < 3:
+                return redirect('/tarif/')
             context=glob_context
             left_arr_next=[]
             right_arr_next=[]
@@ -1305,6 +1354,8 @@ class Algorithm(View):
             return render(request, 'algorithm.html', context=context)
             
         if request.POST.get('years'):
+            if self.request.user.role < 3:
+                return redirect('/tarif/')
             context=glob_context
             left_arr_next=[]
             right_arr_next=[]
@@ -1832,7 +1883,7 @@ class Description(View):
                 return HttpResponseRedirect(request.path)
 
 @method_decorator(login_required(login_url='/'), name='dispatch')
-class Favorites_View(ListView):
+class Favorites_View(Up_role,Up_date,ListView):
     template_name = 'favorites.html'
     paginate_by = 5
     model=Favorites
@@ -1977,6 +2028,8 @@ def activate(request, uidb64, token):
         #user = None
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
+        user.date_end=date.today() + timedelta(days=2)
+        user.role=1
         user.save()
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         messages.success(request, 'Ваш аккаунт успешно подтверждён.')
