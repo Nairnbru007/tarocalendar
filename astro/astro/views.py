@@ -109,7 +109,7 @@ def algorithm_run_center(left_arr,center_arr,right_arr,left,right,the_date_str):
 def algorithm_run_glob(the_date_str):
    temp=[]
    for i in range(1,9):
-       temp.append(random.randint(1, 99))
+       temp.append(random.randint(1, 22))
    return temp
 
 months_num_={
@@ -741,7 +741,7 @@ class Menu(View):
                 user.is_active = False
                 user.save()
                 current_site = get_current_site(request)
-                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                mail_subject = 'Account activation https://tarocalendar.com/'
                 message = render_to_string('acc_active_email.html', {
                     'user': user,
                     'domain': current_site.domain,
@@ -754,7 +754,7 @@ class Menu(View):
                 )
                 email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
             else:
@@ -2022,7 +2022,7 @@ def upload_calend(request):
 def activate(request, uidb64, token):
     User = get_user_model()
     #try:
-    uid = force_str(urlsafe_base64_decode(uidb64))
+    uid = force_text(urlsafe_base64_decode(uidb64))
     user = User.objects.get(pk=uid)
     #except(TypeError, ValueError, OverflowError, User.DoesNotExist):
         #user = None

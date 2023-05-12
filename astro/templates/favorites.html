@@ -236,56 +236,101 @@
                             {% endfor %}
                             
 <script>
+red = "red";
+green = "green";
+
 for (let j = 1; j <= {{ object_list|length }}; j++) 
 {
   
+   
 
-for (let i = 1; i < 9; i++) 
-{
-  for (let k = 1; k < 9; k++)
-  {
-    if(document.getElementsByName(j+"_x1"+i)[0].value == document.getElementsByName(j+"_x3"+k)[0].value)
-    {
-    document.getElementsByName(j+"_x1"+i)[0].classList.add("green");
-    document.getElementsByName(j+"_x3"+k)[0].classList.add("green");
+   for (let i = 1; i < 9; i++) {
+        document.getElementsByName(j+ "_x1" + i)[0].classList.remove("green");
+        document.getElementsByName(j+ "_x3" + i)[0].classList.remove("green");
+        document.getElementsByName(j+ "_x2" + i)[0].classList.remove("green");
+        document.getElementsByName(j+ "_x1" + i)[0].classList.remove("red");
+        document.getElementsByName(j+ "_x3" + i)[0].classList.remove("red");
+        document.getElementsByName(j+ "_x2" + i)[0].classList.remove("red");
     }
     
-    if(document.getElementsByName(j+"_x2"+i)[0].value == document.getElementsByName(j+"_x3"+k)[0].value)
-    {
-    document.getElementsByName(j+"_x2"+i)[0].classList.add("green");
-    document.getElementsByName(j+"_x3"+k)[0].classList.add("green");
-    }
-  } 
-}
+    left  = 0;
+    right = 0;
+    centre = 0;
 
-                          
-for (let i = 1; i < 9; i++) 
-{
-if(document.getElementsByName(j+"_x3"+i)[0].value > 0)
-{
-  if(document.getElementsByName(j+"_x1"+i)[0].value == document.getElementsByName(j+"_x2"+i)[0].value)
-   {
-    if(document.getElementsByName(j+"_x1"+i)[0].value == document.getElementsByName(j+"_x3"+i)[0].value)
-     {
-      document.getElementsByName(j+"_x1"+i)[0].classList.add("green");
-      document.getElementsByName(j+"_x2"+i)[0].classList.add("green");
-      document.getElementsByName(j+"_x3"+i)[0].classList.add("green");
-     }
-   } else {
-    if(document.getElementsByName(j+"_x1"+i)[0].value == document.getElementsByName(j+"_x3"+i)[0].value)
-     {
-      document.getElementsByName(j+"_x1"+i)[0].classList.add("red");
-      document.getElementsByName(j+"_x3"+i)[0].classList.add("red");
-     }
-    if(document.getElementsByName(j+"_x2"+i)[0].value == document.getElementsByName(j+"_x3"+i)[0].value)
-     {
-      document.getElementsByName(j+"_x2"+i)[0].classList.add("red");
-      document.getElementsByName(j+"_x3"+i)[0].classList.add("red");
-     } 
-    } 
-   
-   
-}}
+    if (document.getElementsByName(j+"_x11")[0].value > 0) {
+    left=1;
+    }
+    if (document.getElementsByName(j+"_x21")[0].value > 0) {
+    right=1;
+    }
+    if (document.getElementsByName(j+"_x31")[0].value > 0) {
+    centre=1;
+    }
+    
+    if (centre==1) {
+             if (left==1 && right==1) {
+                for (let i = 1; i < 9; i++) {
+                    for (let jj = 1; jj < 9; jj++) {
+                         if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x2" + jj)[0].value) {
+                             document.getElementsByName(j+"_x1" + i)[0].classList.add(green);
+                             document.getElementsByName(j+"_x2" + jj)[0].classList.add(green);
+                             for (let k = 1; k < 9; k++) {
+                                 if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x3" + k)[0].value) {
+                                     document.getElementsByName(j+"_x3" + k)[0].classList.add(green);
+                                 }
+                             }
+                         }
+                    }
+                }      
+              } else if (left==1){
+                for (let i = 1; i < 9; i++) {
+                    for (let jj = 1; jj < 9; jj++) {
+                         if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x3" + jj)[0].value) {
+                             document.getElementsByName(j+"_x1" + i)[0].classList.add(green);
+                             document.getElementsByName(j+"_x3" + jj)[0].classList.add(green);
+                         }
+                    }
+                }
+              } else if (right==1){
+                for (let i = 1; i < 9; i++) {
+                    for (let jj = 1; jj < 9; jj++) {
+                         if (document.getElementsByName(j+"_x2" + i)[0].value == document.getElementsByName(j+"_x3" + jj)[0].value) {
+                             document.getElementsByName(j+"_x2" + i)[0].classList.add(green);
+                             document.getElementsByName(j+"_x3" + jj)[0].classList.add(green);
+                         }
+                    }
+                }
+              }    
+        }
+     if (centre==1) {
+             if (left==1 && right==1) {
+                for (let i = 1; i < 9; i++) {
+                    if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x2" + i)[0].value) {
+                         document.getElementsByName(j+"_x1" + i)[0].classList.add(red);
+                         document.getElementsByName(j+"_x2" + i)[0].classList.add(red);
+                         if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x3" + i)[0].value) {
+                             document.getElementsByName(j+"_x3" + i)[0].classList.add(red);
+                         }
+                    }
+                }      
+              } else if (left==1){
+                for (let i = 1; i < 9; i++) {
+                         if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x3" + i)[0].value) {
+                             document.getElementsByName(j+"_x1" + i)[0].classList.add(red);
+                             document.getElementsByName(j+"_x3" + i)[0].classList.add(red);
+                         }
+                }
+              } else if (right==1){
+                for (let i = 1; i < 9; i++) {
+                         if (document.getElementsByName(j+"_x2" + i)[0].value == document.getElementsByName(j+"_x3" + i)[0].value) {
+                             document.getElementsByName(j+"_x2" + i)[0].classList.add(red);
+                             document.getElementsByName(j+"_x3" + i)[0].classList.add(red);
+                         }
+                }
+              }    
+        }
+
+
 
 }
 
