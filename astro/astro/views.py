@@ -105,11 +105,46 @@ def algorithm_run_center(left_arr,center_arr,right_arr,left,right,the_date_str):
         for i in range(1,9):
            center_arr['x3'+str(i)]=''
     return {**left_arr,**center_arr,**right_arr}
-    
+
+def sum_digits(n):
+    s = 0
+    while n:
+        s += n % 10
+        n //= 10
+    return s
+
 def algorithm_run_glob(the_date_str):
-   temp=[]
-   for i in range(1,9):
-       temp.append(random.randint(1, 22))
+   #d.m.q.b.e.f.k.l
+   #print(the_date_str)
+   temp=the_date_str.split('.')
+   
+   d=int(temp[0])
+   if d>22:
+       d=sum_digits(d)
+   m=int(temp[1])
+   y=int(temp[2])
+   q=y
+   if q>22:
+       q=sum_digits(q)
+   b=d+m
+   if b>22:
+       b=sum_digits(b)
+   e=d+q
+   if e>22:
+       b=sum_digits(e)
+   f=m+q
+   if f>22:
+       f=sum_digits(f)
+   k=d+m+q
+   l=sum_digits(k)
+   if k>22:
+       k='-'
+   elif k==19:
+       l=1
+   temp=[d,m,q,b,e,f,k,l]
+  #  temp=[]
+#    for i in range(1,9):
+#        temp.append(random.randint(1, 22))
    return temp
 
 months_num_={
@@ -363,7 +398,7 @@ def user_is_actual(self):
 class Up_date(UserPassesTestMixin):
     def test_func(self):
         if self.request.user.date_end >= date.today():
-            print([self.request.user.date_end,date.today()])
+            #print([self.request.user.date_end,date.today()])
             return True
         else:
             return False
@@ -372,7 +407,7 @@ class Up_date(UserPassesTestMixin):
         
 class Up_role(UserPassesTestMixin):
     def test_func(self):
-        print(self.request.user.role)
+        #print(self.request.user.role)
         if self.request.user.role >= 3:
             return True
         else:
@@ -1205,7 +1240,7 @@ class Algorithm(View):
                   #print(get_images_by_zod(zod_right))
                   context_zods['image2']=get_images_by_zod(zod_right)
                   
-                  right_return=algorithm_run_right(right_result_,data['date1'])
+                  right_return=algorithm_run_right(right_result_,data['date2'])
                   right_result_=right_return[0]
                   result_1_9_right=right_return[1]
                   
@@ -1275,7 +1310,7 @@ class Algorithm(View):
             except:
               temp_gr=None
             
-            print(data)
+            #print(data)
             
             if center_result!="_______":
                try:
@@ -1323,9 +1358,11 @@ class Algorithm(View):
             right_arr_next=[]
             for i in range(0,8):
                 if context['x1'+str(i+1)]!='':
-                   left_arr_next.append(int(context['x1'+str(i+1)]))
+                   #left_arr_next.append(int(context['x1'+str(i+1)]))
+                   left_arr_next.append(context['x1'+str(i+1)])
                 if context['x2'+str(i+1)]!='':
-                   right_arr_next.append(int(context['x2'+str(i+1)]))
+                   #right_arr_next.append(int(context['x2'+str(i+1)]))
+                   right_arr_next.append(context['x2'+str(i+1)])
             if months_num[context['cal_month']]==12:
                 curr_culend=calend(1, context['cal_year']+1,left_arr_next,right_arr_next)
             else:
@@ -1342,9 +1379,11 @@ class Algorithm(View):
             right_arr_next=[]
             for i in range(0,8):
                 if context['x1'+str(i+1)]!='':
-                   left_arr_next.append(int(context['x1'+str(i+1)]))
+                   #left_arr_next.append(int(context['x1'+str(i+1)]))
+                   left_arr_next.append(context['x1'+str(i+1)])
                 if context['x2'+str(i+1)]!='':
-                   right_arr_next.append(int(context['x2'+str(i+1)]))
+                   #right_arr_next.append(int(context['x2'+str(i+1)]))
+                   right_arr_next.append(context['x2'+str(i+1)])
             if months_num[context['cal_month']]==1:
                 curr_culend=calend(12, context['cal_year']-1,left_arr_next,right_arr_next)
             else:
@@ -1361,9 +1400,11 @@ class Algorithm(View):
             right_arr_next=[]
             for i in range(0,8):
                 if context['x1'+str(i+1)]!='':
-                   left_arr_next.append(int(context['x1'+str(i+1)]))
+                   #left_arr_next.append(int(context['x1'+str(i+1)]))
+                   left_arr_next.append(context['x1'+str(i+1)])
                 if context['x2'+str(i+1)]!='':
-                   right_arr_next.append(int(context['x2'+str(i+1)]))
+                   #right_arr_next.append(int(context['x2'+str(i+1)]))
+                   right_arr_next.append(context['x2'+str(i+1)])
             year=int(request.POST['years'])
             curr_culend=calend(months_num[context['cal_month']], year,left_arr_next,right_arr_next)
             context={**context,**curr_culend,**{'cal_year':year}}
@@ -1500,8 +1541,8 @@ class Tarif(View):
             return HttpResponseRedirect(conf_url)
             
         else:
-            print('error')
-            print(request.POST)
+            #print('error')
+            #print(request.POST)
             return render(request, 'tarif.html')
         
 class Contacts(View):
@@ -1913,7 +1954,7 @@ class Favorites_View(Up_role,Up_date,ListView):
         #return context
         data = super().get_context_data(**kwargs)
         data['grps'] = Groupfavorites.objects.filter(user=self.request.user.id)
-        print(data)
+        #print(data)
         return data
 
     def get_paginate_by(self, queryset):
@@ -1946,7 +1987,7 @@ class Favorites_View(Up_role,Up_date,ListView):
                     Favorites.objects.get(pk=check_id).delete()
             return HttpResponseRedirect('/favorites/')
         elif request.POST.get('groups_name'):
-           print("aaaa")
+           #print("aaaa")
            return HttpResponseRedirect('/favorites/')
            
         return HttpResponseRedirect('/favorites/')
