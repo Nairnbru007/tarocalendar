@@ -139,14 +139,14 @@
                                   <div class="control__indicator"></div>
                                 </label>
                               </th>
-                              <td style="border-top: 3px solid #374151;">
+                              <td style="border-top: 6px solid #374151;">
                                 {{ forloop.counter0|add:page_obj.start_index }}
                               </td>
-                              <td style="border-top: 3px solid #374151;">
+                              <td style="border-top: 6px solid #374151;">
                                   {{ object.date|date:'d.m.Y' }}</td>
-                              <td style="border-top: 3px solid #374151;">
+                              <td style="border-top: 6px solid #374151;">
                                   {{ object.date_left|date:'d.m.Y' }}</td>
-                              <td style="border-top: 3px solid #374151;">
+                              <td style="border-top: 6px solid #374151;">
                                   {{ object.date_right|date:'d.m.Y' }}</td>
                               <td style="border-top: 3px solid #374151;">
                                 {% for i in object.rakurs_left_as_list %}
@@ -168,7 +168,7 @@
                                 {{ object.unknoun_field }}
                               </td>
                               -->
-                              <td style="border-top: 3px solid #374151;">
+                              <td style="border-top: 6px solid #374151;">
                                 {{ object.note }}
                               </td>
                               
@@ -213,7 +213,7 @@
                                 <div class="modal-content rounded">
                                   <div class="modal-header text-center">
                                     <h5 class="modal-title w-100" id="exampleModalLongTitle">Editing a line №{{ forloop.counter0|add:page_obj.start_index }}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true"><img src="{% static 'images/close2.png' %}" class=""  alt=""></span>
                                     </button>
                                   </div>
