@@ -706,7 +706,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 								<div class="dropdown-menu" style="max-height: 400px;overflow-y: scroll; margin-top: -3px;">
 									{% for hstp in hstprs1 %}
 								<!--<a href="#" class="dropdown-item">{{hstp.fio}} <input type="text" class="center_input green"  value="{{hstp.count}}" style="border-radius:50%;" ><br>{{hstp.date|date:"d M Y"}}<br>-->
-								<a class="dropdown-item" readonly>{{hstp.fio}}<br>{{hstp.date|date:"d M Y"}}<br>
+								<a class="dropdown-item" readonly>{{hstp.fio}}<br>{{hstp.date|date:"d M Y"}} ({{hstp.types}})<br>
 								{% load split %}
 								{% with hstp.result|split:"_" as rests %}
     								{% for rest in rests %}
@@ -738,7 +738,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 								<a class="nav-item drop" data-toggle="dropdown" readonly>Historical persons<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
 								<div class="dropdown-menu" style="max-height: 400px;overflow-y: scroll; margin-top: -3px;">
 								{% for hstp in hstprs2 %}
-								<a class="dropdown-item" readonly>{{hstp.fio}}<br>{{hstp.date}}<br>
+								<a class="dropdown-item" readonly>{{hstp.fio}}<br>{{hstp.date|date:"d M Y"}} ({{hstp.types}})<br>
 								{% load split %}
 								{% with hstp.result|split:"_" as rests %}
     								{% for rest in rests %}
@@ -912,18 +912,29 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
     width:200px;">
     <legend style="color:#FFCE8E; font-size: 1rem;"><p style="color:#FFCE8E">Change active colors:</p></legend>
     
-    <div class="row" style="margin-bottom: 5px;
-margin-top: 20px;">
+    <div class="row" style="margin-bottom: 5px;margin-top: 20px;">
     <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
                                   <input type="checkbox" value="1" name="checked" id='greenchecked' onclick="redandgreen()" checked=True>
                                   <div class="control__indicator"></div>
                                 </label> <p style="width: 5px; color:#FFCE8E;">Green</p></div>
                                 
-    <div class="row">
+    <div class="row" style="margin-bottom: 5px;margin-top: 5px;">
     <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
                                   <input type="checkbox" value="1" name="checked" id='redchecked' onclick="redandgreen()" checked=True>
                                   <div class="control__indicator"></div>
                                 </label> <p style="width: 5px; color:#FFCE8E;">Red</p></div>
+                                
+    <div class="row" style="margin-bottom: 5px;margin-top: 10px;">
+    <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
+                                  <input type="checkbox" value="1" name="checked" id='monthchecked' onclick="redandgreen()" checked=True>
+                                  <div class="control__indicator"></div>
+                                </label> <p style="width: 5px; color:#FFCE8E;">Month</p></div>
+
+    <div class="row" style="margin-bottom: 5px;margin-top: 5px;">
+    <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
+                                  <input type="checkbox" value="1" name="checked" id='yearchecked' onclick="redandgreen()" checked=True>
+                                  <div class="control__indicator"></div>
+                                </label> <p style="width: 5px; color:#FFCE8E;">Year</p></div>
                                 
 </fieldset>
 
@@ -996,6 +1007,10 @@ function redandgreen() {
 
     green = "";
     red = "";
+    
+    month = 0;
+    year = 0;
+    
     left  = 0;
     right = 0;
     centre = 0;
@@ -1008,6 +1023,14 @@ function redandgreen() {
     }
     if (document.getElementsByName("x31")[0].value > 0) {
     centre=1;
+    }
+    
+    if (document.getElementById('monthchecked').checked) {
+    month=1;
+    }
+    
+    if (document.getElementById('yearchecked').checked) {
+    year=1;
     }
     
     if (document.getElementById('greenchecked').checked) {
@@ -1047,41 +1070,7 @@ function redandgreen() {
                 }
               }    
         }
-    }
-    
-    if (document.getElementById('redchecked').checked) {
-        red = "red";
-        if (centre==1) {
-             if (left==1 && right==1) {
-                for (let i = 1; i < 9; i++) {
-                    if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x2" + i)[0].value) {
-                         document.getElementsByName("x1" + i)[0].classList.add(red);
-                         document.getElementsByName("x2" + i)[0].classList.add(red);
-                         if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
-                             document.getElementsByName("x3" + i)[0].classList.add(red);
-                         }
-                    }
-                }      
-              } else if (left==1){
-                for (let i = 1; i < 9; i++) {
-                         if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
-                             document.getElementsByName("x1" + i)[0].classList.add(red);
-                             document.getElementsByName("x3" + i)[0].classList.add(red);
-                         }
-                }
-              } else if (right==1){
-                for (let i = 1; i < 9; i++) {
-                         if (document.getElementsByName("x2" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
-                             document.getElementsByName("x2" + i)[0].classList.add(red);
-                             document.getElementsByName("x3" + i)[0].classList.add(red);
-                         }
-                }
-              }    
-        }
-    }
-    
-    if (document.getElementById('greenchecked').checked) {
-        green = "green";
+        
         if (document.getElementsByName("x11")[0].value > 0) {
             for (let k = 1; k <= '{{hstprs1_count}}'; k++) {
                 for (let i = 1; i < 9; i++) {
@@ -1141,12 +1130,6 @@ function redandgreen() {
                            
                     }         
                     
-                    
-                    
-                    
-                    
-                    
-                    
                     for (let n = 1; n < 9; n++) {
                         for (let j = 1; j < 9; j++) {
                            for (let r = 1; r < 9; r++) {
@@ -1166,9 +1149,39 @@ function redandgreen() {
         }
 
 
+    
     }
+    
     if (document.getElementById('redchecked').checked) {
-        green = "green";
+        red = "red";
+        if (centre==1) {
+             if (left==1 && right==1) {
+                for (let i = 1; i < 9; i++) {
+                    if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x2" + i)[0].value) {
+                         document.getElementsByName("x1" + i)[0].classList.add(red);
+                         document.getElementsByName("x2" + i)[0].classList.add(red);
+                         if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
+                             document.getElementsByName("x3" + i)[0].classList.add(red);
+                         }
+                    }
+                }      
+              } else if (left==1){
+                for (let i = 1; i < 9; i++) {
+                         if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
+                             document.getElementsByName("x1" + i)[0].classList.add(red);
+                             document.getElementsByName("x3" + i)[0].classList.add(red);
+                         }
+                }
+              } else if (right==1){
+                for (let i = 1; i < 9; i++) {
+                         if (document.getElementsByName("x2" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
+                             document.getElementsByName("x2" + i)[0].classList.add(red);
+                             document.getElementsByName("x3" + i)[0].classList.add(red);
+                         }
+                }
+              }    
+        }
+        
         if (document.getElementsByName("x11")[0].value > 0) {
             for (let k = 1; k <= '{{hstprs1_count}}'; k++) {
                 for (let i = 1; i < 9; i++) {
@@ -1220,10 +1233,350 @@ function redandgreen() {
                 }
             }
         }
-
-
+    
     }
-
+    
+    if (month==0) {
+        document.getElementsByName("x12")[0].classList.remove("green");
+        document.getElementsByName("x32")[0].classList.remove("green");
+        document.getElementsByName("x22")[0].classList.remove("green");
+        document.getElementsByName("x12")[0].classList.remove("red");
+        document.getElementsByName("x32")[0].classList.remove("red");
+        document.getElementsByName("x22")[0].classList.remove("red");
+        
+       for (let k = 1; k <= '{{hstprs1_count}}'; k++) {
+                document.getElementsByName("c1" + k + "2")[0].classList.remove("green");
+                document.getElementsByName("c1" + k + "2")[0].classList.remove("red");
+       }
+       for (let k = 1; k <= '{{hstprs2_count}}'; k++) {
+                document.getElementsByName("c2" + k + "2")[0].classList.remove("green");
+                document.getElementsByName("c2" + k + "2")[0].classList.remove("red");
+       }
+       
+       for (let k = 1; k < 7; k++) {
+        for (let i = 1; i <= 7; i++) {
+            document.getElementsByName("d" + k + i)[0].classList.remove("green");
+            document.getElementsByName("d" + k + i)[0].classList.remove("red");
+        }
+    }
+       
+       for (let k = 1; k < 7; k++) {
+            for (let i = 1; i <= 7; i++) {
+                const temp_dd = document.getElementsByName("d" + k + i)[0].getAttribute("dd")
+                if (temp_dd != "") {
+                    const temp_arr_dd = temp_dd.split('_');
+                    for (let j = 1; j < 9; j++) {
+                    
+                      if (j!=2){
+                        if (left==1 && right==1) {
+                          if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value) {
+                            document.getElementsByName("d" + k + i)[0].classList.add(red);
+                          }
+                        } else if (left==1){
+                          if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1]) {
+                            document.getElementsByName("d" + k + i)[0].classList.add(red);
+                          }
+                
+                        } else if (right==1){
+                           if (temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j-1]) {
+                            document.getElementsByName("d" + k + i)[0].classList.add(red);
+                           }
+                        }                         
+                      }
+                    }
+                }
+            }
+        }
+        
+        
+        for (let k = 1; k < 7; k++) {
+            for (let i = 1; i <= 7; i++) {
+                const temp_dd = document.getElementsByName("d" + k + i)[0].getAttribute("dd")
+                if (temp_dd != "") {
+                    const temp_arr_dd = temp_dd.split('_');
+                    
+                    if (left==1 && right==1) {
+                        for (let n = 1; n < 9; n++) {
+                         for (let j = 1; j < 9; j++) {
+                           for (let r = 1; r < 9; r++) {
+                           
+                           if (n==2 || j==2 || r==2){
+                            
+                            }else{
+                            if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                document.getElementsByName("d" + k + i)[0].classList.add(green);
+                            }
+                            }
+                            
+                            
+                           }
+                         }
+                        }
+                          
+                    } else if (left==1){
+                        for (let n = 1; n < 9; n++) {
+                         for (let j = 1; j < 9; j++) {
+                         if (n==2 || j==2){
+                            
+                            }else{
+                            if (temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                document.getElementsByName("d" + k + i)[0].classList.add(green);
+                            }
+                            }
+                            
+                         }
+                        }
+                
+                    } else if (right==1){
+                        for (let n = 1; n < 9; n++) {
+                         for (let j = 1; j < 9; j++) {
+                         
+                         if (n==2 || j==2){
+                            }else{
+                            if (temp_arr_dd[n-1] == document.getElementsByName("x2" + j)[0].value) {
+                                document.getElementsByName("d" + k + i)[0].classList.add(green);
+                            }
+                            }
+                         }
+                        }
+                           
+                    }         
+                }
+            }
+        }
+        
+       
+    }
+    
+    if (year==0) {
+        document.getElementsByName("x13")[0].classList.remove("green");
+        document.getElementsByName("x33")[0].classList.remove("green");
+        document.getElementsByName("x23")[0].classList.remove("green");
+        document.getElementsByName("x13")[0].classList.remove("red");
+        document.getElementsByName("x33")[0].classList.remove("red");
+        document.getElementsByName("x23")[0].classList.remove("red");
+        
+       for (let k = 1; k <= '{{hstprs1_count}}'; k++) {
+                document.getElementsByName("c1" + k + "3")[0].classList.remove("green");
+                document.getElementsByName("c1" + k + "3")[0].classList.remove("red");
+       }
+       for (let k = 1; k <= '{{hstprs2_count}}'; k++) {
+                document.getElementsByName("c2" + k + "3")[0].classList.remove("green");
+                document.getElementsByName("c2" + k + "3")[0].classList.remove("red");
+       }
+       
+       for (let k = 1; k < 7; k++) {
+        for (let i = 1; i <= 7; i++) {
+            document.getElementsByName("d" + k + i)[0].classList.remove("green");
+            document.getElementsByName("d" + k + i)[0].classList.remove("red");
+        }
+    }
+       
+       
+       for (let k = 1; k < 7; k++) {
+            for (let i = 1; i <= 7; i++) {
+                const temp_dd = document.getElementsByName("d" + k + i)[0].getAttribute("dd")
+                if (temp_dd != "") {
+                    const temp_arr_dd = temp_dd.split('_');
+                    for (let j = 1; j < 9; j++) {
+                    
+                      if (j!=3){
+                        if (left==1 && right==1) {
+                          if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value) {
+                            document.getElementsByName("d" + k + i)[0].classList.add(red);
+                          }
+                        } else if (left==1){
+                          if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1]) {
+                            document.getElementsByName("d" + k + i)[0].classList.add(red);
+                          }
+                
+                        } else if (right==1){
+                           if (temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j-1]) {
+                            document.getElementsByName("d" + k + i)[0].classList.add(red);
+                           }
+                        }                         
+                      }
+                    }
+                }
+            }
+        }
+        
+        
+        for (let k = 1; k < 7; k++) {
+            for (let i = 1; i <= 7; i++) {
+                const temp_dd = document.getElementsByName("d" + k + i)[0].getAttribute("dd")
+                if (temp_dd != "") {
+                    const temp_arr_dd = temp_dd.split('_');
+                    
+                    if (left==1 && right==1) {
+                        for (let n = 1; n < 9; n++) {
+                         for (let j = 1; j < 9; j++) {
+                           for (let r = 1; r < 9; r++) {
+                           
+                           if (n==3 || j==3 || r==3){
+                            
+                            }else{
+                            if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                document.getElementsByName("d" + k + i)[0].classList.add(green);
+                            }
+                            }
+                            
+                            
+                           }
+                         }
+                        }
+                          
+                    } else if (left==1){
+                        for (let n = 1; n < 9; n++) {
+                         for (let j = 1; j < 9; j++) {
+                         if (n==3 || j==3){
+                            
+                            }else{
+                            if (temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                document.getElementsByName("d" + k + i)[0].classList.add(green);
+                            }
+                            }
+                            
+                         }
+                        }
+                
+                    } else if (right==1){
+                        for (let n = 1; n < 9; n++) {
+                         for (let j = 1; j < 9; j++) {
+                         
+                         if (n==3 || j==3){
+                            }else{
+                            if (temp_arr_dd[n-1] == document.getElementsByName("x2" + j)[0].value) {
+                                document.getElementsByName("d" + k + i)[0].classList.add(green);
+                            }
+                            }
+                         }
+                        }
+                           
+                    }         
+                }
+            }
+        }
+       
+       
+    }
+    
+    if (year==0 && month==0) {  
+        document.getElementsByName("x16")[0].classList.remove("green");
+        document.getElementsByName("x36")[0].classList.remove("green");
+        document.getElementsByName("x26")[0].classList.remove("green");
+        document.getElementsByName("x16")[0].classList.remove("red");
+        document.getElementsByName("x36")[0].classList.remove("red");
+        document.getElementsByName("x26")[0].classList.remove("red");
+        
+       for (let k = 1; k <= '{{hstprs1_count}}'; k++) {
+                document.getElementsByName("c1" + k + "6")[0].classList.remove("green");
+                document.getElementsByName("c1" + k + "6")[0].classList.remove("red");
+       }
+       for (let k = 1; k <= '{{hstprs2_count}}'; k++) {
+                document.getElementsByName("c2" + k + "6")[0].classList.remove("green");
+                document.getElementsByName("c2" + k + "6")[0].classList.remove("red");
+       }
+       
+       for (let k = 1; k < 7; k++) {
+        for (let i = 1; i <= 7; i++) {
+            document.getElementsByName("d" + k + i)[0].classList.remove("green");
+            document.getElementsByName("d" + k + i)[0].classList.remove("red");
+        }
+     }
+     
+            for (let k = 1; k < 7; k++) {
+            for (let i = 1; i <= 7; i++) {
+                const temp_dd = document.getElementsByName("d" + k + i)[0].getAttribute("dd")
+                if (temp_dd != "") {
+                    const temp_arr_dd = temp_dd.split('_');
+                    for (let j = 1; j < 9; j++) {
+                    
+                      if (j==6 || j==3 || j==2 ){
+                      }
+                      else{
+                        if (left==1 && right==1) {
+                          if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value) {
+                            document.getElementsByName("d" + k + i)[0].classList.add(red);
+                          }
+                        } else if (left==1){
+                          if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1]) {
+                            document.getElementsByName("d" + k + i)[0].classList.add(red);
+                          }
+                
+                        } else if (right==1){
+                           if (temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j-1]) {
+                            document.getElementsByName("d" + k + i)[0].classList.add(red);
+                           }
+                        }                         
+                      }
+                    }
+                }
+            }
+        }
+        
+        
+        for (let k = 1; k < 7; k++) {
+            for (let i = 1; i <= 7; i++) {
+                const temp_dd = document.getElementsByName("d" + k + i)[0].getAttribute("dd")
+                if (temp_dd != "") {
+                    const temp_arr_dd = temp_dd.split('_');
+                    
+                    if (left==1 && right==1) {
+                        for (let n = 1; n < 9; n++) {
+                         for (let j = 1; j < 9; j++) {
+                           for (let r = 1; r < 9; r++) {
+                           
+                           if (n==6 || j==6 || r==6 || n==3 || j==3 || r==3 || n==2 || j==2 || r==2){
+                            
+                            }else{
+                            if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                document.getElementsByName("d" + k + i)[0].classList.add(green);
+                            }
+                            }
+                            
+                            
+                           }
+                         }
+                        }
+                          
+                    } else if (left==1){
+                        for (let n = 1; n < 9; n++) {
+                         for (let j = 1; j < 9; j++) {
+                         if (n==6 || j==6 || n==3 || j==3 || n==2 || j==2){
+                            
+                            }else{
+                            if (temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                document.getElementsByName("d" + k + i)[0].classList.add(green);
+                            }
+                            }
+                            
+                         }
+                        }
+                
+                    } else if (right==1){
+                        for (let n = 1; n < 9; n++) {
+                         for (let j = 1; j < 9; j++) {
+                         
+                         if (n==6 || j==6 || n==3 || j==3 || n==2 || j==2){
+                            }else{
+                            if (temp_arr_dd[n-1] == document.getElementsByName("x2" + j)[0].value) {
+                                document.getElementsByName("d" + k + i)[0].classList.add(green);
+                            }
+                            }
+                         }
+                        }
+                           
+                    }         
+                }
+            }
+        }
+     
+     
+     
+     
+     
+    }
 
 }
 redandgreen();

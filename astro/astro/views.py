@@ -131,7 +131,7 @@ def algorithm_run_glob(the_date_str):
        b=sum_digits(b)
    e=d+q
    if e>22:
-       b=sum_digits(e)
+       e=sum_digits(e)
    f=m+q
    if f>22:
        f=sum_digits(f)
@@ -141,6 +141,8 @@ def algorithm_run_glob(the_date_str):
        k='-'
    elif k==19:
        l=1
+   while l>9:
+       l=sum_digits(l)
    temp=[d,m,q,b,e,f,k,l]
   #  temp=[]
 #    for i in range(1,9):
@@ -230,7 +232,7 @@ def calend(month,year,left_arr="",right_arr=""):
               #filter
               if left_arr!="" or right_arr!="":
                obj_db=Calendata.objects.get(date=datetime.strptime(curr_date_cal, '%d.%m.%Y'))
-               tcd=list(map(int,obj_db.result.split('_')))
+               #tcd=list(map(int,obj_db.result.split('_')))
                arr["result_d"+str(i+1)+str(j+1)]=str(obj_db.result)
                #print(tcd)
                # for tcdi in range(0,8):
@@ -1210,20 +1212,26 @@ class Algorithm(View):
                   result_1_9_left=left_return[1]
                   
                   if self.request.user.role >= 3:
-                   for hp1 in Histpersons.objects.all():
-                      count_matches=0
-                      thp1=hp1.detail()[1].split('_')
-                      for thp1i in thp1:
-                          if int(thp1i) in result_1_9_left:
-                              #print(thp1i)
-                              count_matches+=1
-                      if count_matches>0:
-                          hist_pers_1["hstprs1"].append({'fio':hp1.fio,'result':hp1.result,'count':str(count_matches),'date':hp1.date})
-                   hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)
-                   hist_pers_1["hstprs1_count"]=len(hist_pers_1["hstprs1"])
-                  
-                  
-                  
+                     for hp1 in Histpersons.objects.all():
+                       count_matches=0
+                       thp1=hp1.detail()[1].split('_')
+                       thp1_arr=[0,0,0,0,0,0,0,0]
+                       for i in range(8):
+                          if thp1[i]!="-":
+                              thp1[i]=int(thp1[i])
+                       for i in range(8):
+                          for j in range(8):
+                              if thp1[i] == result_1_9_left[j]:
+                                 if thp1_arr[i]==0:
+                                    thp1_arr[i]=1
+                                 if i==j:
+                                    thp1_arr[i]=1.1
+                       count_matches=sum(thp1_arr)
+                       if count_matches>0:
+                          hist_pers_1["hstprs1"].append({'fio':hp1.fio,'result':hp1.result,'count':count_matches,'date':hp1.date, 'types':hp1.types.title()})
+                     hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)
+                     hist_pers_1["hstprs1_count"]=len(hist_pers_1["hstprs1"])
+                     
                 else:
                   left=False
             except:
@@ -1245,20 +1253,30 @@ class Algorithm(View):
                   result_1_9_right=right_return[1]
                   
                   if self.request.user.role >= 3:
-                   for hp2 in Histpersons.objects.all():
-                      count_matches=0
-                      thp2=hp2.detail()[1].split('_')
-                      for thp2i in thp2:
-                          if int(thp2i) in result_1_9_right:
-                              count_matches+=1
-                      if count_matches>0:
-                          hist_pers_2["hstprs2"].append({'fio':hp2.fio,'result':hp2.result,'count':str(count_matches),'date':hp2.date})
-                   hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)
-                   hist_pers_2["hstprs2_count"]=len(hist_pers_2["hstprs2"])
+                    for hp2 in Histpersons.objects.all():
+                       count_matches=0
+                       thp2=hp2.detail()[1].split('_')
+                       thp2_arr=[0,0,0,0,0,0,0,0]
+                       for i in range(8):
+                          if thp2[i]!="-":
+                              thp2[i]=int(thp2[i])
+                       for i in range(8):
+                          for j in range(8):
+                              if thp2[i] == result_1_9_right[j]:
+                                 if thp2_arr[i]==0:
+                                    thp2_arr[i]=1
+                                 if i==j:
+                                    thp2_arr[i]=1.1
+                       count_matches=sum(thp2_arr)
+                       if count_matches>0:
+                          hist_pers_2["hstprs2"].append({'fio':hp2.fio,'result':hp2.result,'count':count_matches,'date':hp2.date, 'types':hp2.types.title()})
+                    hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)
+                    hist_pers_2["hstprs2_count"]=len(hist_pers_2["hstprs2"])
                    
                else:
                   right=False
-            except:
+            except Exception as e: 
+               print(e)
                right=False
                pass
                
