@@ -234,24 +234,6 @@ def calend(month,year,left_arr="",right_arr=""):
                obj_db=Calendata.objects.get(date=datetime.strptime(curr_date_cal, '%d.%m.%Y'))
                #tcd=list(map(int,obj_db.result.split('_')))
                arr["result_d"+str(i+1)+str(j+1)]=str(obj_db.result)
-               #print(tcd)
-               # for tcdi in range(0,8):
-#                 for l_a_i in range(0,len(left_arr)):
-#                  #print([tcdi,l_a_i])
-#                  if int(tcd[tcdi])==left_arr[l_a_i]:
-#                   if tcdi==l_a_i:
-#                      arr["class_d"+str(i+1)+str(j+1)]="red"
-#                   else:
-#                      #print('yes')
-#                      arr["class_d"+str(i+1)+str(j+1)]="green"
-#                 for r_a_i in range(0,len(right_arr)):
-#                  if int(tcd[tcdi])==right_arr[r_a_i]:
-#                   if tcdi==r_a_i:
-#                      arr["class_d"+str(i+1)+str(j+1)]="red"
-#                   else:
-#                      arr["class_d"+str(i+1)+str(j+1)]="green"
-#                      #count_matches+=1   
-              
     arr['cal_month']=months_num[month]
     arr['cal_year']=year
     
@@ -264,7 +246,7 @@ def calend(month,year,left_arr="",right_arr=""):
     else:
        arr['next_month']=months_num[month+1]
        arr['last_month']=months_num[month-1]
-       
+       arr['last_month']=months_num[month-1]
     return arr
 def save_render(data):
     arr={}
@@ -381,7 +363,6 @@ def get_zodiac_sign(d, month=None, language=None):
         if (month == sign[0][1] and day >= sign[0][0]) or (month == sign[1][1] and day <= sign[1][0]):
             return _(index, language)
     return ''
-
 def get_images_by_zod(zod_num_get):
     temp=""
     if zod_num_get in ["1","5","9"]:
@@ -396,7 +377,6 @@ def get_images_by_zod(zod_num_get):
     
 def user_is_actual(self):
     print(u.role)
-
 class Up_date(UserPassesTestMixin):
     def test_func(self):
         if self.request.user.date_end >= date.today():
@@ -406,7 +386,6 @@ class Up_date(UserPassesTestMixin):
             return False
     def handle_no_permission(self):
         return redirect('/tarif/')
-        
 class Up_role(UserPassesTestMixin):
     def test_func(self):
         #print(self.request.user.role)
@@ -416,9 +395,6 @@ class Up_role(UserPassesTestMixin):
             return False
     def handle_no_permission(self):
         return redirect('/tarif/')
-
-
-
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -435,7 +411,6 @@ class GroupViewSet(viewsets.ModelViewSet):
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
     permission_classes = [permissions.IsAuthenticated]
-
 class Offer(View):
 
 #     def get(self, request, *args, **kwargs):
@@ -568,7 +543,6 @@ class Offer(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
-
 class Agreement(View):
 
 #     def get(self, request, *args, **kwargs):
@@ -701,7 +675,6 @@ class Agreement(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
-
 class Menu(View):
 
     login_form = LoginForm
@@ -828,7 +801,6 @@ class Menu(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
-                
 class Video(View):
 
     login_form = LoginForm
@@ -1033,7 +1005,7 @@ class Algorithm(View):
             'grps':grlist,
             }
         
-        curr_culend=calend(date.today().month, date.today().year)
+        curr_culend=calend(date.today().month, date.today().year, [],[])
         context={**context,**curr_culend}
         
         global glob_context
@@ -1147,13 +1119,11 @@ class Algorithm(View):
                                  "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
-
         if request.POST.get('Result'):
             if self.request.user.date_end < date.today():
                 return redirect('/tarif/')
             if self.request.user.role < 1:
                 return redirect('/tarif/')
-                
             context_zods = {
             'zod_1': "images/Component4.png",
             'zod_2': "images/Component16.png",
@@ -1298,7 +1268,6 @@ class Algorithm(View):
             glob_context=context
             
             return render(request, 'algorithm.html', context=context)
-            
         if request.POST.get('Save'):
             if self.request.user.role < 3:
                 return redirect('/tarif/')
@@ -1363,22 +1332,21 @@ class Algorithm(View):
             context={**context,**{'star':'images/favorites_star.png'}}
             glob_context=context
             return render(request, 'algorithm.html', context=context)
-            
         if request.POST.get('clear'):
             #return render(request, 'algorithm.html', context={})
             return HttpResponseRedirect(request.path)
-            
         if request.POST.get('next_month'):
             if self.request.user.role < 3:
                 return redirect('/tarif/')
             context=glob_context
+            data = request.POST
             left_arr_next=[]
             right_arr_next=[]
             for i in range(0,8):
-                if context['x1'+str(i+1)]!='':
+                if data['x1'+str(i+1)] and context['x1'+str(i+1)]!='':
                    #left_arr_next.append(int(context['x1'+str(i+1)]))
                    left_arr_next.append(context['x1'+str(i+1)])
-                if context['x2'+str(i+1)]!='':
+                if data['x2'+str(i+1)] and context['x2'+str(i+1)]!='':
                    #right_arr_next.append(int(context['x2'+str(i+1)]))
                    right_arr_next.append(context['x2'+str(i+1)])
             if months_num[context['cal_month']]==12:
@@ -1393,13 +1361,14 @@ class Algorithm(View):
             if self.request.user.role < 3:
                 return redirect('/tarif/')
             context=glob_context
+            data = request.POST
             left_arr_next=[]
             right_arr_next=[]
             for i in range(0,8):
-                if context['x1'+str(i+1)]!='':
+                if data['x1'+str(i+1)] and context['x1'+str(i+1)]!='':
                    #left_arr_next.append(int(context['x1'+str(i+1)]))
                    left_arr_next.append(context['x1'+str(i+1)])
-                if context['x2'+str(i+1)]!='':
+                if data['x2'+str(i+1)] and context['x2'+str(i+1)]!='':
                    #right_arr_next.append(int(context['x2'+str(i+1)]))
                    right_arr_next.append(context['x2'+str(i+1)])
             if months_num[context['cal_month']]==1:
@@ -1414,13 +1383,14 @@ class Algorithm(View):
             if self.request.user.role < 3:
                 return redirect('/tarif/')
             context=glob_context
+            data = request.POST
             left_arr_next=[]
             right_arr_next=[]
             for i in range(0,8):
-                if context['x1'+str(i+1)]!='':
+                if data['x1'+str(i+1)] and context['x1'+str(i+1)]!='':
                    #left_arr_next.append(int(context['x1'+str(i+1)]))
                    left_arr_next.append(context['x1'+str(i+1)])
-                if context['x2'+str(i+1)]!='':
+                if data['x2'+str(i+1)] and context['x2'+str(i+1)]!='':
                    #right_arr_next.append(int(context['x2'+str(i+1)]))
                    right_arr_next.append(context['x2'+str(i+1)])
             year=int(request.POST['years'])

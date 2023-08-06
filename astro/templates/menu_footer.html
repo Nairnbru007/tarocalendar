@@ -92,10 +92,10 @@ background: #102431;
 	{% endblock style %}
 	
 </head>
-<body>
+<body style="background: #102431; min-height: 100%;display: grid;grid-template-rows: auto 1fr auto;">
 	
 <div class="container-fluid px-0" id="main_color">
-<header class="header-area overlay">
+<header class="header-area overlay" style="margin: auto auto calc(max(40px,100vh - 1200px)) auto; max-width:1230px; border: 0spx solid #FFCE8E;">
     <div class="navbar navbar-expand-md navbar-dark">
 		<div class="container hea" style="max-width: 1230px;">
 			<a href="{% url 'main' %}" class="navbar-brand navbar-brand-fullscreen" style="margin-right: 5rem;">TAROCALENDAR</a>
@@ -417,7 +417,7 @@ background: #102431;
     
     
     {% if request.user.is_authenticated %}
-    <div class="center" style="background-color:#111;min-height: calc(100vh - 420px);margin: 0;   max-width: none;">
+    <div class="center" style="max-width:1230px; border: 0spx solid #FFCE8E;">
 	 <div class="container" align="center">
 		<div class="scale" align="center">
 		<a href="/algorithm/">
@@ -428,7 +428,7 @@ background: #102431;
 	 </div>	
 	</div>
     {% else %}
-    <div class="center" style="background-color:#111;min-height: calc(100vh - 420px);margin: 0;   max-width: none;">
+    <div class="center" style="max-width:1230px; border: 0spx solid #FFCE8E;">
 	 <div class="container" align="center">
 		<div class="scale" align="center">
 			<img src="{% static 'images/center_logo.png' %}" align="center" style="max-height: 100px;">
@@ -445,12 +445,12 @@ background: #102431;
 
     <!-- <hr class="hr_r"> -->
     
-		<footer class="footer">
+		<footer class="footer" style="margin: auto auto calc(max(40px,100vh - 1200px)) auto; max-width:1230px; border: 0spx solid #FFCE8E;">
 			<div class="container">
 				
 					<div class="col-md-14 text-center">
 						<p class="menu" style="margin-top:2px; padding-top: 10px;">
-							<a href="/commercial/" class="footer">COMMERCIAL</a>
+							<a href="/commercial/" class="footer">LINKS</a>
 							<a href="/description/" class="footer">DESCRIOPTION</a>
 							<a href="{% url 'contacts' %}" class="footer">CONTACTS</a>
 							<a href="{% url 'video' %}" class="footer">VIDEO</a>

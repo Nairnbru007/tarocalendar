@@ -63,409 +63,9 @@
 <form action="" method="POST">
 {% csrf_token %}
 
-<div class="center" style="margin: 40px auto calc(max(40px,100vh - 1200px)) auto; max-width:1230px; border: 0spx solid #FFCE8E;">
-       <!-- <div class="container">
-			<div class="row justify-content-md-center ">
-                        <div class="col-sm-1 mx-auto circle__filter2 flex favorites">
-                        <button type="submit" name="favorites">
-                            <img src="{% static 'images/star_border.png' %}" class=" star_border circle__filter2"  alt="">
-                        </button>
-					</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row justify-content-md-center">
-				<div class="col-sm-auto favorites">
-					<img src="{% static 'images/lights.png' %}" class="" style="max-height: 100px;" alt="">
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col align-self-start">
-					<img src="{% static 'images/cat1.png' %}" class="cat1" alt="">
-					<img src="{% static image1 %}" style="width: 50px; height:78px;" class="cat1" alt="">
-				</div>			
-				<div class="col align-self-center cat3 circle__filter2 flex">
-                    <img src="{% static 'images/image_d18_3.png' %}" class="crosses" alt="">          
-						<input id="current_date" class="center_date"  disabled style="width: 100px;"></p>	
-                    <img src="{% static 'images/image_d18_3.png' %}" class="crosses_1" alt="">
-				</div>
-				<div class="col align-self-end">
-                    <div class="calendar__top cat1 flex">
-                    <img src="{% static image2 %}" style="width: 50px; height:78px;position:initial;margin:60px 0 0 0;" class="cat2" alt="">
-					<img src="{% static 'images/cat2.png' %}" style="width: 100px; height:135px;position:initial;" class="cat2" alt="">
-                    </div>
-				</div>
-			</div>
-		</div>
-        <div class="container">
-			<div class="row justify-content-md-center">
-				<div class="col align-self-center cat5 circle__filter2 flex">
-					
-                                <input type="image" name="image" src="{% static 'images/Component4_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component16_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component22_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component23_gold.png' %}"  class="center_input_empty" disabled>
-
-                            	<input type="image" name="image" src="{% static 'images/Component17_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component26_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component18_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component19_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component20_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component21_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component27_gold.png' %}"  class="center_input_empty" disabled>
-
-                                <input type="image" name="image" src="{% static 'images/Component28_gold.png' %}"  class="center_input_empty" disabled>
-
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col align-self-start">
-
-				<div class="calendar__top  inp_date">
-				<p style="color:#FFCE8E;">ВВЕДИТЕ ДАТЫ:<p>
-				<input type="date" class="calendar__top_input input-number empty" name="date1" placeholder="dd-mm-yyyy" style="width: 125px; color:#FFCE8E;" value={{ date1 }}>
-				<input type="checkbox" id="scales1" name="scales1" {{ scales11|default:"" }}>
-				</div>
-				
-				</div>
-				<div class="col align-self-center ">
-				</div>
-				
-				<div class="col align-self-end">
-					<div class="calendar__top inp_date flex">
-					<input type="checkbox" id="scales2" name="scales2" style="margin: 8px 3px 0 0;" {{ scales22|default:"" }}>
-					<input type="date" class="calendar__top_input input-number empty" name="date2" placeholder="dd-mm-yyyy" style="width: 125px; color:#FFCE8E;" value={{ date2 }}>
-					</div>
-				</div>
-				
-			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col align-self-start">
-                    <div class="inp_date_3 flex">
-					<input type="text" name="x11" class="center_input_empty" id="digits_start_day_sum_1" value={{ x11 }}  >
-					<input type="text" name="x12" class="center_input_empty" id="digits_start_day_sum_1" value={{ x12 }}  >
-					<input type="text" name="x13" class="center_input_empty" id="digits_start_day_sum_1" value={{ x13 }}  >
-					<input type="text" name="x14" class="center_input_empty" id="digits_start_day_sum_1" value={{ x14 }}  >
-                    <input type="text" name="x15" class="center_input_empty" id="digits_start_day_sum_1" value={{ x15 }}  >
-					<input type="text" name="x16" class="center_input_empty" id="digits_start_day_sum_1" value={{ x16 }}  >
-					<input type="text" name="x17" class="center_input_empty" id="digits_start_day_sum_1" value={{ x17 }}  >
-					<input type="text" name="x18" class="center_input_empty" id="digits_start_day_sum_1" value={{ x18 }}  >
-			        </div>
-			    </div> 
-			    <div class="col align-self-center "></div>
-                <div class="col align-self-end ">
-				    <div class="calendar__top inp_date_3 flex">
-					<input type="text" name="x21" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x21 }}  >
-                    <input type="text" name="x22" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x22 }}  >
-                    <input type="text" name="x23" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x23 }}  >
-                    <input type="text" name="x24" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x24 }}  >
-					<input type="text" name="x25" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x25 }}  >
-					<input type="text" name="x26" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x26 }}  >
-					<input type="text" name="x27" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x28 }}  >
-					<input type="text" name="x28" class="center_input_empty" id="digits_start_day_sum_1_1" value={{ x28 }}  >
-                    </div>
-                </div>
-	        </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col align-self-center">
-                <div class="flex rakurs_center circle__filter2">
-                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="1" disabled>
-                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="2" disabled>
-                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="3" disabled>
-                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="4" disabled>
-                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="5" disabled>
-                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="6" disabled>
-                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="7" disabled>
-                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="8" disabled>
-                <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="9" disabled>
-                </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="col align-self-start">
-                    <div class="flex inp_date_2">
-					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_1" value="1" disabled>
-					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_2" value="2" disabled>
-					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_3" value="3" disabled>
-					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_4" value="4" disabled>
-					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_5" value="5" disabled>
-					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_6" value="6" disabled>
-					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_7" value="7" disabled>
-					<input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_8" value="8" disabled>
-                    </div>
-                </div>
-                <div class="col align-self-center ">
-                    <div class="flex rakurs_center circle__filter2" style="margin:-24px 0 0 0;">
-					<input type="text" name="x31" class="center_input" id="rakurs_right_1" value={{ x31 }} >
-					<input type="text" name="x32" class="center_input" id="rakurs_right_2" value={{ x32 }} >
-					<input type="text" name="x33" class="center_input" id="rakurs_right_3" value={{ x33 }} >
-					<input type="text" name="x34" class="center_input" id="rakurs_right_4" value={{ x34 }} >
-					<input type="text" name="x35" class="center_input" id="rakurs_right_5" value={{ x35 }} >
-					<input type="text" name="x36" class="center_input" id="rakurs_right_6" value={{ x36 }} >
-					<input type="text" name="x37" class="center_input" id="rakurs_right_7" value={{ x37 }} >
-					<input type="text" name="x38" class="center_input" id="rakurs_right_8" value={{ x38 }} >
-				</div>
-                </div>
-                <div class="col align-self-end ">
-                    <div class="calendar__top inp_date_2 flex">
-                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_1_1" value="1" disabled>
-                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_2_1" value="2" disabled>
-                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_3_1" value="3" disabled>
-                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_4_1" value="4" disabled>
-                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_5_1" value="5" disabled>
-                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_6_1" value="6" disabled>
-                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_7_1" value="7" disabled>
-                        <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_8_1" value="8" disabled>
-    
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container">
-          <div class="row">
-                <div class="col align-self-start">
-                    <div class="calendar__top flex Group_506 circle__filter2">
-					<img src="{% static 'images/2.png' %}" class="" alt="">
-                    </div>
-                </div>
-                <div class="col align-self-center flex" style='height:180px;'>
-                    <style>
-#calendar3 select {
-  background:#0f6660;
-  color:#fff;
-  width:117px;
-  height:30px;
-  border-radius: 4px;
-  font-size: 14px;
-}
-#calendar3 input {
-  background-color:#0f6660;
-  color:#fff;
-  width:117px;
-  border-style:solid;
-  border-radius:4px;
-  height:24px;
-  border-width:thin;
-  
-}
-#calendar3 {
-  
-  font: monospace;
-  line-height: 1em;
-  font-size: 18px;
-  text-align: center;
-}
-#calendar3 thead tr:last-child {
-  font-size: small;
-  color: #fff;
-  background:#0f6660;
-}
-#calendar3 tbody td {
-  color: #FFCE8E;
-}
-#calendar3 tbody td:nth-child(n+6), #calendar3 .holiday {
-  color: rgb(231, 140, 92);
-}
-
-#calendar3 .mydays {
-  color: white;
-  background: #0f6660;
-}
-
-#calendar3 tbody td.today {
-  outline: 3px solid red;
-}
-
-.empty {
-    opacity: .3;
-}
-
-</style>
-
-					<table id="calendar3" style="margin-left: auto; margin-right: auto;">
-  						<thead>
-    					<tr><td colspan="4">
-    					<select>
-						<option value="0">Январь</option>
-						<option value="1">Февраль</option>
-						<option value="2">Март</option>
-						<option value="3">Апрель</option>
-						<option value="4">Май</option>
-						<option value="5">Июнь</option>
-						<option value="6">Июль</option>
-						<option value="7">Август</option>
-						<option value="8">Сентябрь</option>
-						<option value="9">Октябрь</option>
-						<option value="10">Ноябрь</option>
-						<option value="11">Декабрь</option>
-						</select>
-						<td colspan="4">
-						<select>
-						<option value="0">2022</option>
-						</select>
-    					<tr><td>Пн<td>Вт<td>Ср<td>Чт<td>Пт<td>Сб<td>Вс
-  						<tbody>
-					</table>
-
-					<script>
-				
-					
-function formatDate() {
-    var d = new Date(),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-
-    if (month.length < 2) 
-        month = '0' + month;
-    if (day.length < 2) 
-        day = '0' + day;
-
-    return [year, month, day].join('-');
-}
-
-var el1 = document.getElementsByName('date1')[0];
-el1.onchange = function() {
-        el1.classList.remove("empty");
-        document.getElementById("scales1").checked = true;
-}
-
-var el11 = document.getElementById("scales1");
-el11.onclick = function() {
-        if (el11.checked){
-        el1.classList.remove("empty");
-        el1.setAttribute('value', formatDate());
-        }else{
-        el1.classList.add("empty");
-        el1.setAttribute('value', formatDate());
-        for(var  i = 1; i < 9; i++) document.getElementsByName('x1'+i)[0].setAttribute('value', "");
-        for(var  i = 1; i < 9; i++) document.getElementsByName('x2'+i)[0].setAttribute('value', "");
-        for(var  i = 1; i < 9; i++) document.getElementsByName('x3'+i)[0].setAttribute('value', "");
-        
-        }
-}
-
-var el2 = document.getElementsByName('date2')[0];
-el2.onchange = function() {
-        el2.classList.remove("empty");
-        document.getElementById("scales2").checked = true;
-}
-	
-var el22 = document.getElementById("scales2");
-el22.onclick = function() {
-        if (el22.checked){
-        el2.classList.remove("empty");
-        el2.setAttribute('value', formatDate());
-        }else{
-        el2.classList.add("empty");
-        el2.setAttribute('value', formatDate());
-        for(var  i = 1; i < 9; i++) document.getElementsByName('x1'+i)[0].setAttribute('value', "");
-        for(var  i = 1; i < 9; i++) document.getElementsByName('x2'+i)[0].setAttribute('value', "");
-        for(var  i = 1; i < 9; i++) document.getElementsByName('x3'+i)[0].setAttribute('value', "");
-        }
-}	
-
-if (document.getElementById("scales1").checked == true)
-{
-el1.classList.remove("empty");
-}
-if (document.getElementById("scales2").checked == true)
-{
-el2.classList.remove("empty");
-}	
-
-
-function Calendar3(id, year, month) {
-var Dlast = new Date(year,month+1,0).getDate(),
-    D = new Date(year,month,Dlast),
-    DNlast = D.getDay(),
-    DNfirst = new Date(D.getFullYear(),D.getMonth(),1).getDay(),
-    calendar = '<tr>',
-    m = document.querySelector('#'+id+' option[value="' + D.getMonth() + '"]'),
-    g = document.querySelector('#'+id+' option[value="' + D.getFullYear() + '"]');
-if (DNfirst != 0) {
-  for(var  i = 1; i < DNfirst; i++) calendar += '<td>';
-}else{
-  for(var  i = 0; i < 6; i++) calendar += '<td>';
-}
-for(var  i = 1; i <= Dlast; i++) {
-  if (i == new Date().getDate() && D.getFullYear() == new Date().getFullYear() && D.getMonth() == new Date().getMonth()) {
-    calendar += '<td class="today">' + i;
-  }else{
-    if (  // список официальных праздников
-        (i == 9 && D.getMonth() == 4 && D.getFullYear() == 2022) || 
-        (i == 10 && D.getMonth() == 4 && D.getFullYear() == 2022)
-       ) {
-      calendar += '<td class="mydays">' + i;
-    }else{
-      calendar += '<td>' + i;
-    }
-  }
-            
-  if (new Date(D.getFullYear(),D.getMonth(),i).getDay() == 0) {
-    calendar += '<tr>';
-  }
-}
-for(var  i = DNlast; i < 7; i++) calendar += '<td>&nbsp;';
-document.querySelector('#'+id+' tbody').innerHTML = calendar;
-
-m.selected = true;
-if (document.querySelectorAll('#'+id+' tbody tr').length < 6) {
-    document.querySelector('#'+id+' tbody').innerHTML += '<tr><td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;';
-}
-document.querySelector('#'+id+' option[value="' + new Date().getMonth() + '"]').style.color = 'rgb(220, 0, 0)'; // в выпадающем списке выделен текущий месяц
-}
-Calendar3("calendar3",new Date().getFullYear(),new Date().getMonth());
-document.querySelector('#calendar3').onchange = function Kalendar3() {
-  Calendar3("calendar3",document.querySelector('#calendar3 select').value,parseFloat(document.querySelector('#calendar3 select').options[document.querySelector('#calendar3 select').selectedIndex].value));
-}
-</script>
-                </div>
-                <div class="col align-self-end">
-                    <div class="flex Group_506_1 circle__filter2 calendar__top">
-					    <img src="{% static 'images/1.png' %}" class="" alt="">
-                    </div>
-                </div>
-          </div>
-        </div>
-        <div class="container">
-            <div class="row">
-                <div class="circle__filter2 flex">
-					<input type="submit" class="circle__filter_block clear_center" name="clear" value="Очистить">
-					<input type="submit" class="circle__filter_block done_center" id="Result" name="Result" value="Результат">
-				</div>
-				<div class="circle__filter2 flex" style="margin: -25px 0 0 5px;">
-				<input type="submit" class="circle__filter_block" id="Save" name="Save" value="Сохранить">
-				</div>
-                <div class="circle__filter2 flex" style="margin: -5px 0 0 5px;">
-                        <img src="{% static 'images/asdasd1.png' %}" class="" alt="">
-                </div>
-            </div>
-            
-        </div>
-        -->
-        
+<div class="center" style="margin: 0px auto calc(max(40px,100vh - 1200px)) auto; max-width:1230px; border: 0spx solid #FFCE8E;">
         <!-- Звезда-->
-        <div class="container"">
+        <div class="container">
 			<div class="row justify-content-md-center">
                         <div class="col-sm-1 mx-auto circle__filter2 flex favorites">
 							<button name="Save" value="123">
@@ -493,7 +93,6 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 					<img src="{% static 'images/cat1.png' %}" class="cat1" alt="">
 					<img src="{% static image1 %}" class="elements-left" alt="" width="50" height="78">
 				</div>
-				
 				<div class="col align-self-center cat3 circle__filter2 flex" style="right: 0px;">
                     <input type="image" src="{% static 'images/image_d18_2.png' %}" class="crosses center_date" style="bottom:0px;width:auto;" alt="">
 					<input type="text" name="xxx" class="center_date" id="current_d" value="" disabled>
@@ -503,7 +102,6 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                     <input type="text" name="xxx" class="center_date" id="current_y" value="" disabled>
                     <input type="image" src="{% static 'images/image_d18_2.png' %}" class="crosses_1 center_date" style="bottom:0px;width:auto;left: 0px;" alt="">
 				</div>
-
 				<div class="col align-self-end">
                     <div class="calendar__top flex">
 					<img src="{% static image2 %}" class="elements-right" alt="" width="50" height="78">
@@ -515,39 +113,72 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 		<!-- знаки задиаков-->
 		<div class="container">
 			<div class="row justify-content-md-center">
-				<div class="col align-self-center cat5 circle__filter2 flex">
-			       <div class="central-border-eee" style="border: 0.5px solid #FFCE8E; height: 33px;">
-                                <input type="image" name="image" src="{% static zod_1 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                           
-                                <input type="image" name="image" src="{% static zod_2 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                            
-                                <input type="image" name="image" src="{% static zod_3 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                            
-                                <input type="image" name="image" src="{% static zod_4 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                           
-                                <input type="image" name="image" src="{% static zod_5 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                           
-                                <input type="image" name="image" src="{% static zod_6 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                         
-                                <input type="image" name="image" src="{% static zod_7 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                            
-                                <input type="image" name="image" src="{% static zod_8 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                        
-                                <input type="image" name="image" src="{% static zod_9 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                            
-                                <input type="image" name="image" src="{% static zod_10 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                           
-                                <input type="image" name="image" src="{% static zod_11 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                            
-                                <input type="image" name="image" src="{% static zod_12 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-			       </div>	            
-				</div>
+
 			</div>
 		</div>
 		<!-- Даты и Центральные цыфры-->
 		<div class="container">
-			<div class="row">
+			<div class="row" style="margin:auto;margin-top: 20px;">
+					<div class="col align-self-start">
+					 <div class="calendar__top inp_date" style="width: auto;">
+						<input
+							type="text"
+							name="date1"
+							id="text_left"
+							class="calendar__top_input input-number"
+							placeholder="Name and Surname"
+							pattern="[A-Za-z$-]+"
+                            title="insert only the words"
+							style="width: 255px;"
+							value="{{ name1 }}"
+						>
+					 </div>
+					</div>
+                    <div class="col align-self-center cat5 circle__filter2 flex">
+			                <div class="central-border-eee" style="border: 0.5px solid #FFCE8E; height: 33px; width: max-content;">
+                                <input type="image" name="image" src="{% static zod_1 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
 
+                                <input type="image" name="image" src="{% static zod_2 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_3 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_4 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_5 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_6 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_7 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_8 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_9 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_10 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_11 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+
+                                <input type="image" name="image" src="{% static zod_12 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+			                </div>
+				    </div>
+
+
+					<div class="col align-self-end">
+						<div class="calendar__top inp_date flex" style="width: auto;">
+							<input
+								type="text"
+								name="date2"
+								class="calendar__top_input input-number"
+								placeholder="Name and Surname"
+								pattern="[A-Za-z$-]+"
+                                title="insert only the words"
+								style="width: 255px;"
+								value="{{ name2 }}"
+							>
+						</div>
+					</div>
+				</div>
+			<div class="row">
 					<div class="col align-self-start">
 					 <div class="calendar__top inp_date" style="width: auto;">
 						<input
@@ -726,7 +357,7 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                 <div class="col align-self-center ">
                     <div class="flex rakurs_center_1 circle__filter2 circle__filter_block_2">
 					    <input type="text" name="center_day" class="center_input" value="" readonly>
-					    <input type="text" name="center_day" class="center_input" value="{{ cal_month }}" readonly> <!--{{ cal_year }}-->
+					    <input type="text" name="center_year" class="center_input" style="width: 78px;" value="{{ cal_month }}" readonly> <!--{{ cal_year }}-->
 				    </div>
                 </div>
                 <div class="col align-self-end">
@@ -830,10 +461,38 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                     </div>
                 </div>
           </div>
+
         </div>
-        <!-- Месяц и тд-->
-        <div class="container down_container" style="margin-bottom: 0px;">
-            <div class="row">
+<!-- table-->
+<div class="container">
+          <div class="row">
+                <div class="col align-self-start" style="margin-top: -150px;">
+                    <fieldset style="display: block;
+    margin-left: 2px;
+    margin-right: 2px;
+    padding-top: 0.35em;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+    padding-bottom: 0.625em;
+    border-width: 1px;
+    border-style: groove;
+    border-color: #FFCE8E;
+    width:255px;">
+    <legend style="color:#FFCE8E; font-size: 1rem;"><p style="color:#FFCE8E">Change active colors:</p></legend>
+    <div class="row" style="margin-bottom: 5px;margin-top: 20px;">
+    <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
+                                  <input type="checkbox" value="1" name="checked" id='greenchecked' onclick="redandgreen()" checked=True>
+                                  <div class="control__indicator"></div>
+                                </label> <p style="width: 5px; color:#FFCE8E;">Green</p></div>
+    <div class="row" style="margin-bottom: 5px;margin-top: 5px;">
+    <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
+                                  <input type="checkbox" value="1" name="checked" id='redchecked' onclick="redandgreen()" checked=True>
+                                  <div class="control__indicator"></div>
+                                </label> <p style="width: 5px; color:#FFCE8E;">Red</p></div>
+</fieldset>
+
+                </div>
+                <div class="col align-self-center flex">
                 <div class="col align-self-center cat7" style="height: 10px;">
                     <div class="circle__filter2 flex" style="margin-bottom: -10px;">
 						<div class="flex month_p_m">
@@ -862,10 +521,10 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
 					  <input type="submit" class="circle__filter_block done_center" id="Result" name="Result" value="РЕЗУЛЬТАТ" style="right: 5px;">
 				    </div> -->
 
-				   
+
                     <div class="mx-auto circle__filter2 flex">
-                    
-                    
+
+
                      <nav class="navbar navbar-expand-md navbar-dark">
                      <select type="text" name="groups_name" class="nav-item drop" style="position: relative; letter-spacing: 0px;" >
                        <option selected disabled>CHOOSE GROUP</option>
@@ -875,32 +534,18 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
                        </option>
                        {% endfor %}
                     </select>
-                   
-                    
-                    
-            
-                   
-                    
-                    
-                         
                      </nav>
-                    
-                
                     </div>
-                    
-                    
-                    
                      <div class="circle__filter2 flex">
                     <button name="clear" value="123">
                         <img src="{% static 'images/asdasd1.png' %}" class="" alt="">
                     </button>
                     </div>
                 </div>
-            </div>
-        </div>    
-
-<fieldset style="display: block;
-    margin-left: 2px;
+                </div>
+                <div class="col align-self-end" style="margin-top: -150px; align-self: flex-start !important;">
+                    <fieldset style="display: block;
+    margin-left: auto;
     margin-right: 2px;
     padding-top: 0.35em;
     padding-left: 0.75em;
@@ -909,46 +554,30 @@ document.querySelector('#calendar3').onchange = function Kalendar3() {
     border-width: 1px;
     border-style: groove;
     border-color: #FFCE8E;
-    width:200px;">
+    width:255px;">
     <legend style="color:#FFCE8E; font-size: 1rem;"><p style="color:#FFCE8E">Change active colors:</p></legend>
-    
-    <div class="row" style="margin-bottom: 5px;margin-top: 20px;">
-    <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
-                                  <input type="checkbox" value="1" name="checked" id='greenchecked' onclick="redandgreen()" checked=True>
-                                  <div class="control__indicator"></div>
-                                </label> <p style="width: 5px; color:#FFCE8E;">Green</p></div>
-                                
-    <div class="row" style="margin-bottom: 5px;margin-top: 5px;">
-    <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
-                                  <input type="checkbox" value="1" name="checked" id='redchecked' onclick="redandgreen()" checked=True>
-                                  <div class="control__indicator"></div>
-                                </label> <p style="width: 5px; color:#FFCE8E;">Red</p></div>
-                                
     <div class="row" style="margin-bottom: 5px;margin-top: 10px;">
     <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
                                   <input type="checkbox" value="1" name="checked" id='monthchecked' onclick="redandgreen()" checked=True>
                                   <div class="control__indicator"></div>
                                 </label> <p style="width: 5px; color:#FFCE8E;">Month</p></div>
-
     <div class="row" style="margin-bottom: 5px;margin-top: 5px;">
     <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
                                   <input type="checkbox" value="1" name="checked" id='yearchecked' onclick="redandgreen()" checked=True>
                                   <div class="control__indicator"></div>
                                 </label> <p style="width: 5px; color:#FFCE8E;">Year</p></div>
-                                
 </fieldset>
 
+                </div>
+          </div>
 
 </div>
-
-
-
-
+        <!-- Месяц и тд-->
+</div>
 </form>
 </div>
+
 <script>
-
-
 n =  new Date();
 y = n.getFullYear();
 m = n.getMonth()+1;
@@ -956,21 +585,23 @@ if (m < 10) {
   m = ''.concat('0', m.toString());
 }
 d = n.getDate();
+
+document.getElementsByName("center_day")[0].value=d
 if (d < 10) {
   d = ''.concat('0', d.toString());
 }
-value = d + "." + m + "." + y;
+valuee = d + "." + m + "." + y;
 document.getElementById("current_d").setAttribute('value', d);
 document.getElementById("current_m").setAttribute('value', m);
 document.getElementById("current_y").setAttribute('value', y);
+d = n.getDate();
 
-document.getElementsByName("center_day")[0].value=d
 
 </script>
 
 
 <script>
-document.getElementById("main_color").setAttribute('style', "background-color: rgba(0,0,0,.3);");
+
 
 function redandgreen() {
     for (let i = 1; i < 9; i++) {
