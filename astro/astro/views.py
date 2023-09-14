@@ -114,7 +114,8 @@ def sum_digits(n):
     return s
 
 def algorithm_run_glob(the_date_str):
-   #d.m.q.b.e.f.k.l
+   # d.m.q.b.e.f.k.l
+   # 1.2.3.4.5.6.7.8
    #print(the_date_str)
    temp=the_date_str.split('.')
    
@@ -135,7 +136,7 @@ def algorithm_run_glob(the_date_str):
    f=m+q
    if f>22:
        f=sum_digits(f)
-   k=d+m+q
+   k=d+m+sum_digits(q)
    l=sum_digits(k)
    if k>22:
        k='-'

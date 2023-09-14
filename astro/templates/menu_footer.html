@@ -412,14 +412,14 @@ background: #102431;
 	</div>
 	{% endif %}
 	<!-- <hr class="hr_"> -->
- 
+
     {% block content %}
-    
-    
+
+
     {% if request.user.is_authenticated %}
     <div class="center" style="max-width:1230px; border: 0spx solid #FFCE8E;">
 	 <div class="container" align="center">
-		<div class="scale" align="center">
+		<div class="scale" align="center" style="margin-top: 100px;">
 		<a href="/algorithm/">
 			<img src="{% static 'images/center_logo.png' %}" align="center" style="max-height: 100px;">
 		</a>
@@ -430,7 +430,7 @@ background: #102431;
     {% else %}
     <div class="center" style="max-width:1230px; border: 0spx solid #FFCE8E;">
 	 <div class="container" align="center">
-		<div class="scale" align="center">
+		<div class="scale" align="center" style="margin-top: 100px;">
 			<img src="{% static 'images/center_logo.png' %}" align="center" style="max-height: 100px;">
 		</div>
 		<p style="color:white;font-size: 24px;" align="center">Welcome</p>
@@ -438,14 +438,14 @@ background: #102431;
 	 </div>	
 	</div>
 	{% endif %}
-	
-	
+
+
     {% endblock content %}
-    
+
 
     <!-- <hr class="hr_r"> -->
-    
-		<footer class="footer" style="margin: auto auto calc(max(40px,100vh - 1200px)) auto; max-width:1230px; border: 0spx solid #FFCE8E;">
+
+	<footer class="footer" style="margin: auto auto calc(max(40px,100vh - 1200px)) auto; max-width:1230px; border: 0spx solid #FFCE8E;">
 			<div class="container">
 				
 					<div class="col-md-14 text-center">
@@ -462,18 +462,18 @@ background: #102431;
 							<!--<a href="#" class="footer">СОТРУДНИЧЕСТВО</a>-->
 						{% endif %}
 						</p>
-                        <ul class="nav justify-content-center" style="margin-top: -1%;background:none;">
+                        <ul class="nav justify-content-center" style="background:none;">
                           <li class="nav-item ">
-                            <a class="active " href="{% url 'main' %}"><h1 class="rakurs">Rakurs</h1><pre>PROJECT</pre></a>
+                            <ul class="ftco-footer-social p-0" style="display:inline-flex;">
+                              <!--<a href="#"><img src="{% static 'images/facebook.png' %}" class="facebook" alt=""></a>-->
+                              <a href="https://t.me/+967QsxvhbD44MDIy"><img src="{% static 'images/telegram.png' %}" class="facebook" alt=""></a>
+                              <a href="https://vk.com/tarocalendar22"><img src="{% static 'images/vk.png' %}" class="facebook" alt=""></a>
+                                   <a class="active " href="{% url 'main' %}"><h1 class="rakurs">Rakurs</h1><pre>PROJECT</pre></a>
+                              <a href="#"><img src="{% static 'images/akar-icons_youtube-fill.png' %}" class="facebook" alt="" style="padding-left: 7px;"></a>
+                              <a href="#"><img src="{% static 'images/instagram.png' %}" class="facebook" alt=""></a>
+                            </ul>
                           </li>
                         </ul>
-                            <ul class="ftco-footer-social p-0" style="margin-top: -2%;">
-                              <!--<a href="#"><img src="{% static 'images/facebook.png' %}" class="facebook" alt=""></a>-->
-                              <a href="https://t.me/+JBq9GFju8Wc2YzRi"><img src="{% static 'images/telegram.png' %}" class="facebook" alt=""></a>
-                              <a href="https://vk.com/tarocalendar22"><img src="{% static 'images/vk.png' %}" class="facebook" alt=""></a>
-                              <!--<a href="#"><img src="{% static 'images/instagram.png' %}" class="facebook" alt=""></a>-->
-                              <a href="#"><img src="{% static 'images/akar-icons_youtube-fill.png' %}" class="facebook" alt=""></a>
-                            </ul>
 					</div>
 				
 				<div class="row mt-5">
