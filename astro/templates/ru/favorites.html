@@ -1,0 +1,400 @@
+{% extends  'index.html' %}
+{% load static %}
+{% block title %} Favourites {% endblock %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+<div class="center" style="margin: 0 0 0 0">
+    <div class="container">
+			<div class="row" style="padding-top: 50px;">
+				<div class="col align-self-start">
+					<p class="txt3"> <img src="{% static 'images/Vector.png' %}" class="" alt="">  FAVORIRTES</p>
+				</div>
+			</div>
+	</div>
+
+
+		<div class="container">
+			<div class="row" style="height: 5px;margin-top:15px">
+				<div class="col align-self-start">
+					<p class="txt3">CREATE GROUP</p>
+				</div>
+				
+            </div>
+            
+            
+            
+            
+            <div class="col align-self-start">
+					 <div class="row" style="width: auto;">
+						<input
+							type="text"
+							name="newgroupname"
+							id="newgroupname"
+							class="calendar__top_input input-number"
+							placeholder="new group name"
+							style="width: 255px;"
+						>
+						<button type="submit" class="btn execute_button fa" name="creategroup" value='create'>Create</button>
+					 </div>
+					</div>
+					
+            
+        </div>
+        
+
+        
+        
+
+		<div class="container">
+			<div class="row" style="padding-top: 30px;">
+				
+				
+					<p class="txt1" style="padding-top: 2s0px;">FILTER BY GROUP :</p>
+				
+				
+				<nav class="navbar navbar-expand-md navbar-dark">
+                     <select type="text" name="groups_name" class="nav-item drop" style="letter-spacing: 0px;" onchange="this.form.submit()">
+                       <option selected disabled>all items</option>
+                     {% for gr in grps %}
+                       <option value="{{gr.name}}" {% if gr.name == groups_name %}selected="selected"{% endif %}>
+                       {{gr.name}}
+                       </option>
+                       {% endfor %}
+                    </select>
+				
+				
+				
+            </div>
+        </div>
+
+
+        <div class="container" style="margin-top: 30px;">
+            <div class="row">
+                <div class="col align-self-start">
+                    <div class="table-responsive custom-table-responsive">
+                        <table class="table custom-table" style="width:1700px">
+                          <thead>
+                            <tr>
+                              <th scope="col" style="width: 20px;">
+                                
+                              </th>
+                              <th scope="col" style="width: 50px;">№</th>
+                              <th scope="col" style="width:90px">Date</th>
+                              <th scope="col" style="width:90px">Date left</th>
+                              <th scope="col" style="width:90px">Date right</th>
+                              <th scope="col" style="width:320px">Left result
+                              <p>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="1" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="2" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="3" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="4" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="5" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="6" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="7" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="8" style="width: 32px;height: 32px;" disabled>
+                              </p> 
+                              </th>
+                              <th scope="col" style="width:320px">Center result
+                              <p>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="1" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="2" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="3" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="4" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="5" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="6" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="7" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="8" style="width: 32px;height: 32px;" disabled>
+                              </p> 
+                              </th>
+                              <th scope="col" style="width:320px">Right result
+                              <p>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="1" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="2" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="3" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="4" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="5" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="6" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="7" style="width: 32px;height: 32px;" disabled>
+                              <input type="text" class="center_input green" id="digits_start_day_sum_1" value="8" style="width: 32px;height: 32px;" disabled>
+                              </p> 
+                              </th>
+                              <!--
+                              <th scope="col"><img src="{% static 'images/Vector1.png' %}" class=""  alt=""></th>
+                              -->
+                              <th scope="col">Note</th>
+                              <th scope="col" style="width: 20px"></th>
+                              <!--
+                              <th scope="col"><button type="button" class="btn" data-toggle="modal" data-target="{{ object.id }}" disabled><img src="{% static 'images/alarm.png' %}" class=""  alt="" width="20" height="20"></button></th>
+                              -->
+                              <th scope="col" style="width: 20px"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {% for object in object_list %}
+                            <tr scope="row" style="border-top: 3px solid #374151;">
+                              <th scope="row">
+                                <label class="control control--checkbox">
+                                  <input type="checkbox" value="{{ object.id }}" name="checked"/>
+                                  <div class="control__indicator"></div>
+                                </label>
+                              </th>
+                              <td style="border-top: 6px solid #374151;">
+                                {{ forloop.counter0|add:page_obj.start_index }}
+                              </td>
+                              <td style="border-top: 6px solid #374151;">
+                                  {{ object.date|date:'d.m.Y' }}</td>
+                              <td style="border-top: 6px solid #374151;">
+                                  {{ object.date_left|date:'d.m.Y' }}</td>
+                              <td style="border-top: 6px solid #374151;">
+                                  {{ object.date_right|date:'d.m.Y' }}</td>
+                              <td style="border-top: 3px solid #374151;">
+                                {% for i in object.rakurs_left_as_list %}
+                               <input type="text" name="{{forloop.parentloop.counter}}_x1{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 32px;height: 32px;" disabled>
+                                {% endfor %}
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                {% for i in object.rakurs_center_as_list %}
+                               <input type="text" name="{{forloop.parentloop.counter}}_x3{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 32px;height: 32px;" disabled>
+                                {% endfor %}
+                              </td>
+                              <td style="border-top: 3px solid #374151;">
+                                {% for i in object.rakurs_right_as_list %}
+                               <input type="text" name="{{forloop.parentloop.counter}}_x2{{ forloop.counter }}" class="center_input" id="digits_start_day_sum_1" value="{{ i }}" style="width: 32px;height: 32px;" disabled>
+                                {% endfor %}
+                              </td>
+                              <!--
+                              <td style="border-top: 3px solid #374151;">
+                                {{ object.unknoun_field }}
+                              </td>
+                              -->
+                              <td style="border-top: 6px solid #374151;">
+                                {{ object.note }}
+                              </td>
+                              
+                              <td style="border-top: 3px solid #374151;">
+                                  <button type="button" class="btn" data-toggle="modal" data-target="#editNote{{ object.id }}"><img src="{% static 'images/edit.png' %}" class=""  alt="" width="20" height="20"></button>
+                              </td>
+                              <!--
+                              <td style="border-top: 3px solid #374151;">
+                                  <button type="button" class="btn" data-toggle="modal" data-target="{{ object.id }}"><img src="{% static 'images/alarm.png' %}" class=""  alt="" width="20" height="20"></button>
+                              </td>
+                              -->
+                              <td style="border-top: 3px solid #374151;">
+                                  <button type="button" class="btn" data-toggle="modal" data-target="#deleteString{{ object.id }}"><img src="{% static 'images/delete.png' %}" class=""  alt="" width="20" height="20"></button>
+                              </td>
+                            </tr>
+                            <tr class="spacer"><td colspan="100"></td></tr>
+                            <!-- Modal -->
+                            <div class="modal fade" id="deleteString{{ object.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content rounded">
+                                  <div class="modal-header text-center">
+                                    <h5 class="modal-title w-100" id="exampleModalLongTitle">Delete selected</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true"><img src="{% static 'images/close2.png' %}" class=""  alt=""></span>
+                                    </button>
+                                  </div>
+                                    <form method="POST" name="id">
+                                      <div class="modal-body text-center">
+                                            {% csrf_token %}
+                                            <p class="modal-body">Are you sure you want to delete {{ forloop.counter0|add:page_obj.start_index }} line?</p>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid #FFCE8E;">Close</button>
+                                        <button type="submit" class="btn btn-red" name="id" value="{{ object.id }}" >Delete</button>
+                                      </div>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="modal fade" id="editNote{{ object.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                              <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content rounded">
+                                  <div class="modal-header text-center">
+                                    <h5 class="modal-title w-100" id="exampleModalLongTitle">Editing a line №{{ forloop.counter0|add:page_obj.start_index }}</h5>
+                                    <button type="button" class="" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true"><img src="{% static 'images/close2.png' %}" class=""  alt=""></span>
+                                    </button>
+                                  </div>
+                                    <form method="POST" name="edit">
+                                      <div class="modal-body text-center">
+                                            {% csrf_token %}
+                                              <div class="form-group">
+                                                <label for="edit" class="edit-note">Enter the text to edit the note</label>
+                                                <textarea class="form-control" id="edit" rows="3" style="border: 1px solid #FFCE8E;" name="edit"></textarea>
+                                              </div>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="border: 1px solid #FFCE8E;">Close</button>
+                                        <button type="submit" class="btn btn-edit" name="edit_id" value="{{ object.id }}" >Edit</button>
+                                      </div>
+                                    </form>
+                                </div>
+                              </div>
+                            </div>
+                            {% endfor %}
+                            
+<script>
+red = "red";
+green = "green";
+
+for (let j = 1; j <= {{ object_list|length }}; j++) 
+{
+  
+   
+
+   for (let i = 1; i < 9; i++) {
+        document.getElementsByName(j+ "_x1" + i)[0].classList.remove("green");
+        document.getElementsByName(j+ "_x3" + i)[0].classList.remove("green");
+        document.getElementsByName(j+ "_x2" + i)[0].classList.remove("green");
+        document.getElementsByName(j+ "_x1" + i)[0].classList.remove("red");
+        document.getElementsByName(j+ "_x3" + i)[0].classList.remove("red");
+        document.getElementsByName(j+ "_x2" + i)[0].classList.remove("red");
+    }
+    
+    left  = 0;
+    right = 0;
+    centre = 0;
+
+    if (document.getElementsByName(j+"_x11")[0].value > 0) {
+    left=1;
+    }
+    if (document.getElementsByName(j+"_x21")[0].value > 0) {
+    right=1;
+    }
+    if (document.getElementsByName(j+"_x31")[0].value > 0) {
+    centre=1;
+    }
+    
+    if (centre==1) {
+             if (left==1 && right==1) {
+                for (let i = 1; i < 9; i++) {
+                    for (let jj = 1; jj < 9; jj++) {
+                         if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x2" + jj)[0].value) {
+                             document.getElementsByName(j+"_x1" + i)[0].classList.add(green);
+                             document.getElementsByName(j+"_x2" + jj)[0].classList.add(green);
+                             for (let k = 1; k < 9; k++) {
+                                 if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x3" + k)[0].value) {
+                                     document.getElementsByName(j+"_x3" + k)[0].classList.add(green);
+                                 }
+                             }
+                         }
+                    }
+                }      
+              } else if (left==1){
+                for (let i = 1; i < 9; i++) {
+                    for (let jj = 1; jj < 9; jj++) {
+                         if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x3" + jj)[0].value) {
+                             document.getElementsByName(j+"_x1" + i)[0].classList.add(green);
+                             document.getElementsByName(j+"_x3" + jj)[0].classList.add(green);
+                         }
+                    }
+                }
+              } else if (right==1){
+                for (let i = 1; i < 9; i++) {
+                    for (let jj = 1; jj < 9; jj++) {
+                         if (document.getElementsByName(j+"_x2" + i)[0].value == document.getElementsByName(j+"_x3" + jj)[0].value) {
+                             document.getElementsByName(j+"_x2" + i)[0].classList.add(green);
+                             document.getElementsByName(j+"_x3" + jj)[0].classList.add(green);
+                         }
+                    }
+                }
+              }    
+        }
+     if (centre==1) {
+             if (left==1 && right==1) {
+                for (let i = 1; i < 9; i++) {
+                    if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x2" + i)[0].value) {
+                         document.getElementsByName(j+"_x1" + i)[0].classList.add(red);
+                         document.getElementsByName(j+"_x2" + i)[0].classList.add(red);
+                         if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x3" + i)[0].value) {
+                             document.getElementsByName(j+"_x3" + i)[0].classList.add(red);
+                         }
+                    }
+                }      
+              } else if (left==1){
+                for (let i = 1; i < 9; i++) {
+                         if (document.getElementsByName(j+"_x1" + i)[0].value == document.getElementsByName(j+"_x3" + i)[0].value) {
+                             document.getElementsByName(j+"_x1" + i)[0].classList.add(red);
+                             document.getElementsByName(j+"_x3" + i)[0].classList.add(red);
+                         }
+                }
+              } else if (right==1){
+                for (let i = 1; i < 9; i++) {
+                         if (document.getElementsByName(j+"_x2" + i)[0].value == document.getElementsByName(j+"_x3" + i)[0].value) {
+                             document.getElementsByName(j+"_x2" + i)[0].classList.add(red);
+                             document.getElementsByName(j+"_x3" + i)[0].classList.add(red);
+                         }
+                }
+              }    
+        }
+
+
+
+}
+
+</script>
+                            
+                            
+                          </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top: 1px;">
+                <div class="row g-3" style="margin-top: 1px; margin-bottom: 30px;">
+                            <div class="col-auto box align-self-center" hidden>
+                                <select class="form-select select" name="group_actions">
+                                  <option value="Delete selected">Delete selected</option>
+                                </select>
+                            </div>
+                          <div class="col-auto align-self-center">
+                            <input type="submit" style="width:280px;" class="btn execute_button fa fa-check" aria-hidden="true" id="execute" name="execute" value="Delete selected">
+                          </div>
+                        </div>
+                <div class="row">
+                    <div class="col align-self-center pagination">
+                        <span class="align-self-center page" style="padding-left: 1%;">Max lines on page: </span>
+                        <div class="col-auto box align-self-center" style="width: 55px;">
+                            {% csrf_token %}
+                            <form action="" method="get" class="row g-1">
+                                <select name="paginate_by" class="form-select select2" onchange="this.form.submit()">
+                                    <option selected disabled>{{ page_obj.end_index }}</option>
+                                    <option>5</option>
+                                    <option>10</option>
+                                    <option>25</option>
+                                    <option>100</option>
+                                </select>
+                                <!--<button type="submit" class="btn execute_button fa" id="paginate_by">&#10004 Ok</button>-->
+                            </form>
+                        </div>
+                      <span class="align-self-center page" style="padding-left:0px; position: initial;">
+                          {% if page_obj.has_previous %}
+                              <a href="{% url 'favorites' %}?page=1"><img src="{% static 'images/previous.png' %}" class="align-self-center prev" alt=""><img src="{% static 'images/previous.png' %}" class="align-self-center prev_2" alt=""></a>
+                              <a href="{% url 'favorites' %}?page={{ page_obj.previous_page_number }}"><img src="{% static 'images/previous.png' %}" class="align-self-center next"  alt=""></a>
+
+                          {% endif %}
+                          <span class="align-self-center page span_pagination">
+                              lines {{ page_obj.start_index }}-{{ page_obj.end_index }}
+                          </span>
+                          {% if page_obj.has_next %}
+                              <a href="{% url 'favorites' %}?page={{ page_obj.next_page_number }}"><img src="{% static 'images/next.png' %}" class="align-self-center next" alt=""></a>
+                              <a href="{% url 'favorites' %}?page={{ page_obj.paginator.num_pages }}"><img src="{% static 'images/next.png' %}" class="align-self-center last" alt=""><img src="{% static 'images/next.png' %}" class="align-self-center last_2" alt=""></a>
+                          {% endif %}
+                      </span>
+                    </div>
+                </div>
+        </div>
+</div>
+<script>
+if ({{ page_obj|length }} < 1) {
+document.getElementById("paginate_by").remove();
+document.getElementById("execute").remove();
+}
+</script>
+</form>
+
+<script src="{% static 'js/table.js' %}"></script>
+{% endblock content %}
