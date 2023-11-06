@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
+from astro.astro import views_ru
+from astro.astro import views_en
 from astro.astro import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -30,25 +32,37 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    
-    path('', views.Menu.as_view(), name='main'),
-    path('offer/', views.Offer.as_view(), name='offer'),
-    path('favorites/', views.Favorites_View.as_view(), name='favorites'),
-    path('agreement/', views.Agreement.as_view(), name='agreement'),
-    path('tarif/', views.Tarif.as_view(), name='tarif'),
-    path('contacts/', views.Contacts.as_view(), name='contacts'),
-    path('commercial/', views.Commercial.as_view(), name='commercial'),
-    path('description/', views.Description.as_view(), name='description'),
-    path('video/', views.Video.as_view(), name='video'),
-    path('algorithm/', views.Algorithm.as_view(), name='algorithm'),
+#ru
+    path('', views_ru.Menu.as_view(), name='main_ru'),
+    path('offer/', views_ru.Offer.as_view(), name='offer_ru'),
+    path('favorites/', views_ru.Favorites_View.as_view(), name='favorites_ru'),
+    path('agreement/', views_ru.Agreement.as_view(), name='agreement_ru'),
+    path('tarif/', views_ru.Tarif.as_view(), name='tarif_ru'),
+    path('contacts/', views_ru.Contacts.as_view(), name='contacts_ru'),
+    path('commercial/', views_ru.Commercial.as_view(), name='commercial_ru'),
+    path('description/', views_ru.Description.as_view(), name='description_ru'),
+    path('video/', views_ru.Video.as_view(), name='video_ru'),
+    path('algorithm/', views_ru.Algorithm.as_view(), name='algorithm_ru'),
+    path('activate/(<uidb64>)/(<token>)/',views_ru.activate, name='activate_ru'),
+#en
+    path('en/', views_en.Menu.as_view(), name='main_en'),
+    path('en/offer/', views_en.Offer.as_view(), name='offer_en'),
+    path('en/favorites/', views_en.Favorites_View.as_view(), name='favorites_en'),
+    path('en/agreement/', views_en.Agreement.as_view(), name='agreement_en'),
+    path('en/tarif/', views_en.Tarif.as_view(), name='tarif_en'),
+    path('en/contacts/', views_en.Contacts.as_view(), name='contacts_en'),
+    path('en/commercial/', views_en.Commercial.as_view(), name='commercial_en'),
+    path('en/description/', views_en.Description.as_view(), name='description_en'),
+    path('en/video/', views_en.Video.as_view(), name='video_en'),
+    path('en/algorithm/', views_en.Algorithm.as_view(), name='algorithm_en'),
+    path('en/activate/(<uidb64>)/(<token>)/',views_en.activate, name='activate_en'),
+#system
     path('logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
-    #path('login_reg/', views.Login_RegView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='login_'),
     path('upload/csv/', views.upload_csv, name='upload_csv'),
     path('upload/data/', views.upload_calend, name='upload_csv'),
 
+    #path('login_reg/', views.Login_RegView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='login_'),
     #path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',views.activate, name='activate'),
-    path('activate/(<uidb64>)/(<token>)/',views.activate, name='activate'),
-
 ]
 
 if settings.DEBUG:
