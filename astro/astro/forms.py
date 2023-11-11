@@ -15,7 +15,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.TextInput(
             attrs={
                 'class': 'input100',
-                'placeholder': 'Имя пользователя'
+                'placeholder': 'Username'
             }
         )
     )
@@ -23,7 +23,7 @@ class LoginForm(AuthenticationForm):
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input100',
-                'placeholder': 'Пароль',
+                'placeholder': 'Password',
             }
         )
     )
@@ -40,9 +40,9 @@ class LoginForm(AuthenticationForm):
 
 class Sign_Up_Form(UserCreationForm):
     username = forms.CharField(
-        label='Имя пользователя',
+        label='Username',
         widget=forms.TextInput(
-            attrs={'class': 'input100', 'placeholder': 'Имя пользователя'}))
+            attrs={'class': 'input100', 'placeholder': 'Username'}))
     email = forms.CharField(
         label='Email',
         widget=forms.EmailInput(
@@ -54,20 +54,20 @@ class Sign_Up_Form(UserCreationForm):
         )
     )
     password1 = forms.CharField(
-        label='Пароль',
+        label='Password',
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input100',
-                'placeholder': 'Пароль',
+                'placeholder': 'Password',
             }
         )
     )
     password2 = forms.CharField(
-        label='Повторный пароль',
+        label='Confirm password',
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input100',
-                'placeholder': 'Повторите пароль',
+                'placeholder': 'Confirm password',
             }
         )
     )
@@ -116,20 +116,20 @@ class UserPasswordResetForm(SetPasswordForm):
         )
     )
     password1 = forms.CharField(
-        label='Пароль',
+        label='Password',
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input100',
-                'placeholder': 'Пароль',
+                'placeholder': 'Password',
             }
         )
     )
     password2 = forms.CharField(
-        label='Повторный пароль',
+        label='Confirm password',
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input100',
-                'placeholder': 'Повторите пароль',
+                'placeholder': 'Confirm password',
             }
         )
     )

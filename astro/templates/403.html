@@ -1,6 +1,6 @@
-{% extends  'index.html' %}
+{% extends  'menu_footer_.html' %}
 {% load static %}
-{% block title %} Ошибка на сервере {% endblock %}
+{% block title %} Error {% endblock %}
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-15 col-sm-15">
@@ -10,12 +10,12 @@
             </h3>
 
             <span class="card-subtitle mb-2 text-center">
-                Что-то пошло не так.
+                Something went wrong.
             </span>
 
             <div class="card-body mx-auto">
                 <a type="button" style="border: 1px solid #FFCE8E;" href="{% url 'main' %}"
-                class="btn btn-sm btn-info text-white"> На главную. </a>
+                class="btn btn-sm btn-info text-white"> Main page. </a>
             </div>
             
         </div>

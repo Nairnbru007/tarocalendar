@@ -139,7 +139,6 @@ path_to_tmps={
 'password_reset_confirm':'ru/password_reset_confirm.html',#-
 'password_reset_mail':'ru/password_reset_mail.html',#+
 'tarif':'ru/tarif.html',#+
-'upload':'ru/upload.html',#- view.py
 'video':'ru/video.html',#+
 }
 

@@ -1,6 +1,6 @@
 {% autoescape off %}  
-Приветствуем {{ user.username }}
-Спасибо за регистрацию на нашем сервисе!
-Пожалуйста, нажмите на ссылку ниже, чтобы подтвердить Ваш аккаунт
-https://tarocalendar.com{% url 'activate' uidb64=uid token=token %}
+Welcome {{user.username }}
+Thank you for registering on our service!
+Please click on the link below to confirm your account
+https://tarocalendar.com{% url 'activate_en' uidb64=uid token=token %}
 {% endautoescape %}

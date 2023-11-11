@@ -1,4 +1,4 @@
-{% extends  'index.html' %}
+{% extends  'menu_footer.html' %}
 {% load static %}
 {% block title %} Favourites {% endblock %}
 {% block content %}
@@ -48,11 +48,7 @@
 
 		<div class="container">
 			<div class="row" style="padding-top: 30px;">
-				
-				
 					<p class="txt1" style="padding-top: 2s0px;">FILTER BY GROUP :</p>
-				
-				
 				<nav class="navbar navbar-expand-md navbar-dark">
                      <select type="text" name="groups_name" class="nav-item drop" style="letter-spacing: 0px;" onchange="this.form.submit()">
                        <option selected disabled>all items</option>
@@ -62,9 +58,6 @@
                        </option>
                        {% endfor %}
                     </select>
-				
-				
-				
             </div>
         </div>
 
@@ -372,16 +365,16 @@ for (let j = 1; j <= {{ object_list|length }}; j++)
                         </div>
                       <span class="align-self-center page" style="padding-left:0px; position: initial;">
                           {% if page_obj.has_previous %}
-                              <a href="{% url 'favorites' %}?page=1"><img src="{% static 'images/previous.png' %}" class="align-self-center prev" alt=""><img src="{% static 'images/previous.png' %}" class="align-self-center prev_2" alt=""></a>
-                              <a href="{% url 'favorites' %}?page={{ page_obj.previous_page_number }}"><img src="{% static 'images/previous.png' %}" class="align-self-center next"  alt=""></a>
+                              <a href="{% url 'favorites_en' %}?page=1"><img src="{% static 'images/previous.png' %}" class="align-self-center prev" alt=""><img src="{% static 'images/previous.png' %}" class="align-self-center prev_2" alt=""></a>
+                              <a href="{% url 'favorites_en' %}?page={{ page_obj.previous_page_number }}"><img src="{% static 'images/previous.png' %}" class="align-self-center next"  alt=""></a>
 
                           {% endif %}
                           <span class="align-self-center page span_pagination">
                               lines {{ page_obj.start_index }}-{{ page_obj.end_index }}
                           </span>
                           {% if page_obj.has_next %}
-                              <a href="{% url 'favorites' %}?page={{ page_obj.next_page_number }}"><img src="{% static 'images/next.png' %}" class="align-self-center next" alt=""></a>
-                              <a href="{% url 'favorites' %}?page={{ page_obj.paginator.num_pages }}"><img src="{% static 'images/next.png' %}" class="align-self-center last" alt=""><img src="{% static 'images/next.png' %}" class="align-self-center last_2" alt=""></a>
+                              <a href="{% url 'favorites_en' %}?page={{ page_obj.next_page_number }}"><img src="{% static 'images/next.png' %}" class="align-self-center next" alt=""></a>
+                              <a href="{% url 'favorites_en' %}?page={{ page_obj.paginator.num_pages }}"><img src="{% static 'images/next.png' %}" class="align-self-center last" alt=""><img src="{% static 'images/next.png' %}" class="align-self-center last_2" alt=""></a>
                           {% endif %}
                       </span>
                     </div>

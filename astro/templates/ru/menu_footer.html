@@ -163,9 +163,9 @@ background: #102431;
 
 														<div class="text-center p-t-10">
 															<div class="txt2">
-																Нет аккаунта?
+
 															</div>
-															<ul class="nav nav-tabs nav-tabs-2">
+															<ul class="">
 															<li><a class="txt1" data-bs-toggle="tab" href="#registration-form">
 																Зарегистрироваться
 															</a></li>
@@ -480,7 +480,11 @@ background: #102431;
 					<div class="col-md-12 text-center" style="margin-top: -3%;">
 						<p class="copyright footer_copyright" style="font-size: 10px;">
 					  COPYRIGHT &copy;<span class="footer_2"><script>document.write(new Date().getFullYear());</script></span> RAKURS. ALL RIGHTS RESERVED.</p>
-					</div>
+					<select class="select btn footer_2" style="color: #FFCE8E;" onchange="location = this.value;">
+                        <option value="{% url 'main_ru' %}" class="footer_2" selected style="color: #FFCE8E;">Русский</option>
+                        <option value="{% url 'main_en' %}" class="footer_2" style="color: #FFCE8E;">English</option>
+                    </select>
+                    </div>
 				</div>
 			</div>
 		</footer>
