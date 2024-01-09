@@ -48,6 +48,109 @@ import uuid
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import UserPassesTestMixin
 
+from .dicts_algor import *
+
+months_num_={
+    1:"Январь",
+    2:"Февраль",
+    3:"Март",
+    4:"Апрель",
+    5:"Май",
+    6:"Июнь",
+    7:"Июль",
+    8:"Август",
+    9:"Сентябрь",
+    10:"Октябрь",
+    11:"Ноябрь",
+    12:"Декабрь",
+    "Январь":1,
+    "Февраль":2,
+    "Март":3,
+    "Апрель":4,
+    "Май":5,
+    "Июнь":6,
+    "Июль":7,
+    "Август":8,
+    "Сентябрь":9,
+    "Октябрь":10,
+    "Ноябрь":11,
+    "Декабрь":12,
+}
+months_num={
+    1:"January",
+    2:"Februare",
+    3:"March",
+    4:"April",
+    5:"May",
+    6:"June",
+    7:"July",
+    8:"August",
+    9:"September",
+    10:"October",
+    11:"November",
+    12:"December",
+    "January":1,
+    "Februare":2,
+    "March":3,
+    "April":4,
+    "May":5,
+    "June":6,
+    "July":7,
+    "August":8,
+    "September":9,
+    "October":10,
+    "November":11,
+    "December":12,
+}
+def calend(month,year,left_arr="",right_arr=""):
+    arr={}
+    curr_month_dates = calendar.monthcalendar(year, month)
+    #print(curr_month_dates)
+    for i in range(0,6):
+        for j in range(0,7):
+            arr["d"+str(i+1)+str(j+1)]=""
+            #arr["class_d"+str(i+1)+str(j+1)]=""
+            arr["result_d"+str(i+1)+str(j+1)]=""
+    #print(arr)
+
+    for i in range(0, len(curr_month_dates) ):
+        for j in range(0, len(curr_month_dates[i]) ):
+            if curr_month_dates[i][j]==0:
+                curr_month_dates[i][j]=""
+            arr["d"+str(i+1)+str(j+1)]=curr_month_dates[i][j]
+
+            curr_date_cal=''
+            if arr["d"+str(i+1)+str(j+1)]!='':
+                if arr["d"+str(i+1)+str(j+1)]<10:
+                    curr_date_cal+='0'
+                if month<10:
+                    curr_date_cal+=str(arr["d"+str(i+1)+str(j+1)])+'.'+'0'+str(month)+'.'+str(year)
+                else:
+                    curr_date_cal+=str(arr["d"+str(i+1)+str(j+1)])+'.'+str(month)+'.'+str(year)
+                #print(curr_date_cal)
+
+                #filter
+                if left_arr!="" or right_arr!="":
+                    obj_db=Calendata.objects.get(date=datetime.strptime(curr_date_cal, '%d.%m.%Y'))
+                    #tcd=list(map(int,obj_db.result.split('_')))
+                    arr["result_d"+str(i+1)+str(j+1)]=str(obj_db.result)
+    arr['cal_month']=months_num[month]
+    arr['cal_year']=year
+
+    if month==1:
+        arr['last_month']=months_num[12]
+        arr['next_month']=months_num[month+1]
+    elif month==12:
+        arr['next_month']=months_num[1]
+        arr['last_month']=months_num[month-1]
+    else:
+        arr['next_month']=months_num[month+1]
+        arr['last_month']=months_num[month-1]
+        arr['last_month']=months_num[month-1]
+    return arr
+
+
+
 path_to_tmps={
 'upload':'upload.html',#+
 '403':'403.html',#+
@@ -74,14 +177,15 @@ def upload_csv(request):
     data_arr = []
     for line in lines:
         fields = line.split(";")
-        data_arr.append([fields[0],fields[1]])
+        data_arr.append([fields[0],fields[1],fields[2]])
 
 
     for line in data_arr:
-        result=map(str, algorithm_run_glob(line[1]))
+        result=map(str, algorithm_run_glob(line[2]))
         name_comositors = Histpersons.objects.create(
-            fio=line[0],
-            date=datetime.strptime(line[1].replace('\r',''), "%d.%m.%Y").date(),
+            fio_ru=line[0],
+            fio_en=line[1],
+            date=datetime.strptime(line[2].replace('\r',''), "%d.%m.%Y").date(),
             types=str(csv_file.name).split('.')[0].upper(),
             result="_".join(result)
         )
@@ -90,7 +194,7 @@ def upload_csv(request):
     return HttpResponseRedirect(request.path)
 
 @user_passes_test(lambda u: u.is_superuser)
-def upload_calend(request):
+def upload_calend_(request):
     if "GET" == request.method:
 
         for i in range(1800,2225):
@@ -117,6 +221,36 @@ def upload_calend(request):
                         except:
                             pass
         return HttpResponseRedirect('/')
+
+@user_passes_test(lambda u: u.is_superuser)
+def upload_calend(request):
+    if "GET" == request.method:
+        data_temp=[]
+        for i in range(1800,2225):
+            for j in range(1,13):
+                curr_culend=calend(j,i)
+                for k in curr_culend.items():
+                    if k[1]!="" and 'class' not in k[0] and k[0][0]=='d':
+                        curr_date_cal=''
+                        if k[1]<10:
+                            curr_date_cal+='0'
+                        if j<10:
+                            curr_date_cal+=str(k[1])+'.'+'0'+str(j)+'.'+str(i)
+                        else:
+                            curr_date_cal+=str(k[1])+'.'+str(j)+'.'+str(i)
+                        result=map(str, algorithm_run_glob(curr_date_cal))
+
+
+                        data_temp.append(Calendata(
+                                date=datetime.strptime(curr_date_cal, "%d.%m.%Y").date(),
+                                note='',
+                                result="_".join(result)
+                        ))
+
+        #print(data_temp)
+        Calendata.objects.bulk_create(data_temp)
+        return HttpResponseRedirect('/')
+
 
 def csrf_failure(request, reason=""):
     return render(request, path_to_tmps['403'])

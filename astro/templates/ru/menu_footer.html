@@ -111,8 +111,8 @@ background: #102431;
                 </ul>
 					
 					<ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen">
-					<button type="button" class="btn btn-login align-self-center" data-bs-toggle="modal" data-bs-target="#login-register-form" style="border: 1px solid #FFCE8E; margin-top: 5px;">LOGIN</button>
-					<button type="button" class="btn btn-register align-self-center" data-bs-toggle="modal" data-bs-target="#register-login-form" style="border: 1px solid #FFCE8E; margin-top: 5px;width:90px">SIGN UP</button>
+					<button type="button" class="btn btn-login align-self-center" data-bs-toggle="modal" data-bs-target="#login-register-form" style="border: 1px solid #FFCE8E; margin-top: 5px;">ВОЙТИ</button>
+					<button type="button" class="btn btn-register align-self-center" data-bs-toggle="modal" data-bs-target="#register-login-form" style="border: 1px solid #FFCE8E; margin-top: 5px;width:120px">РЕГИСТРАЦИЯ</button>
 					</ul>
 					{% else %}
 					<ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen" style="margin-top: 10px;">
@@ -124,7 +124,7 @@ background: #102431;
 					<h1 class="navbar-nav">
 					<a href="#" class="nav-item nav-link" data-toggle="dropdown">{{request.user.username}}</a>
 					</h1>
-					<button type="button" class="btn btn-login align-self-center" data-bs-toggle="modal" style="border: 1px solid #FFCE8E;"><a href="{% url 'logout' %}">LOGOUT</a></button>
+					<button type="button" class="btn btn-login align-self-center" data-bs-toggle="modal" style="border: 1px solid #FFCE8E;"><a href="{% url 'logout' %}">ВЫЙТИ</a></button>
 					</ul>
 					{% endif %}
                         <div class="modal fade" role="dialog" id="login-register-form" style="background: rgba(1, 1, 1, .7);">
@@ -316,7 +316,7 @@ background: #102431;
 													<div class="contact100-form-checkbox">
 													  <input class="input-checkbox100" type="checkbox" value="" id="flexCheckDefault2">
 													  <label class="label-checkbox100" for="flexCheckDefault2">
-														Я согласен с условиями <a href="<!--{#% url 'agreement' %}" class="label-checkbox100_2" target="_blank">пользовательского соглашения</a>
+														Я согласен с условиями <a href="<!--{#% url 'agreement_ru' %}" class="label-checkbox100_2" target="_blank">пользовательского соглашения</a>
 													  </label>
 													</div>
 													
@@ -424,7 +424,7 @@ background: #102431;
 			<img src="{% static 'images/center_logo.png' %}" align="center" style="max-height: 100px;">
 		</a>
 		</div>
-		<p style="color:white;font-size: 16px;" align="center">Click on the image to go to the page with the algorithm</p>
+		<p style="color:white;font-size: 16px;" align="center">Нажмите на изображение, чтобы перейти на страницу с алгоритмом</p>
 	 </div>	
 	</div>
     {% else %}
@@ -433,8 +433,8 @@ background: #102431;
 		<div class="scale" align="center" style="margin-top: 100px;">
 			<img src="{% static 'images/center_logo.png' %}" align="center" style="max-height: 100px;">
 		</div>
-		<p style="color:white;font-size: 24px;" align="center">Welcome</p>
-		<p style="color:white;font-size: 16px;" align="center">Login or sign up to get access to the astronomical calendar</p>
+		<p style="color:white;font-size: 24px;" align="center">Добро пожаловать!</p>
+		<p style="color:white;font-size: 16px;" align="center">Войдите в систему или зарегистрируйтесь, чтобы получить доступ к астрономическому календарю</p>
 	 </div>	
 	</div>
 	{% endif %}
@@ -450,15 +450,15 @@ background: #102431;
 				
 					<div class="col-md-14 text-center">
 						<p class="menu" style="margin-top:2px; padding-top: 10px;">
-							<a href="{% url 'commercial_ru' %}" class="footer">LINKS</a>
-							<a href="{% url 'description_ru' %}" class="footer">DESCRIOPTION</a>
-							<a href="{% url 'contacts_ru' %}" class="footer">CONTACTS</a>
-							<a href="{% url 'video_ru' %}" class="footer">VIDEO</a>
+							<a href="{% url 'commercial_ru' %}" class="footer">ПАРТНЕРЫ</a>
+							<a href="{% url 'description_ru' %}" class="footer">ОПИСАНИЕ</a>
+							<a href="{% url 'contacts_ru' %}" class="footer">КОНТАКТЫ</a>
+							<a href="{% url 'video_ru' %}" class="footer">ВИДЕО</a>
 						{% if request.user.is_authenticated %}
 							<!--<a href="#" class="footer">НОВОСТИ</a>-->
-							<a href="{% url 'favorites_ru' %}" class="footer">FAVORITES</a>
-							<a href="{% url 'tarif_ru' %}" class="footer">COST</a>
-							<a href="#" class="footer">INTSTRUCTION</a>
+							<a href="{% url 'favorites_ru' %}" class="footer">ИЗБРАННОЕ</a>
+							<a href="{% url 'tarif_ru' %}" class="footer">ТАРИФЫ</a>
+							<a href="#" class="footer">ИНСТРУКЦИЯ</a>
 							<!--<a href="#" class="footer">СОТРУДНИЧЕСТВО</a>-->
 						{% endif %}
 						</p>

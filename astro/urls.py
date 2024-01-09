@@ -59,7 +59,7 @@ urlpatterns = [
 #system
     path('logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('upload/csv/', views.upload_csv, name='upload_csv'),
-    path('upload/data/', views.upload_calend, name='upload_csv'),
+    path('upload/data/', views.upload_calend, name='upload_calend'),
 
     #path('login_reg/', views.Login_RegView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='login_'),
     #path('activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/',views.activate, name='activate'),

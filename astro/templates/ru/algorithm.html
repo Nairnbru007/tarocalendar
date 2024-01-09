@@ -1,4 +1,4 @@
-{% extends  'menu_footer.html' %}
+{% extends  'ru/menu_footer.html' %}
 {% load static %}
 {% block title %} Algorithm {% endblock %}
 
@@ -338,8 +338,8 @@
                                                 <a class="nav-item drop " data-toggle="dropdown" readonly>Historical persons<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
                                                 <div class="dropdown-menu" style="max-height: 400px;overflow-y: scroll; margin-top: -3px;">
                                                     {% for hstp in hstprs1 %}
-                                                        <!--<a href="#" class="dropdown-item">{{hstp.fio}} <input type="text" class="center_input green"  value="{{hstp.count}}" style="border-radius:50%;" ><br>{{hstp.date|date:"d M Y"}}<br>-->
-                                                        <a class="dropdown-item" readonly>{{hstp.fio}}<br>{{hstp.date|date:"d M Y"}} ({{hstp.types}})<br>
+                                                        <!--<a href="#" class="dropdown-item">{{hstp.fio_ru}} <input type="text" class="center_input green"  value="{{hstp.count}}" style="border-radius:50%;" ><br>{{hstp.date|date:"d M Y"}}<br>-->
+                                                        <a class="dropdown-item" readonly>{{hstp.fio_ru}}<br>{{hstp.date|date:"d M Y"}} ({{hstp.types}})<br>
                                                             {% load split %}
                                                             {% with hstp.result|split:"_" as rests %}
                                                                 {% for rest in rests %}

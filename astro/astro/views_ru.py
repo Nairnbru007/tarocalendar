@@ -1,20 +1,16 @@
 from django.shortcuts import render
-
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
 from astro.astro.serializers import UserSerializer, GroupSerializer
-
 from rest_framework.renderers import TemplateHTMLRenderer
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.views.generic import View
 from django.views.generic import View, CreateView, ListView
 from django.contrib.auth import get_user_model
-
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-
 from .models import *
 from astro.astro.forms import *
 from django.contrib.auth import authenticate, login
@@ -27,174 +23,29 @@ from django.utils.encoding import force_bytes, force_str
 from .tokens import account_activation_token, password_reset_token
 from django.core.mail import EmailMessage
 import json
-from datetime import datetime
-from datetime import date,timedelta
-import calendar
+from datetime import datetime, date, timedelta
+
 from django.db.models import Q
 from django.shortcuts import redirect
-
-
 #import requests
 from os import walk
 import os
 import random
-
 import locale
 from yookassa import Configuration
 import var_dump as var_dump
 from yookassa import Payment
 import uuid
-
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import UserPassesTestMixin
 
 Configuration.account_id = '951224'
 Configuration.secret_key = 'test_POrgWM4SZZ2RUTtMIKD1ByjrXaZ_etZ1KXgG7HPChck'
 
-def hist_pers_show(inp_arr):
-    hp_arr={}
-    for i in range(1,9):
-        hp_arr['c1'+str(i)]=inp_arr[i-1]
-    return hp_arr
-
-def algorithm_run_left(left_arr,the_date_str):
-    temp=algorithm_run_glob(the_date_str)
-    for i in range(1,9):
-        left_arr['x1'+str(i)]=str(temp[i-1])
-    return [{**left_arr},temp]
-
-def algorithm_run_right(right_arr,the_date_str):
-    temp=algorithm_run_glob(the_date_str)
-    for i in range(1,9):
-        right_arr['x2'+str(i)]=str(temp[i-1])
-    return [{**right_arr},temp]
-
-def algorithm_run_center(left_arr,center_arr,right_arr,left,right,the_date_str):
-    temp=algorithm_run_glob(the_date_str)
-    if left!=True:
-        for i in range(1,9):
-            left_arr['x1'+str(i)]=''
-    if right!=True:
-        for i in range(1,9):
-            right_arr['x2'+str(i)]=''
-    if left==True or right==True:
-        for i in range(1,9):
-            center_arr['x3'+str(i)]=str(temp[i-1])
-    else:
-        for i in range(1,9):
-            center_arr['x3'+str(i)]=''
-    return {**left_arr,**center_arr,**right_arr}
-
-def sum_digits(n):
-    s = 0
-    while n:
-        s += n % 10
-        n //= 10
-    return s
-
-def algorithm_run_glob(the_date_str):
-    # d.m.q.b.e.f.k.l
-    # 1.2.3.4.5.6.7.8
-    temp=the_date_str.split('.')
-
-    d=int(temp[0])
-    if d>22:
-        d=sum_digits(d)
-    m=int(temp[1])
-    y=int(temp[2])
-    q=y
-    if q>22:
-        q=sum_digits(q)
-    b=d+m
-    if b>22:
-        b=sum_digits(b)
-    e=d+q
-    if e>22:
-        e=sum_digits(e)
-    f=m+q
-    if f>22:
-        f=sum_digits(f)
-    k=d+m+sum_digits(q)
-    l=sum_digits(k)
-    if k>22:
-        k='-'
-    elif k==19:
-        l=1
-    while l>9:
-        l=sum_digits(l)
-    temp=[d,m,q,b,e,f,k,l]
-    return temp
-
-path_to_tmps={
-'acc_active_email':'ru/acc_active_email.html',#+
-'agreement':'ru/agreement.html',#+
-'algorithm':'ru/algorithm.html',#+
-'commercial':'ru/commercial.html',#+
-'confirmation_acc':'ru/confirmation_acc.html',#+
-'contacts':'ru/contacts.html',#+
-'description':'ru/description.html',#+
-'favorites':'ru/favorites.html',#+
-'menu_footer':'ru/menu_footer.html',#+
-'offer':'ru/offer.html',#+
-'password_reset_confirm':'ru/password_reset_confirm.html',#-
-'password_reset_mail':'ru/password_reset_mail.html',#+
-'tarif':'ru/tarif.html',#+
-'video':'ru/video.html',#+
-}
-
-months_num_={
-    1:"Январь",
-    2:"Февраль",
-    3:"Март",
-    4:"Апрель",
-    5:"Май",
-    6:"Июнь",
-    7:"Июль",
-    8:"Август",
-    9:"Сентябрь",
-    10:"Октябрь",
-    11:"Ноябрь",
-    12:"Декабрь",
-    "Январь":1,
-    "Февраль":2,
-    "Март":3,
-    "Апрель":4,
-    "Май":5,
-    "Июнь":6,
-    "Июль":7,
-    "Август":8,
-    "Сентябрь":9,
-    "Октябрь":10,
-    "Ноябрь":11,
-    "Декабрь":12,
-}
-months_num={
-    1:"January",
-    2:"Februare",
-    3:"March",
-    4:"April",
-    5:"May",
-    6:"June",
-    7:"July",
-    8:"August",
-    9:"September",
-    10:"October",
-    11:"November",
-    12:"December",
-    "January":1,
-    "Februare":2,
-    "March":3,
-    "April":4,
-    "May":5,
-    "June":6,
-    "July":7,
-    "August":8,
-    "September":9,
-    "October":10,
-    "November":11,
-    "December":12,
-}
-
+from .dicts_algor import *
+path_to_tmps=path_to_tmps_ru
+months_num=months_num_ru
+language_dict = language_dict
 def calend(month,year,left_arr="",right_arr=""):
     arr={}
     curr_month_dates = calendar.monthcalendar(year, month)
@@ -204,14 +55,11 @@ def calend(month,year,left_arr="",right_arr=""):
             arr["d"+str(i+1)+str(j+1)]=""
             #arr["class_d"+str(i+1)+str(j+1)]=""
             arr["result_d"+str(i+1)+str(j+1)]=""
-    #print(arr)
-
     for i in range(0, len(curr_month_dates) ):
         for j in range(0, len(curr_month_dates[i]) ):
             if curr_month_dates[i][j]==0:
                 curr_month_dates[i][j]=""
             arr["d"+str(i+1)+str(j+1)]=curr_month_dates[i][j]
-
             curr_date_cal=''
             if arr["d"+str(i+1)+str(j+1)]!='':
                 if arr["d"+str(i+1)+str(j+1)]<10:
@@ -220,16 +68,11 @@ def calend(month,year,left_arr="",right_arr=""):
                     curr_date_cal+=str(arr["d"+str(i+1)+str(j+1)])+'.'+'0'+str(month)+'.'+str(year)
                 else:
                     curr_date_cal+=str(arr["d"+str(i+1)+str(j+1)])+'.'+str(month)+'.'+str(year)
-                #print(curr_date_cal)
-
-                #filter
                 if left_arr!="" or right_arr!="":
                     obj_db=Calendata.objects.get(date=datetime.strptime(curr_date_cal, '%d.%m.%Y'))
-                    #tcd=list(map(int,obj_db.result.split('_')))
                     arr["result_d"+str(i+1)+str(j+1)]=str(obj_db.result)
     arr['cal_month']=months_num[month]
     arr['cal_year']=year
-
     if month==1:
         arr['last_month']=months_num[12]
         arr['next_month']=months_num[month+1]
@@ -241,129 +84,14 @@ def calend(month,year,left_arr="",right_arr=""):
         arr['last_month']=months_num[month-1]
         arr['last_month']=months_num[month-1]
     return arr
-def save_render(data):
-    arr={}
-    for i in data:
-        if i!="csrfmiddlewaretoken":
-            arr[i]=data[i]
-    return arr
-
-# (start(day, month), end(day, month))
-sign_dates = (
-    ((20, 3), (19, 4)),  # Aries
-    ((20, 4), (20, 5)),
-    ((21, 5), (20, 6)),
-    ((21, 6), (22, 7)),
-    ((23, 7), (22, 8)),
-    ((23, 8), (22, 9)),
-    ((23, 9), (22, 10)),
-    ((23, 10), (21, 11)),
-    ((22, 11), (21, 12)),
-    ((22, 12), (19, 1)),
-    ((20, 1), (17, 2)),
-    ((18, 2), (19, 3)),  # Pisces
-)
-
-# English
-en_dict = (
-    (0, "Aries"),
-    (1, "Taurus"),
-    (2, "Gemini"),
-    (3, "Cancer"),
-    (4, "Leo"),
-    (5, "Virgo"),
-    (6, "Libra"),
-    (7, "Scorpio"),
-    (8, "Sagittarius"),
-    (9, "Capricorn"),
-    (10, "Aquarius"),
-    (11, "Pisces"),
-)
-
-# Russian
-ru_dict = (
-    (0, "Овен"),
-    (1, "Телец"),
-    (2, "Близнецы"),
-    (3, "Рак"),
-    (4, "Лев"),
-    (5, "Дева"),
-    (6, "Весы"),
-    (7, "Скорпион"),
-    (8, "Стрелец"),
-    (9, "Козерог"),
-    (10, "Водолей"),
-    (11, "Рыбы"),
-)
-
-# Num
-num_dict = (
-    (0, "1"),
-    (1, "2"),
-    (2, "3"),
-    (3, "4"),
-    (4, "5"),
-    (5, "6"),
-    (6, "7"),
-    (7, "8"),
-    (8, "9"),
-    (9, "10"),
-    (10, "11"),
-    (11, "12"),
-)
-
-images = {
-    'fire':'images/fire.png',
-    'earth':'images/earth.png',
-    'water':'images/water.png',
-    'air':'images/air.png',
-    'empty':'images/Empty.png',
-}
-
-language_dict = {
-    'en_US': en_dict,
-    'ru_RU': ru_dict,
-    'num': num_dict,
-    None: num_dict
-}
-
-tarif_dict={
-    'Start':1,
-    'Standart':2,
-    'Full':3
-}
+def hist_pers_show(inp_arr):
+    hp_arr={}
+    for i in range(1,9):
+        hp_arr['c1'+str(i)]=inp_arr[i-1]
+    return hp_arr
 
 # @todo use gettext and etc
-def _(word_index, language=None):
-    if language is not None:
-        return language_dict.get(language)[word_index][1]
-    language = locale.getlocale()
-    return language_dict.get(language[0], language_dict.get('en_US'))[word_index][1]
 
-def get_zodiac_sign(d, month=None, language=None):
-    # params
-    if month is None:
-        month = int(d.month)
-        day = int(d.day)
-    else:
-        day = int(d)
-        month = int(month)
-    # calculate
-    for index, sign in enumerate(sign_dates):
-        if (month == sign[0][1] and day >= sign[0][0]) or (month == sign[1][1] and day <= sign[1][0]):
-            return _(index, language)
-    return ''
-def get_images_by_zod(zod_num_get):
-    temp=""
-    if zod_num_get in ["1","5","9"]:
-        temp="fire"
-    if zod_num_get in ["2","6","10"]:
-        temp="earth"
-    if zod_num_get in ["3","7","11"]:
-        temp="air"
-    if zod_num_get in ["4","8","12"]:
-        temp="water"
-    return images[temp]
 
 def user_is_actual(self):
     print(u.role)
@@ -1164,7 +892,7 @@ class Algorithm(View):
                     if self.request.user.role >= 3:
                         for hp1 in Histpersons.objects.all():
                             count_matches=0
-                            thp1=hp1.detail()[1].split('_')
+                            thp1=hp1.detail()[2].split('_')
                             thp1_arr=[0,0,0,0,0,0,0,0]
                             for i in range(8):
                                 if thp1[i]!="-":
@@ -1178,7 +906,7 @@ class Algorithm(View):
                                             thp1_arr[i]=1.1
                             count_matches=sum(thp1_arr)
                             if count_matches>0:
-                                hist_pers_1["hstprs1"].append({'fio':hp1.fio,'result':hp1.result,'count':count_matches,'date':hp1.date, 'types':hp1.types.title()})
+                                hist_pers_1["hstprs1"].append({'fio_ru':hp1.fio_ru,'result':hp1.result,'count':count_matches,'date':hp1.date, 'types':hp1.types.title()})
                         hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)
                         hist_pers_1["hstprs1_count"]=len(hist_pers_1["hstprs1"])
 
@@ -1205,7 +933,7 @@ class Algorithm(View):
                     if self.request.user.role >= 3:
                         for hp2 in Histpersons.objects.all():
                             count_matches=0
-                            thp2=hp2.detail()[1].split('_')
+                            thp2=hp2.detail()[2].split('_')
                             thp2_arr=[0,0,0,0,0,0,0,0]
                             for i in range(8):
                                 if thp2[i]!="-":
@@ -1219,7 +947,7 @@ class Algorithm(View):
                                             thp2_arr[i]=1.1
                             count_matches=sum(thp2_arr)
                             if count_matches>0:
-                                hist_pers_2["hstprs2"].append({'fio':hp2.fio,'result':hp2.result,'count':count_matches,'date':hp2.date, 'types':hp2.types.title()})
+                                hist_pers_2["hstprs2"].append({'fio_ru':hp2.fio_ru,'result':hp2.result,'count':count_matches,'date':hp2.date, 'types':hp2.types.title()})
                         hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)
                         hist_pers_2["hstprs2_count"]=len(hist_pers_2["hstprs2"])
 
@@ -1938,69 +1666,6 @@ class Favorites_View(Up_role,Up_date,ListView):
             return HttpResponseRedirect('/favorites/')
 
         return HttpResponseRedirect('/favorites/')
-
-@user_passes_test(lambda u: u.is_superuser)
-def upload_csv(request):
-    data = {}
-    if "GET" == request.method:
-        return render(request, "upload.html", data)
-    # if not GET, then proceed
-    csv_file = request.FILES["csv_file"]
-    if not csv_file.name.endswith('.csv'):
-        messages.error(request,'File is not CSV type')
-        return HttpResponseRedirect(request.path)
-        #if file is too large, return
-    if csv_file.multiple_chunks():
-        messages.error(request,"Uploaded file is too big (%.2f MB)." % (csv_file.size/(1000*1000),))
-        return HttpResponseRedirect(request.path)
-    file_data = csv_file.read().decode("utf-8")
-    lines = file_data.split("\n")
-    data_arr = []
-    for line in lines:
-        fields = line.split(";")
-        data_arr.append([fields[0],fields[1]])
-
-
-    for line in data_arr:
-        result=map(str, algorithm_run_glob(line[1]))
-        name_comositors = Histpersons.objects.create(
-            fio=line[0],
-            date=datetime.strptime(line[1].replace('\r',''), "%d.%m.%Y").date(),
-            types=str(csv_file.name).split('.')[0].upper(),
-            result="_".join(result)
-        )
-        name_comositors.save()
-    messages.error(request,'File Ok')
-    return HttpResponseRedirect(request.path)
-
-@user_passes_test(lambda u: u.is_superuser)
-def upload_calend(request):
-    if "GET" == request.method:
-
-        for i in range(1800,2225):
-            for j in range(1,13):
-                curr_culend=calend(j,i)
-                for k in curr_culend.items():
-                    if k[1]!="" and 'class' not in k[0] and k[0][0]=='d':
-                        curr_date_cal=''
-                        if k[1]<10:
-                            curr_date_cal+='0'
-                        if j<10:
-                            curr_date_cal+=str(k[1])+'.'+'0'+str(j)+'.'+str(i)
-                        else:
-                            curr_date_cal+=str(k[1])+'.'+str(j)+'.'+str(i)
-                        result=map(str, algorithm_run_glob(curr_date_cal))
-
-                        try:
-                            data_temp = Calendata.objects.create(
-                                date=datetime.strptime(curr_date_cal, "%d.%m.%Y").date(),
-                                note='',
-                                result="_".join(result)
-                            )
-                            data_temp.save()
-                        except:
-                            pass
-        return HttpResponseRedirect('/')
 
 def activate(request, uidb64, token):
     User = get_user_model()

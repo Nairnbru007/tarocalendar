@@ -48,6 +48,8 @@ class Payments(models.Model):
 
 class Favorites(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='User',on_delete = models.DO_NOTHING)
+    name = models.CharField(max_length=50, null=True)
+    rakurs_name = models.CharField(max_length=50, null=True)
     date_left = models.DateField(null=True)
     date_right = models.DateField(null=True)
     date = models.DateField(null=True, default=datetime.date.today)
@@ -77,18 +79,19 @@ class Favorites(models.Model):
 
         
 class Histpersons(models.Model):
-    fio = models.CharField(max_length=1000, null=True)
+    fio_ru = models.CharField(max_length=1000, null=True)
+    fio_en = models.CharField(max_length=1000, null=True)
     date = models.DateField(null=True)
     result = models.CharField(max_length=1000, null=True)
     types = models.CharField(max_length=1000, null=True)
     
     class Meta:
-        unique_together = ('fio', 'date',)
+        unique_together = ('fio_ru', 'fio_en', 'date',)
     
     def detail(self):
-        return [self.fio,self.result]
+        return [self.fio_ru,self.fio_en,self.result]
     
 class Calendata(models.Model):
-    date = models.DateField(null=True)
+    date = models.DateField(null=True,unique=True)
     result = models.CharField(max_length=1000, null=True)
     note = models.CharField(max_length=1000, null=True)

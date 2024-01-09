@@ -1,4 +1,4 @@
-{% extends  'index.html' %}
+{% extends  'ru/menu_footer.html' %}
 {% load static %}
 {% block title %} Favourites {% endblock %}
 {% block content %}
@@ -372,16 +372,16 @@ for (let j = 1; j <= {{ object_list|length }}; j++)
                         </div>
                       <span class="align-self-center page" style="padding-left:0px; position: initial;">
                           {% if page_obj.has_previous %}
-                              <a href="{% url 'favorites' %}?page=1"><img src="{% static 'images/previous.png' %}" class="align-self-center prev" alt=""><img src="{% static 'images/previous.png' %}" class="align-self-center prev_2" alt=""></a>
-                              <a href="{% url 'favorites' %}?page={{ page_obj.previous_page_number }}"><img src="{% static 'images/previous.png' %}" class="align-self-center next"  alt=""></a>
+                              <a href="{% url 'favorites_ru' %}?page=1"><img src="{% static 'images/previous.png' %}" class="align-self-center prev" alt=""><img src="{% static 'images/previous.png' %}" class="align-self-center prev_2" alt=""></a>
+                              <a href="{% url 'favorites_ru' %}?page={{ page_obj.previous_page_number }}"><img src="{% static 'images/previous.png' %}" class="align-self-center next"  alt=""></a>
 
                           {% endif %}
                           <span class="align-self-center page span_pagination">
                               lines {{ page_obj.start_index }}-{{ page_obj.end_index }}
                           </span>
                           {% if page_obj.has_next %}
-                              <a href="{% url 'favorites' %}?page={{ page_obj.next_page_number }}"><img src="{% static 'images/next.png' %}" class="align-self-center next" alt=""></a>
-                              <a href="{% url 'favorites' %}?page={{ page_obj.paginator.num_pages }}"><img src="{% static 'images/next.png' %}" class="align-self-center last" alt=""><img src="{% static 'images/next.png' %}" class="align-self-center last_2" alt=""></a>
+                              <a href="{% url 'favorites_ru' %}?page={{ page_obj.next_page_number }}"><img src="{% static 'images/next.png' %}" class="align-self-center next" alt=""></a>
+                              <a href="{% url 'favorites_ru' %}?page={{ page_obj.paginator.num_pages }}"><img src="{% static 'images/next.png' %}" class="align-self-center last" alt=""><img src="{% static 'images/next.png' %}" class="align-self-center last_2" alt=""></a>
                           {% endif %}
                       </span>
                     </div>

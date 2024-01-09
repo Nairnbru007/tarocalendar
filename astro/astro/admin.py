@@ -48,7 +48,7 @@ class Groupfavorites(admin.ModelAdmin):
 
 @admin.register(Histpersons)
 class Histpersons(admin.ModelAdmin):
-	list_display = ['fio','date','result','types']
+	list_display = ['fio_ru','fio_en','date','result','types']
 	
 @admin.register(Calendata)
 class Calendata(admin.ModelAdmin):
