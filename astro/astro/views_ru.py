@@ -649,7 +649,6 @@ class Algorithm(View):
 
     def get(self, request, *args, **kwargs):
 
-
         try:
             temp_user=User.objects.get(pk=request.user.id)
             if temp_user.date_end < date.today():
@@ -730,8 +729,6 @@ class Algorithm(View):
         register_form = self.register_form
         forgot_password_form = self.forgot_password_form
         reset_password_form = self.reset_password_form
-
-
 
         if request.POST.get('login'):
             login_form = LoginForm(data=request.POST)
@@ -867,8 +864,9 @@ class Algorithm(View):
             hist_pers_2={"hstprs2":[],"hstprs2_count":0}
             result_1_9_right=[]
             result_1_9_left=[]
-            #hist_pers={"hstprs1":Histpersons.objects.all()}
 
+            result_fio={}
+            #hist_pers={"hstprs1":Histpersons.objects.all()}
 
             try:
                 temp_gr=data['groups_name']
@@ -879,6 +877,12 @@ class Algorithm(View):
 
             try:
                 if data['date1']!='':
+                    if data['fio1']!='':
+                        result_fio=fio_to_num(data['fio1'],'1')
+                        #result_fio['fio11'] = '1'
+                        #result_fio['fio12'] = '2'
+                        #result_fio['fio13'] = '3'
+
                     left=True
                     temp=data['date1'].split('.')
                     zod_left=get_zodiac_sign(temp[0],temp[1],"num")
@@ -918,6 +922,8 @@ class Algorithm(View):
 
             try:
                 if data['date2']!='':
+                    if data['fio1'] != '':
+                        result_fio = fio_to_num(data['fio2'], '2')
                     #context={**context,'scales22':'checked'}
                     right=True
                     temp=data['date2'].split('.')
@@ -962,6 +968,7 @@ class Algorithm(View):
                 context_zods['zod_'+zod_left]=context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_red.png'
 
             context={**context,**context_zods}
+            context = {**context, **result_fio}
 
             #print(result_1_9_left)
             curr_culend=calend(date.today().month, date.today().year,result_1_9_left,result_1_9_right)

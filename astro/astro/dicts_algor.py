@@ -282,3 +282,52 @@ def get_images_by_zod(zod_num_get):
     if zod_num_get in ["4","8","12"]:
         temp="water"
     return images[temp]
+
+alphabet={
+    'a':1,'b':2,'c':3,'d':4,'e':5,'f':6,
+    'g':7,'h':8,'i':9,'j':10,'k':11,'l':12,
+    'm':13,'n':14,'o':15,'p':16,'q':17,'r':18,
+    's':19,'t':20,'u':21,'v':22,'w':23,'x':24,'y':25,'z':26,
+
+    'а':1,'б':2,'в':3,'г':4,'д':5,'е':6,'ё':6,
+    'ж':7,'з':8,'и':9,'й':10,'к':11,'л':12,
+    'м':13,'н':14,'о':15,'п':16,'р':17,'с':18,
+    'т':19,'у':20,'ф':21,'х':22,'ц':23,'ч':24,
+    'ш':25,'щ':26,'ъ':27,'ы':28,'ь':29,'э':30,'ю':31,'я':32,
+}
+def fio_to_num(fio_str:str,index:str):
+    summ1 = 0
+    summ2 = 0
+    summ3 = 0
+    fio_temp = fio_str.replace('-','').lower()
+    fio_temp=fio_temp.split(' ')
+    print(fio_temp)
+    try:
+        for i in fio_temp[0]:
+            if i in alphabet:
+                summ1=summ1+alphabet[i]
+    except:
+        print('error fio '+index+' [0]')
+        pass
+    try:
+        for i in ''.join(fio_temp[1:]):
+            if i in alphabet:
+                summ2=summ2+alphabet[i]
+                print(i)
+    except:
+        print('error fio '+index+' [1]')
+        pass
+    summ3=summ1+summ2
+
+    while summ1 >= 23:
+        summ1 = sum_digits(summ1)
+    while summ2 >= 23:
+        summ2 = sum_digits(summ2)
+    while summ3 >= 23:
+        summ3 = sum_digits(summ3)
+    temp={}
+    temp['fio'+index+'1'] = str(summ1)
+    temp['fio'+index+'2'] = str(summ2)
+    temp['fio'+index+'3'] = str(summ3)
+    print(temp)
+    return temp

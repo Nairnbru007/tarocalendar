@@ -116,7 +116,7 @@
                             <div class="col align-self-center circle__filter2 flex">
                                 <div class="inp_date_3 flex" style="margin-top: -6px;">
                                     <input type="text" name="fio11" class="center_input"  value="{{ fio11 }}" readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
-                                    <input type="text" name="fio12" class="center_input"  value="{{fio12 }}" readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                    <input type="text" name="fio12" class="center_input"  value="{{ fio12 }}" readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
                                     <input type="text" name="fio13" class="center_input"  value="{{ fio13 }}"  readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
                                 </div>
                                 <div class="inp_date_3 flex" style="margin-top: 0px;">
@@ -146,7 +146,7 @@
                                             id="text_left_fio"
                                             class="calendar__top_input input-number"
                                             placeholder="Name and Surname"
-                                            pattern="[A-Za-z$\-]+"
+                                            pattern="[A-Za-zА-Яа-я$\-\s]+"
                                             title="insert only the words"
                                             style="width: 255px;"
                                             value="{{ fio1 }}"
@@ -176,7 +176,7 @@
                                             name="fio2"
                                             class="calendar__top_input input-number"
                                             placeholder="Name and Surname"
-                                            pattern="[A-Za-z$\-]+"
+                                            pattern="[A-Za-zА-Яа-я$\-\s]+"
                                             title="insert only the words"
                                             style="width: 255px;"
                                             value="{{ fio2 }}"
@@ -330,12 +330,12 @@
                     <div class="container">
                         <div class="row" style="margin-top: 1px;">
                             <div class="col align-self-start">
-                                <div class="flex cat2_l" style="justify-content:start; margin-left: -5%; margin-top: 0%;">
+                                <div class="flex cat2_l" style="justify-content:start; margin-left: -15%; margin-top: 0%;">
                                     <nav class="navbar navbar-expand-md navbar-dark">
                                         <ul class="navbar-nav ml-auto">
 
                                             <li class="dropdown dropdown-left-hp">
-                                                <a class="nav-item drop " data-toggle="dropdown" readonly>Historical persons<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
+                                                <a class="nav-item drop " data-toggle="dropdown" readonly>Исторические личности<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
                                                 <div class="dropdown-menu" style="max-height: 400px;overflow-y: scroll; margin-top: -3px;">
                                                     {% for hstp in hstprs1 %}
                                                         <!--<a href="#" class="dropdown-item">{{hstp.fio_ru}} <input type="text" class="center_input green"  value="{{hstp.count}}" style="border-radius:50%;" ><br>{{hstp.date|date:"d M Y"}}<br>-->
@@ -368,7 +368,7 @@
                                         <ul class="navbar-nav ml-auto">
 
                                             <li class="dropdown dropdown-right-hp">
-                                                <a class="nav-item drop" data-toggle="dropdown" readonly>Historical persons<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
+                                                <a class="nav-item drop" data-toggle="dropdown" readonly>Исторические личности<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
                                                 <div class="dropdown-menu" style="max-height: 400px;overflow-y: scroll; margin-top: -3px;">
                                                     {% for hstp in hstprs2 %}
                                                         <a class="dropdown-item" readonly>{{hstp.fio}}<br>{{hstp.date|date:"d M Y"}} ({{hstp.types}})<br>
@@ -498,7 +498,7 @@
                                 <div class="col align-self-center cat7" style="height: 10px;">
                                     <div class="circle__filter2 flex" style="margin-bottom: -10px;">
                                         <div class="flex month_p_m">
-                                            <input type="submit" style="width: 95px; right: 5px;" class="circle__filter_block_month_m" value="<< MON" name="last_month">
+                                            <input type="submit" style="width: 95px; right: 5px;" class="circle__filter_block_month_m" value="<< Мес" name="last_month">
                                             <div class="">
                                                 <div class="jq-selectbox jqselect circle__filter__select-main focused opened">
                                                     <div class="jq-selectbox__select jq-selectbox__select3">
@@ -515,7 +515,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input type="submit" style="width: 95px; left: 10px;" class="circle__filter_block_month_p" value="MON >>" name="next_month">
+                                            <input type="submit" style="width: 95px; left: 10px;" class="circle__filter_block_month_p" value="Мес >>" name="next_month">
                                         </div>
                                     </div>
                                     <!-- <div class="circle__filter2 flex">
@@ -529,7 +529,7 @@
 
                                         <nav class="navbar navbar-expand-md navbar-dark">
                                             <select type="text" name="groups_name" class="nav-item drop" style="position: relative; letter-spacing: 0px;" >
-                                                <option selected disabled>CHOOSE GROUP</option>
+                                                <option selected disabled>ВЫБЕРИТЕ ГРУППУ</option>
                                                 {% for gr in grps %}
                                                     <option value="{{gr.name}}" {% if gr.name == groups_name %}selected="selected"{% endif %}>
                                                         {{gr.name}}
