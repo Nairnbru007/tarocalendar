@@ -48,8 +48,10 @@ class Payments(models.Model):
 
 class Favorites(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name='User',on_delete = models.DO_NOTHING)
-    name = models.CharField(max_length=50, null=True)
-    rakurs_name = models.CharField(max_length=50, null=True)
+    name_left = models.CharField(max_length=50, null=True)
+    rakurs_name_left = models.CharField(max_length=50, null=True)
+    name_right = models.CharField(max_length=50, null=True)
+    rakurs_name_right = models.CharField(max_length=50, null=True)
     date_left = models.DateField(null=True)
     date_right = models.DateField(null=True)
     date = models.DateField(null=True, default=datetime.date.today)
