@@ -224,21 +224,21 @@ def algorithm_run_glob(the_date_str):
     temp=the_date_str.split('.')
 
     d=int(temp[0])
-    if d>22:
+    while d>22:
         d=sum_digits(d)
     m=int(temp[1])
     y=int(temp[2])
     q=y
-    if q>22:
+    while q>22:
         q=sum_digits(q)
     b=d+m
-    if b>22:
+    while b>22:
         b=sum_digits(b)
     e=d+q
-    if e>22:
+    while e>22:
         e=sum_digits(e)
     f=m+q
-    if f>22:
+    while f>22:
         f=sum_digits(f)
     k=d+m+sum_digits(q)
     l=sum_digits(k)
@@ -289,11 +289,11 @@ alphabet={
     'm':13,'n':14,'o':15,'p':16,'q':17,'r':18,
     's':19,'t':20,'u':21,'v':22,'w':23,'x':24,'y':25,'z':26,
 
-    'а':1,'б':2,'в':3,'г':4,'д':5,'е':6,'ё':6,
-    'ж':7,'з':8,'и':9,'й':10,'к':11,'л':12,
-    'м':13,'н':14,'о':15,'п':16,'р':17,'с':18,
-    'т':19,'у':20,'ф':21,'х':22,'ц':23,'ч':24,
-    'ш':25,'щ':26,'ъ':27,'ы':28,'ь':29,'э':30,'ю':31,'я':32,
+    'а':1,'б':2,'в':3,'г':4,'д':5,'е':6,'ё':7,
+    'ж':8,'з':9,'и':10,'й':11,'к':12,'л':13,
+    'м':14,'н':15,'о':16,'п':17,'р':18,'с':19,
+    'т':20,'у':21,'ф':22,'х':23,'ц':24,'ч':25,
+    'ш':26,'щ':27,'ъ':28,'ы':29,'ь':30,'э':31,'ю':32,'я':33,
 }
 def fio_to_num(fio_str:str,index:str):
     summ1 = 0
@@ -319,11 +319,11 @@ def fio_to_num(fio_str:str,index:str):
         pass
     summ3=summ1+summ2
 
-    while summ1 >= 23:
+    while summ1 > 22:
         summ1 = sum_digits(summ1)
-    while summ2 >= 23:
+    while summ2 > 22:
         summ2 = sum_digits(summ2)
-    while summ3 >= 23:
+    while summ3 > 22:
         summ3 = sum_digits(summ3)
     temp={}
     temp['fio'+index+'1'] = str(summ1)

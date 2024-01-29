@@ -17,9 +17,6 @@ import os.path
 BASE_DIR = Path(__file__).resolve().parent.parent
 PROJECT_PATH = os.path.realpath(os.path.dirname(__file__))
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-%w%*a!7+pmarn)jxsrd7^x5!nm#6y3k*o&(d7cqy&ku20*)ab9'
 
@@ -86,9 +83,6 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
-# Database
-# https://docs.djangoproject.com/en/4.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -106,9 +100,6 @@ DATABASES = {
 #     }
 # }
 
-# Password validation
-# https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -118,18 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'OPTIONS': {
             'min_length': 6,}
     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-#     },
-#     {
-#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-#     },
+
 ]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.0/topics/i18n/
-
 
 LOGOUT_REDIRECT_URL = "main"
 LOGIN_REDIRECT_URL = "main"
@@ -137,20 +118,13 @@ LOGIN_REDIRECT_URL = "main"
 CSRF_FAILURE_VIEW = 'astro.astro.views.csrf_failure'
 #LANGUAGE_CODE = 'ru-RU'
 LANGUAGE_CODE = 'en-EN'
-
 TIME_ZONE = 'Europe/Moscow'
-
 USE_I18N = True
-
 USE_L10N = True
-
 
 TEMPUS_DOMINUS_LOCALIZE = True
 TEMPUS_DOMINUS_INCLUDE_ASSETS = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.0/howto/static-files/
 STATICFILES_DIRS = [
    os.path.join(PROJECT_PATH, "static"),
 ]
@@ -160,26 +134,12 @@ STATIC_URL = '/static/'
 SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-# Default primary key field type
-# https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'astro.Users'
 
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
-
-
-
-# EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.mail.ru'
-# EMAIL_USE_TLS = True
-# #EMAIL_USE_SSL = False
-# EMAIL_PORT = 465
-# EMAIL_HOST_USER = 'irnbru007@mail.ru'
-# EMAIL_HOST_PASSWORD = 'p86wRpjgkRq1PYt3VbL2'
-# #EMAIL_HOST_PASSWORD = 'Temp2022!'
-
 
 EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -190,12 +150,3 @@ EMAIL_HOST_USER = 'rakurstk@gmail.com'
 EMAIL_HOST_PASSWORD = 'zaijqempeptdbfqp'
 EMAIL_USE_SSL = False
 
-
-
-# EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_USE_TLS = True
-# EMAIL_PORT = 587
-# EMAIL_HOST_USER = 'irnbru00795@gmail.com'
-# EMAIL_HOST_PASSWORD = 'lfjsykciuczyivuh'
-# EMAIL_USE_SSL = False

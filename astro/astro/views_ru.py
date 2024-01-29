@@ -92,7 +92,6 @@ def hist_pers_show(inp_arr):
 
 # @todo use gettext and etc
 
-
 def user_is_actual(self):
     print(u.role)
 class Up_date(UserPassesTestMixin):

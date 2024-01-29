@@ -177,16 +177,16 @@ def upload_csv(request):
     data_arr = []
     for line in lines:
         fields = line.split(";")
-        data_arr.append([fields[0],fields[1],fields[2]])
-
+        data_arr.append([fields[0],fields[1],fields[2],fields[3],fields[4]])
 
     for line in data_arr:
         result=map(str, algorithm_run_glob(line[2]))
         name_comositors = Histpersons.objects.create(
             fio_ru=line[0],
             fio_en=line[1],
-            date=datetime.strptime(line[2].replace('\r',''), "%d.%m.%Y").date(),
-            types=str(csv_file.name).split('.')[0].upper(),
+            date=datetime.strptime(line[2], "%d.%m.%Y").date(),
+            type_ru=line[3],
+            type_en=line[4].replace('\r', ''),
             result="_".join(result)
         )
         name_comositors.save()

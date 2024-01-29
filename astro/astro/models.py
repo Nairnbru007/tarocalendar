@@ -85,7 +85,8 @@ class Histpersons(models.Model):
     fio_en = models.CharField(max_length=1000, null=True)
     date = models.DateField(null=True)
     result = models.CharField(max_length=1000, null=True)
-    types = models.CharField(max_length=1000, null=True)
+    type_ru = models.CharField(max_length=1000, null=True)
+    type_en = models.CharField(max_length=1000, null=True)
     
     class Meta:
         unique_together = ('fio_ru', 'fio_en', 'date',)
