@@ -7,7 +7,10 @@ from .models import *
 #admin.site.register(Favorites)
 @admin.register(Favorites)
 class Favorites(admin.ModelAdmin):
-	list_display = ['id','user','group_name','date_left','rakurs_left','rakurs_center','date_right', 'rakurs_right']
+	list_display = ['id','user','group_name',
+                    'date_left','rakurs_left','rakurs_name_left','name_left',
+                    'rakurs_center',
+                    'date_right','rakurs_right','rakurs_name_right','name_right']
 	
 #admin.site.register(Payments)
 @admin.register(Payments)
@@ -48,7 +51,7 @@ class Groupfavorites(admin.ModelAdmin):
 
 @admin.register(Histpersons)
 class Histpersons(admin.ModelAdmin):
-	list_display = ['fio_ru','fio_en','date','result','types']
+	list_display = ['fio_ru','fio_en','date','result','type_ru','type_en']
 	
 @admin.register(Calendata)
 class Calendata(admin.ModelAdmin):

@@ -317,12 +317,13 @@ def fio_to_num(fio_str:str,index:str):
     except:
         print('error fio '+index+' [1]')
         pass
-    summ3=summ1+summ2
+
 
     while summ1 > 22:
         summ1 = sum_digits(summ1)
     while summ2 > 22:
         summ2 = sum_digits(summ2)
+    summ3 = summ1 + summ2
     while summ3 > 22:
         summ3 = sum_digits(summ3)
     temp={}
