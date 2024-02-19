@@ -107,7 +107,7 @@ background: #102431;
 			<div id="main-nav" class="collapse navbar-collapse">
 			        {% if not request.user.is_authenticated or user.is_anonymous%}
                 <ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen" style="margin-top: 10px;">
-                    <a href="/algorithm/" id="center_text_" style=" transform: translateX(-15%);position: relative;" class="nav-item nav-link">CONGRUIT UNIVERSA</a>
+                    <a href="{% url 'algorithm_ru' %}" id="center_text_" style=" transform: translateX(-15%);position: relative;" class="nav-item nav-link">CONGRUIT UNIVERSA</a>
                 </ul>
 					
 					<ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen">
@@ -116,7 +116,7 @@ background: #102431;
 					</ul>
 					{% else %}
 					<ul class="navbar-nav ml-auto text-center navbar-nav-fullscreen" style="margin-top: 10px;">
-                    <a href="/algorithm/" id="center_text_" style=" transform: translateX(-20%);position: relative;" class="nav-item nav-link">CONGRUIT UNIVERSA</a>
+                    <a href="{% url 'algorithm_ru' %}" id="center_text_" style=" transform: translateX(-20%);position: relative;" class="nav-item nav-link">CONGRUIT UNIVERSA</a>
                 </ul>
 					
 					
@@ -420,7 +420,7 @@ background: #102431;
     <div class="center" style="max-width:1230px; border: 0spx solid #FFCE8E;">
 	 <div class="container" align="center">
 		<div class="scale" align="center" style="margin-top: 100px;">
-		<a href="/algorithm/">
+		<a href="{% url 'algorithm_ru' %}">
 			<img src="{% static 'images/center_logo.png' %}" align="center" style="max-height: 100px;">
 		</a>
 		</div>

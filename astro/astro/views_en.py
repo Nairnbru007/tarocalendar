@@ -24,6 +24,7 @@ from .tokens import account_activation_token, password_reset_token
 from django.core.mail import EmailMessage
 import json
 from datetime import datetime, date, timedelta
+
 from django.db.models import Q
 from django.shortcuts import redirect
 #import requests
@@ -103,7 +104,7 @@ class Up_date(UserPassesTestMixin):
         else:
             return False
     def handle_no_permission(self):
-        return redirect('/tarif/')
+        return redirect('/en/tarif/')
 class Up_role(UserPassesTestMixin):
     def test_func(self):
         #print(self.request.user.role)
@@ -112,7 +113,7 @@ class Up_role(UserPassesTestMixin):
         else:
             return False
     def handle_no_permission(self):
-        return redirect('/tarif/')
+        return redirect('/en/tarif/')
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -829,9 +830,9 @@ class Algorithm(View):
                 return HttpResponseRedirect(request.path)
         if request.POST.get('Result'):
             if self.request.user.date_end < date.today():
-                return redirect('/tarif/')
+                return redirect('/en/tarif/')
             if self.request.user.role < 1:
-                return redirect('/tarif/')
+                return redirect('/en/tarif/')
             context_zods = {
                 'zod_1': "images/Component4.png",
                 'zod_2': "images/Component16.png",
@@ -985,7 +986,7 @@ class Algorithm(View):
             return render(request, path_to_tmps['algorithm'], context=context)
         if request.POST.get('Save'):
             if self.request.user.role < 3:
-                return redirect('/tarif/')
+                return redirect('/en/tarif/')
 
             context=glob_context
             data = request.POST
@@ -994,6 +995,13 @@ class Algorithm(View):
             center_result=[]
             date_left_=None
             date_right_=None
+            name_left_=None
+            name_right_=None
+            rakurs_name_left_result = []
+            rakurs_name_right_result = []
+
+
+
             for i in range(1,9):
                 left_result.append( str(data['x1'+str(i)]) )
                 right_result.append( str(data['x2'+str(i)]) )
@@ -1003,6 +1011,8 @@ class Algorithm(View):
             right_result="_".join(right_result)
             center_result="_".join(center_result)
 
+            name_left_ = data['fio1']
+            name_righ_ = data['fio2']
             try:
                 temp_gr=data['groups_name']
                 if temp_gr!='':
@@ -1029,7 +1039,8 @@ class Algorithm(View):
                         date_left=date_left_,
                         date_right=date_right_,
                         #date = datetime.today().strftime('%d.%m.%Y'),
-
+                        name_left=name_left_,
+                        name_right=name_right_,
                         rakurs_left=left_result,
                         rakurs_center=center_result,
                         rakurs_right=right_result,
@@ -1049,7 +1060,7 @@ class Algorithm(View):
             return HttpResponseRedirect(request.path)
         if request.POST.get('next_month'):
             if self.request.user.role < 3:
-                return redirect('/tarif/')
+                return redirect('/en/tarif/')
             context=glob_context
             data = request.POST
             left_arr_next=[]
@@ -1071,7 +1082,7 @@ class Algorithm(View):
 
         if request.POST.get('last_month'):
             if self.request.user.role < 3:
-                return redirect('/tarif/')
+                return redirect('/en/tarif/')
             context=glob_context
             data = request.POST
             left_arr_next=[]
@@ -1093,7 +1104,7 @@ class Algorithm(View):
 
         if request.POST.get('years'):
             if self.request.user.role < 3:
-                return redirect('/tarif/')
+                return redirect('/en/tarif/')
             context=glob_context
             data = request.POST
             left_arr_next=[]
@@ -1656,23 +1667,23 @@ class Favorites_View(Up_role,Up_date,ListView):
                 name_favorites.save()
             except:
                 pass
-            return HttpResponseRedirect('/favorites/')
+            return HttpResponseRedirect('/en/favorites/')
         elif request.POST.get('id'):
             Favorites.objects.get(pk=id).delete()
-            return HttpResponseRedirect('/favorites/')
+            return HttpResponseRedirect('/en/favorites/')
         elif request.POST.get('edit_id'):
             Favorites.objects.filter(id=edit_id).update(note=str(edit_text))
-            return HttpResponseRedirect('/favorites/')
+            return HttpResponseRedirect('/en/favorites/')
         elif request.POST.get('execute'):
             if request.POST.get('group_actions') == "Delete selected":
                 for check_id in checked_id:
                     Favorites.objects.get(pk=check_id).delete()
-            return HttpResponseRedirect('/favorites/')
+            return HttpResponseRedirect('/en/favorites/')
         elif request.POST.get('groups_name'):
             #print("aaaa")
-            return HttpResponseRedirect('/favorites/')
+            return HttpResponseRedirect('/en/favorites/')
 
-        return HttpResponseRedirect('/favorites/')
+        return HttpResponseRedirect('/en/favorites/')
 
 def activate(request, uidb64, token):
     User = get_user_model()
@@ -1687,10 +1698,10 @@ def activate(request, uidb64, token):
         user.save()
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         messages.success(request, 'Ваш аккаунт успешно подтверждён.')
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/en/')
     else:
         messages.error(request, 'Ссылка недействительна.')
-        return HttpResponseRedirect('/')
+        return HttpResponseRedirect('/en/')
 
 from django import template
 from django.utils.html import conditional_escape

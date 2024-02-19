@@ -986,49 +986,57 @@ class Algorithm(View):
             if self.request.user.role < 3:
                 return redirect('/tarif/')
 
-            context=glob_context
+            context = glob_context
             data = request.POST
-            left_result=[]
-            right_result=[]
-            center_result=[]
-            date_left_=None
-            date_right_=None
-            for i in range(1,9):
-                left_result.append( str(data['x1'+str(i)]) )
-                right_result.append( str(data['x2'+str(i)]) )
-                center_result.append( str(data['x3'+str(i)]) )
+            left_result = []
+            right_result = []
+            center_result = []
+            date_left_ = None
+            date_right_ = None
+            name_left_ = None
+            name_right_ = None
+            rakurs_name_left_result = []
+            rakurs_name_right_result = []
 
-            left_result="_".join(left_result)
-            right_result="_".join(right_result)
-            center_result="_".join(center_result)
+            for i in range(1, 9):
+                left_result.append(str(data['x1' + str(i)]))
+                right_result.append(str(data['x2' + str(i)]))
+                center_result.append(str(data['x3' + str(i)]))
 
+            left_result = "_".join(left_result)
+            right_result = "_".join(right_result)
+            center_result = "_".join(center_result)
+
+            name_left_ = data['fio1']
+            name_righ_ = data['fio2']
             try:
-                temp_gr=data['groups_name']
-                if temp_gr!='':
-                    temp_gr=Groupfavorites.objects.filter(user=request.user,name=temp_gr)[0]
+                temp_gr = data['groups_name']
+                if temp_gr != '':
+                    temp_gr = Groupfavorites.objects.filter(user=request.user, name=temp_gr)[0]
                 else:
-                    temp_gr=None
+                    temp_gr = None
             except:
-                temp_gr=None
+                temp_gr = None
 
-            #print(data)
+            # print(data)
 
-            if center_result!="_______":
+            if center_result != "_______":
                 try:
-                    date_left_=datetime.strptime(data['date1'],'%d.%m.%Y').date()
+                    date_left_ = datetime.strptime(data['date1'], '%d.%m.%Y').date()
                 except:
                     pass
                 try:
-                    date_right_=datetime.strptime(data['date2'],'%d.%m.%Y').date()
+                    date_right_ = datetime.strptime(data['date2'], '%d.%m.%Y').date()
                 except:
                     pass
-                if date_left_!=None or date_right_!=None:
+                if date_left_ != None or date_right_ != None:
                     favorites = Favorites.objects.create(
                         user=User.objects.get(pk=request.user.id),
                         date_left=date_left_,
                         date_right=date_right_,
-                        #date = datetime.today().strftime('%d.%m.%Y'),
-
+                        # date = datetime.today().strftime('%d.%m.%Y'),
+                        name_left=name_left_,
+                        name_right=name_right_,
                         rakurs_left=left_result,
                         rakurs_center=center_result,
                         rakurs_right=right_result,

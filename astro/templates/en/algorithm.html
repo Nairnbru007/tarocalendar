@@ -4,17 +4,22 @@
 
 {% block style %}
     <style>
-
+p{
+    font-family: SF Pro Display Regular;
+    font-size: 16px;
+}
         .rotation_active {
             display: none;
         }
-        .please{
+
+        .please {
             color: white;
             font-size: 1em;
             margin-top: 40px;
             font-size: 14px;
             /* display: none; */
         }
+
         .phone {
             height: 50px;
             width: 100px;
@@ -37,10 +42,11 @@
         }
 
 
-        @media only screen and (max-device-width: 812px) and (orientation: portrait){
+        @media only screen and (max-device-width: 812px) and (orientation: portrait) {
             .rotation_active {
                 display: block;
             }
+
             .rotation_disactive {
                 display: none;
             }
@@ -49,7 +55,7 @@
 
     </style>
 
-{% endblock style%}
+{% endblock style %}
 
 
 
@@ -63,7 +69,8 @@
             <form action="" method="POST">
                 {% csrf_token %}
 
-                <div class="center" style="margin: 0px auto calc(max(40px,100vh - 1200px)) auto; max-width:1230px; border:0spx solid #FFCE8E; padding-bottom: 0px;padding-top: 0px;">
+                <div class="center"
+                     style="margin: 0px auto calc(max(40px,100vh - 1200px)) auto; max-width:1230px; border:0spx solid #FFCE8E; padding-bottom: 0px;padding-top: 0px;">
                     <!-- Звезда-->
                     <div class="container">
                         <div class="row justify-content-md-center">
@@ -71,7 +78,7 @@
                                 <button name="Save" value="123">
                                     <!-- <img src="{% static 'images/favorites_star.png' %}" class="star_border circle__filter2"  alt="">
 								-->
-                                    <img src="{% static star %}" class="star_border circle__filter2"  alt="">
+                                    <img src="{% static star %}" class="star_border circle__filter2" alt="">
                                 </button>
                             </div>
                         </div>
@@ -93,15 +100,19 @@
                                 <img src="{% static 'images/cat1.png' %}" class="cat1" alt="">
                                 <img src="{% static image1 %}" class="elements-left" alt="" width="50" height="78">
                             </div>
+                            <!--
                             <div class="col align-self-center cat3 circle__filter2 flex" style="right: 0px;">
-                                <input type="image" src="{% static 'images/image_d18_2.png' %}" class="crosses center_date" style="bottom:0px;width:auto;" alt="">
+                                <input type="image" src="{% static 'images/image_d18_2.png' %}"
+                                       class="crosses center_date" style="bottom:0px;width:auto;" alt="">
                                 <input type="text" name="xxx" class="center_date" id="current_d" value="" disabled>
                                 <input type="text" name="xxx" class="center_date" value="|" disabled>
                                 <input type="text" name="xxx" class="center_date" id="current_m" value="" disabled>
                                 <input type="text" name="xxx" class="center_date" value="|" disabled>
                                 <input type="text" name="xxx" class="center_date" id="current_y" value="" disabled>
-                                <input type="image" src="{% static 'images/image_d18_2.png' %}" class="crosses_1 center_date" style="bottom:0px;width:auto;left: 0px;" alt="">
+                                <input type="image" src="{% static 'images/image_d18_2.png' %}"
+                                       class="crosses_1 center_date" style="bottom:0px;width:auto;left: 0px;" alt="">
                             </div>
+                            -->
                             <div class="col align-self-end">
                                 <div class="calendar__top flex">
                                     <img src="{% static image2 %}" class="elements-right" alt="" width="50" height="78">
@@ -113,26 +124,32 @@
                     <!-- знаки задиаков-->
                     <div class="container">
 
-                            <div class="col align-self-center circle__filter2 flex">
-                                <div class="inp_date_3 flex" style="margin-top: -6px;">
-                                    <input type="text" name="fio11" class="center_input"  value="{{ fio11 }}" readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
-                                    <input type="text" name="fio12" class="center_input"  value="{{fio12 }}" readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
-                                    <input type="text" name="fio13" class="center_input"  value="{{ fio13 }}"  readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
-                                </div>
-                                <div class="inp_date_3 flex" style="margin-top: 0px;">
-                                    <input type="text" name="" class="center_input"   readonly>
-                                    <input type="text" name="" class="center_input"   readonly>
-                                    <input type="text" name="" class="center_input"    readonly>
-                                    <input type="text" name="" class="center_input"   readonly>
-                                    <input type="text" name="" class="center_input"    readonly>
-                                    <input type="text" name="" class="center_input"    readonly>
-                                </div>
-                                <div class="inp_date_3 flex" style="margin-top: -6px;">
-                                    <input type="text" name="fio21" class="center_input"  value="{{ fio21 }}" readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
-                                    <input type="text" name="fio22" class="center_input"  value="{{ fio22 }}" readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
-                                    <input type="text" name="fio23" class="center_input"  value="{{ fio23 }}" readonly style="border: 0.5px solid #FFCE8E; height: 32px; ">
-                                </div>
+                        <div class="col align-self-center circle__filter2 flex">
+                            <div class="inp_date_3 flex" style="margin-top: -6px;">
+                                <input type="text" name="fio11" class="center_input" value="{{ fio11 }}" readonly
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                <input type="text" name="fio12" class="center_input" value="{{ fio12 }}" readonly
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                <input type="text" name="fio13" class="center_input" value="{{ fio13 }}" readonly
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
                             </div>
+                            <div class="inp_date_3 flex" style="margin-top: -6px;">
+                                <input type="text" name="" class="center_input" readonly>
+                                <input type="text" name="xxx" style="border: 0.5px solid #FFCE8E; height: 32px; " class="center_input" id="current_d" value="" disabled>
+                                <input type="text" name="xxx" style="border: 0.5px solid #FFCE8E; height: 32px; " class="center_input" id="current_m" value="" disabled>
+                                <input type="text" name="xxx" style="border: 0.5px solid #FFCE8E; height: 32px; width: 63px" class="center_input" id="current_y" value="" disabled>
+
+                                <input type="text" name="" class="center_input" readonly>
+                            </div>
+                            <div class="inp_date_3 flex" style="margin-top: -6px;">
+                                <input type="text" name="fio21" class="center_input" value="{{ fio21 }}" readonly
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                <input type="text" name="fio22" class="center_input" value="{{ fio22 }}" readonly
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                <input type="text" name="fio23" class="center_input" value="{{ fio23 }}" readonly
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                            </div>
+                        </div>
 
                     </div>
                     <!-- Даты и Центральные цыфры-->
@@ -154,19 +171,44 @@
                                 </div>
                             </div>
                             <div class="col align-self-center cat5 circle__filter2 flex">
-                                <div class="central-border-eee" style="border: 0.5px solid #FFCE8E; height: 32px; width: max-content; margin-top: 8px;">
-                                    <input type="image" name="image" src="{% static zod_1 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_2 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_3 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_4 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_5 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_6 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_7 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_8 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_9 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_10 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_11 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
-                                    <input type="image" name="image" src="{% static zod_12 %}"  class="center_input_empty eee" style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                <div class="central-border-eee"
+                                     style="border: 0.5px solid #FFCE8E; height: 32px; width: max-content; margin-top: 8px;">
+                                    <input type="image" name="image" src="{% static zod_1 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_2 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_3 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_4 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_5 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_6 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_7 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_8 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_9 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_10 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_11 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
+                                    <input type="image" name="image" src="{% static zod_12 %}"
+                                           class="center_input_empty eee"
+                                           style="margin-top: 1px; height:29px; width:29px;" disabled>
                                 </div>
                             </div>
                             <div class="col align-self-end">
@@ -237,31 +279,48 @@
                         <div class="row">
                             <div class="col align-self-start">
                                 <div class="inp_date_3 flex">
-                                    <input type="text" name="x11" class="center_input" id="digits_start_day_sum_1" value="{{ x11 }}" readonly>
-                                    <input type="text" name="x12" class="center_input" id="digits_start_month_sum_1" value="{{ x12 }}" readonly>
-                                    <input type="text" name="x13" class="center_input" id="digits_start_year_sum_1" value="{{ x13 }}"  readonly>
-                                    <input type="text" name="x14" class="center_input" id="digits_start_day_sum_and_month_sum_1" value="{{ x14 }}" readonly>
-                                    <input type="text" name="x15" class="center_input" id="digits_start_day_sum_1" value="{{ x15 }}"  readonly>
-                                    <input type="text" name="x16" class="center_input" id="sum_digits_start_day_and_month_and_year_if_krit_1" value="{{ x16 }}" readonly>
-                                    <input type="text" name="x17" class="center_input" id="digits_start_day_sum_1" value="{{ x17 }}" readonly>
-                                    <input type="text" name="x18" class="center_input" id="digits_start_day_sum_1" value="{{ x18 }}" readonly>
+                                    <input type="text" name="x11" class="center_input" id="digits_start_day_sum_1"
+                                           value="{{ x11 }}" readonly>
+                                    <input type="text" name="x12" class="center_input" id="digits_start_month_sum_1"
+                                           value="{{ x12 }}" readonly>
+                                    <input type="text" name="x13" class="center_input" id="digits_start_year_sum_1"
+                                           value="{{ x13 }}" readonly>
+                                    <input type="text" name="x14" class="center_input"
+                                           id="digits_start_day_sum_and_month_sum_1" value="{{ x14 }}" readonly>
+                                    <input type="text" name="x15" class="center_input" id="digits_start_day_sum_1"
+                                           value="{{ x15 }}" readonly>
+                                    <input type="text" name="x16" class="center_input"
+                                           id="sum_digits_start_day_and_month_and_year_if_krit_1" value="{{ x16 }}"
+                                           readonly>
+                                    <input type="text" name="x17" class="center_input" id="digits_start_day_sum_1"
+                                           value="{{ x17 }}" readonly>
+                                    <input type="text" name="x18" class="center_input" id="digits_start_day_sum_1"
+                                           value="{{ x18 }}" readonly>
                                 </div>
                             </div>
                             <div class="col align-self-center ">
                                 <div class="flex month_2 circle__filter2 circle__filter_block_2">
-                                    Rakurs  <span class=""></span>&nbsp;
+                                    Rakurs <span class=""></span>&nbsp;
                                 </div>
                             </div>
                             <div class="col align-self-end ">
                                 <div class="calendar__top inp_date_3 flex">
-                                    <input type="text" name="x21" class="center_input" id="digits_start_day_sum_1_1" value="{{ x21 }}" readonly>
-                                    <input type="text" name="x22" class="center_input" id="digits_start_day_sum_1_1" value="{{ x22 }}" readonly>
-                                    <input type="text" name="x23" class="center_input" id="digits_start_day_sum_1_1" value="{{ x23 }}" readonly>
-                                    <input type="text" name="x24" class="center_input" id="digits_start_day_sum_1_1" value="{{ x24 }}" readonly>
-                                    <input type="text" name="x25" class="center_input" id="digits_start_day_sum_1_1" value="{{ x25 }}" readonly>
-                                    <input type="text" name="x26" class="center_input" id="digits_start_day_sum_1_1" value="{{ x26 }}" readonly>
-                                    <input type="text" name="x27" class="center_input" id="digits_start_day_sum_1_1" value="{{ x27 }}" readonly>
-                                    <input type="text" name="x28" class="center_input" id="digits_start_day_sum_1_1" value="{{ x28 }}" readonly>
+                                    <input type="text" name="x21" class="center_input" id="digits_start_day_sum_1_1"
+                                           value="{{ x21 }}" readonly>
+                                    <input type="text" name="x22" class="center_input" id="digits_start_day_sum_1_1"
+                                           value="{{ x22 }}" readonly>
+                                    <input type="text" name="x23" class="center_input" id="digits_start_day_sum_1_1"
+                                           value="{{ x23 }}" readonly>
+                                    <input type="text" name="x24" class="center_input" id="digits_start_day_sum_1_1"
+                                           value="{{ x24 }}" readonly>
+                                    <input type="text" name="x25" class="center_input" id="digits_start_day_sum_1_1"
+                                           value="{{ x25 }}" readonly>
+                                    <input type="text" name="x26" class="center_input" id="digits_start_day_sum_1_1"
+                                           value="{{ x26 }}" readonly>
+                                    <input type="text" name="x27" class="center_input" id="digits_start_day_sum_1_1"
+                                           value="{{ x27 }}" readonly>
+                                    <input type="text" name="x28" class="center_input" id="digits_start_day_sum_1_1"
+                                           value="{{ x28 }}" readonly>
                                 </div>
                             </div>
                         </div>
@@ -271,14 +330,22 @@
                         <div class="row">
                             <div class="col align-self-center">
                                 <div class="flex rakurs_center circle__filter2">
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="1" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="2" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="3" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="4" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="5" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="6" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="7" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="" value="8" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id=""
+                                           value="1" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id=""
+                                           value="2" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id=""
+                                           value="3" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id=""
+                                           value="4" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id=""
+                                           value="5" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id=""
+                                           value="6" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id=""
+                                           value="7" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id=""
+                                           value="8" disabled>
                                 </div>
                             </div>
                         </div>
@@ -288,40 +355,64 @@
                         <div class="row">
                             <div class="col align-self-start">
                                 <div class="flex inp_date_2">
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_1" value="1" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_2" value="2" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_3" value="3" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_4" value="4" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_5" value="5" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_6" value="6" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_7" value="7" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_8" value="8" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_1" value="1" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_2" value="2" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_3" value="3" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_4" value="4" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_5" value="5" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_6" value="6" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_7" value="7" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_8" value="8" disabled>
                                 </div>
                             </div>
                             <div class="col align-self-center ">
                                 <div class="flex rakurs_center circle__filter2 center_indexes">
-                                    <input type="text" name="x31" class="center_input" id="rakurs_right_1" value="{{ x31 }}" readonly>
-                                    <input type="text" name="x32" class="center_input" id="rakurs_right_1" value="{{ x32 }}" readonly>
-                                    <input type="text" name="x33" class="center_input" id="rakurs_right_1" value="{{ x33 }}" readonly>
-                                    <input type="text" name="x34" class="center_input" id="rakurs_right_1" value="{{ x34 }}" readonly>
-                                    <input type="text" name="x35" class="center_input" id="rakurs_right_1" value="{{ x35 }}" readonly>
-                                    <input type="text" name="x36" class="center_input" id="rakurs_right_1" value="{{ x36 }}" readonly>
-                                    <input type="text" name="x37" class="center_input" id="rakurs_right_1" value="{{ x37 }}" readonly>
-                                    <input type="text" name="x38" class="center_input" id="rakurs_right_1" value="{{ x38 }}" readonly>
+                                    <input type="text" name="x31" class="center_input" id="rakurs_right_1"
+                                           value="{{ x31 }}" readonly>
+                                    <input type="text" name="x32" class="center_input" id="rakurs_right_1"
+                                           value="{{ x32 }}" readonly>
+                                    <input type="text" name="x33" class="center_input" id="rakurs_right_1"
+                                           value="{{ x33 }}" readonly>
+                                    <input type="text" name="x34" class="center_input" id="rakurs_right_1"
+                                           value="{{ x34 }}" readonly>
+                                    <input type="text" name="x35" class="center_input" id="rakurs_right_1"
+                                           value="{{ x35 }}" readonly>
+                                    <input type="text" name="x36" class="center_input" id="rakurs_right_1"
+                                           value="{{ x36 }}" readonly>
+                                    <input type="text" name="x37" class="center_input" id="rakurs_right_1"
+                                           value="{{ x37 }}" readonly>
+                                    <input type="text" name="x38" class="center_input" id="rakurs_right_1"
+                                           value="{{ x38 }}" readonly>
 
 
                                 </div>
                             </div>
                             <div class="col align-self-end ">
                                 <div class="calendar__top inp_date_2 flex">
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_1_1" value="1" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_2_1" value="2" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_3_1" value="3" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_4_1" value="4" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_5_1" value="5" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_6_1" value="6" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_7_1" value="7" disabled>
-                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter" id="deleteRakurs_8_1" value="8" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_1_1" value="1" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_2_1" value="2" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_3_1" value="3" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_4_1" value="4" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_5_1" value="5" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_6_1" value="6" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_7_1" value="7" disabled>
+                                    <input type="button" name="delete_rakurs_calculation_right" class="no_filter"
+                                           id="deleteRakurs_8_1" value="8" disabled>
                                 </div>
                             </div>
                         </div>
@@ -330,20 +421,29 @@
                     <div class="container">
                         <div class="row" style="margin-top: 1px;">
                             <div class="col align-self-start">
-                                <div class="flex cat2_l" style="justify-content:start; margin-left: -5%; margin-top: 0%;">
+                                <div class="flex cat2_l"
+                                     style="justify-content:start; margin-left: -5%; margin-top: 0%;">
                                     <nav class="navbar navbar-expand-md navbar-dark">
                                         <ul class="navbar-nav ml-auto">
 
                                             <li class="dropdown dropdown-left-hp">
-                                                <a class="nav-item drop " data-toggle="dropdown" readonly>Historical persons<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
-                                                <div class="dropdown-menu" style="max-height: 400px;overflow-y: scroll; margin-top: -3px;">
+                                                <a class="nav-item drop " data-toggle="dropdown" readonly>Historical
+                                                    persons<img src="{% static 'images/arrow_down.png' %}"
+                                                                class="facebook" alt=""></a>
+                                                <div class="dropdown-menu"
+                                                     style="max-height: 400px;overflow-y: scroll; margin-top: -3px;">
                                                     {% for hstp in hstprs1 %}
                                                         <!--<a href="#" class="dropdown-item">{{hstp.fio}} <input type="text" class="center_input green"  value="{{hstp.count}}" style="border-radius:50%;" ><br>{{hstp.date|date:"d M Y"}}<br>-->
-                                                        <a class="dropdown-item" readonly>{{hstp.fio_en}}<br>{{hstp.date|date:"d M Y"}} ({{hstp.types}})<br>
+                                                        <a class="dropdown-item"
+                                                           readonly>{{ hstp.fio_en }}<br>{{ hstp.date|date:"d M Y" }}
+                                                            ({{ hstp.types }})<br>
                                                             {% load split %}
                                                             {% with hstp.result|split:"_" as rests %}
                                                                 {% for rest in rests %}
-                                                                    <input type="text" name="c1{{forloop.parentloop.counter}}{{ forloop.counter }}" class="center_input"  value="{{ rest }}" readonly>
+                                                                    <input type="text" name="c1
+                                                                            {{ forloop.parentloop.counter }}{{ forloop.counter }}"
+                                                                           class="center_input" value="{{ rest }}"
+                                                                           readonly>
                                                                 {% endfor %}
                                                             {% endwith %}
 
@@ -359,7 +459,8 @@
                             <div class="col align-self-center ">
                                 <div class="flex rakurs_center_1 circle__filter2 circle__filter_block_2">
                                     <input type="text" name="center_day" class="center_input" value="" readonly>
-                                    <input type="text" name="center_year" class="center_input" style="width: 78px;" value="{{ cal_month }}" readonly> <!--{{ cal_year }}-->
+                                    <input type="text" name="center_year" class="center_input" style="width: 78px;"
+                                           value="{{ cal_month }}" readonly> <!--{{ cal_year }}-->
                                 </div>
                             </div>
                             <div class="col align-self-end">
@@ -368,14 +469,22 @@
                                         <ul class="navbar-nav ml-auto">
 
                                             <li class="dropdown dropdown-right-hp">
-                                                <a class="nav-item drop" data-toggle="dropdown" readonly>Historical persons<img src="{% static 'images/arrow_down.png' %}" class="facebook" alt=""></a>
-                                                <div class="dropdown-menu" style="max-height: 400px;overflow-y: scroll; margin-top: -3px;">
+                                                <a class="nav-item drop" data-toggle="dropdown" readonly>Historical
+                                                    persons<img src="{% static 'images/arrow_down.png' %}"
+                                                                class="facebook" alt=""></a>
+                                                <div class="dropdown-menu"
+                                                     style="max-height: 400px;overflow-y: scroll; margin-top: -3px;">
                                                     {% for hstp in hstprs2 %}
-                                                        <a class="dropdown-item" readonly>{{hstp.fio_en}}<br>{{hstp.date|date:"d M Y"}} ({{hstp.types}})<br>
+                                                        <a class="dropdown-item"
+                                                           readonly>{{ hstp.fio_en }}<br>{{ hstp.date|date:"d M Y" }}
+                                                            ({{ hstp.types }})<br>
                                                             {% load split %}
                                                             {% with hstp.result|split:"_" as rests %}
                                                                 {% for rest in rests %}
-                                                                    <input type="text" name="c2{{forloop.parentloop.counter}}{{ forloop.counter }}" class="center_input"  value="{{ rest }}" readonly>
+                                                                    <input type="text" name="c2
+                                                                            {{ forloop.parentloop.counter }}{{ forloop.counter }}"
+                                                                           class="center_input" value="{{ rest }}"
+                                                                           readonly>
                                                                 {% endfor %}
                                                             {% endwith %}
 
@@ -394,71 +503,164 @@
                     <div class="container">
                         <div class="row">
                             <div class="col align-self-start">
-                                <div class="calendar__top flex Group_506 Group_506_full" style="justify-content:start; margin-left: 11%;">
+                                <div class="calendar__top flex Group_506 Group_506_full"
+                                     style="justify-content:start; margin-left: 11%;">
                                     <img src="{% static 'images/Group_506.png' %}" class="img_left_gold" alt="">
                                 </div>
                             </div>
                             <div class="col align-self-center flex">
                                 <div class="circle__filter2 calendar__bee flex cat4">
-                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week" value="Mon" disabled>
-                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week" value="Tue" disabled>
-                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week" value="Wed" disabled>
-                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week" value="Thu" disabled>
-                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week" value="Fri" disabled>
-                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week" value="Sat" disabled>
-                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week" value="Sun" disabled>
+                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week"
+                                           value="Mon" disabled>
+                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week"
+                                           value="Tue" disabled>
+                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week"
+                                           value="Wed" disabled>
+                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week"
+                                           value="Thu" disabled>
+                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week"
+                                           value="Fri" disabled>
+                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week"
+                                           value="Sat" disabled>
+                                    <input id="" type="submit" name="month_day_right" class="days_of_the_week"
+                                           value="Sun" disabled>
                                     <div class="w-100"></div>
-                                    <input id="month_day_right_days" type="buttom" name="d11" dd="{{result_d11}}" class="center_input" value="{{ d11 }}" onclick="datecall('{{result_d11}}','{{d11}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d12" dd="{{result_d12}}" class="center_input" value="{{ d12 }}" onclick="datecall('{{result_d12}}','{{d12}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d13" dd="{{result_d13}}" class="center_input" value="{{ d13 }}" onclick="datecall('{{result_d13}}','{{d13}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d14" dd="{{result_d14}}" class="center_input" value="{{ d14 }}" onclick="datecall('{{result_d14}}','{{d14}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d15" dd="{{result_d15}}" class="center_input" value="{{ d15 }}" onclick="datecall('{{result_d15}}','{{d15}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d16" dd="{{result_d16}}" class="center_input" value="{{ d16 }}" onclick="datecall('{{result_d16}}','{{d16}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d17" dd="{{result_d17}}" class="center_input" value="{{ d17 }}" onclick="datecall('{{result_d17}}','{{d17}}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d11" dd="{{ result_d11 }}"
+                                           class="center_input" value="{{ d11 }}"
+                                           onclick="datecall('{{ result_d11 }}','{{ d11 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d12" dd="{{ result_d12 }}"
+                                           class="center_input" value="{{ d12 }}"
+                                           onclick="datecall('{{ result_d12 }}','{{ d12 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d13" dd="{{ result_d13 }}"
+                                           class="center_input" value="{{ d13 }}"
+                                           onclick="datecall('{{ result_d13 }}','{{ d13 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d14" dd="{{ result_d14 }}"
+                                           class="center_input" value="{{ d14 }}"
+                                           onclick="datecall('{{ result_d14 }}','{{ d14 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d15" dd="{{ result_d15 }}"
+                                           class="center_input" value="{{ d15 }}"
+                                           onclick="datecall('{{ result_d15 }}','{{ d15 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d16" dd="{{ result_d16 }}"
+                                           class="center_input" value="{{ d16 }}"
+                                           onclick="datecall('{{ result_d16 }}','{{ d16 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d17" dd="{{ result_d17 }}"
+                                           class="center_input" value="{{ d17 }}"
+                                           onclick="datecall('{{ result_d17 }}','{{ d17 }}')" readonly>
                                     <div class="w-100"></div>
-                                    <input id="month_day_right_days" type="buttom" name="d21" dd="{{result_d21}}" class="center_input" value="{{ d21 }}" onclick="datecall('{{result_d21}}','{{d21}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d22" dd="{{result_d22}}" class="center_input" value="{{ d22 }}" onclick="datecall('{{result_d22}}','{{d22}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d23" dd="{{result_d23}}" class="center_input" value="{{ d23 }}" onclick="datecall('{{result_d23}}','{{d23}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d24" dd="{{result_d24}}" class="center_input" value="{{ d24 }}" onclick="datecall('{{result_d24}}','{{d24}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d25" dd="{{result_d25}}" class="center_input" value="{{ d25 }}" onclick="datecall('{{result_d25}}','{{d25}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d26" dd="{{result_d26}}" class="center_input" value="{{ d26 }}" onclick="datecall('{{result_d26}}','{{d26}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d27" dd="{{result_d27}}" class="center_input" value="{{ d27 }}" onclick="datecall('{{result_d27}}','{{d27}}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d21" dd="{{ result_d21 }}"
+                                           class="center_input" value="{{ d21 }}"
+                                           onclick="datecall('{{ result_d21 }}','{{ d21 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d22" dd="{{ result_d22 }}"
+                                           class="center_input" value="{{ d22 }}"
+                                           onclick="datecall('{{ result_d22 }}','{{ d22 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d23" dd="{{ result_d23 }}"
+                                           class="center_input" value="{{ d23 }}"
+                                           onclick="datecall('{{ result_d23 }}','{{ d23 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d24" dd="{{ result_d24 }}"
+                                           class="center_input" value="{{ d24 }}"
+                                           onclick="datecall('{{ result_d24 }}','{{ d24 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d25" dd="{{ result_d25 }}"
+                                           class="center_input" value="{{ d25 }}"
+                                           onclick="datecall('{{ result_d25 }}','{{ d25 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d26" dd="{{ result_d26 }}"
+                                           class="center_input" value="{{ d26 }}"
+                                           onclick="datecall('{{ result_d26 }}','{{ d26 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d27" dd="{{ result_d27 }}"
+                                           class="center_input" value="{{ d27 }}"
+                                           onclick="datecall('{{ result_d27 }}','{{ d27 }}')" readonly>
                                     <div class="w-100"></div>
-                                    <input id="month_day_right_days" type="buttom" name="d31" dd="{{result_d31}}" class="center_input" value="{{ d31 }}" onclick="datecall('{{result_d31}}','{{d31}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d32" dd="{{result_d32}}" class="center_input" value="{{ d32 }}" onclick="datecall('{{result_d32}}','{{d32}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d33" dd="{{result_d33}}" class="center_input" value="{{ d33 }}" onclick="datecall('{{result_d33}}','{{d33}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d34" dd="{{result_d34}}" class="center_input" value="{{ d34 }}" onclick="datecall('{{result_d34}}','{{d34}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d35" dd="{{result_d35}}" class="center_input" value="{{ d35 }}" onclick="datecall('{{result_d35}}','{{d35}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d36" dd="{{result_d36}}" class="center_input" value="{{ d36 }}" onclick="datecall('{{result_d36}}','{{d36}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d37" dd="{{result_d37}}" class="center_input" value="{{ d37 }}" onclick="datecall('{{result_d37}}','{{d37}}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d31" dd="{{ result_d31 }}"
+                                           class="center_input" value="{{ d31 }}"
+                                           onclick="datecall('{{ result_d31 }}','{{ d31 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d32" dd="{{ result_d32 }}"
+                                           class="center_input" value="{{ d32 }}"
+                                           onclick="datecall('{{ result_d32 }}','{{ d32 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d33" dd="{{ result_d33 }}"
+                                           class="center_input" value="{{ d33 }}"
+                                           onclick="datecall('{{ result_d33 }}','{{ d33 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d34" dd="{{ result_d34 }}"
+                                           class="center_input" value="{{ d34 }}"
+                                           onclick="datecall('{{ result_d34 }}','{{ d34 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d35" dd="{{ result_d35 }}"
+                                           class="center_input" value="{{ d35 }}"
+                                           onclick="datecall('{{ result_d35 }}','{{ d35 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d36" dd="{{ result_d36 }}"
+                                           class="center_input" value="{{ d36 }}"
+                                           onclick="datecall('{{ result_d36 }}','{{ d36 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d37" dd="{{ result_d37 }}"
+                                           class="center_input" value="{{ d37 }}"
+                                           onclick="datecall('{{ result_d37 }}','{{ d37 }}')" readonly>
                                     <div class="w-100"></div>
-                                    <input id="month_day_right_days" type="buttom" name="d41" dd="{{result_d41}}" class="center_input" value="{{ d41 }}" onclick="datecall('{{result_d41}}','{{d41}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d42" dd="{{result_d42}}" class="center_input" value="{{ d42 }}" onclick="datecall('{{result_d42}}','{{d42}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d43" dd="{{result_d43}}" class="center_input" value="{{ d43 }}" onclick="datecall('{{result_d43}}','{{d43}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d44" dd="{{result_d44}}" class="center_input" value="{{ d44 }}" onclick="datecall('{{result_d44}}','{{d44}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d45" dd="{{result_d45}}" class="center_input" value="{{ d45 }}" onclick="datecall('{{result_d45}}','{{d45}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d46" dd="{{result_d46}}" class="center_input" value="{{ d46 }}" onclick="datecall('{{result_d46}}','{{d46}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d47" dd="{{result_d47}}" class="center_input" value="{{ d47 }}" onclick="datecall('{{result_d47}}','{{d47}}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d41" dd="{{ result_d41 }}"
+                                           class="center_input" value="{{ d41 }}"
+                                           onclick="datecall('{{ result_d41 }}','{{ d41 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d42" dd="{{ result_d42 }}"
+                                           class="center_input" value="{{ d42 }}"
+                                           onclick="datecall('{{ result_d42 }}','{{ d42 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d43" dd="{{ result_d43 }}"
+                                           class="center_input" value="{{ d43 }}"
+                                           onclick="datecall('{{ result_d43 }}','{{ d43 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d44" dd="{{ result_d44 }}"
+                                           class="center_input" value="{{ d44 }}"
+                                           onclick="datecall('{{ result_d44 }}','{{ d44 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d45" dd="{{ result_d45 }}"
+                                           class="center_input" value="{{ d45 }}"
+                                           onclick="datecall('{{ result_d45 }}','{{ d45 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d46" dd="{{ result_d46 }}"
+                                           class="center_input" value="{{ d46 }}"
+                                           onclick="datecall('{{ result_d46 }}','{{ d46 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d47" dd="{{ result_d47 }}"
+                                           class="center_input" value="{{ d47 }}"
+                                           onclick="datecall('{{ result_d47 }}','{{ d47 }}')" readonly>
                                     <div class="w-100"></div>
-                                    <input id="month_day_right_days" type="buttom" name="d51" dd="{{result_d51}}" class="center_input" value="{{ d51 }}" onclick="datecall('{{result_d51}}','{{d51}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d52" dd="{{result_d52}}" class="center_input" value="{{ d52 }}" onclick="datecall('{{result_d52}}','{{d52}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d53" dd="{{result_d53}}" class="center_input" value="{{ d53 }}" onclick="datecall('{{result_d53}}','{{d53}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d54" dd="{{result_d54}}" class="center_input" value="{{ d54 }}" onclick="datecall('{{result_d54}}','{{d54}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d55" dd="{{result_d55}}" class="center_input" value="{{ d55 }}" onclick="datecall('{{result_d55}}','{{d55}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d56" dd="{{result_d56}}" class="center_input" value="{{ d56 }}" onclick="datecall('{{result_d56}}','{{d56}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d57" dd="{{result_d57}}" class="center_input" value="{{ d57 }}" onclick="datecall('{{result_d57}}','{{d57}}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d51" dd="{{ result_d51 }}"
+                                           class="center_input" value="{{ d51 }}"
+                                           onclick="datecall('{{ result_d51 }}','{{ d51 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d52" dd="{{ result_d52 }}"
+                                           class="center_input" value="{{ d52 }}"
+                                           onclick="datecall('{{ result_d52 }}','{{ d52 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d53" dd="{{ result_d53 }}"
+                                           class="center_input" value="{{ d53 }}"
+                                           onclick="datecall('{{ result_d53 }}','{{ d53 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d54" dd="{{ result_d54 }}"
+                                           class="center_input" value="{{ d54 }}"
+                                           onclick="datecall('{{ result_d54 }}','{{ d54 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d55" dd="{{ result_d55 }}"
+                                           class="center_input" value="{{ d55 }}"
+                                           onclick="datecall('{{ result_d55 }}','{{ d55 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d56" dd="{{ result_d56 }}"
+                                           class="center_input" value="{{ d56 }}"
+                                           onclick="datecall('{{ result_d56 }}','{{ d56 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d57" dd="{{ result_d57 }}"
+                                           class="center_input" value="{{ d57 }}"
+                                           onclick="datecall('{{ result_d57 }}','{{ d57 }}')" readonly>
                                     <div class="w-100"></div>
-                                    <input id="month_day_right_days" type="buttom" name="d61" dd="{{result_d61}}" class="center_input" value="{{ d61 }}" onclick="datecall('{{result_d61}}','{{d61}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d62" dd="{{result_d62}}" class="center_input" value="{{ d62 }}" onclick="datecall('{{result_d62}}','{{d62}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d63" dd="{{result_d63}}" class="center_input" value="{{ d63 }}" onclick="datecall('{{result_d63}}','{{d63}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d64" dd="{{result_d64}}" class="center_input" value="{{ d64 }}" onclick="datecall('{{result_d64}}','{{d64}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d65" dd="{{result_d65}}" class="center_input" value="{{ d65 }}" onclick="datecall('{{result_d65}}','{{d65}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d66" dd="{{result_d66}}" class="center_input" value="{{ d66 }}" onclick="datecall('{{result_d66}}','{{d66}}')" readonly>
-                                    <input id="month_day_right_days" type="buttom" name="d67" dd="{{result_d67}}" class="center_input" value="{{ d67 }}" onclick="datecall('{{result_d67}}','{{d67}}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d61" dd="{{ result_d61 }}"
+                                           class="center_input" value="{{ d61 }}"
+                                           onclick="datecall('{{ result_d61 }}','{{ d61 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d62" dd="{{ result_d62 }}"
+                                           class="center_input" value="{{ d62 }}"
+                                           onclick="datecall('{{ result_d62 }}','{{ d62 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d63" dd="{{ result_d63 }}"
+                                           class="center_input" value="{{ d63 }}"
+                                           onclick="datecall('{{ result_d63 }}','{{ d63 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d64" dd="{{ result_d64 }}"
+                                           class="center_input" value="{{ d64 }}"
+                                           onclick="datecall('{{ result_d64 }}','{{ d64 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d65" dd="{{ result_d65 }}"
+                                           class="center_input" value="{{ d65 }}"
+                                           onclick="datecall('{{ result_d65 }}','{{ d65 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d66" dd="{{ result_d66 }}"
+                                           class="center_input" value="{{ d66 }}"
+                                           onclick="datecall('{{ result_d66 }}','{{ d66 }}')" readonly>
+                                    <input id="month_day_right_days" type="buttom" name="d67" dd="{{ result_d67 }}"
+                                           class="center_input" value="{{ d67 }}"
+                                           onclick="datecall('{{ result_d67 }}','{{ d67 }}')" readonly>
                                 </div>
                             </div>
                             <div class="col align-self-end" style="align-self: flex-start !important;">
-                                <div class="flex Group_506_1 calendar__top Group_506_1_full" style="justify-content:end; margin-right: 18%;">
+                                <div class="flex Group_506_1 calendar__top Group_506_1_full"
+                                     style="justify-content:end; margin-right: 18%;">
                                     <img src="{% static 'images/2223.png' %}" class="img_right_gold" alt="">
                                 </div>
                             </div>
@@ -480,7 +682,34 @@
     border-style: groove;
     border-color: #FFCE8E;
     width:255px;">
-                                    <legend style="color:#FFCE8E; font-size: 1rem;"><p style="color:#FFCE8E">Change active colors:</p></legend>
+                                    <legend style="color:#FFCE8E; font-size: 1rem;position: absolute;margin-top: -35px;"><p style="color:#FFCE8E">Change active colors:</p></legend>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <label class="control control--checkbox"
+                                                           style="height: 15px;width: auto;margin-bottom: 7px">
+                                                        <input type="checkbox" value="1" name="checked"
+                                                               id='greenchecked' onclick="redandgreen()" checked=True>
+
+                                                        <div class="control__indicator"></div>
+                                                        <p style="margin-left: 25px; color:#FFCE8E;">Green</p>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <label class="control control--checkbox"
+                                                           style="height: 15px;width: auto;margin-bottom: 7px">
+                                                        <input type="checkbox" value="1" name="checked" id='redchecked'
+                                                               onclick="redandgreen()" checked=True>
+                                                        <div class="control__indicator"></div>
+                                                        <p style="margin-left: 25px; color:#FFCE8E;">Red</p>
+                                                    </label></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!--
                                     <div class="row" style="margin-bottom: 5px;margin-top: 20px;">
                                         <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
                                             <input type="checkbox" value="1" name="checked" id='greenchecked' onclick="redandgreen()" checked=True>
@@ -491,6 +720,7 @@
                                             <input type="checkbox" value="1" name="checked" id='redchecked' onclick="redandgreen()" checked=True>
                                             <div class="control__indicator"></div>
                                         </label> <p style="width: 5px; color:#FFCE8E;">Red</p></div>
+                                        -->
                                 </fieldset>
 
                             </div>
@@ -498,16 +728,20 @@
                                 <div class="col align-self-center cat7" style="height: 10px;">
                                     <div class="circle__filter2 flex" style="margin-bottom: -10px;">
                                         <div class="flex month_p_m">
-                                            <input type="submit" style="width: 95px; right: 5px;" class="circle__filter_block_month_m" value="<< MON" name="last_month">
+                                            <input type="submit" style="width: 95px; right: 5px;"
+                                                   class="circle__filter_block_month_m" value="<< MON"
+                                                   name="last_month">
                                             <div class="">
                                                 <div class="jq-selectbox jqselect circle__filter__select-main focused opened">
                                                     <div class="jq-selectbox__select jq-selectbox__select3">
-                                                        <select name="years" id="years_id" class="navbar navbar-expand-md navbar-dark central_year" style="border: 0px;" onchange="this.form.submit();">
+                                                        <select name="years" id="years_id"
+                                                                class="navbar navbar-expand-md navbar-dark central_year"
+                                                                style="border: 0px;" onchange="this.form.submit();">
                                                             <script>
                                                                 var myDate = new Date();
                                                                 var year = myDate.getFullYear();
-                                                                for(var i = 1800; i <= year+2; i++){
-                                                                    document.write('<option value="'+i+'">'+i+'</option>');
+                                                                for (var i = 1800; i <= year + 2; i++) {
+                                                                    document.write('<option value="' + i + '">' + i + '</option>');
                                                                 }
                                                             </script>
                                                         </select>
@@ -515,7 +749,9 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <input type="submit" style="width: 95px; left: 10px;" class="circle__filter_block_month_p" value="MON >>" name="next_month">
+                                            <input type="submit" style="width: 95px; left: 10px;"
+                                                   class="circle__filter_block_month_p" value="MON >>"
+                                                   name="next_month">
                                         </div>
                                     </div>
                                     <!-- <div class="circle__filter2 flex">
@@ -528,11 +764,13 @@
 
 
                                         <nav class="navbar navbar-expand-md navbar-dark">
-                                            <select type="text" name="groups_name" class="nav-item drop" style="position: relative; letter-spacing: 0px;" >
+                                            <select type="text" name="groups_name" class="nav-item drop"
+                                                    style="position: relative; letter-spacing: 0px;">
                                                 <option selected disabled>CHOOSE GROUP</option>
                                                 {% for gr in grps %}
-                                                    <option value="{{gr.name}}" {% if gr.name == groups_name %}selected="selected"{% endif %}>
-                                                        {{gr.name}}
+                                                    <option value="{{ gr.name }}"
+                                                            {% if gr.name == groups_name %}selected="selected"{% endif %}>
+                                                        {{ gr.name }}
                                                     </option>
                                                 {% endfor %}
                                             </select>
@@ -545,7 +783,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col align-self-end" style="margin-top: -150px; align-self: flex-start !important;">
+                            <div class="col align-self-end"
+                                 style="margin-top: -150px; align-self: flex-start !important;">
                                 <fieldset style="display: block;
     margin-left: auto;
     margin-right: 2px;
@@ -557,7 +796,35 @@
     border-style: groove;
     border-color: #FFCE8E;
     width:255px;">
-                                    <legend style="color:#FFCE8E; font-size: 1rem;"><p style="color:#FFCE8E">Change active dates:</p></legend>
+                                    <legend style="color:#FFCE8E; font-size: 1rem;position: absolute;margin-top: -35px;"><p style="color:#FFCE8E">Change active dates:</p></legend>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="row">
+                                                    <label class="control control--checkbox"
+                                                           style="height: 15px;width: auto;margin-bottom: 7px">
+                                                        <input type="checkbox" value="1" name="checked"
+                                                               id='monthchecked'
+                                                               onclick="redandgreen()" checked=True>
+                                                        <div class="control__indicator"></div>
+                                                        <p style="margin-left: 25px; color:#FFCE8E;">Month</p>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="row">
+                                                    <label class="control control--checkbox"
+                                                           style="height: 15px;width: auto;margin-bottom: 7px">
+                                                        <input type="checkbox" value="1" name="checked" id='yearchecked'
+                                                               onclick="redandgreen()" checked=True>
+                                                        <div class="control__indicator"></div>
+                                                        <p style="margin-left: 25px; color:#FFCE8E;">Year</p>
+                                                    </label>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!--
                                     <div class="row" style="margin-bottom: 5px;margin-top: 10px;">
                                         <label class="control control--checkbox" style="width: 5px;margin-right: 1px;">
                                             <input type="checkbox" value="1" name="checked" id='monthchecked' onclick="redandgreen()" checked=True>
@@ -568,6 +835,7 @@
                                             <input type="checkbox" value="1" name="checked" id='yearchecked' onclick="redandgreen()" checked=True>
                                             <div class="control__indicator"></div>
                                         </label> <p style="width: 5px; color:#FFCE8E;">Year</p></div>
+                                        -->
                                 </fieldset>
 
                             </div>
@@ -580,15 +848,15 @@
         </div>
 
         <script>
-            n =  new Date();
+            n = new Date();
             y = n.getFullYear();
-            m = n.getMonth()+1;
+            m = n.getMonth() + 1;
             if (m < 10) {
                 m = ''.concat('0', m.toString());
             }
             d = n.getDate();
 
-            document.getElementsByName("center_day")[0].value=d
+            document.getElementsByName("center_day")[0].value = d
             if (d < 10) {
                 d = ''.concat('0', d.toString());
             }
@@ -644,32 +912,32 @@
                 month = 0;
                 year = 0;
 
-                left  = 0;
+                left = 0;
                 right = 0;
                 centre = 0;
 
                 if (document.getElementsByName("x11")[0].value > 0) {
-                    left=1;
+                    left = 1;
                 }
                 if (document.getElementsByName("x21")[0].value > 0) {
-                    right=1;
+                    right = 1;
                 }
                 if (document.getElementsByName("x31")[0].value > 0) {
-                    centre=1;
+                    centre = 1;
                 }
 
                 if (document.getElementById('monthchecked').checked) {
-                    month=1;
+                    month = 1;
                 }
 
                 if (document.getElementById('yearchecked').checked) {
-                    year=1;
+                    year = 1;
                 }
 
                 if (document.getElementById('greenchecked').checked) {
                     green = "green";
-                    if (centre==1) {
-                        if (left==1 && right==1) {
+                    if (centre == 1) {
+                        if (left == 1 && right == 1) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
                                     if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x2" + j)[0].value) {
@@ -683,7 +951,7 @@
                                     }
                                 }
                             }
-                        } else if (left==1){
+                        } else if (left == 1) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
                                     if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + j)[0].value) {
@@ -692,7 +960,7 @@
                                     }
                                 }
                             }
-                        } else if (right==1){
+                        } else if (right == 1) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
                                     if (document.getElementsByName("x2" + i)[0].value == document.getElementsByName("x3" + j)[0].value) {
@@ -732,30 +1000,30 @@
                             if (temp_dd != "") {
                                 const temp_arr_dd = temp_dd.split('_');
 
-                                if (left==1 && right==1) {
+                                if (left == 1 && right == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
                                             for (let r = 1; r < 9; r++) {
-                                                if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                                if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
                                         }
                                     }
 
-                                } else if (left==1){
+                                } else if (left == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
-                                            if (temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                            if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(green);
                                             }
                                         }
                                     }
 
-                                } else if (right==1){
+                                } else if (right == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
-                                            if (temp_arr_dd[n-1] == document.getElementsByName("x2" + j)[0].value) {
+                                            if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(green);
                                             }
                                         }
@@ -766,7 +1034,7 @@
                                 for (let n = 1; n < 9; n++) {
                                     for (let j = 1; j < 9; j++) {
                                         for (let r = 1; r < 9; r++) {
-                                            if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                            if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(green);
 
                                             }
@@ -776,19 +1044,17 @@
                                 }
 
 
-
                             }
                         }
                     }
-
 
 
                 }
 
                 if (document.getElementById('redchecked').checked) {
                     red = "red";
-                    if (centre==1) {
-                        if (left==1 && right==1) {
+                    if (centre == 1) {
+                        if (left == 1 && right == 1) {
                             for (let i = 1; i < 9; i++) {
                                 if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x2" + i)[0].value) {
                                     document.getElementsByName("x1" + i)[0].classList.add(red);
@@ -798,14 +1064,14 @@
                                     }
                                 }
                             }
-                        } else if (left==1){
+                        } else if (left == 1) {
                             for (let i = 1; i < 9; i++) {
                                 if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
                                     document.getElementsByName("x1" + i)[0].classList.add(red);
                                     document.getElementsByName("x3" + i)[0].classList.add(red);
                                 }
                             }
-                        } else if (right==1){
+                        } else if (right == 1) {
                             for (let i = 1; i < 9; i++) {
                                 if (document.getElementsByName("x2" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
                                     document.getElementsByName("x2" + i)[0].classList.add(red);
@@ -848,17 +1114,17 @@
                             if (temp_dd != "") {
                                 const temp_arr_dd = temp_dd.split('_');
                                 for (let j = 1; j < 9; j++) {
-                                    if (left==1 && right==1) {
-                                        if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value) {
+                                    if (left == 1 && right == 1) {
+                                        if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value) {
                                             document.getElementsByName("d" + k + i)[0].classList.add(red);
                                         }
-                                    } else if (left==1){
-                                        if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1]) {
+                                    } else if (left == 1) {
+                                        if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1]) {
                                             document.getElementsByName("d" + k + i)[0].classList.add(red);
                                         }
 
-                                    } else if (right==1){
-                                        if (temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j-1]) {
+                                    } else if (right == 1) {
+                                        if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1]) {
                                             document.getElementsByName("d" + k + i)[0].classList.add(red);
                                         }
                                     }
@@ -869,7 +1135,7 @@
 
                 }
 
-                if (month==0) {
+                if (month == 0) {
                     document.getElementsByName("x12")[0].classList.remove("green");
                     document.getElementsByName("x32")[0].classList.remove("green");
                     document.getElementsByName("x22")[0].classList.remove("green");
@@ -900,18 +1166,18 @@
                                 const temp_arr_dd = temp_dd.split('_');
                                 for (let j = 1; j < 9; j++) {
 
-                                    if (j!=2){
-                                        if (left==1 && right==1) {
-                                            if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value) {
+                                    if (j != 2) {
+                                        if (left == 1 && right == 1) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
-                                        } else if (left==1){
-                                            if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1]) {
+                                        } else if (left == 1) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1]) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
 
-                                        } else if (right==1){
-                                            if (temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j-1]) {
+                                        } else if (right == 1) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1]) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
                                         }
@@ -928,15 +1194,15 @@
                             if (temp_dd != "") {
                                 const temp_arr_dd = temp_dd.split('_');
 
-                                if (left==1 && right==1) {
+                                if (left == 1 && right == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
                                             for (let r = 1; r < 9; r++) {
 
-                                                if (n==2 || j==2 || r==2){
+                                                if (n == 2 || j == 2 || r == 2) {
 
-                                                }else{
-                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                                } else {
+                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
                                                         document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                     }
                                                 }
@@ -946,13 +1212,13 @@
                                         }
                                     }
 
-                                } else if (left==1){
+                                } else if (left == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
-                                            if (n==2 || j==2){
+                                            if (n == 2 || j == 2) {
 
-                                            }else{
-                                                if (temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                            } else {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -960,13 +1226,13 @@
                                         }
                                     }
 
-                                } else if (right==1){
+                                } else if (right == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
 
-                                            if (n==2 || j==2){
-                                            }else{
-                                                if (temp_arr_dd[n-1] == document.getElementsByName("x2" + j)[0].value) {
+                                            if (n == 2 || j == 2) {
+                                            } else {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value) {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -981,7 +1247,7 @@
 
                 }
 
-                if (year==0) {
+                if (year == 0) {
                     document.getElementsByName("x13")[0].classList.remove("green");
                     document.getElementsByName("x33")[0].classList.remove("green");
                     document.getElementsByName("x23")[0].classList.remove("green");
@@ -1013,18 +1279,18 @@
                                 const temp_arr_dd = temp_dd.split('_');
                                 for (let j = 1; j < 9; j++) {
 
-                                    if (j!=3){
-                                        if (left==1 && right==1) {
-                                            if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value) {
+                                    if (j != 3) {
+                                        if (left == 1 && right == 1) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
-                                        } else if (left==1){
-                                            if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1]) {
+                                        } else if (left == 1) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1]) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
 
-                                        } else if (right==1){
-                                            if (temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j-1]) {
+                                        } else if (right == 1) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1]) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
                                         }
@@ -1041,15 +1307,15 @@
                             if (temp_dd != "") {
                                 const temp_arr_dd = temp_dd.split('_');
 
-                                if (left==1 && right==1) {
+                                if (left == 1 && right == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
                                             for (let r = 1; r < 9; r++) {
 
-                                                if (n==3 || j==3 || r==3){
+                                                if (n == 3 || j == 3 || r == 3) {
 
-                                                }else{
-                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                                } else {
+                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
                                                         document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                     }
                                                 }
@@ -1059,13 +1325,13 @@
                                         }
                                     }
 
-                                } else if (left==1){
+                                } else if (left == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
-                                            if (n==3 || j==3){
+                                            if (n == 3 || j == 3) {
 
-                                            }else{
-                                                if (temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                            } else {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1073,13 +1339,13 @@
                                         }
                                     }
 
-                                } else if (right==1){
+                                } else if (right == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
 
-                                            if (n==3 || j==3){
-                                            }else{
-                                                if (temp_arr_dd[n-1] == document.getElementsByName("x2" + j)[0].value) {
+                                            if (n == 3 || j == 3) {
+                                            } else {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value) {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1094,7 +1360,7 @@
 
                 }
 
-                if (year==0 && month==0) {
+                if (year == 0 && month == 0) {
                     document.getElementsByName("x16")[0].classList.remove("green");
                     document.getElementsByName("x36")[0].classList.remove("green");
                     document.getElementsByName("x26")[0].classList.remove("green");
@@ -1125,20 +1391,19 @@
                                 const temp_arr_dd = temp_dd.split('_');
                                 for (let j = 1; j < 9; j++) {
 
-                                    if (j==6 || j==3 || j==2 ){
-                                    }
-                                    else{
-                                        if (left==1 && right==1) {
-                                            if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value) {
+                                    if (j == 6 || j == 3 || j == 2) {
+                                    } else {
+                                        if (left == 1 && right == 1) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
-                                        } else if (left==1){
-                                            if (temp_arr_dd[j-1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j-1]) {
+                                        } else if (left == 1) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1]) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
 
-                                        } else if (right==1){
-                                            if (temp_arr_dd[j-1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j-1]) {
+                                        } else if (right == 1) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1]) {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
                                         }
@@ -1155,15 +1420,15 @@
                             if (temp_dd != "") {
                                 const temp_arr_dd = temp_dd.split('_');
 
-                                if (left==1 && right==1) {
+                                if (left == 1 && right == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
                                             for (let r = 1; r < 9; r++) {
 
-                                                if (n==6 || j==6 || r==6 || n==3 || j==3 || r==3 || n==2 || j==2 || r==2){
+                                                if (n == 6 || j == 6 || r == 6 || n == 3 || j == 3 || r == 3 || n == 2 || j == 2 || r == 2) {
 
-                                                }else{
-                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                                } else {
+                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
                                                         document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                     }
                                                 }
@@ -1173,13 +1438,13 @@
                                         }
                                     }
 
-                                } else if (left==1){
+                                } else if (left == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
-                                            if (n==6 || j==6 || n==3 || j==3 || n==2 || j==2){
+                                            if (n == 6 || j == 6 || n == 3 || j == 3 || n == 2 || j == 2) {
 
-                                            }else{
-                                                if (temp_arr_dd[n-1] == document.getElementsByName("x1" + j)[0].value) {
+                                            } else {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1187,13 +1452,13 @@
                                         }
                                     }
 
-                                } else if (right==1){
+                                } else if (right == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
 
-                                            if (n==6 || j==6 || n==3 || j==3 || n==2 || j==2){
-                                            }else{
-                                                if (temp_arr_dd[n-1] == document.getElementsByName("x2" + j)[0].value) {
+                                            if (n == 6 || j == 6 || n == 3 || j == 3 || n == 2 || j == 2) {
+                                            } else {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value) {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1206,40 +1471,39 @@
                     }
 
 
-
-
-
                 }
 
             }
+
             redandgreen();
-            function datecall(arrdate,date_day) {
-                if (arrdate!=''){
+
+            function datecall(arrdate, date_day) {
+                if (arrdate != '') {
                     const temp_arr = arrdate.split('_');
-                    document.getElementsByName("center_day")[0].value=date_day
+                    document.getElementsByName("center_day")[0].value = date_day
                     for (let i = 1; i < 9; i++) {
-                        document.getElementsByName("x3" + i)[0].value=temp_arr[i-1]
+                        document.getElementsByName("x3" + i)[0].value = temp_arr[i - 1]
                     }
                 }
                 redandgreen();
             }
 
-            click=0;
+            click = 0;
             for (let k = 1; k < 7; k++) {
                 for (let i = 1; i <= 7; i++) {
-                    if (document.getElementsByName("d" + k + i)[0].value==d){
+                    if (document.getElementsByName("d" + k + i)[0].value == d) {
                         document.getElementsByName("d" + k + i)[0].click();
-                        click=1;
+                        click = 1;
                     }
                 }
             }
 
-            if (click==0){
+            if (click == 0) {
                 for (let k = 1; k < 7; k++) {
                     for (let i = 1; i <= 7; i++) {
-                        if (document.getElementsByName("d" + k + i)[0].value==1){
+                        if (document.getElementsByName("d" + k + i)[0].value == 1) {
                             document.getElementsByName("d" + k + i)[0].click();
-                            click=1;
+                            click = 1;
                         }
                     }
                 }
@@ -1254,16 +1518,16 @@
 
                 if (screen.width > 750) {
                     $(".dropdown-item").css({"font-size": "12px"});
-                    $(".no_filter").css({"width": "20px", "height": "20px","font-size": "10px"});
-                    $(".center_input").css({"width": "20px", "height": "20px","font-size":"12px"});
+                    $(".no_filter").css({"width": "20px", "height": "20px", "font-size": "10px"});
+                    $(".center_input").css({"width": "20px", "height": "20px", "font-size": "12px"});
                     $(".calendar__top_input").css({"width": "150px"});
-                    $(".center_input_empty").css({"width": "18px", "height": "20px","margin-top": "5px"});
+                    $(".center_input_empty").css({"width": "18px", "height": "20px", "margin-top": "5px"});
                     $(".days_of_the_week").css({"width": "20px", "height": "20px"});
                     $(".img_left_gold").css({"width": "100px"});
-                    $(".img_right_gold").css({"width": "100px","margin-bottom": "30px"});
+                    $(".img_right_gold").css({"width": "100px", "margin-bottom": "30px"});
                     $(".drop").css({"font-size": "10px"});
                     $(".calendar__top").css({"margin-bottom:": "20px"});
-                    $(".elements-left").css({"width": "35px", "height": "55px","top":"-125px"});
+                    $(".elements-left").css({"width": "35px", "height": "55px", "top": "-125px"});
                     $(".elements-right").css({"width": "35px", "height": "55px"});
 
 
@@ -1272,49 +1536,47 @@
                     $(".circle__filter__select-main").css({"width": "30px"});
 
 
-                    $(".top_main_img").css({"width": "210px","margin-bottom": "20px"});
-                    $(".container").css({"padding-right": "0px","padding-left": "0px", "max-width":"100%"});
-                    $(".hea").css({"max-width":"90%"});
-                    $(".row").css({"padding-right": "0px","padding-left": "0px" });
+                    $(".top_main_img").css({"width": "210px", "margin-bottom": "20px"});
+                    $(".container").css({"padding-right": "0px", "padding-left": "0px", "max-width": "100%"});
+                    $(".hea").css({"max-width": "90%"});
+                    $(".row").css({"padding-right": "0px", "padding-left": "0px"});
 
                     $(".center_input_empty").css({"font-size": "10px"});
                     $(".month_2").css({"font-size": "12px"});
 
                     $(".inp_date_2").css({"padding": "30px 0 0 0"});
 
-                    $(".cat2").css({"margin-right": "0px","left":"30px", "margin-left": "-20%","height":"40px"});
-                    $(".cat2_l").css({"margin-right": "0px", "margin-left": "-13%","height":"40px"});
-                    $(".cat2_r").css({"margin-right": "0px","left":"0%", "height":"40px"});
+                    $(".cat2").css({"margin-right": "0px", "left": "30px", "margin-left": "-20%", "height": "40px"});
+                    $(".cat2_l").css({"margin-right": "0px", "margin-left": "-13%", "height": "40px"});
+                    $(".cat2_r").css({"margin-right": "0px", "left": "0%", "height": "40px"});
 
-                    $(".center_date").css({"font-size": "15px","width":"30px", "height": "30px"});
-                    $(".crosses").css({"width":"20px"});
-                    $(".crosses_1").css({"width":"20px"});
-                    $(".justify-content-md-center").css({"justify-content":"center"});
+                    $(".center_date").css({"font-size": "15px", "width": "30px", "height": "30px"});
+                    $(".crosses").css({"width": "20px"});
+                    $(".crosses_1").css({"width": "20px"});
+                    $(".justify-content-md-center").css({"justify-content": "center"});
 
-                    $(".center_indexes").css({"margin-top":"-9%"});
+                    $(".center_indexes").css({"margin-top": "-9%"});
 
                     $(".circle__filter_block_month_m").css({"font-size": "12px"});
                     $(".circle__filter_block_month_p").css({"font-size": "12px"});
-                    $(".central_year").css({"font-size": "12px", "left":"-25%"});
-                    $(".center").css({"max-width":"90%"});
-                }
-                else
-                {
+                    $(".central_year").css({"font-size": "12px", "left": "-25%"});
+                    $(".center").css({"max-width": "90%"});
+                } else {
                     $(".dropdown-item").css({"font-size": "12px"});
                     $(".dropdown-left-hp").css({"margin-left": "-10px"});
                     $(".dropdown-right-hp").css({"margin-right": "10px"});
-                    $(".no_filter").css({"width": "20px", "height": "20px","font-size": "10px"});
-                    $(".center_input").css({"width": "20px", "height": "20px","font-size":"12px"});
-                    $(".calendar__top_input").css({"max-width": "155px","height": "25px","margin-top": "7px"});
+                    $(".no_filter").css({"width": "20px", "height": "20px", "font-size": "10px"});
+                    $(".center_input").css({"width": "20px", "height": "20px", "font-size": "12px"});
+                    $(".calendar__top_input").css({"max-width": "155px", "height": "25px", "margin-top": "7px"});
                     $(".center_input_empty").css({"width": "20px", "height": "20px"});
                     $(".eee").css({"width": "16px", "height": "18px"});
                     $(".central-border-eee").css({"height": "25px"});
                     $(".days_of_the_week").css({"width": "20px", "height": "20px"});
                     $(".img_left_gold").css({"width": "100px"});
-                    $(".img_right_gold").css({"width": "100px","margin-bottom": "30px"});
+                    $(".img_right_gold").css({"width": "100px", "margin-bottom": "30px"});
                     $(".drop").css({"font-size": "10px"});
                     $(".calendar__top").css({"margin-bottom:": "20px"});
-                    $(".elements-left").css({"width": "35px", "height": "55px","top":"-125px"});
+                    $(".elements-left").css({"width": "35px", "height": "55px", "top": "-125px"});
                     $(".elements-right").css({"width": "35px", "height": "55px"});
 
 
@@ -1323,30 +1585,30 @@
                     $(".circle__filter__select-main").css({"width": "30px"});
 
 
-                    $(".top_main_img").css({"width": "210px","margin-bottom": "20px"});
-                    $(".container").css({"padding-right": "0px","padding-left": "0px", "max-width":"100%"});
-                    $(".hea").css({"max-width":"90%"});
-                    $(".row").css({"padding-right": "0px","padding-left": "0px" });
+                    $(".top_main_img").css({"width": "210px", "margin-bottom": "20px"});
+                    $(".container").css({"padding-right": "0px", "padding-left": "0px", "max-width": "100%"});
+                    $(".hea").css({"max-width": "90%"});
+                    $(".row").css({"padding-right": "0px", "padding-left": "0px"});
 
                     $(".center_input_empty").css({"font-size": "10px"});
                     $(".month_2").css({"font-size": "12px"});
 
                     $(".inp_date_2").css({"padding": "30px 0 0 0"});
 
-                    $(".cat2").css({"margin-right": "0px","left":"30px", "margin-left": "-20%","height":"40px"});
-                    $(".cat2_l").css({"margin-right": "0px","left":"40px", "margin-left": "-20%","height":"40px"});
-                    $(".cat2_r").css({"margin-right": "0px","left":"30px", "margin-left": "-20%","height":"40px"});
+                    $(".cat2").css({"margin-right": "0px", "left": "30px", "margin-left": "-20%", "height": "40px"});
+                    $(".cat2_l").css({"margin-right": "0px", "left": "40px", "margin-left": "-20%", "height": "40px"});
+                    $(".cat2_r").css({"margin-right": "0px", "left": "30px", "margin-left": "-20%", "height": "40px"});
 
-                    $(".center_date").css({"font-size": "15px","width":"30px", "height": "30px"});
-                    $(".crosses").css({"width":"20px"});
-                    $(".crosses_1").css({"width":"20px"});
-                    $(".justify-content-md-center").css({"justify-content":"center"});
+                    $(".center_date").css({"font-size": "15px", "width": "30px", "height": "30px"});
+                    $(".crosses").css({"width": "20px"});
+                    $(".crosses_1").css({"width": "20px"});
+                    $(".justify-content-md-center").css({"justify-content": "center"});
 
-                    $(".center_indexes").css({"margin-top":"-9%"});
+                    $(".center_indexes").css({"margin-top": "-9%"});
 
                     $(".circle__filter_block_month_m").css({"font-size": "12px"});
                     $(".circle__filter_block_month_p").css({"font-size": "12px"});
-                    $(".central_year").css({"font-size": "12px", "left":"-25%"});
+                    $(".central_year").css({"font-size": "12px", "left": "-25%"});
                 }
 
             }
@@ -1355,7 +1617,8 @@
 
 
         <div class="rotation_active">
-            <div class="center" align="center" style="background-color:#111;min-height: calc(100vh - 320px);margin:auto auto;">
+            <div class="center" align="center"
+                 style="background-color:#111;min-height: calc(100vh - 320px);margin:auto auto;">
                 <div class="phone" style="margin-top:200px;">
                 </div>
 
@@ -1375,7 +1638,8 @@
                     <img src="{% static 'images/center_logo.png' %}" align="center" style="max-height: 100px;">
                 </div>
                 <p style="color:white;font-size: 24px;" align="center">Welcome</p>
-                <p style="color:white;font-size: 16px;" align="center">Login or sign up to get access to the astronomical calendar</p>
+                <p style="color:white;font-size: 16px;" align="center">Login or sign up to get access to the
+                    astronomical calendar</p>
             </div>
         </div>
     {% endif %}
