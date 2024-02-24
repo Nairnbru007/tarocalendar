@@ -178,18 +178,29 @@ def upload_csv(request):
     for line in lines:
         fields = line.split(";")
         data_arr.append([fields[0],fields[1],fields[2],fields[3],fields[4]])
-
     for line in data_arr:
+        print(line)
         result=map(str, algorithm_run_glob(line[2]))
-        name_comositors = Histpersons.objects.create(
+        try:
+            tt=Histpersons.objects.get(
             fio_ru=line[0],
             fio_en=line[1],
             date=datetime.strptime(line[2], "%d.%m.%Y").date(),
-            type_ru=line[3],
-            type_en=line[4].replace('\r', ''),
-            result="_".join(result)
         )
-        name_comositors.save()
+            tt_i=1
+        except:
+            tt_i=0
+        #name_comositors.save()
+        if tt==0:
+            insert = Histpersons.objects.create(
+                fio_ru=line[0],
+                fio_en=line[1],
+                date=datetime.strptime(line[2], "%d.%m.%Y").date(),
+                type_ru=line[3],
+                type_en=line[4].replace('\r', ''),
+                result="_".join(result)
+            )
+            insert.save()
     messages.error(request,'File Ok')
     return HttpResponseRedirect(request.path)
 
