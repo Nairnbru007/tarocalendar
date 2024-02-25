@@ -224,30 +224,40 @@ def algorithm_run_glob(the_date_str):
     temp=the_date_str.split('.')
 
     d=int(temp[0])
-    while d>22:
+    while d>23:
         d=sum_digits(d)
     m=int(temp[1])
     y=int(temp[2])
     q=y
-    while q>22:
+    while q>23:
         q=sum_digits(q)
     b=d+m
-    while b>22:
+    while b>23:
         b=sum_digits(b)
     e=d+q
-    while e>22:
+    while e>23:
         e=sum_digits(e)
     f=m+q
-    while f>22:
+    while f>23:
         f=sum_digits(f)
-    k=d+m+sum_digits(q)
-    l=sum_digits(k)
-    if k>22:
+    k=sum_digits(d)+sum_digits(m)+sum_digits(q)
+    if k>23:
+        k=sum_digits(k)
+
+    l = sum_digits(k)
+    if l<10:
         k='-'
-    elif k==19:
-        l=1
     while l>9:
         l=sum_digits(l)
+
+    if d == 22: d = 0
+    if m == 22: m = 0
+    if q == 22: q = 0
+    if b == 22: b = 0
+    if e == 22: e = 0
+    if f == 22: f = 0
+    if k == 22: k = 0
+    if l == 22: l = 0
     temp=[d,m,q,b,e,f,k,l]
     return temp
 
@@ -301,7 +311,7 @@ def fio_to_num(fio_str:str,index:str):
     summ3 = 0
     fio_temp = fio_str.replace('-','').lower()
     fio_temp=fio_temp.split(' ')
-    print(fio_temp)
+    #print(fio_temp)
     try:
         for i in fio_temp[0]:
             if i in alphabet:
@@ -313,22 +323,27 @@ def fio_to_num(fio_str:str,index:str):
         for i in ''.join(fio_temp[1:]):
             if i in alphabet:
                 summ2=summ2+alphabet[i]
-                print(i)
+                #print(i)
     except:
         print('error fio '+index+' [1]')
         pass
 
 
-    while summ1 > 22:
+    while summ1 > 23:
         summ1 = sum_digits(summ1)
-    while summ2 > 22:
+    while summ2 > 23:
         summ2 = sum_digits(summ2)
     summ3 = summ1 + summ2
-    while summ3 > 22:
+    while summ3 > 23:
         summ3 = sum_digits(summ3)
+
+    if summ1 == 22: summ1 = 0
+    if summ2 == 22: summ2 = 0
+    if summ3 == 22: summ3 = 0
+
     temp={}
     temp['fio'+index+'1'] = str(summ1)
     temp['fio'+index+'2'] = str(summ2)
     temp['fio'+index+'3'] = str(summ3)
-    print(temp)
+    #print(temp)
     return temp

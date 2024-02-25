@@ -891,6 +891,7 @@ class Algorithm(View):
                     left_return=algorithm_run_left(left_result_,data['date1'])
                     left_result_=left_return[0]
                     result_1_9_left=left_return[1]
+                    #print(result_1_9_left)
 
                     if self.request.user.role >= 3:
                         for hp1 in Histpersons.objects.all():
@@ -909,13 +910,14 @@ class Algorithm(View):
                                             thp1_arr[i]=1.1
                             count_matches=sum(thp1_arr)
                             if count_matches>0:
-                                hist_pers_1["hstprs1"].append({'fio_ru':hp1.fio_ru,'result':hp1.result,'count':count_matches,'date':hp1.date, 'types':hp1.types.title()})
-                        hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)
+                                hist_pers_1["hstprs1"].append({'fio_ru':hp1.fio_ru,'result':hp1.result,'count':count_matches,'date':hp1.date, 'types':hp1.type_ru.title()})
+                        hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)[0:15]
                         hist_pers_1["hstprs1_count"]=len(hist_pers_1["hstprs1"])
 
                 else:
                     left=False
-            except:
+            except Exception as e:
+                print(e)
                 left=False
                 pass
 
@@ -952,8 +954,8 @@ class Algorithm(View):
                                             thp2_arr[i]=1.1
                             count_matches=sum(thp2_arr)
                             if count_matches>0:
-                                hist_pers_2["hstprs2"].append({'fio_ru':hp2.fio_ru,'result':hp2.result,'count':count_matches,'date':hp2.date, 'types':hp2.types.title()})
-                        hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)
+                                hist_pers_2["hstprs2"].append({'fio_ru':hp2.fio_ru,'result':hp2.result,'count':count_matches,'date':hp2.date, 'types':hp2.type_ru.title()})
+                        hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)[0:15]
                         hist_pers_2["hstprs2_count"]=len(hist_pers_2["hstprs2"])
 
                 else:
@@ -974,10 +976,11 @@ class Algorithm(View):
             context={**context,**curr_culend}
 
             #print(f'left {left} \nright {right}')
+            #print(left)
             result_values=algorithm_run_center(left_result_,center_result_,right_result_,left,right,datetime.now().strftime("%d.%m.%Y"))
             context={**context,**result_values,**hist_pers_1,**hist_pers_2}
             #print(datetime.now().strftime("%d.%m.%Y"))
-
+            #print(result_values)
             global glob_context
             glob_context=context
 

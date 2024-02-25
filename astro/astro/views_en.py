@@ -911,8 +911,8 @@ class Algorithm(View):
                                             thp1_arr[i]=1.1
                             count_matches=sum(thp1_arr)
                             if count_matches>0:
-                                hist_pers_1["hstprs1"].append({'fio_en':hp1.fio_en,'result':hp1.result,'count':count_matches,'date':hp1.date, 'types':hp1.types.title()})
-                        hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)
+                                hist_pers_1["hstprs1"].append({'fio_en':hp1.fio_en,'result':hp1.result,'count':count_matches,'date':hp1.date, 'types':hp1.type_en.title()})
+                        hist_pers_1["hstprs1"] = sorted(hist_pers_1["hstprs1"], key=lambda d: d['count'], reverse=True)[0:15]
                         hist_pers_1["hstprs1_count"]=len(hist_pers_1["hstprs1"])
 
                 else:
@@ -954,8 +954,8 @@ class Algorithm(View):
                                             thp2_arr[i]=1.1
                             count_matches=sum(thp2_arr)
                             if count_matches>0:
-                                hist_pers_2["hstprs2"].append({'fio_en':hp2.fio_en,'result':hp2.result,'count':count_matches,'date':hp2.date, 'types':hp2.types.title()})
-                        hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)
+                                hist_pers_2["hstprs2"].append({'fio_en':hp2.fio_en,'result':hp2.result,'count':count_matches,'date':hp2.date, 'types':hp2.type_en.title()})
+                        hist_pers_2["hstprs2"] = sorted(hist_pers_2["hstprs2"], key=lambda d: d['count'], reverse=True)[0:15]
                         hist_pers_2["hstprs2_count"]=len(hist_pers_2["hstprs2"])
 
                 else:

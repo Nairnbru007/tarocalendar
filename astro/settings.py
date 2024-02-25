@@ -83,6 +83,8 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 }
 
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
