@@ -191,7 +191,7 @@ def upload_csv(request):
         except:
             tt_i=0
         #name_comositors.save()
-        if tt==0:
+        if tt_i==0:
             insert = Histpersons.objects.create(
                 fio_ru=line[0],
                 fio_en=line[1],

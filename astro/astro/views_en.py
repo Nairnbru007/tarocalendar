@@ -881,9 +881,9 @@ class Algorithm(View):
             context={**context,**save_render(data),**grpps}
 
             try:
+                if data['fio1'] != '':
+                    result_fio = fio_to_num(data['fio1'], '1')
                 if data['date1']!='':
-                    if data['fio1'] != '':
-                        result_fio = fio_to_num(data['fio1'], '1')
                     left=True
                     temp=data['date1'].split('.')
                     zod_left=get_zodiac_sign(temp[0],temp[1],"num")
@@ -922,9 +922,9 @@ class Algorithm(View):
                 pass
 
             try:
+                if data['fio2'] != '':
+                    result_fio = fio_to_num(data['fio2'], '2')
                 if data['date2']!='':
-                    if data['fio2'] != '':
-                        result_fio = fio_to_num(data['fio2'], '2')
                     #context={**context,'scales22':'checked'}
                     right=True
                     temp=data['date2'].split('.')

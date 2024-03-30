@@ -333,9 +333,14 @@ def fio_to_num(fio_str:str,index:str):
         summ1 = sum_digits(summ1)
     while summ2 > 23:
         summ2 = sum_digits(summ2)
+
     summ3 = summ1 + summ2
     while summ3 > 23:
         summ3 = sum_digits(summ3)
+
+    if summ1 == 0: summ1 = '-'
+    if summ2 == 0: summ2 = '-'
+    if summ2 == '-': summ3 = '-'
 
     if summ1 == 22: summ1 = 0
     if summ2 == 22: summ2 = 0

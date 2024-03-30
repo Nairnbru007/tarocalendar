@@ -875,9 +875,9 @@ class Algorithm(View):
             context={**context,**save_render(data),**grpps}
 
             try:
+                if data['fio1'] != '':
+                    result_fio = fio_to_num(data['fio1'], '1')
                 if data['date1']!='':
-                    if data['fio1']!='':
-                        result_fio=fio_to_num(data['fio1'],'1')
                         #result_fio['fio11'] = '1'
                         #result_fio['fio12'] = '2'
                         #result_fio['fio13'] = '3'
@@ -922,9 +922,9 @@ class Algorithm(View):
                 pass
 
             try:
+                if data['fio1'] != '':
+                    result_fio = fio_to_num(data['fio2'], '2')
                 if data['date2']!='':
-                    if data['fio1'] != '':
-                        result_fio = fio_to_num(data['fio2'], '2')
                     #context={**context,'scales22':'checked'}
                     right=True
                     temp=data['date2'].split('.')
