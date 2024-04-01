@@ -57,7 +57,8 @@ urlpatterns = [
     path('en/algorithm/', views_en.Algorithm.as_view(), name='algorithm_en'),
     path('en/activate/(<uidb64>)/(<token>)/',views_en.activate, name='activate_en'),
 #system
-    path('logout/', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
+    path('logout_ru/', LogoutView.as_view(next_page='/'), name='logout_ru'),
+    path('logout_en/', LogoutView.as_view(next_page='/en'), name='logout_en'),
     path('upload/csv/', views.upload_csv, name='upload_csv'),
     path('upload/data/', views.upload_calend, name='upload_calend'),
 

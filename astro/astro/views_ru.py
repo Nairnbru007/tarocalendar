@@ -864,9 +864,9 @@ class Algorithm(View):
             result_1_9_right=[]
             result_1_9_left=[]
 
-            result_fio={}
+            result_fio1 = {'fio11': '', 'fio12': '', 'fio13': ''}
+            result_fio2 = {'fio21': '', 'fio22': '', 'fio23': ''}
             #hist_pers={"hstprs1":Histpersons.objects.all()}
-
             try:
                 temp_gr=data['groups_name']
             except:
@@ -876,7 +876,7 @@ class Algorithm(View):
 
             try:
                 if data['fio1'] != '':
-                    result_fio = fio_to_num(data['fio1'], '1')
+                    result_fio1 = fio_to_num(data['fio1'], '1')
                 if data['date1']!='':
                         #result_fio['fio11'] = '1'
                         #result_fio['fio12'] = '2'
@@ -922,8 +922,8 @@ class Algorithm(View):
                 pass
 
             try:
-                if data['fio1'] != '':
-                    result_fio = fio_to_num(data['fio2'], '2')
+                if data['fio2'] != '':
+                    result_fio2 = fio_to_num(data['fio2'], '2')
                 if data['date2']!='':
                     #context={**context,'scales22':'checked'}
                     right=True
@@ -969,7 +969,7 @@ class Algorithm(View):
                 context_zods['zod_'+zod_left]=context_zods['zod_'+zod_left].replace('_red','').replace('_green','').split('.png')[0]+'_red.png'
 
             context={**context,**context_zods}
-            context = {**context, **result_fio}
+            context = {**context, **result_fio1,**result_fio2}
 
             #print(result_1_9_left)
             curr_culend=calend(date.today().month, date.today().year,result_1_9_left,result_1_9_right)

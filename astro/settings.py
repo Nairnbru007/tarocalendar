@@ -114,8 +114,10 @@ AUTH_PASSWORD_VALIDATORS = [
 
 ]
 
-LOGOUT_REDIRECT_URL = "main"
-LOGIN_REDIRECT_URL = "main"
+LOGOUT_REDIRECT_URL_RU = "main_ru"
+LOGIN_REDIRECT_URL_RU = "main_ru"
+LOGOUT_REDIRECT_URL_EN = "main_en"
+LOGIN_REDIRECT_URL_EN = "main_en"
 
 CSRF_FAILURE_VIEW = 'astro.astro.views.csrf_failure'
 #LANGUAGE_CODE = 'ru-RU'
