@@ -458,7 +458,7 @@ p{
                             <div class="col align-self-center ">
                                 <div class="flex rakurs_center_1 circle__filter2 circle__filter_block_2">
                                     <input type="text" name="center_day" class="center_input" value="" readonly>
-                                    <input type="text" name="center_year" class="center_input" style="width: 78px;"
+                                    <input type="text" name="center_year" class="center_input center_year" style="width: 78px;"
                                            value="{{ cal_month }}" readonly> <!--{{ cal_year }}-->
                                 </div>
                             </div>
@@ -669,7 +669,7 @@ p{
                     <div class="container">
                         <div class="row">
                             <div class="col align-self-start" style="margin-top: -150px;">
-                                <fieldset style="display: block;
+                                <fieldset class="g_and_r_l" style="display: block;
     margin-left: 2px;
     margin-right: 2px;
     padding-top: 0.35em;
@@ -783,7 +783,7 @@ p{
                             </div>
                             <div class="col align-self-end"
                                  style="margin-top: -150px; align-self: flex-start !important;">
-                                <fieldset style="display: block;
+                                <fieldset class="g_and_r_r" style="display: block;
     margin-left: auto;
     margin-right: 2px;
     padding-top: 0.35em;
@@ -1537,7 +1537,7 @@ p{
                     $(".top_main_img").css({"width": "210px", "margin-bottom": "20px"});
                     $(".container").css({"padding-right": "0px", "padding-left": "0px", "max-width": "100%"});
                     $(".hea").css({"max-width": "90%"});
-                    $(".row").css({"padding-right": "0px", "padding-left": "0px"});
+                    $(".row").css({"padding-right": "0px", "padding-left": "0px","margin":""});
 
                     $(".center_input_empty").css({"font-size": "10px"});
                     $(".month_2").css({"font-size": "12px"});
@@ -1564,8 +1564,8 @@ p{
                     $(".dropdown-left-hp").css({"margin-left": "-10px"});
                     $(".dropdown-right-hp").css({"margin-right": "10px"});
                     $(".no_filter").css({"width": "20px", "height": "20px", "font-size": "10px"});
-                    $(".center_input").css({"width": "20px", "height": "20px", "font-size": "12px"});
-                    $(".calendar__top_input").css({"max-width": "155px", "height": "25px", "margin-top": "7px"});
+                    $(".center_input").css({"width": "20px", "height": "25px", "font-size": "12px"});
+                    $(".calendar__top_input").css({"font-size":"12px","max-width": "155px", "height": "25px", "margin-top": "7px"});
                     $(".center_input_empty").css({"width": "20px", "height": "20px"});
                     $(".eee").css({"width": "16px", "height": "18px"});
                     $(".central-border-eee").css({"height": "25px"});
@@ -1573,7 +1573,7 @@ p{
                     $(".img_left_gold").css({"width": "100px"});
                     $(".img_right_gold").css({"width": "100px", "margin-bottom": "30px"});
                     $(".drop").css({"font-size": "10px"});
-                    $(".calendar__top").css({"margin-bottom:": "20px"});
+                    $(".calendar__top").css({"margin-bottom:": "20px", "width":"auto"});
                     $(".elements-left").css({"width": "35px", "height": "55px", "top": "-125px"});
                     $(".elements-right").css({"width": "35px", "height": "55px"});
 
@@ -1586,16 +1586,21 @@ p{
                     $(".top_main_img").css({"width": "210px", "margin-bottom": "20px"});
                     $(".container").css({"padding-right": "0px", "padding-left": "0px", "max-width": "100%"});
                     $(".hea").css({"max-width": "90%"});
-                    $(".row").css({"padding-right": "0px", "padding-left": "0px"});
+                    $(".row").css({"padding-right": "0px", "padding-left": "0px","margin":""});
 
                     $(".center_input_empty").css({"font-size": "10px"});
+                    $(".center_year").css({"width": "50px"});
                     $(".month_2").css({"font-size": "12px"});
+                    $(".month").css({"margin-bottom": "9px"});
 
+
+                    $(".inp_date_3").css({"margin-bottom": "6px"});
                     $(".inp_date_2").css({"padding": "30px 0 0 0"});
+                    $(".inp_date").css({"margin": "auto"});
 
                     $(".cat2").css({"margin-right": "0px", "left": "30px", "margin-left": "-20%", "height": "40px"});
-                    $(".cat2_l").css({"margin-right": "0px", "left": "40px", "margin-left": "-20%", "height": "40px"});
-                    $(".cat2_r").css({"margin-right": "0px", "left": "30px", "margin-left": "-20%", "height": "40px"});
+                    $(".cat2_l").css({"width":"auto","margin-right": "0px", "left": "40px", "margin-left": "-40%", "height": "40px"});
+                    $(".cat2_r").css({"width":"auto","margin-right": "0px", "left": "30px", "margin-left": "-25%", "height": "40px"});
 
                     $(".center_date").css({"font-size": "15px", "width": "30px", "height": "30px"});
                     $(".crosses").css({"width": "20px"});
@@ -1607,6 +1612,16 @@ p{
                     $(".circle__filter_block_month_m").css({"font-size": "12px"});
                     $(".circle__filter_block_month_p").css({"font-size": "12px"});
                     $(".central_year").css({"font-size": "12px", "left": "-25%"});
+
+                    $("p").css({"font-size": "12px"});
+                    $(".g_and_r_r").css({"width": "175px"});
+                    $(".g_and_r_l").css({"width": "175px"});
+                    $(".cat7").css({"width": "100px"});
+                    $(".control__indicator").css({"left": "auto"});
+                    $("legend").css({"width": "auto"});
+                    $("#current_y").css({"font-size": "10px","width":"27px"});
+                    $(".footer").css({"font-size": "10px"});
+
                 }
 
             }
