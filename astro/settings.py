@@ -85,22 +85,25 @@ REST_FRAMEWORK = {
 
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'u1958943_default',
-#         'USER': 'u1958943_default',
-#         'PASSWORD': 'P8j31jWhjTCh0UK8',
-#         'HOST': 'localhost',
-#     }
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.mysql',
+         'NAME': 'u1958943_astro',
+         #'USER': 'u1958943_remote',
+         #'PASSWORD': 'P8j31jWh',
+         #'HOST': 'IP',
+         'USER': 'u1958943_default',
+         'PASSWORD': 'P8j31jWhjTCh0UK8',
+         'HOST': 'localhost',
+     }
+ }
 
 AUTH_PASSWORD_VALIDATORS = [
     {

@@ -192,12 +192,10 @@ Requires core.js and SelectBox.js.
             document.getElementById(field_id + '_remove_all_link').classList.toggle('active', to.querySelector('option'));
         },
         filter_key_press: function(event, field_id) {
-            const from = document.getElementById(field_id + '_from');
             // don't submit form if user pressed Enter
             if ((event.which && event.which === 13) || (event.keyCode && event.keyCode === 13)) {
-                from.selectedIndex = 0;
-                SelectBox.move(field_id + '_from', field_id + '_to');
-                from.selectedIndex = 0;
+                document.getElementsByName("Result")[0].click();
+                alert('yes');
                 event.preventDefault();
             }
         },

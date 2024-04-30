@@ -224,24 +224,24 @@ def algorithm_run_glob(the_date_str):
     temp=the_date_str.split('.')
 
     d=int(temp[0])
-    while d>23:
+    while d>22:
         d=sum_digits(d)
     m=int(temp[1])
     y=int(temp[2])
     q=y
-    while q>23:
+    while q>22:
         q=sum_digits(q)
     b=d+m
-    while b>23:
+    while b>22:
         b=sum_digits(b)
     e=d+q
-    while e>23:
+    while e>22:
         e=sum_digits(e)
     f=m+q
-    while f>23:
+    while f>22:
         f=sum_digits(f)
     k=sum_digits(d)+sum_digits(m)+sum_digits(q)
-    if k>23:
+    if k>22:
         k=sum_digits(k)
 
     l = sum_digits(k)

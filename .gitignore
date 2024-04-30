@@ -9,9 +9,5 @@
 __pycache__
 /astro/astro/migrations
 /.idea
-/astro/astro/migrations
-/astro/astro/migrations
-/astro/astro/migrations
-db.sqlite3
-*.sqlite3
-/astro/astro/migrations
+/myenv
+

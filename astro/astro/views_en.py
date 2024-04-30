@@ -24,7 +24,7 @@ from .tokens import account_activation_token, password_reset_token
 from django.core.mail import EmailMessage
 import json
 from datetime import datetime, date, timedelta
-
+from django.utils.encoding import force_str
 from django.db.models import Q
 from django.shortcuts import redirect
 #import requests
@@ -1689,7 +1689,7 @@ class Favorites_View(Up_role,Up_date,ListView):
 def activate(request, uidb64, token):
     User = get_user_model()
 
-    uid = force_text(urlsafe_base64_decode(uidb64))
+    uid = force_str(urlsafe_base64_decode(uidb64))
     user = User.objects.get(pk=uid)
 
     if user is not None and account_activation_token.check_token(user, token):
