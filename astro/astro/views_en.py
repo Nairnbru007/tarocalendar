@@ -104,7 +104,7 @@ class Up_date(UserPassesTestMixin):
         else:
             return False
     def handle_no_permission(self):
-        return redirect('/en/tarif/')
+        return redirect('/en/tariff/')
 class Up_role(UserPassesTestMixin):
     def test_func(self):
         #print(self.request.user.role)
@@ -113,7 +113,7 @@ class Up_role(UserPassesTestMixin):
         else:
             return False
     def handle_no_permission(self):
-        return redirect('/en/tarif/')
+        return redirect('/en/tariff/')
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -171,7 +171,7 @@ class Offer(View):
                 if user is not None:
                     if not user.is_active:
                         current_site = get_current_site(request)
-                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        mail_subject = 'Account verification on https://tarocalendar.com /'
                         message = render_to_string(path_to_tmps['confirmation_acc'], {
                             'user': user,
                             'domain': current_site.domain,
@@ -184,16 +184,16 @@ class Offer(View):
                         )
                         email.send()
                         messages.success(request,
-                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                         "An email has been sent to your email address {} to confirm your account.".format(
                                              to_email))
                         return HttpResponseRedirect(request.path)
                     else:
                         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        # messages.error(request, 'Your account is disabled. Contact the administrator.')
                         return HttpResponseRedirect(request.path)
 
                 else:
-                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    messages.error(request, 'Invalid username or password, please try again.')
                     return HttpResponseRedirect(request.path)
             else:
                 for error in list(login_form.errors.values()):
@@ -206,7 +206,7 @@ class Offer(View):
                 user.is_active = False
                 user.save()
                 current_site = get_current_site(request)
-                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                mail_subject = 'Account activation on https://tarocalendar.com /'
                 message = render_to_string(path_to_tmps['acc_active_email'], {
                     'user': user,
                     'domain': current_site.domain,
@@ -219,7 +219,7 @@ class Offer(View):
                 )
                 email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
             else:
@@ -235,11 +235,11 @@ class Offer(View):
                 site = get_current_site(request)
                 if len(qs) > 0:
                     user = qs[0]
-                    user.is_active = False
-                    user.reset_password = True
-                    user.set_password(password)
-                    user.save()
-                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Password reset on https://tarocalendar.com /'
                     message = render_to_string(path_to_tmps['password_reset_mail'], {
                         'user': user,
                         'domain': site.domain,
@@ -253,7 +253,7 @@ class Offer(View):
                     )
                     email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 class Agreement(View):
@@ -299,7 +299,7 @@ class Agreement(View):
                 if user is not None:
                     if not user.is_active:
                         current_site = get_current_site(request)
-                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        mail_subject = 'Account verification on https://tarocalendar.com /'
                         message = render_to_string(path_to_tmps['confirmation_acc'], {
                             'user': user,
                             'domain': current_site.domain,
@@ -312,16 +312,16 @@ class Agreement(View):
                         )
                         email.send()
                         messages.success(request,
-                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                         "An email has been sent to your email address {} to confirm your account.".format(
                                              to_email))
                         return HttpResponseRedirect(request.path)
                     else:
                         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        # messages.error(request, 'Your account is disabled. Contact the administrator.')
                         return HttpResponseRedirect(request.path)
 
                 else:
-                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    messages.error(request, 'Invalid username or password, please try again.')
                     return HttpResponseRedirect(request.path)
             else:
                 for error in list(login_form.errors.values()):
@@ -334,7 +334,7 @@ class Agreement(View):
                 user.is_active = False
                 user.save()
                 current_site = get_current_site(request)
-                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                mail_subject = 'Account activation on https://tarocalendar.com /'
                 message = render_to_string(path_to_tmps['acc_active_email'], {
                     'user': user,
                     'domain': current_site.domain,
@@ -347,7 +347,7 @@ class Agreement(View):
                 )
                 email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
             else:
@@ -363,11 +363,11 @@ class Agreement(View):
                 site = get_current_site(request)
                 if len(qs) > 0:
                     user = qs[0]
-                    user.is_active = False
-                    user.reset_password = True
-                    user.set_password(password)
-                    user.save()
-                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Password reset on https://tarocalendar.com /'
                     message = render_to_string(path_to_tmps['password_reset_mail'], {
                         'user': user,
                         'domain': site.domain,
@@ -381,7 +381,7 @@ class Agreement(View):
                     )
                     email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 class Menu(View):
@@ -425,7 +425,7 @@ class Menu(View):
                 if user is not None:
                     if not user.is_active:
                         current_site = get_current_site(request)
-                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        mail_subject = 'Account verification on https://tarocalendar.com /'
                         message = render_to_string(path_to_tmps['confirmation_acc'], {
                             'user': user,
                             'domain': current_site.domain,
@@ -438,16 +438,16 @@ class Menu(View):
                         )
                         email.send()
                         messages.success(request,
-                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                         "An email has been sent to your email address {} to confirm your account.".format(
                                              to_email))
                         return HttpResponseRedirect(request.path)
                     else:
                         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        # messages.error(request, 'Your account is disabled. Contact the administrator.')
                         return HttpResponseRedirect(request.path)
 
                 else:
-                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    messages.error(request, 'Invalid username or password, please try again.')
                     return HttpResponseRedirect(request.path)
             else:
                 for error in list(login_form.errors.values()):
@@ -489,11 +489,11 @@ class Menu(View):
                 site = get_current_site(request)
                 if len(qs) > 0:
                     user = qs[0]
-                    user.is_active = False
-                    user.reset_password = True
-                    user.set_password(password)
-                    user.save()
-                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Password reset on https://tarocalendar.com /'
                     message = render_to_string(path_to_tmps['password_reset_mail'], {
                         'user': user,
                         'domain': site.domain,
@@ -507,7 +507,7 @@ class Menu(View):
                     )
                     email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 class Video(View):
@@ -551,7 +551,7 @@ class Video(View):
                 if user is not None:
                     if not user.is_active:
                         current_site = get_current_site(request)
-                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        mail_subject = 'Account verification on https://tarocalendar.com /'
                         message = render_to_string(path_to_tmps['confirmation_acc'], {
                             'user': user,
                             'domain': current_site.domain,
@@ -564,16 +564,16 @@ class Video(View):
                         )
                         email.send()
                         messages.success(request,
-                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                         "An email has been sent to your email address {} to confirm your account.".format(
                                              to_email))
                         return HttpResponseRedirect(request.path)
                     else:
                         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        # messages.error(request, 'Your account is disabled. Contact the administrator.')
                         return HttpResponseRedirect(request.path)
 
                 else:
-                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    messages.error(request, 'Invalid username or password, please try again.')
                     return HttpResponseRedirect(request.path)
             else:
                 for error in list(login_form.errors.values()):
@@ -586,7 +586,7 @@ class Video(View):
                 user.is_active = False
                 user.save()
                 current_site = get_current_site(request)
-                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                mail_subject = 'Account activation on https://tarocalendar.com /'
                 message = render_to_string(path_to_tmps['acc_active_email'], {
                     'user': user,
                     'domain': current_site.domain,
@@ -599,7 +599,7 @@ class Video(View):
                 )
                 email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
             else:
@@ -615,11 +615,11 @@ class Video(View):
                 site = get_current_site(request)
                 if len(qs) > 0:
                     user = qs[0]
-                    user.is_active = False
-                    user.reset_password = True
-                    user.set_password(password)
-                    user.save()
-                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Password reset on https://tarocalendar.com /'
                     message = render_to_string(path_to_tmps['password_reset_mail'], {
                         'user': user,
                         'domain': site.domain,
@@ -633,7 +633,7 @@ class Video(View):
                     )
                     email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 
@@ -665,11 +665,11 @@ class Algorithm(View):
                 payment_= payment_.json()
                 payment_=json.loads(payment_)
                 #print(payment_)
-                #print(tarif_dict[payment_['description'].split(' ')[0]])
+                #print(tariff_dict[payment_['description'].split(' ')[0]])
                 if payment_['status']=='succeeded':
-                    if tarif_dict[payment_['description'].split(' ')[0]]>=request.user.role:
+                    if tariff_dict[payment_['description'].split(' ')[0]]>=request.user.role:
                         temp_user=User.objects.get(pk=request.user.id)
-                        temp_user.role=tarif_dict[payment_['description'].split(' ')[0]]
+                        temp_user.role=tariff_dict[payment_['description'].split(' ')[0]]
                         temp_user.date_end=date.today() + timedelta(days=31)
                         temp_user.save()
 
@@ -743,7 +743,7 @@ class Algorithm(View):
                 if user is not None:
                     if not user.is_active:
                         current_site = get_current_site(request)
-                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        mail_subject = 'Account verification on https://tarocalendar.com /'
                         message = render_to_string(path_to_tmps['confirmation_acc'], {
                             'user': user,
                             'domain': current_site.domain,
@@ -756,16 +756,16 @@ class Algorithm(View):
                         )
                         email.send()
                         messages.success(request,
-                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                         "An email has been sent to your email address {} to confirm your account.".format(
                                              to_email))
                         return HttpResponseRedirect(request.path)
                     else:
                         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        # messages.error(request, 'Your account is disabled. Contact the administrator.')
                         return HttpResponseRedirect(request.path)
 
                 else:
-                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    messages.error(request, 'Invalid username or password, please try again.')
                     return HttpResponseRedirect(request.path)
             else:
                 for error in list(login_form.errors.values()):
@@ -778,7 +778,7 @@ class Algorithm(View):
                 user.is_active = False
                 user.save()
                 current_site = get_current_site(request)
-                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                mail_subject = 'Account activation on https://tarocalendar.com /'
                 message = render_to_string(path_to_tmps['acc_active_email'], {
                     'user': user,
                     'domain': current_site.domain,
@@ -791,7 +791,7 @@ class Algorithm(View):
                 )
                 email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
             else:
@@ -807,11 +807,11 @@ class Algorithm(View):
                 site = get_current_site(request)
                 if len(qs) > 0:
                     user = qs[0]
-                    user.is_active = False
-                    user.reset_password = True
-                    user.set_password(password)
-                    user.save()
-                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Password reset on https://tarocalendar.com /'
                     message = render_to_string(path_to_tmps['password_reset_mail'], {
                         'user': user,
                         'domain': site.domain,
@@ -825,14 +825,14 @@ class Algorithm(View):
                     )
                     email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
         if request.POST.get('Result'):
             if self.request.user.date_end < date.today():
-                return redirect('/en/tarif/')
+                return redirect('/en/tariff/')
             if self.request.user.role < 1:
-                return redirect('/en/tarif/')
+                return redirect('/en/tariff/')
             context_zods = {
                 'zod_1': "images/Component4.png",
                 'zod_2': "images/Component16.png",
@@ -987,7 +987,7 @@ class Algorithm(View):
             return render(request, path_to_tmps['algorithm'], context=context)
         if request.POST.get('Save'):
             if self.request.user.role < 3:
-                return redirect('/en/tarif/')
+                return redirect('/en/tariff/')
 
             context=glob_context
             data = request.POST
@@ -1061,7 +1061,7 @@ class Algorithm(View):
             return HttpResponseRedirect(request.path)
         if request.POST.get('next_month'):
             if self.request.user.role < 3:
-                return redirect('/en/tarif/')
+                return redirect('/en/tariff/')
             context=glob_context
             data = request.POST
             left_arr_next=[]
@@ -1083,7 +1083,7 @@ class Algorithm(View):
 
         if request.POST.get('last_month'):
             if self.request.user.role < 3:
-                return redirect('/en/tarif/')
+                return redirect('/en/tariff/')
             context=glob_context
             data = request.POST
             left_arr_next=[]
@@ -1105,7 +1105,7 @@ class Algorithm(View):
 
         if request.POST.get('years'):
             if self.request.user.role < 3:
-                return redirect('/en/tarif/')
+                return redirect('/en/tariff/')
             context=glob_context
             data = request.POST
             left_arr_next=[]
@@ -1142,11 +1142,11 @@ class Tarif(View):
                 payment_= payment_.json()
                 payment_=json.loads(payment_)
                 #print(payment_)
-                #print(tarif_dict[payment_['description'].split(' ')[0]])
+                #print(tariff_dict[payment_['description'].split(' ')[0]])
                 if payment_['status']=='succeeded':
-                    if tarif_dict[payment_['description'].split(' ')[0]]>=request.user.role:
+                    if tariff_dict[payment_['description'].split(' ')[0]]>=request.user.role:
                         temp_user=User.objects.get(pk=request.user.id)
-                        temp_user.role=tarif_dict[payment_['description'].split(' ')[0]]
+                        temp_user.role=tariff_dict[payment_['description'].split(' ')[0]]
                         temp_user.date_end=date.today() + timedelta(days=31)
                         temp_user.save()
 
@@ -1296,7 +1296,7 @@ class Contacts(View):
                 if user is not None:
                     if not user.is_active:
                         current_site = get_current_site(request)
-                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        mail_subject = 'Account verification on https://tarocalendar.com /'
                         message = render_to_string(path_to_tmps['confirmation_acc'], {
                             'user': user,
                             'domain': current_site.domain,
@@ -1309,16 +1309,16 @@ class Contacts(View):
                         )
                         email.send()
                         messages.success(request,
-                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                         "An email has been sent to your email address {} to confirm your account.".format(
                                              to_email))
                         return HttpResponseRedirect(request.path)
                     else:
                         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        # messages.error(request, 'Your account is disabled. Contact the administrator.')
                         return HttpResponseRedirect(request.path)
 
                 else:
-                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    messages.error(request, 'Invalid username or password, please try again.')
                     return HttpResponseRedirect(request.path)
             else:
                 for error in list(login_form.errors.values()):
@@ -1331,7 +1331,7 @@ class Contacts(View):
                 user.is_active = False
                 user.save()
                 current_site = get_current_site(request)
-                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                mail_subject = 'Account activation on https://tarocalendar.com /'
                 message = render_to_string(path_to_tmps['acc_active_email'], {
                     'user': user,
                     'domain': current_site.domain,
@@ -1344,7 +1344,7 @@ class Contacts(View):
                 )
                 email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
             else:
@@ -1360,11 +1360,11 @@ class Contacts(View):
                 site = get_current_site(request)
                 if len(qs) > 0:
                     user = qs[0]
-                    user.is_active = False
-                    user.reset_password = True
-                    user.set_password(password)
-                    user.save()
-                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Password reset on https://tarocalendar.com /'
                     message = render_to_string(path_to_tmps['password_reset_mail'], {
                         'user': user,
                         'domain': site.domain,
@@ -1378,7 +1378,7 @@ class Contacts(View):
                     )
                     email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 
@@ -1422,7 +1422,7 @@ class Commercial(View):
                 if user is not None:
                     if not user.is_active:
                         current_site = get_current_site(request)
-                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        mail_subject = 'Account verification on https://tarocalendar.com /'
                         message = render_to_string(path_to_tmps['confirmation_acc'], {
                             'user': user,
                             'domain': current_site.domain,
@@ -1435,16 +1435,16 @@ class Commercial(View):
                         )
                         email.send()
                         messages.success(request,
-                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                         "An email has been sent to your email address {} to confirm your account.".format(
                                              to_email))
                         return HttpResponseRedirect(request.path)
                     else:
                         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        # messages.error(request, 'Your account is disabled. Contact the administrator.')
                         return HttpResponseRedirect(request.path)
 
                 else:
-                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    messages.error(request, 'Invalid username or password, please try again.')
                     return HttpResponseRedirect(request.path)
             else:
                 for error in list(login_form.errors.values()):
@@ -1457,7 +1457,7 @@ class Commercial(View):
                 user.is_active = False
                 user.save()
                 current_site = get_current_site(request)
-                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                mail_subject = 'Account activation on https://tarocalendar.com /'
                 message = render_to_string(path_to_tmps['acc_active_email'], {
                     'user': user,
                     'domain': current_site.domain,
@@ -1470,7 +1470,7 @@ class Commercial(View):
                 )
                 email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
             else:
@@ -1486,11 +1486,11 @@ class Commercial(View):
                 site = get_current_site(request)
                 if len(qs) > 0:
                     user = qs[0]
-                    user.is_active = False
-                    user.reset_password = True
-                    user.set_password(password)
-                    user.save()
-                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Password reset on https://tarocalendar.com /'
                     message = render_to_string(path_to_tmps['password_reset_mail'], {
                         'user': user,
                         'domain': site.domain,
@@ -1504,7 +1504,7 @@ class Commercial(View):
                     )
                     email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 
@@ -1548,7 +1548,7 @@ class Description(View):
                 if user is not None:
                     if not user.is_active:
                         current_site = get_current_site(request)
-                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        mail_subject = 'Account verification on https://tarocalendar.com /'
                         message = render_to_string(path_to_tmps['confirmation_acc'], {
                             'user': user,
                             'domain': current_site.domain,
@@ -1561,16 +1561,16 @@ class Description(View):
                         )
                         email.send()
                         messages.success(request,
-                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                         "An email has been sent to your email address {} to confirm your account.".format(
                                              to_email))
                         return HttpResponseRedirect(request.path)
                     else:
                         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        # messages.error(request, 'Your account is disabled. Contact the administrator.')
                         return HttpResponseRedirect(request.path)
 
                 else:
-                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    messages.error(request, 'Invalid username or password, please try again.')
                     return HttpResponseRedirect(request.path)
             else:
                 for error in list(login_form.errors.values()):
@@ -1583,7 +1583,7 @@ class Description(View):
                 user.is_active = False
                 user.save()
                 current_site = get_current_site(request)
-                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                mail_subject = 'Account activation on https://tarocalendar.com /'
                 message = render_to_string(path_to_tmps['acc_active_email'], {
                     'user': user,
                     'domain': current_site.domain,
@@ -1596,7 +1596,7 @@ class Description(View):
                 )
                 email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
             else:
@@ -1612,11 +1612,11 @@ class Description(View):
                 site = get_current_site(request)
                 if len(qs) > 0:
                     user = qs[0]
-                    user.is_active = False
-                    user.reset_password = True
-                    user.set_password(password)
-                    user.save()
-                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Password reset on https://tarocalendar.com /'
                     message = render_to_string(path_to_tmps['password_reset_mail'], {
                         'user': user,
                         'domain': site.domain,
@@ -1630,7 +1630,7 @@ class Description(View):
                     )
                     email.send()
                 messages.success(request,
-                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                 "An email has been sent to your email address {} to activate your account.".format(
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 
@@ -1698,11 +1698,184 @@ def activate(request, uidb64, token):
         user.role=1
         user.save()
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-        messages.success(request, 'Ваш аккаунт успешно подтверждён.')
+        messages.success(request, 'Your account has been successfully verified.')
         return HttpResponseRedirect('/en/')
     else:
-        messages.error(request, 'Ссылка недействительна.')
+        messages.error(request, 'The link is invalid.')
         return HttpResponseRedirect('/en/')
+
+#@method_decorator(login_required(login_url='/'), name='dispatch')
+class Reset_pswd(View):
+    login_form = LoginForm
+    register_form = Sign_Up_Form()
+    forgot_password_form = UserForgotPasswordForm()
+    reset_password_form = UserPasswordResetForm
+    forgot_password_form_pswd = UserPasswordResetForm
+
+
+    def get(self, request, *args, **kwargs):
+
+        login_form = self.login_form(None)
+        register_form = self.register_form
+        forgot_password_form = self.forgot_password_form
+        reset_password_form = self.reset_password_form
+        forgot_password_form_pswd=self.forgot_password_form_pswd(request.user, request.POST)
+
+        context = {
+            'login_form': login_form,
+            'register_form': register_form,
+            'forgot_password_form': forgot_password_form,
+            'reset_password_form': reset_password_form,
+            'forgot_password_form_pswd': forgot_password_form_pswd,
+        }
+
+        return render(
+            request,
+            path_to_tmps['password_reset_confirm'],context=context,
+        )
+
+    def post(self, request, *args, **kwargs):
+
+        login_form = self.login_form
+        register_form = self.register_form
+        forgot_password_form = self.forgot_password_form
+        reset_password_form = self.reset_password_form
+        forgot_password_form_pswd = self.forgot_password_form_pswd(request.user, request.POST)
+
+
+        if request.POST.get('login'):
+            login_form = LoginForm(data=request.POST)
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username=username, password=password)
+            if login_form.is_valid():
+                if user is not None:
+                    if not user.is_active:
+                        current_site = get_current_site(request)
+                        mail_subject = 'Account verification on https://tarocalendar.com /'
+                        message = render_to_string(path_to_tmps['confirmation_acc'], {
+                            'user': user,
+                            'domain': current_site.domain,
+                            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                            'token': account_activation_token.make_token(user),
+                        })
+                        to_email = user.email
+                        email = EmailMessage(
+                            mail_subject, message, to=[to_email]
+                        )
+                        email.send()
+                        messages.success(request,
+                                         "An email has been sent to your email address {} to confirm your account.".format(
+                                             to_email))
+                        return HttpResponseRedirect(request.path)
+                    else:
+                        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                        # messages.error(request, 'Your account is disabled. Contact the administrator.')
+                        return HttpResponseRedirect(request.path)
+
+                else:
+                    messages.error(request, 'Invalid username or password, please try again.')
+                    return HttpResponseRedirect(request.path)
+            else:
+                for error in list(login_form.errors.values()):
+                    messages.error(request, error)
+                return HttpResponseRedirect(request.path)
+        if request.POST.get('register'):
+            register = Sign_Up_Form(request.POST)
+            if register.is_valid():
+                user = register.save()
+                user.is_active = False
+                user.save()
+                current_site = get_current_site(request)
+                mail_subject = 'Account activation on https://tarocalendar.com /'
+                message = render_to_string(path_to_tmps['acc_active_email'], {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+                to_email = request.POST.get('email')
+                email = EmailMessage(
+                    mail_subject, message, to=[to_email]
+                )
+                email.send()
+                messages.success(request,
+                                 "An email has been sent to your email address {} to activate your account.".format(
+                                     request.POST.get('email')))
+                return HttpResponseRedirect(request.path)
+            else:
+                for error in list(register.errors.values())[0]:
+                    messages.error(request, error)
+                    return HttpResponseRedirect(request.path)
+        if request.POST.get('forgot_pass'):
+            form = UserForgotPasswordForm(request.POST)
+            if form.is_valid():
+                email = request.POST.get('email')
+                qs = User.objects.filter(email=email)
+                password = User.objects.make_random_password()
+                site = get_current_site(request)
+                if len(qs) > 0:
+                    user = qs[0]
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Password reset on https://tarocalendar.com /'
+                    message = render_to_string(path_to_tmps['password_reset_mail'], {
+                        'user': user,
+                        'domain': site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'token': account_activation_token.make_token(user),
+                        'password': password,
+                    })
+                    to_email = request.POST.get('email')
+                    email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+                    )
+                    email.send()
+                messages.success(request,
+                                 "An email has been sent to your email address {} to reset your password.".format(
+                                     request.POST.get('email')))
+                return HttpResponseRedirect(request.path)
+
+        rpswd = forgot_password_form_pswd
+        User = get_user_model()
+
+        uidb64 = request.get_full_path().split('/')[-3].replace('(', '').replace(')', '')
+        token = request.get_full_path().split('/')[-2].replace('(', '').replace(')', '')
+
+        uid = force_str(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+
+        if user is not None and account_activation_token.check_token(user, token):
+            if len(request.POST.get('password1'))>6:
+                if request.POST.get('password1') == request.POST.get('password2'):
+                    user.set_password(request.POST.get('password1'))
+                    user.is_active = True
+                    user.reset_password = False
+                    user.save()
+                    #login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+
+                    current_site = get_current_site(request)
+                    mail_subject = 'Password recovery on https://tarocalendar.com /'
+                    message = "Your password on the site has been updated."
+                    to_email = request.POST.get('email')
+                    email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+                    )
+                    email.send()
+                    messages.success (request, "Your password has been updated.")
+                    return HttpResponseRedirect('/')
+                else:
+                    messages.error(request, "Passwords don't match")
+                    return HttpResponseRedirect(request.path)
+
+            else:
+                messages.error(request, 'Password must be more than 6 characters long')
+                return HttpResponseRedirect(request.path)
+        else:
+            messages.error(request, 'Link is invalid, repeat the restore operation again')
+            return HttpResponseRedirect(request.path)
 
 from django import template
 from django.utils.html import conditional_escape

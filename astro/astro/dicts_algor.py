@@ -168,7 +168,7 @@ language_dict = {
     None: num_dict
 }
 
-tarif_dict={
+tariff_dict={
     'Start':1,
     'Standart':2,
     'Full':3
@@ -240,13 +240,14 @@ def algorithm_run_glob(the_date_str):
     f=m+q
     while f>22:
         f=sum_digits(f)
-    k=sum_digits(d)+sum_digits(m)+sum_digits(q)
+    #k=sum_digits(d)+sum_digits(m)+sum_digits(q)
+    k = d + m + q
     if k>22:
         k=sum_digits(k)
 
     l = sum_digits(k)
-    if l<10:
-        k='-'
+    #if l<10:
+    #    k='-'
     while l>9:
         l=sum_digits(l)
 

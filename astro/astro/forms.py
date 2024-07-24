@@ -2,6 +2,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, Pass
 from django import forms
 from django.contrib.auth import get_user_model
 from astro.astro.models import *
+#from django.contrib.auth.forms import SetPasswordForm
 #from captcha.fields import CaptchaField, CaptchaTextInput
 
 User = get_user_model()
@@ -105,18 +106,8 @@ class UserForgotPasswordForm(PasswordResetForm):
 
 
 class UserPasswordResetForm(SetPasswordForm):
-    email = forms.CharField(
-        label='Email',
-        widget=forms.EmailInput(
-            attrs={
-                'class': 'input100',
-                'placeholder': 'Email',
-
-            }
-        )
-    )
     password1 = forms.CharField(
-        label='Password',
+        label='Password reset',
         widget=forms.PasswordInput(
             attrs={
                 'class': 'input100',

@@ -127,7 +127,7 @@ Tariff plans allow you to use additional features
 <li><em>24/7</em> Support</li>
 </ul>
 {% if user.role == 1 %}
-<p style="color:green;margin-top: 25px;">TARIFF ACTIVATED up to {{user.date_end|date:"d M Y"}}</p>
+<p style="color:green;margin-top: 25px;">The end date of your tariff is {{user.date_end|date:"d M Y"}}</p>
 {% elif user.role > 1 %}
 <p></p>
 {% else %}
@@ -146,7 +146,7 @@ Tariff plans allow you to use additional features
 <li><em>24/7</em> Support</li>
 </ul>
 {% if user.role == 3 %}
-<p style="color:green;margin-top: 25px;">TARIFF ACTIVATED up to {{user.date_end|date:"d M Y"}}</p>
+<p style="color:green;margin-top: 25px;">The end date of your tariff is {{user.date_end|date:"d M Y"}}</p>
 {% elif user.role > 3 %}
 <p></p>
 {% else %}

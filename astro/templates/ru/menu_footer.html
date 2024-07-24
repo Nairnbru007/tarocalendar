@@ -79,11 +79,11 @@ background: #102431;
 height: 100%;
 }
 
-.screen{
-    .navbar-nav {
-        padding: 0 20px;
-        background-color: none;
-    }
+.screen {
+.navbar-nav {
+    padding: 0 20px;
+    background-color: none;
+}
 }
 }
 
@@ -318,7 +318,7 @@ height: 100%;
 													<div class="contact100-form-checkbox">
 													  <input class="input-checkbox100" type="checkbox" value="" id="flexCheckDefault2">
 													  <label class="label-checkbox100" for="flexCheckDefault2">
-														Я согласен с условиями <a href="<!--{#% url 'agreement_ru' %}" class="label-checkbox100_2" target="_blank">пользовательского соглашения</a>
+														Я согласен с условиями <a href="{#% url 'agreement_ru' %}" class="label-checkbox100_2" target="_blank">пользовательского соглашения</a>
 													  </label>
 													</div>
 													
@@ -459,7 +459,7 @@ height: 100%;
 						{% if request.user.is_authenticated %}
 							<!--<a href="#" class="footer">НОВОСТИ</a>-->
 							<a href="{% url 'favorites_ru' %}" class="footer">ИЗБРАННОЕ</a>
-							<a href="{% url 'tarif_ru' %}" class="footer">ТАРИФЫ</a>
+							<a href="{% url 'tariff_ru' %}" class="footer">ТАРИФЫ</a>
 							<a href="#" class="footer">ИНСТРУКЦИЯ</a>
 							<!--<a href="#" class="footer">СОТРУДНИЧЕСТВО</a>-->
 						{% endif %}

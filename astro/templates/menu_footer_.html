@@ -151,7 +151,7 @@
                                    data-toggle="dropdown">{{ request.user.username }}</a>
                             </h1>
                             <button type="button" class="btn btn-login align-self-center" data-bs-toggle="modal"
-                                    style="border: 1px solid #FFCE8E;"><a href="{% url 'logout' %}">LOGOUT</a></button>
+                                    style="border: 1px solid #FFCE8E;"><a href="{% url 'logout_ru' %}">LOGOUT</a></button>
                         </ul>
                     {% endif %}
                     <div class="modal fade" role="dialog" id="login-register-form"
@@ -515,7 +515,7 @@
                     {% if request.user.is_authenticated %}
 
                         <a href="{% url 'favorites_en' %}" class="footer">FAVORITES</a>
-                        <a href="{% url 'tarif_en' %}" class="footer">COST</a>
+                        <a href="{% url 'tariff_en' %}" class="footer">COST</a>
                         <a href="#" class="footer">INTSTRUCTION</a>
 
                     {% endif %}
