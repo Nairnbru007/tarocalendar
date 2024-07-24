@@ -176,7 +176,7 @@ height: 100%;
 														<div class="text-center p-t-20">
 															<ul class="nav nav-tabs nav-tabs-3">
 															<li><a class="txt1" data-bs-toggle="tab" href="#forgot-password-form">
-																Забыли пароль?
+																Forgot your password?
 															</a></li>
 															</ul>
 														</div>
@@ -186,7 +186,7 @@ height: 100%;
 											<form class="login100-form " action="" method="POST" id="register">
 														{% csrf_token %}
 													<span class="login100-form-title p-b-34 p-t-27">
-														Регистрация
+														SIGN UP
 													</span>
 													<div class="wrap-input100 validate-input" data-validate = "Enter username">
 														{{ register_form.username }}
@@ -234,14 +234,14 @@ height: 100%;
 											<form class="login100-form " action="" method="POST" id="register">
 													{% csrf_token %}
 													<span class="login100-form-title p-b-34 p-t-27">
-														Восстановление пароля
+														Password Recovery
 													</span>
 													<div class="wrap-input100 validate-input" data-validate = "Enter username">
 														{{ forgot_password_form.email }}
 														<span class="focus-input100" data-placeholder="&#xf207;"></span>
 													</div>
 													<div class="container-login100-form-btn">
-														<input type="submit" class="login100-form-btn" value="Сбросить пароль" name="forgot_pass">
+														<input type="submit" class="login100-form-btn" value="Reset your password" name="forgot_pass">
 													</div>
 												</form>
 											</div>
@@ -259,7 +259,7 @@ height: 100%;
 													<form class="login100-form position_full" action="" method="POST">
 														{% csrf_token %}
 														<span class="login100-form-title p-b-34 p-t-27">
-															Вход
+															LOGIN
 														</span>
 														<div class="wrap-input100 validate-input" data-validate = "Enter username">
 															{{ login_form.username }}
@@ -281,12 +281,12 @@ height: 100%;
 														</div>
 														-->
 														<div class="container-login100-form-btn">
-															<input type="submit" class="login100-form-btn" name="login" value="Войти">
+															<input type="submit" class="login100-form-btn" name="login" value="LOGIN">
 														</div>
 														<div class="text-center p-t-20">
 															<ul class="nav nav-tabs nav-tabs-4">
 															<li><a class="txt1" data-bs-toggle="tab" href="#forgot-password-form-2">
-																Забыли пароль?
+																Forgot your password?
 															</a></li>
 															</ul>
 														</div>
@@ -296,7 +296,7 @@ height: 100%;
 											<form class="login100-form " action="" method="POST" id="register">
 													{% csrf_token %}
 													<span class="login100-form-title p-b-34 p-t-27">
-														Регистрация
+														SIGN UP
 													</span>
 													<div class="wrap-input100 validate-input" data-validate = "Enter username">
 														{{ register_form.username }}
@@ -336,7 +336,7 @@ height: 100%;
 													By registering, you agree to the terms <a href="{% url 'agreement_en' %}" class="label-checkbox100_2" target="_blank"><u>user agreement</u></a>
                                                     </div>
 													<div class="container-login100-form-btn">
-														<input type="submit" class="login100-form-btn" value="Регистрация" name="register">
+														<input type="submit" class="login100-form-btn" value="SIGN UP" name="register">
 													</div>
 												</form>
 											</div>
@@ -344,14 +344,14 @@ height: 100%;
 											<form class="login100-form " action="" method="POST" id="register">
 													{% csrf_token %}
 													<span class="login100-form-title p-b-34 p-t-27">
-														Восстановление пароля
+														Password Recovery
 													</span>
 													<div class="wrap-input100 validate-input" data-validate = "Enter username">
 														{{ forgot_password_form.email }}
 														<span class="focus-input100" data-placeholder="&#xf207;"></span>
 													</div>
 													<div class="container-login100-form-btn">
-														<input type="submit" class="login100-form-btn" value="Сбросить пароль" name="forgot_pass">
+														<input type="submit" class="login100-form-btn" value="Reset your password" name="forgot_pass">
 													</div>
 												</form>
 											</div>
