@@ -321,7 +321,8 @@ def fio_to_num(fio_str:str,index:str):
         print('error fio '+index+' [0]')
         pass
     try:
-        for i in ''.join(fio_temp[1:]):
+        #for i in ''.join(fio_temp[1:]):
+        for i in fio_temp[1]:
             if i in alphabet:
                 summ2=summ2+alphabet[i]
                 #print(i)
@@ -330,13 +331,13 @@ def fio_to_num(fio_str:str,index:str):
         pass
 
 
-    while summ1 > 23:
+    while summ1 > 22:
         summ1 = sum_digits(summ1)
-    while summ2 > 23:
+    while summ2 > 22:
         summ2 = sum_digits(summ2)
 
     summ3 = summ1 + summ2
-    while summ3 > 23:
+    while summ3 > 22:
         summ3 = sum_digits(summ3)
 
     if summ1 == 0: summ1 = '-'
