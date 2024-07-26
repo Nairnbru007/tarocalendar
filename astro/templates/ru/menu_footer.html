@@ -204,6 +204,7 @@ height: 100%;
 														{{ register_form.password2 }}
 														<span class="focus-input100" data-placeholder="&#xf191;"></span>
 													</div>
+                                                    {{ register_form.code }}
 													<!--<div class="contact100-form-checkbox">
 													  <input class="input-checkbox100" type="checkbox" value="" id="flexCheckDefault">
 													  <label class="label-checkbox100" for="flexCheckDefault">
@@ -314,6 +315,7 @@ height: 100%;
 														{{ register_form.password2 }}
 														<span class="focus-input100" data-placeholder="&#xf191;"></span>
 													</div>
+                                                    {{ register_form.code }}
 													<!--
 													<div class="contact100-form-checkbox">
 													  <input class="input-checkbox100" type="checkbox" value="" id="flexCheckDefault2">
@@ -509,6 +511,34 @@ height: 100%;
 		  }
 		});
 	</script>
+    <script>function getURLParam(paramName) {
+        const params = new URLSearchParams(window.location.search);
+        return params.get(paramName);
+    }
+
+    if (getURLParam('ref')!= null) {
+        const expire = new Date();
+        expire.setHours(expire.getHours() + 72);
+        document.cookie = "ref="+getURLParam('ref')+";expires=" + expire.toUTCString() + ";";
+    }
+
+    const cookiess = document.cookie.split(";");
+    for(cookie_ of cookiess){
+    const parts = cookie_.split("=");
+    if (parts[0]==' ref'){
+        if (parts[1]==''){
+            parts[1]==null;
+        }
+        if (parts[1]!=null){
+            document.getElementsByName("code")[0].disabled=false;
+            document.getElementsByName("code")[1].disabled=false;
+            document.getElementsByName("code")[0].value=parts[1];
+            document.getElementsByName("code")[1].value=parts[1];
+
+        }
+    }
+    }
+</script>
 	<script src="https://yastatic.net/jquery/cookie/1.0/jquery.cookie.min.js"></script>
 	<script src="{% static 'js/yearpicker.js' %}"></script>
 	<script src="{% static 'js/script.js' %}"></script>

@@ -659,7 +659,7 @@ class Algorithm(View):
         except:
             pass
         try:
-            Payments.objects.filter(user=request.user, date__lte=date.today() - timedelta(days=3)).delete()
+            #Payments.objects.filter(user=request.user, date__lte=date.today() - timedelta(days=3)).delete()
             for i in Payments.objects.filter(user=request.user,status='pending'):
                 payment_ = Payment.find_one(i.id_pay)
                 payment_= payment_.json()
@@ -1138,7 +1138,7 @@ class Tarif(View):
         except:
             pass
         try:
-            Payments.objects.filter(user=request.user, date__lte=date.today() - timedelta(days=3)).delete()
+            #Payments.objects.filter(user=request.user, date__lte=date.today() - timedelta(days=3)).delete()
             for i in Payments.objects.filter(user=request.user,status='pending'):
                 payment_ = Payment.find_one(i.id_pay)
                 payment_= payment_.json()
@@ -1165,18 +1165,40 @@ class Tarif(View):
         )
     def post(self, request, *args, **kwargs):
         if request.POST.get('pay_start'):
-            payment = Payment.create({
-                "amount": {
-                    "value": "300.00",
-                    "currency": "RUB"
-                },
-                "confirmation": {
-                    "type": "redirect",
-                    "return_url": request.path
-                },
-                "capture": True,
-                "description": str("Start "+request.user.username+' '+request.user.email)
-            }, uuid.uuid4())
+            payment = Payment.create(
+                {
+                    "amount": {
+                        "value": "600.00",
+                        "currency": "RUB"
+                    },
+                    "description": "Тариф Стандарт на сайте tarocalendar",
+                    "receipt": {
+                        "customer": {
+                            "email": request.user.email
+                        },
+                        "items": {
+                            "description": "Тариф Стандарт на сайте tarocalendar",
+                            "amount": {
+                                "value": "600.00",
+                                "currency": "RUB"
+                            },
+                            "vat_code": 1,
+                            "quantity": 1,
+                            "measure": "piece",
+                            "payment_mode": "full_payment"
+                        }
+                    },
+                    "confirmation": {
+                        "type": "redirect",
+                        "return_url": request.path
+                    },
+                    "capture": True,
+                    "metadata": {
+                        "tarif": "Standart",
+                        "username": request.user.username,
+                        "email": request.user.email
+                    }
+                }, uuid.uuid4())
 
             var_dump.var_dump(payment)
 

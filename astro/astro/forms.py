@@ -72,6 +72,11 @@ class Sign_Up_Form(UserCreationForm):
             }
         )
     )
+
+    code = forms.CharField(required=False,
+        label='code',
+        widget=forms.TextInput(
+            attrs={'hidden':'True','disabled':"True"}))
 #     captcha = CaptchaField(
 #         label='Решите простой пример:',
 #         widget=CaptchaTextInput(
@@ -89,6 +94,7 @@ class Sign_Up_Form(UserCreationForm):
             'email',
             'password1',
             'password2',
+            'code',
         ]
 
 
