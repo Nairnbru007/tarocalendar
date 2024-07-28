@@ -51,7 +51,9 @@ p{
                 display: none;
             }
         }
-
+        input::placeholder {
+  color: #FFCE8E;
+}
 
     </style>
 
@@ -127,11 +129,11 @@ p{
                         <div class="col align-self-center circle__filter2 flex" style="margin-top: -6px;margin-bottom: 6px;">
                             <div class="inp_date_3 flex" style="margin-top: -6px;">
                                 <input type="text" name="fio11" placeholder="N" class="center_input" value="{{ fio11 }}" readonly disabled
-                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; color: #FFCE8E;">
                                 <input type="text" name="fio12" placeholder="S" class="center_input" value="{{ fio12 }}" readonly disabled
-                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; color: #FFCE8E;">
                                 <input type="text" name="fio13" placeholder="Σ" class="center_input" value="{{ fio13 }}" readonly disabled
-                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; color: #FFCE8E;">
                             </div>
                             <div class="inp_date_3 flex" style="margin-top: -6px;">
 
@@ -148,11 +150,11 @@ p{
                             </div>
                             <div class="inp_date_3 flex" style="margin-top: -6px;">
                                 <input type="text" name="fio21" placeholder="N" class="center_input" value="{{ fio21 }}" readonly disabled
-                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; color: #FFCE8E;">
                                 <input type="text" name="fio22" placeholder="S" class="center_input" value="{{ fio22 }}" readonly disabled
-                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; color: #FFCE8E;">
                                 <input type="text" name="fio23" placeholder="Σ" class="center_input" value="{{ fio23 }}" readonly disabled
-                                       style="border: 0.5px solid #FFCE8E; height: 32px; ">
+                                       style="border: 0.5px solid #FFCE8E; height: 32px; color: #FFCE8E;">
                             </div>
                         </div>
 
@@ -945,11 +947,11 @@ p{
                         if (left == 1 && right == 1) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
-                                    if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x2" + j)[0].value) {
+                                    if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x2" + j)[0].value && document.getElementsByName("x1" + i)[0].value !="-") {
                                         document.getElementsByName("x1" + i)[0].classList.add(green);
                                         document.getElementsByName("x2" + j)[0].classList.add(green);
                                         for (let k = 1; k < 9; k++) {
-                                            if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + k)[0].value) {
+                                            if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + k)[0].value && document.getElementsByName("x1" + i)[0].value !="-") {
                                                 document.getElementsByName("x3" + k)[0].classList.add(green);
                                             }
                                         }
@@ -959,7 +961,7 @@ p{
                         } else if (left == 1) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
-                                    if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + j)[0].value) {
+                                    if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + j)[0].value && document.getElementsByName("x1" + i)[0].value !="-") {
                                         document.getElementsByName("x1" + i)[0].classList.add(green);
                                         document.getElementsByName("x3" + j)[0].classList.add(green);
                                     }
@@ -968,7 +970,7 @@ p{
                         } else if (right == 1) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
-                                    if (document.getElementsByName("x2" + i)[0].value == document.getElementsByName("x3" + j)[0].value) {
+                                    if (document.getElementsByName("x2" + i)[0].value == document.getElementsByName("x3" + j)[0].value && document.getElementsByName("x2" + i)[0].value !="-") {
                                         document.getElementsByName("x2" + i)[0].classList.add(green);
                                         document.getElementsByName("x3" + j)[0].classList.add(green);
                                     }
@@ -981,7 +983,7 @@ p{
                         for (let k = 1; k <= '{{hstprs1_count}}'; k++) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
-                                    if (document.getElementsByName("c1" + k + i)[0].defaultValue == document.getElementsByName("x1" + j)[0].value) {
+                                    if (document.getElementsByName("c1" + k + i)[0].defaultValue == document.getElementsByName("x1" + j)[0].value && document.getElementsByName("c1" + k + i)[0].defaultValue !="-") {
                                         document.getElementsByName("c1" + k + i)[0].classList.add(green);
                                     }
                                 }
@@ -992,7 +994,7 @@ p{
                         for (let k = 1; k <= '{{hstprs2_count}}'; k++) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
-                                    if (document.getElementsByName("c2" + k + i)[0].defaultValue == document.getElementsByName("x2" + j)[0].value) {
+                                    if (document.getElementsByName("c2" + k + i)[0].defaultValue == document.getElementsByName("x2" + j)[0].value && document.getElementsByName("c2" + k + i)[0].defaultValue !="-") {
                                         document.getElementsByName("c2" + k + i)[0].classList.add(green);
                                     }
                                 }
@@ -1009,7 +1011,7 @@ p{
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
                                             for (let r = 1; r < 9; r++) {
-                                                if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
+                                                if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value && document.getElementsByName("x1" + j)[0].value !="-") {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1019,7 +1021,7 @@ p{
                                 } else if (left == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
-                                            if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
+                                            if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value && document.getElementsByName("x1" + j)[0].value !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(green);
                                             }
                                         }
@@ -1028,7 +1030,7 @@ p{
                                 } else if (right == 1) {
                                     for (let n = 1; n < 9; n++) {
                                         for (let j = 1; j < 9; j++) {
-                                            if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value) {
+                                            if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value && document.getElementsByName("x2" + j)[0].value !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(green);
                                             }
                                         }
@@ -1039,7 +1041,7 @@ p{
                                 for (let n = 1; n < 9; n++) {
                                     for (let j = 1; j < 9; j++) {
                                         for (let r = 1; r < 9; r++) {
-                                            if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
+                                            if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value && document.getElementsByName("x1" + j)[0].value !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(green);
 
                                             }
@@ -1061,24 +1063,24 @@ p{
                     if (centre == 1) {
                         if (left == 1 && right == 1) {
                             for (let i = 1; i < 9; i++) {
-                                if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x2" + i)[0].value) {
+                                if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x2" + i)[0].value && document.getElementsByName("x1" + i)[0].value !="-") {
                                     document.getElementsByName("x1" + i)[0].classList.add(red);
                                     document.getElementsByName("x2" + i)[0].classList.add(red);
-                                    if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
+                                    if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + i)[0].value && document.getElementsByName("x1" + i)[0].value !="-") {
                                         document.getElementsByName("x3" + i)[0].classList.add(red);
                                     }
                                 }
                             }
                         } else if (left == 1) {
                             for (let i = 1; i < 9; i++) {
-                                if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
+                                if (document.getElementsByName("x1" + i)[0].value == document.getElementsByName("x3" + i)[0].value && document.getElementsByName("x1" + i)[0].value !="-") {
                                     document.getElementsByName("x1" + i)[0].classList.add(red);
                                     document.getElementsByName("x3" + i)[0].classList.add(red);
                                 }
                             }
                         } else if (right == 1) {
                             for (let i = 1; i < 9; i++) {
-                                if (document.getElementsByName("x2" + i)[0].value == document.getElementsByName("x3" + i)[0].value) {
+                                if (document.getElementsByName("x2" + i)[0].value == document.getElementsByName("x3" + i)[0].value && document.getElementsByName("x2" + i)[0].value !="-") {
                                     document.getElementsByName("x2" + i)[0].classList.add(red);
                                     document.getElementsByName("x3" + i)[0].classList.add(red);
                                 }
@@ -1090,7 +1092,7 @@ p{
                         for (let k = 1; k <= '{{hstprs1_count}}'; k++) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
-                                    if (document.getElementsByName("c1" + k + i)[0].defaultValue == document.getElementsByName("x1" + j)[0].value) {
+                                    if (document.getElementsByName("c1" + k + i)[0].defaultValue == document.getElementsByName("x1" + j)[0].value && document.getElementsByName("c1" + k + i)[0].defaultValue !="-") {
                                         if (i == j) {
                                             document.getElementsByName("c1" + k + i)[0].classList.add(red);
                                         }
@@ -1103,7 +1105,7 @@ p{
                         for (let k = 1; k <= '{{hstprs2_count}}'; k++) {
                             for (let i = 1; i < 9; i++) {
                                 for (let j = 1; j < 9; j++) {
-                                    if (document.getElementsByName("c2" + k + i)[0].defaultValue == document.getElementsByName("x2" + j)[0].value) {
+                                    if (document.getElementsByName("c2" + k + i)[0].defaultValue == document.getElementsByName("x2" + j)[0].value && document.getElementsByName("c2" + k + i)[0].defaultValue !="-") {
                                         if (i == j) {
                                             document.getElementsByName("c2" + k + i)[0].classList.add(red);
                                         }
@@ -1120,16 +1122,16 @@ p{
                                 const temp_arr_dd = temp_dd.split('_');
                                 for (let j = 1; j < 9; j++) {
                                     if (left == 1 && right == 1) {
-                                        if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value) {
+                                        if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1] !="-") {
                                             document.getElementsByName("d" + k + i)[0].classList.add(red);
                                         }
                                     } else if (left == 1) {
-                                        if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1]) {
+                                        if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] && temp_arr_dd[j - 1] !="-") {
                                             document.getElementsByName("d" + k + i)[0].classList.add(red);
                                         }
 
                                     } else if (right == 1) {
-                                        if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1]) {
+                                        if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1] && temp_arr_dd[j - 1] !="-") {
                                             document.getElementsByName("d" + k + i)[0].classList.add(red);
                                         }
                                     }
@@ -1173,16 +1175,16 @@ p{
 
                                     if (j != 2) {
                                         if (left == 1 && right == 1) {
-                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1] !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
                                         } else if (left == 1) {
-                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1]) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] && temp_arr_dd[j - 1] !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
 
                                         } else if (right == 1) {
-                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1]) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1] && temp_arr_dd[j - 1] !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
                                         }
@@ -1207,7 +1209,7 @@ p{
                                                 if (n == 2 || j == 2 || r == 2) {
 
                                                 } else {
-                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
+                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[n - 1] !="-") {
                                                         document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                     }
                                                 }
@@ -1223,7 +1225,7 @@ p{
                                             if (n == 2 || j == 2) {
 
                                             } else {
-                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[n - 1] !="-") {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1237,7 +1239,7 @@ p{
 
                                             if (n == 2 || j == 2) {
                                             } else {
-                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value) {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[n - 1] !="-") {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1286,16 +1288,16 @@ p{
 
                                     if (j != 3) {
                                         if (left == 1 && right == 1) {
-                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1] !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
                                         } else if (left == 1) {
-                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1]) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] && temp_arr_dd[j - 1] !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
 
                                         } else if (right == 1) {
-                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1]) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1] && temp_arr_dd[j - 1] !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
                                         }
@@ -1320,7 +1322,7 @@ p{
                                                 if (n == 3 || j == 3 || r == 3) {
 
                                                 } else {
-                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
+                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[n - 1] !="-") {
                                                         document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                     }
                                                 }
@@ -1336,7 +1338,7 @@ p{
                                             if (n == 3 || j == 3) {
 
                                             } else {
-                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[n - 1] !="-") {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1350,7 +1352,7 @@ p{
 
                                             if (n == 3 || j == 3) {
                                             } else {
-                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value) {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[n - 1] !="-") {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1399,16 +1401,16 @@ p{
                                     if (j == 6 || j == 3 || j == 2) {
                                     } else {
                                         if (left == 1 && right == 1) {
-                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1] !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
                                         } else if (left == 1) {
-                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1]) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[j - 1] && temp_arr_dd[j - 1] !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
 
                                         } else if (right == 1) {
-                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1]) {
+                                            if (temp_arr_dd[j - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[j - 1] && temp_arr_dd[j - 1] !="-") {
                                                 document.getElementsByName("d" + k + i)[0].classList.add(red);
                                             }
                                         }
@@ -1433,7 +1435,7 @@ p{
                                                 if (n == 6 || j == 6 || r == 6 || n == 3 || j == 3 || r == 3 || n == 2 || j == 2 || r == 2) {
 
                                                 } else {
-                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
+                                                    if (document.getElementsByName("x1" + j)[0].value == document.getElementsByName("x2" + r)[0].value && temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[n - 1] !="-") {
                                                         document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                     }
                                                 }
@@ -1449,7 +1451,7 @@ p{
                                             if (n == 6 || j == 6 || n == 3 || j == 3 || n == 2 || j == 2) {
 
                                             } else {
-                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value) {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x1" + j)[0].value && temp_arr_dd[n - 1] !="-") {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
@@ -1463,7 +1465,7 @@ p{
 
                                             if (n == 6 || j == 6 || n == 3 || j == 3 || n == 2 || j == 2) {
                                             } else {
-                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value) {
+                                                if (temp_arr_dd[n - 1] == document.getElementsByName("x2" + j)[0].value && temp_arr_dd[n - 1] !="-") {
                                                     document.getElementsByName("d" + k + i)[0].classList.add(green);
                                                 }
                                             }
