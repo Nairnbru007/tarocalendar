@@ -177,6 +177,7 @@ def upload_csv(request):
     data_arr = []
     for line in lines:
         fields = line.split(";")
+        #print(fields)
         data_arr.append([fields[0],fields[1],fields[2],fields[3],fields[4]])
     for line in data_arr:
         print(line)

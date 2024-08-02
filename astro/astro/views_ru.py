@@ -1656,6 +1656,132 @@ class Description(View):
                                      request.POST.get('email')))
                 return HttpResponseRedirect(request.path)
 
+class Instruction(View):
+    login_form = LoginForm
+    register_form = Sign_Up_Form()
+    forgot_password_form = UserForgotPasswordForm()
+    reset_password_form = UserPasswordResetForm
+
+    def get(self, request, *args, **kwargs):
+
+        login_form = self.login_form(None)
+        register_form = self.register_form
+        forgot_password_form = self.forgot_password_form
+        reset_password_form = self.reset_password_form
+
+        context = {
+            'login_form': login_form,
+            'register_form': register_form,
+            'forgot_password_form': forgot_password_form,
+            'reset_password_form': reset_password_form,
+        }
+        return render(
+            request,
+            path_to_tmps['instruction'],context=context,
+        )
+
+    def post(self, request, *args, **kwargs):
+
+        login_form = self.login_form
+        register_form = self.register_form
+        forgot_password_form = self.forgot_password_form
+        reset_password_form = self.reset_password_form
+
+        if request.POST.get('login'):
+            login_form = LoginForm(data=request.POST)
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username=username, password=password)
+            if login_form.is_valid():
+                if user is not None:
+                    if not user.is_active:
+                        current_site = get_current_site(request)
+                        mail_subject = 'Подтверждение аккаунта на https://tarocalendar.com/'
+                        message = render_to_string(path_to_tmps['confirmation_acc'], {
+                            'user': user,
+                            'domain': current_site.domain,
+                            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                            'token': account_activation_token.make_token(user),
+                        })
+                        to_email = user.email
+                        email = EmailMessage(
+                            mail_subject, message, to=[to_email]
+                        )
+                        email.send()
+                        messages.success(request,
+                                         "На Ваш электронный адрес {} было направлено письмо, для подтверждения Вашего аккаунта.".format(
+                                             to_email))
+                        return HttpResponseRedirect(request.path)
+                    else:
+                        login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+                        # messages.error(request, 'Ваша учетная запись отключена. Обратитесь к администратору.')
+                        return HttpResponseRedirect(request.path)
+
+                else:
+                    messages.error(request, 'Неверный логин или пароль, пожалуйста, повторите попытку.')
+                    return HttpResponseRedirect(request.path)
+            else:
+                for error in list(login_form.errors.values()):
+                    messages.error(request, error)
+                return HttpResponseRedirect(request.path)
+        if request.POST.get('register'):
+            register = Sign_Up_Form(request.POST)
+            if register.is_valid():
+                user = register.save()
+                user.is_active = False
+                user.save()
+                current_site = get_current_site(request)
+                mail_subject = 'Активация аккаунта на https://tarocalendar.com/'
+                message = render_to_string(path_to_tmps['acc_active_email'], {
+                    'user': user,
+                    'domain': current_site.domain,
+                    'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                    'token': account_activation_token.make_token(user),
+                })
+                to_email = request.POST.get('email')
+                email = EmailMessage(
+                    mail_subject, message, to=[to_email]
+                )
+                email.send()
+                messages.success(request,
+                                 "На Ваш электронный адрес {} было направлено письмо, для активации Вашего аккаунта.".format(
+                                     request.POST.get('email')))
+                return HttpResponseRedirect(request.path)
+            else:
+                for error in list(register.errors.values())[0]:
+                    messages.error(request, error)
+                    return HttpResponseRedirect(request.path)
+        if request.POST.get('forgot_pass'):
+            form = UserForgotPasswordForm(request.POST)
+            if form.is_valid():
+                email = request.POST.get('email')
+                qs = User.objects.filter(email=email)
+                password = User.objects.make_random_password()
+                site = get_current_site(request)
+                if len(qs) > 0:
+                    user = qs[0]
+                    #user.is_active = False
+                    #user.reset_password = True
+                    #user.set_password(password)
+                    #user.save()
+                    mail_subject = 'Сброс пароля на https://tarocalendar.com/'
+                    message = render_to_string(path_to_tmps['password_reset_mail'], {
+                        'user': user,
+                        'domain': site.domain,
+                        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+                        'token': account_activation_token.make_token(user),
+                        'password': password,
+                    })
+                    to_email = request.POST.get('email')
+                    email = EmailMessage(
+                        mail_subject, message, to=[to_email]
+                    )
+                    email.send()
+                messages.success(request,
+                                 "На Ваш электронный адрес {} было направлено письмо, для сброса Вашего пароля.".format(
+                                     request.POST.get('email')))
+                return HttpResponseRedirect(request.path)
+
 @method_decorator(login_required(login_url='/'), name='dispatch')
 class Favorites_View(Up_role,Up_date,ListView):
     template_name = path_to_tmps['favorites']
