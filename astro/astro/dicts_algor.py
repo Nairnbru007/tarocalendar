@@ -10,6 +10,7 @@ path_to_tmps_ru={
 'confirmation_acc':'ru/confirmation_acc.html',#+
 'contacts':'ru/contacts.html',#+
 'description':'ru/description.html',#+
+'instruction':'ru/instruction.html',
 'favorites':'ru/favorites.html',#+
 'menu_footer':'ru/menu_footer.html',#+
 'offer':'ru/offer.html',#+
@@ -27,6 +28,7 @@ path_to_tmps_en={
 'confirmation_acc':'en/confirmation_acc.html',#+
 'contacts':'en/contacts.html',#+
 'description':'en/description.html',#+
+'instruction':'en/instruction.html',
 'favorites':'en/favorites.html',#+
 'menu_footer':'en/menu_footer.html',#+
 'offer':'en/offer.html',#+
