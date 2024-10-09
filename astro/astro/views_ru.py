@@ -39,8 +39,9 @@ import uuid
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import UserPassesTestMixin
 
-Configuration.account_id = '951224'
+#Configuration.account_id = '951224'
 #Configuration.secret_key = 'test_POrgWM4SZZ2RUTtMIKD1ByjrXaZ_etZ1KXgG7HPChck'
+Configuration.account_id = '934116'
 Configuration.secret_key ='live_Jdx4zN1fX0hsBkuhnkETthlmc-qyk4TBt9eu8yOdk0c'
 
 from .dicts_algor import *
@@ -1839,7 +1840,7 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.date_end=date.today() + timedelta(days=2)
-        user.role=1
+        user.role=0
         user.save()
         login(request, user, backend='django.contrib.auth.backends.ModelBackend')
         messages.success(request, 'Ваш аккаунт успешно подтверждён.')
