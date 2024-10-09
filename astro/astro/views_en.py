@@ -1168,109 +1168,105 @@ class Tarif(View):
             payment = Payment.create(
                 {
                     "amount": {
-                        "value": "600.00",
+                        "value": "666.00",
                         "currency": "RUB"
                     },
-                    "description": "Тариф Стандарт на сайте tarocalendar",
+                    "capture": True,
+                    "confirmation": {
+                        "type": "redirect",
+                        "return_url": 'https://tarocalendar.com/tariff/'
+                    },
+                    "description": str("Start тариф на сайте tarocalendar код " + str(request.user.code)),
+                    "metadata": {
+                        "tarif": "Start",
+                        "username": str(request.user.username),
+                        "email": str(request.user.email)
+                    },
                     "receipt": {
                         "customer": {
-                            "email": request.user.email
+                            "email": str(request.user.email)
                         },
-                        "items": {
-                            "description": "Тариф Стандарт на сайте tarocalendar",
+                        "items": [{
+                            "description": str("Start тариф на сайте tarocalendar код " + str(request.user.code)),
                             "amount": {
-                                "value": "600.00",
+                                "value": "666.00",
                                 "currency": "RUB"
                             },
                             "vat_code": 1,
                             "quantity": 1,
                             "measure": "piece",
                             "payment_mode": "full_payment"
-                        }
+                        }]
                     },
-                    "confirmation": {
-                        "type": "redirect",
-                        "return_url": request.path
-                    },
-                    "capture": True,
-                    "metadata": {
-                        "tarif": "Standart",
-                        "username": request.user.username,
-                        "email": request.user.email
-                    }
+
                 }, uuid.uuid4())
 
-            var_dump.var_dump(payment)
+            tmp_i = var_dump.var_dump(payment)
 
-            payment_ans=payment.json()
-            date_ans=json.loads(payment_ans)
-            conf_url=date_ans["confirmation"]['confirmation_url']
-
-            pay_create = Payments.objects.create(
-                user = User.objects.get(pk=request.user.id),
-                id_pay = date_ans["id"],
-                status = date_ans["status"],
-                tarif = str("Start "+request.user.username+' '+request.user.email)
-            )
-            pay_create.save()
-
-            return HttpResponseRedirect(conf_url)
-
-        if request.POST.get('pay_standart'):
-            payment = Payment.create({
-                "amount": {
-                    "value": "600.00",
-                    "currency": "RUB"
-                },
-                "confirmation": {
-                    "type": "redirect",
-                    "return_url": request.path
-                },
-                "capture": True,
-                "description": str("Standart "+request.user.username+' '+request.user.email)
-            }, uuid.uuid4())
-
-            var_dump.var_dump(payment)
-
-            payment_ans=payment.json()
-            date_ans=json.loads(payment_ans)
-            conf_url=date_ans["confirmation"]['confirmation_url']
+            payment_ans = payment.json()
+            date_ans = json.loads(payment_ans)
+            conf_url = date_ans["confirmation"]['confirmation_url']
 
             pay_create = Payments.objects.create(
-                user = User.objects.get(pk=request.user.id),
-                id_pay = date_ans["id"],
-                status = date_ans["status"],
-                tarif = str("Standart "+request.user.username+' '+request.user.email)
+                user=User.objects.get(pk=request.user.id),
+                id_pay=date_ans["id"],
+                status=date_ans["status"],
+                tarif=str("Tarif: Start, " + "user: " + str(request.user.username) + ', email: ' + str(
+                    request.user.email) + ', ref: ' + str(request.user))
             )
             pay_create.save()
 
             return HttpResponseRedirect(conf_url)
 
         if request.POST.get('pay_full'):
-            payment = Payment.create({
-                "amount": {
-                    "value": "900.00",
-                    "currency": "RUB"
-                },
-                "confirmation": {
-                    "type": "redirect",
-                    "return_url": request.path
-                },
-                "capture": True,
-                "description": str("Full "+request.user.username+' '+request.user.email)
-            }, uuid.uuid4())
+            payment = Payment.create(
+                {
+                    "amount": {
+                        "value": "999.00",
+                        "currency": "RUB"
+                    },
+                    "capture": True,
+                    "confirmation": {
+                        "type": "redirect",
+                        "return_url": 'https://tarocalendar.com/tariff/'
+                    },
+                    "description": str("Full тариф на сайте tarocalendar код " + str(request.user.code)),
+                    "metadata": {
+                        "tarif": "Full",
+                        "username": str(request.user.username),
+                        "email": str(request.user.email)
+                    },
+                    "receipt": {
+                        "customer": {
+                            "email": str(request.user.email)
+                        },
+                        "items": [{
+                            "description": str("Full тариф на сайте tarocalendar код " + str(request.user.code)),
+                            "amount": {
+                                "value": "999.00",
+                                "currency": "RUB"
+                            },
+                            "vat_code": 1,
+                            "quantity": 1,
+                            "measure": "piece",
+                            "payment_mode": "full_payment"
+                        }]
+                    },
 
-            var_dump.var_dump(payment)
+                }, uuid.uuid4())
 
-            payment_ans=payment.json()
-            date_ans=json.loads(payment_ans)
-            conf_url=date_ans["confirmation"]['confirmation_url']
+            tmp_i = var_dump.var_dump(payment)
+
+            payment_ans = payment.json()
+            date_ans = json.loads(payment_ans)
+            conf_url = date_ans["confirmation"]['confirmation_url']
 
             pay_create = Payments.objects.create(
-                user = User.objects.get(pk=request.user.id),
-                id_pay = date_ans["id"],
-                status = date_ans["status"],
-                tarif = str("Full "+request.user.username+' '+request.user.email)
+                user=User.objects.get(pk=request.user.id),
+                id_pay=date_ans["id"],
+                status=date_ans["status"],
+                tarif=str("Tarif: Full, " + "user: " + str(request.user.username) + ', email: ' + str(
+                    request.user.email) + ', ref: ' + str(request.user))
             )
             pay_create.save()
 

@@ -243,7 +243,7 @@ def algorithm_run_glob(the_date_str):
     while f>22:
         f=sum_digits(f)
     #k=sum_digits(d)+sum_digits(m)+sum_digits(q)
-    k = d + m + q
+    k = sum_digits(d) + sum_digits(m) + sum_digits(q)
     l = sum_digits(k)
     if k>22:
         k="-"
