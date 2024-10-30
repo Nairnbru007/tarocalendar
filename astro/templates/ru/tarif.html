@@ -108,36 +108,15 @@ color:green;
 <h2 class="heading-secondary" style="color:#FFCE8E; font-size: 3rem; margin: 24px;">
 ТАРИФЫ
 </h2>
-<h5 class="heading-third" style="color:#FFCE8E; font-size: 1.5rem; margin: 24px;">
-Тарифные планы позволяют вам использовать дополнительные функции
-</h5>
 </div>
 
 
 <div class="pricing-box-container">
-<div class="pricing-box text-center" style="background-color: #151719; color: white; opacity: .7; box-shadow: 0px 2px 15px 0px;">
-<h5 style="color: white;">Initial</h5>
-<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽ </sup><text style="color: white; font-size: 5rem;">666</text><sub style="color: #1bbc9d; font-size: 2rem;">/мес</sub></p>
-<ul class="features-list">
-<li>Работа с двумя датами</li>
-<li>Расчет за текущий месяц</li>
-<li><strike>Избранное</strike></li>
-<!--<li><strike>Доступ к событиям</strike></li>-->
-<li><strike>Доступ к историческим личностям</strike></li>
-<li><em>Круглосуточная</em> поддержка</li>
-</ul>
-{% if user.role == 1 %}
-<p style="color:green;margin-top: 25px;">ТАРИФ АКТИВИРОВАН до {{user.date_end|date:"d M Y"}}</p>
-{% elif user.role > 1 %}
-<p></p>
-{% else %}
-<input type="submit" class="btn-primary" name="pay_start" value="Купить">
-{% endif %}
-</div>
+
 
 <div class="pricing-box text-center" style="background-color: #151719; color: white; opacity: .7; box-shadow: 0px 2px 15px 0px;">
 <h5 style="color: white;">Full access</h5>
-<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽ </sup><text style="color: white; font-size: 5rem;">999</text><sub style="color: #1bbc9d; font-size: 2rem;">/мес</sub></p>
+<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽ </sup><text style="color: white; font-size: 5rem;">9999</text><sub style="color: #1bbc9d; font-size: 2rem;">/год</sub></p>
 <ul class="features-list">
 <li>Работа с двумя датами</li>
 <li>Расчет для всех доступных дат</li>

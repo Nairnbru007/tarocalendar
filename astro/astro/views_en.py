@@ -672,7 +672,7 @@ class Algorithm(View):
                     if tariff_dict[payment_['description'].split(' ')[0]]>=request.user.role:
                         temp_user=User.objects.get(pk=request.user.id)
                         temp_user.role=tariff_dict[payment_['description'].split(' ')[0]]
-                        temp_user.date_end=date.today() + timedelta(days=31)
+                        temp_user.date_end=date.today() + timedelta(days=365)
                         temp_user.save()
 
                     temp_paym=Payments.objects.get(id_pay=i.id_pay)
@@ -1151,7 +1151,7 @@ class Tarif(View):
                     if tariff_dict[payment_['description'].split(' ')[0]]>=request.user.role:
                         temp_user=User.objects.get(pk=request.user.id)
                         temp_user.role=tariff_dict[payment_['description'].split(' ')[0]]
-                        temp_user.date_end=date.today() + timedelta(days=31)
+                        temp_user.date_end=date.today() + timedelta(days=365)
                         temp_user.save()
 
                     temp_paym=Payments.objects.get(id_pay=i.id_pay)
@@ -1166,65 +1166,12 @@ class Tarif(View):
             path_to_tmps['tarif'],
         )
     def post(self, request, *args, **kwargs):
-        if request.POST.get('pay_start'):
-            payment = Payment.create(
-                {
-                    "amount": {
-                        "value": "666.00",
-                        "currency": "RUB"
-                    },
-                    "capture": True,
-                    "confirmation": {
-                        "type": "redirect",
-                        "return_url": 'https://tarocalendar.com/tariff/'
-                    },
-                    "description": str("Start тариф на сайте tarocalendar код " + str(request.user.code)),
-                    "metadata": {
-                        "tarif": "Start",
-                        "username": str(request.user.username),
-                        "email": str(request.user.email)
-                    },
-                    "receipt": {
-                        "customer": {
-                            "email": str(request.user.email)
-                        },
-                        "items": [{
-                            "description": str("Start тариф на сайте tarocalendar код " + str(request.user.code)),
-                            "amount": {
-                                "value": "666.00",
-                                "currency": "RUB"
-                            },
-                            "vat_code": 1,
-                            "quantity": 1,
-                            "measure": "piece",
-                            "payment_mode": "full_payment"
-                        }]
-                    },
-
-                }, uuid.uuid4())
-
-            tmp_i = var_dump.var_dump(payment)
-
-            payment_ans = payment.json()
-            date_ans = json.loads(payment_ans)
-            conf_url = date_ans["confirmation"]['confirmation_url']
-
-            pay_create = Payments.objects.create(
-                user=User.objects.get(pk=request.user.id),
-                id_pay=date_ans["id"],
-                status=date_ans["status"],
-                tarif=str("Tarif: Start, " + "user: " + str(request.user.username) + ', email: ' + str(
-                    request.user.email) + ', ref: ' + str(request.user))
-            )
-            pay_create.save()
-
-            return HttpResponseRedirect(conf_url)
 
         if request.POST.get('pay_full'):
             payment = Payment.create(
                 {
                     "amount": {
-                        "value": "999.00",
+                        "value": "9999.00",
                         "currency": "RUB"
                     },
                     "capture": True,
@@ -1245,7 +1192,7 @@ class Tarif(View):
                         "items": [{
                             "description": str("Full тариф на сайте tarocalendar код " + str(request.user.code)),
                             "amount": {
-                                "value": "999.00",
+                                "value": "9999.00",
                                 "currency": "RUB"
                             },
                             "vat_code": 1,

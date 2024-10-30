@@ -108,36 +108,15 @@ color:green;
 <h2 class="heading-secondary" style="color:#FFCE8E; font-size: 3rem; margin: 24px;">
 TARIFF PLANS
 </h2>
-<h5 class="heading-third" style="color:#FFCE8E; font-size: 1.5rem; margin: 24px;">
-Tariff plans allow you to use additional features
-</h5>
 </div>
 
 
 <div class="pricing-box-container">
-<div class="pricing-box text-center" style="background-color: #151719; color: white; opacity: .7; box-shadow: 0px 2px 15px 0px;">
-<h5 style="color: white;">Initial</h5>
-<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽ </sup><text style="color: white; font-size: 5rem;">666</text><sub style="color: #1bbc9d; font-size: 2rem;">/month</sub></p>
-<ul class="features-list">
-<li>Working with two dates</li>
-<li>Calculation for the current month</li>
-<li><strike>Favorites</strike></li>
-<!--<li><strike>Access to Events</strike></li>-->
-<li><strike>Access to Personas</strike></li>
-<li><em>24/7</em> Support</li>
-</ul>
-{% if user.role == 1 %}
-<p style="color:green;margin-top: 25px;">The end date of your tariff is {{user.date_end|date:"d M Y"}}</p>
-{% elif user.role > 1 %}
-<p></p>
-{% else %}
-<input type="submit" class="btn-primary" name="pay_start" value="Pay">
-{% endif %}
-</div>
+
 
 <div class="pricing-box text-center" style="background-color: #151719; color: white; opacity: .7; box-shadow: 0px 2px 15px 0px;">
 <h5 style="color: white;">Full access</h5>
-<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽ </sup><text style="color: white; font-size: 5rem;">999</text><sub style="color: #1bbc9d; font-size: 2rem;">/month</sub></p>
+<p class="price"><sup style="color: #1bbc9d; font-size: 2rem;">₽ </sup><text style="color: white; font-size: 5rem;">9999</text><sub style="color: #1bbc9d; font-size: 2rem;">/year</sub></p>
 <ul class="features-list">
 <li>Working with two dates</li>
 <li>Calculation for all available dates</li>
