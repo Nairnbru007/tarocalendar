@@ -244,9 +244,11 @@ def algorithm_run_glob(the_date_str):
         f=sum_digits(f)
     #k=sum_digits(d)+sum_digits(m)+sum_digits(q)
     k = sum_digits(d) + sum_digits(m) + sum_digits(q)
+    print(f'k={k}')
     l = sum_digits(k)
     if k>22:
-        k="-"
+        #k="-"
+        k=sum_digits(k)
     #if l<10:
     #    k='-'
     while l>9:
