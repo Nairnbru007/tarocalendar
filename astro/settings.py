@@ -92,18 +92,6 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000
 #    }
 #}
 
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'u1958943_astro',
-         'USER': 'u1958943_remote',
-         'PASSWORD': 'P8j31jWh',
-         'HOST': '31.31.196.7',
-         #'USER': 'u1958943_default',
-         #'PASSWORD': 'P8j31jWhjTCh0UK8',
-         #'HOST': 'localhost',
-     }
- }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -152,8 +140,6 @@ EMAIL_BACKEND ='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'rakurstk@gmail.com'
-#EMAIL_HOST_PASSWORD = 'AndreyTK156*'
-EMAIL_HOST_PASSWORD = 'zaijqempeptdbfqp'
+
 EMAIL_USE_SSL = False
 
