@@ -220,50 +220,7 @@ def sum_digits(n):
         n //= 10
     return s
 
-def algorithm_run_glob(the_date_str):
-    # d.m.q.b.e.f.k.l
-    # 1.2.3.4.5.6.7.8
-    temp=the_date_str.split('.')
 
-    d=int(temp[0])
-    while d>22:
-        d=sum_digits(d)
-    m=int(temp[1])
-    y=int(temp[2])
-    q=y
-    while q>22:
-        q=sum_digits(q)
-    b=d+m
-    while b>22:
-        b=sum_digits(b)
-    e=d+q
-    while e>22:
-        e=sum_digits(e)
-    f=m+q
-    while f>22:
-        f=sum_digits(f)
-    #k=sum_digits(d)+sum_digits(m)+sum_digits(q)
-    k = sum_digits(d) + sum_digits(m) + sum_digits(q)
-    print(f'k={k}')
-    l = sum_digits(k)
-    if k>22:
-        #k="-"
-        k=sum_digits(k)
-    #if l<10:
-    #    k='-'
-    while l>9:
-        l=sum_digits(l)
-
-    if d == 22: d = 0
-    if m == 22: m = 0
-    if q == 22: q = 0
-    if b == 22: b = 0
-    if e == 22: e = 0
-    if f == 22: f = 0
-    if k == 22: k = 0
-    if l == 22: l = 0
-    temp=[d,m,q,b,e,f,k,l]
-    return temp
 
 def _(word_index, language=None):
     if language is not None:
