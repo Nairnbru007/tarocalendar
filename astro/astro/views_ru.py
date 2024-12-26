@@ -39,10 +39,7 @@ import uuid
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.mixins import UserPassesTestMixin
 
-#Configuration.account_id = '951224'
-#Configuration.secret_key = 'test_POrgWM4SZZ2RUTtMIKD1ByjrXaZ_etZ1KXgG7HPChck'
-Configuration.account_id = '934116'
-Configuration.secret_key ='live_Jdx4zN1fX0hsBkuhnkETthlmc-qyk4TBt9eu8yOdk0c'
+
 
 from .dicts_algor import *
 path_to_tmps=path_to_tmps_ru
