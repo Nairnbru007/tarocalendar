@@ -92,18 +92,7 @@ DATA_UPLOAD_MAX_NUMBER_FIELDS = 100000
 #    }
 #}
 
-DATABASES = {
-     'default': {
-         'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'u1958943_astro',
-         'USER': 'u1958943_remote',
-         'PASSWORD': 'P8j31jWh',
-         'HOST': '31.31.196.7',
-         #'USER': 'u1958943_default',
-         #'PASSWORD': 'P8j31jWhjTCh0UK8',
-         #'HOST': 'localhost',
-     }
- }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
